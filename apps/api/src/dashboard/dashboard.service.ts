@@ -27,7 +27,7 @@ export class DashboardService {
       this.bankroll.getSummary(),
       this.bankroll.getHistory(),
       this.analysis.getAnalyzedMarkets('ev-plus'),
-      this.getTodayMatches(),
+      this.getScheduleMatches(),
       this.prisma.ticket.findFirst({
         where: { status: TicketStatus.DRAFT },
         orderBy: { updatedAt: 'desc' },
@@ -41,8 +41,12 @@ export class DashboardService {
       this.getTodayBankrollProfit(),
     ]);
 
-    const matchAnalysis = todayMatchesRaw[0]
-      ? await this.buildMatchAnalysis(todayMatchesRaw[0].id)
+    const featuredMatch =
+      todayMatchesRaw.find((m) => m.day === 'today' && m.status !== 'finished') ??
+      todayMatchesRaw[0];
+
+    const matchAnalysis = featuredMatch
+      ? await this.buildMatchAnalysis(featuredMatch.id)
       : this.emptyMatchAnalysis();
 
     const evMarkets = evPlusRaw.slice(0, 8).map((m, i) => ({
@@ -134,21 +138,40 @@ export class DashboardService {
     };
   }
 
-  private async getTodayMatches() {
+  private async getScheduleMatches() {
     const now = new Date();
-    const start = new Date(now);
-    start.setHours(0, 0, 0, 0);
-    const end = new Date(now);
-    end.setHours(23, 59, 59, 999);
+    const todayStart = new Date(now);
+    todayStart.setHours(0, 0, 0, 0);
+    const todayEnd = new Date(now);
+    todayEnd.setHours(23, 59, 59, 999);
+    const tomorrowStart = new Date(todayStart);
+    tomorrowStart.setDate(tomorrowStart.getDate() + 1);
+    const tomorrowEnd = new Date(tomorrowStart);
+    tomorrowEnd.setHours(23, 59, 59, 999);
+
+    const importedCount = await this.prisma.match.count({
+      where: { externalId: { not: null } },
+    });
 
     const matches = await this.prisma.match.findMany({
       where: {
-        matchDate: { gte: start, lte: end },
-        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        ...(importedCount > 0 ? { externalId: { not: null } } : {}),
+        OR: [
+          {
+            matchDate: { gte: todayStart, lte: todayEnd },
+            status: {
+              in: [MatchStatus.SCHEDULED, MatchStatus.LIVE, MatchStatus.FINISHED],
+            },
+          },
+          {
+            matchDate: { gte: tomorrowStart, lte: tomorrowEnd },
+            status: MatchStatus.SCHEDULED,
+          },
+        ],
       },
       include: { homeTeam: true, awayTeam: true, competition: true },
       orderBy: { matchDate: 'asc' },
-      take: 8,
+      take: 60,
     });
 
     const result = [];
@@ -157,6 +180,9 @@ export class DashboardService {
         where: { matchId: m.id },
         orderBy: { analyzedAt: 'desc' },
       });
+
+      const matchDay = m.matchDate <= todayEnd ? 'today' : 'tomorrow';
+
       result.push({
         id: m.id,
         time: new Date(m.matchDate).toLocaleTimeString('pt-BR', {
@@ -172,7 +198,10 @@ export class DashboardService {
         status:
           m.status === MatchStatus.LIVE
             ? ('live' as const)
-            : ('scheduled' as const),
+            : m.status === MatchStatus.FINISHED
+              ? ('finished' as const)
+              : ('scheduled' as const),
+        day: matchDay as 'today' | 'tomorrow',
       });
     }
     return result;

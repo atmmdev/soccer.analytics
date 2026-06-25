@@ -20,7 +20,9 @@ export interface ImportFixturesResult {
 export interface ImportOddsResult {
   provider: string;
   date: string;
+  fixturesWithOdds: number;
   matchesProcessed: number;
   oddsCreated: number;
+  skippedNoOdds: number;
   errors: string[];
 }

@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { MarketType, Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { AnalysisEngineService, MarketOddInput } from '../engines/analysis-engine/analysis-engine.service';
+import { StatisticsEngineService } from '../engines/statistics-engine/statistics-engine.service';
 
 const DEFAULT_ODDS: MarketOddInput[] = [
   { marketType: MarketType.MATCH_RESULT, selection: 'Casa', bookmakerOdd: 1.65 },
@@ -13,26 +14,12 @@ const DEFAULT_ODDS: MarketOddInput[] = [
   { marketType: MarketType.BTTS, selection: 'BTTS Não', bookmakerOdd: 2.05 },
 ];
 
-const TEAM_STATS: Record<string, { gf: number; ga: number }> = {
-  Brasil: { gf: 2.1, ga: 0.8 },
-  Escócia: { gf: 1.3, ga: 1.5 },
-  França: { gf: 1.9, ga: 0.9 },
-  Noruega: { gf: 1.4, ga: 1.2 },
-  Flamengo: { gf: 1.8, ga: 0.9 },
-  Palmeiras: { gf: 1.6, ga: 0.7 },
-  Alemanha: { gf: 2.0, ga: 1.0 },
-  Itália: { gf: 1.5, ga: 0.8 },
-  Marrocos: { gf: 1.4, ga: 1.1 },
-  Tunísia: { gf: 1.2, ga: 1.3 },
-  'Real Madrid': { gf: 2.2, ga: 0.9 },
-  Barcelona: { gf: 2.0, ga: 1.0 },
-};
-
 @Injectable()
 export class AnalysisService {
   constructor(
     private prisma: PrismaService,
     private analysisEngine: AnalysisEngineService,
+    private statisticsEngine: StatisticsEngineService,
   ) {}
 
   async runAnalysis(matchId: string, period = 10) {
@@ -48,8 +35,10 @@ export class AnalysisService {
 
     if (!match) throw new NotFoundException('Match not found');
 
-    const homeStats = TEAM_STATS[match.homeTeam.name] ?? { gf: 1.4, ga: 1.3 };
-    const awayStats = TEAM_STATS[match.awayTeam.name] ?? { gf: 1.4, ga: 1.3 };
+    const [homeStats, awayStats] = await Promise.all([
+      this.statisticsEngine.getGoalAverages(match.homeTeamId, period, 'home'),
+      this.statisticsEngine.getGoalAverages(match.awayTeamId, period, 'away'),
+    ]);
 
     const odds: MarketOddInput[] =
       match.odds.length > 0
@@ -80,6 +69,12 @@ export class AnalysisService {
       awayExpectedGoals: result.awayExpectedGoals,
       markets: result.markets,
       period,
+      statsSource: {
+        home: homeStats.source,
+        away: awayStats.source,
+        homeMatches: homeStats.matchesPlayed,
+        awayMatches: awayStats.matchesPlayed,
+      },
     };
 
     const [snapshot, prediction] = await this.prisma.$transaction([

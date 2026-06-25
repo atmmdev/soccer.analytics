@@ -46,4 +46,5 @@ export interface DataProvider {
   getStatus(): DataProviderStatus;
   fetchFixtures(date: string): Promise<ImportedFixture[]>;
   fetchOdds(fixtureExternalId: string): Promise<ImportedOdd[]>;
+  fetchOddsByDate(date: string): Promise<Map<string, ImportedOdd[]>>;
 }

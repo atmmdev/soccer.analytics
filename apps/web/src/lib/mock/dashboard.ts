@@ -17,6 +17,7 @@ export interface TodayMatch {
   competition: string;
   score: number;
   status: 'scheduled' | 'live' | 'finished';
+  day: 'today' | 'tomorrow';
 }
 
 export interface MatchAnalysisData {
@@ -93,11 +94,11 @@ export const dashboardData: DashboardData = {
     evPlusToday: 24,
   },
   todayMatches: [
-    { id: '1', time: '16:00', homeTeam: 'Brasil', awayTeam: 'Escócia', homeFlag: '🇧🇷', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', competition: 'Amistoso', score: 91, status: 'scheduled' },
-    { id: '2', time: '16:00', homeTeam: 'Marrocos', awayTeam: 'Tunísia', homeFlag: '🇲🇦', awayFlag: '🇹🇳', competition: 'Amistoso', score: 88, status: 'scheduled' },
-    { id: '3', time: '16:00', homeTeam: 'Honduras', awayTeam: 'Nicarágua', homeFlag: '🇭🇳', awayFlag: '🇳🇮', competition: 'Amistoso', score: 85, status: 'scheduled' },
-    { id: '4', time: '19:00', homeTeam: 'França', awayTeam: 'Noruega', homeFlag: '🇫🇷', awayFlag: '🇳🇴', competition: 'Eliminatórias', score: 82, status: 'scheduled' },
-    { id: '5', time: '19:00', homeTeam: 'Alemanha', awayTeam: 'Itália', homeFlag: '🇩🇪', awayFlag: '🇮🇹', competition: 'Nations League', score: 79, status: 'scheduled' },
+    { id: '1', time: '16:00', homeTeam: 'Brasil', awayTeam: 'Escócia', homeFlag: '🇧🇷', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', competition: 'Amistoso', score: 91, status: 'scheduled', day: 'today' },
+    { id: '2', time: '16:00', homeTeam: 'Marrocos', awayTeam: 'Tunísia', homeFlag: '🇲🇦', awayFlag: '🇹🇳', competition: 'Amistoso', score: 88, status: 'scheduled', day: 'today' },
+    { id: '3', time: '16:00', homeTeam: 'Honduras', awayTeam: 'Nicarágua', homeFlag: '🇭🇳', awayFlag: '🇳🇮', competition: 'Amistoso', score: 85, status: 'scheduled', day: 'today' },
+    { id: '4', time: '19:00', homeTeam: 'França', awayTeam: 'Noruega', homeFlag: '🇫🇷', awayFlag: '🇳🇴', competition: 'Eliminatórias', score: 82, status: 'scheduled', day: 'today' },
+    { id: '5', time: '19:00', homeTeam: 'Alemanha', awayTeam: 'Itália', homeFlag: '🇩🇪', awayFlag: '🇮🇹', competition: 'Nations League', score: 79, status: 'scheduled', day: 'today' },
   ],
   matchAnalysis: {
     homeTeam: 'Brasil',

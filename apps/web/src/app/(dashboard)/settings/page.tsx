@@ -43,11 +43,18 @@ export default function SettingsPage() {
   const handleImportOdds = () => {
     importOdds.mutate(date, {
       onSuccess: (result) => {
+        if (result.oddsCreated === 0) {
+          toast.warning(
+            result.errors[0] ??
+              `Nenhuma odd salva. API retornou ${result.fixturesWithOdds} jogos com odds, ${result.skippedNoOdds} sem correspondência no banco.`,
+          );
+          return;
+        }
         toast.success(
-          `${result.oddsCreated} odds importadas em ${result.matchesProcessed} jogos`,
+          `${result.oddsCreated} odds em ${result.matchesProcessed} jogos (${result.fixturesWithOdds} com odds na API)`,
         );
         if (result.errors.length > 0) {
-          toast.warning(`${result.errors.length} erro(s) parcial(is)`);
+          toast.warning(`${result.errors.length} aviso(s): ${result.errors[0]}`);
         }
       },
       onError: (err: Error & { response?: { data?: { message?: string } } }) => {

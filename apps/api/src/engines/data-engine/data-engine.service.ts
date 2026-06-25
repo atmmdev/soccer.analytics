@@ -20,8 +20,10 @@ export interface ImportFixturesResult {
 export interface ImportOddsResult {
   provider: string;
   date: string;
+  fixturesWithOdds: number;
   matchesProcessed: number;
   oddsCreated: number;
+  skippedNoOdds: number;
   errors: string[];
 }
 
@@ -83,31 +85,52 @@ export class DataEngineService {
     this.assertDate(date);
     const provider = this.getActiveProvider();
 
-    const start = new Date(`${date}T00:00:00.000Z`);
-    const end = new Date(`${date}T23:59:59.999Z`);
-
-    const matches = await this.prisma.match.findMany({
-      where: {
-        matchDate: { gte: start, lte: end },
-        externalId: { not: null },
-        status: MatchStatus.SCHEDULED,
-      },
-    });
-
     const result: ImportOddsResult = {
       provider: provider.name,
       date,
+      fixturesWithOdds: 0,
       matchesProcessed: 0,
       oddsCreated: 0,
+      skippedNoOdds: 0,
       errors: [],
     };
+
+    let oddsByFixture: Map<string, ImportedOdd[]>;
+    try {
+      oddsByFixture = await provider.fetchOddsByDate(date);
+      result.fixturesWithOdds = oddsByFixture.size;
+    } catch (err) {
+      throw new BadRequestException(
+        err instanceof Error ? err.message : 'Falha ao buscar odds',
+      );
+    }
+
+    if (oddsByFixture.size === 0) {
+      result.errors.push(
+        'Nenhuma odd retornada para esta data. Odds costumam aparecer 1–14 dias antes do jogo; tente outra data ou liga.',
+      );
+      return result;
+    }
+
+    const externalIds = [...oddsByFixture.keys()];
+    const matches = await this.prisma.match.findMany({
+      where: {
+        externalId: { in: externalIds },
+        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+      },
+    });
 
     for (const match of matches) {
       if (!match.externalId) continue;
 
+      const odds = oddsByFixture.get(match.externalId);
+      if (!odds || odds.length === 0) {
+        result.skippedNoOdds++;
+        continue;
+      }
+
       try {
-        const odds = await provider.fetchOdds(match.externalId);
-        const created = await this.replaceOdds(match.id, odds);
+        const created = await this.replaceOdds(match.id, this.dedupeOdds(odds));
         result.matchesProcessed++;
         result.oddsCreated += created;
       } catch (err) {
@@ -134,6 +157,18 @@ export class DataEngineService {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       throw new BadRequestException('Data inválida — use YYYY-MM-DD');
     }
+  }
+
+  private dedupeOdds(odds: ImportedOdd[]): ImportedOdd[] {
+    const seen = new Set<string>();
+    const result: ImportedOdd[] = [];
+    for (const odd of odds) {
+      const key = `${odd.marketType}:${odd.selection}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      result.push(odd);
+    }
+    return result;
   }
 
   private async upsertFixture(fixture: ImportedFixture) {

@@ -131,8 +131,11 @@ export default function AnalyzerPage() {
               <Badge variant="outline" className="text-xs">
                 Últimos {analysis.period} jogos · {VIEW_LABELS[analysis.view]}
               </Badge>
-              <Badge variant="secondary" className="text-xs">
-                Dados de exemplo
+              <Badge
+                variant={analysis.meta.source === 'computed' ? 'default' : 'secondary'}
+                className="text-xs"
+              >
+                {analysis.meta.note}
               </Badge>
             </div>
 

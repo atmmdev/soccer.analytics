@@ -35,7 +35,7 @@ export class ApiFootballProvider implements DataProvider {
   constructor(private config: ConfigService) {}
 
   getStatus(): DataProviderStatus {
-    const key = this.config.get<string>('API_FOOTBALL_KEY');
+    const key = this.getApiKey();
     return {
       name: this.name,
       configured: Boolean(key),
@@ -51,26 +51,61 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   async fetchOdds(fixtureExternalId: string): Promise<ImportedOdd[]> {
-    const data = await this.request<{ response: ApiOdds[] }>('/odds', {
+    const data = await this.request<{ response: ApiOddsEntry[] }>('/odds', {
       fixture: fixtureExternalId,
     });
+    return this.extractOddsFromEntries(data.response);
+  }
 
-    const odds: ImportedOdd[] = [];
-    for (const entry of data.response) {
-      const bookmaker = entry.bookmakers[0];
-      if (!bookmaker) continue;
+  async fetchOddsByDate(date: string): Promise<Map<string, ImportedOdd[]>> {
+    const map = new Map<string, ImportedOdd[]>();
+    let page = 1;
+    let totalPages = 1;
 
-      for (const bet of bookmaker.bets) {
-        const mapped = this.mapBet(bet.name, bet.values, bookmaker.name);
-        odds.push(...mapped);
+    while (page <= totalPages) {
+      const data = await this.request<{
+        response: ApiOddsEntry[];
+        paging?: { current: number; total: number };
+      }>('/odds', { date, page: String(page) });
+
+      totalPages = data.paging?.total ?? 1;
+
+      for (const entry of data.response) {
+        const fixtureId = String(entry.fixture.id);
+        const odds = this.extractOddsFromEntry(entry);
+        if (odds.length > 0) {
+          map.set(fixtureId, odds);
+        }
       }
+
+      page++;
     }
 
+    return map;
+  }
+
+  private extractOddsFromEntries(entries: ApiOddsEntry[]): ImportedOdd[] {
+    return entries.flatMap((entry) => this.extractOddsFromEntry(entry));
+  }
+
+  private extractOddsFromEntry(entry: ApiOddsEntry): ImportedOdd[] {
+    const bookmaker = entry.bookmakers[0];
+    if (!bookmaker) return [];
+
+    const odds: ImportedOdd[] = [];
+    for (const bet of bookmaker.bets) {
+      odds.push(...this.mapBet(bet.name, bet.values, bookmaker.name));
+    }
     return odds;
   }
 
+  private getApiKey(): string | undefined {
+    const raw = this.config.get<string>('API_FOOTBALL_KEY');
+    return raw?.replace(/^["']|["']$/g, '') || undefined;
+  }
+
   private async request<T>(path: string, params: Record<string, string>): Promise<T> {
-    const key = this.config.get<string>('API_FOOTBALL_KEY');
+    const key = this.getApiKey();
     if (!key) {
       throw new Error('API_FOOTBALL_KEY não configurada');
     }
@@ -86,14 +121,26 @@ export class ApiFootballProvider implements DataProvider {
       },
     });
 
+    if (response.status === 429) {
+      throw new Error(
+        'Limite de requisições da API-Football atingido (10/min no plano free). Aguarde 1 minuto e tente novamente.',
+      );
+    }
+
     if (!response.ok) {
       throw new Error(`API-Football HTTP ${response.status}`);
     }
 
-    const body = (await response.json()) as T & { errors?: Record<string, string> };
-    if (body.errors && Object.keys(body.errors).length > 0) {
-      const msg = Object.values(body.errors).join('; ');
-      throw new Error(msg || 'Erro na API-Football');
+    const body = (await response.json()) as T & {
+      errors?: Record<string, string> | string[];
+      message?: string;
+    };
+
+    if (body.errors) {
+      const msg = Array.isArray(body.errors)
+        ? body.errors.join('; ')
+        : Object.values(body.errors).join('; ');
+      if (msg) throw new Error(msg);
     }
 
     return body;
@@ -142,7 +189,13 @@ export class ApiFootballProvider implements DataProvider {
       return values
         .map((v) => {
           const selection =
-            v.value === 'Home' ? 'Casa' : v.value === 'Draw' ? 'Empate' : v.value === 'Away' ? 'Fora' : null;
+            v.value === 'Home'
+              ? 'Casa'
+              : v.value === 'Draw'
+                ? 'Empate'
+                : v.value === 'Away'
+                  ? 'Fora'
+                  : null;
           if (!selection) return null;
           return {
             marketType: MarketType.MATCH_RESULT,
@@ -154,7 +207,12 @@ export class ApiFootballProvider implements DataProvider {
         .filter(Boolean) as ImportedOdd[];
     }
 
-    if (normalized.includes('over/under') && normalized.includes('2.5')) {
+    if (
+      normalized.includes('over/under') &&
+      !normalized.includes('half') &&
+      !normalized.includes('corner') &&
+      !normalized.includes('card')
+    ) {
       return values
         .map((v) => {
           const selection =
@@ -215,7 +273,8 @@ interface ApiFixture {
   goals: { home: number | null; away: number | null };
 }
 
-interface ApiOdds {
+interface ApiOddsEntry {
+  fixture: { id: number };
   bookmakers: Array<{
     name: string;
     bets: Array<{

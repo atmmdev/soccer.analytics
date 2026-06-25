@@ -1,6 +1,6 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: Data Engine (parcial) + LLM opcional
+## Fase Atual: Statistics Engine + LLM opcional
 
 ### Concluído
 
@@ -20,6 +20,8 @@
 
 - [x] Dashboard e Scanner EV+ com dados reais da API
 - [x] Data Engine — adapter API-Football + importação jogos/odds
+- [x] Statistics Engine — stats reais de jogos finalizados (gols, forma, H2H, xG estimado)
+- [x] Analysis + Analyzer conectados ao Statistics Engine
 - [ ] Integração LLM opcional no AI Engine
 
 ## Setup
