@@ -51,6 +51,12 @@ export default function AnalyzerPage() {
   }, [matchId, matchesData]);
 
   const matches = matchesData?.data ?? [];
+  const selectedMatch = matches.find((m) => m.id === matchId);
+  const matchLabel = analysis
+    ? `${analysis.match.homeTeam.name} vs ${analysis.match.awayTeam.name}`
+    : selectedMatch
+      ? `${selectedMatch.homeTeam.name} vs ${selectedMatch.awayTeam.name}`
+      : undefined;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -195,10 +201,10 @@ export default function AnalyzerPage() {
                 awayTeam={analysis.match.awayTeam.name}
               />
             </div>
-
-            {matchId && <AnalysisPanel matchId={matchId} />}
           </>
         )}
+
+        {matchId && <AnalysisPanel matchId={matchId} matchLabel={matchLabel} />}
       </div>
     </div>
   );

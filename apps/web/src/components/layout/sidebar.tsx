@@ -27,6 +27,7 @@ import { Logo } from '@/components/brand/logo';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
+import { useTicketDraftStore } from '@/stores/ticket-draft.store';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -47,6 +48,7 @@ export function Sidebar() {
   const router = useRouter();
   const logout = useAuthStore((s) => s.logout);
   const user = useAuthStore((s) => s.user);
+  const ticketDraftCount = useTicketDraftStore((s) => s.selections.length);
 
   const handleLogout = () => {
     logout();
@@ -81,7 +83,12 @@ export function Sidebar() {
                 )}
               >
                 <item.icon className="h-4 w-4 shrink-0" />
-                {item.name}
+                <span className="flex-1">{item.name}</span>
+                {item.href === '/tickets' && ticketDraftCount > 0 && (
+                  <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[10px] font-bold text-primary-foreground">
+                    {ticketDraftCount}
+                  </span>
+                )}
               </Link>
             );
           })}

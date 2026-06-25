@@ -86,11 +86,11 @@
 
 **Objetivo:** Montagem de bilhetes
 
-- [ ] Seleção de mercados
-- [ ] Cálculo de odd combinada
-- [ ] Validação de correlação
-- [ ] Cálculo de stake e retorno
-- [ ] Salvar bilhete
+- [x] Seleção de mercados
+- [x] Cálculo de odd combinada
+- [x] Validação de correlação
+- [x] Cálculo de stake e retorno
+- [x] Salvar bilhete
 
 ---
 

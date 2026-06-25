@@ -1,6 +1,6 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: 6 — Ticket Builder (próxima)
+## Fase Atual: 7 — Bankroll (próxima)
 
 ### Concluído
 
@@ -10,11 +10,12 @@
 - [x] Fase 3 — Match Analyzer (Casa/Fora/H2H, períodos, gráficos)
 - [x] Fase 4 — Analysis Engine (Poisson, EV, confidence, snapshots)
 - [x] Fase 5 (parcial) — Mercados EV+ na UI
+- [x] Fase 6 — Ticket Builder (montagem, correlação, salvar)
 - [x] Script `pnpm start`
 
 ### Próximo
 
-- [ ] Fase 6 — Ticket Builder
+- [ ] Fase 7 — Bankroll
 - [ ] Data Engine — importação APIs externas
 
 ## Setup

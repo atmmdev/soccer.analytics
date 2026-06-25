@@ -122,7 +122,10 @@ export default function MatchDetailPage({
           </CardContent>
         </Card>
 
-        <AnalysisPanel matchId={id} />
+        <AnalysisPanel
+          matchId={id}
+          matchLabel={`${match.homeTeam.name} vs ${match.awayTeam.name}`}
+        />
 
         <Card className="border-border/60 bg-card/50">
           <CardHeader>

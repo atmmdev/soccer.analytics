@@ -1,6 +1,8 @@
 'use client';
 
-import { Loader2, Play, Target } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Loader2, Play, Plus, Target } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,11 +21,15 @@ import {
   type LatestAnalysis,
   type AnalysisResult,
 } from '@/types/analysis';
+import { useTicketDraftStore } from '@/stores/ticket-draft.store';
+import { TicketDraftBanner } from '@/components/tickets/ticket-draft-banner';
+import type { MarketType } from '@/types/ticket';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
 
 interface AnalysisPanelProps {
   matchId: string;
+  matchLabel?: string;
 }
 
 function formatPct(value: number) {
@@ -59,9 +65,39 @@ function AnalysisSummary({
   );
 }
 
-export function AnalysisPanel({ matchId }: AnalysisPanelProps) {
+export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
+  const router = useRouter();
   const { data: latest, isLoading } = useLatestAnalysis(matchId);
   const runAnalysis = useRunAnalysis(matchId);
+  const addSelection = useTicketDraftStore((s) => s.addSelection);
+  const draftCount = useTicketDraftStore((s) => s.selections.length);
+
+  const resolvedLabel = matchLabel ?? 'Jogo';
+
+  type AnalysisMarket = AnalysisResult['markets'][number];
+
+  const handleAddToTicket = (market: AnalysisMarket) => {
+    const added = addSelection({
+      matchId,
+      matchLabel: resolvedLabel,
+      marketType: market.marketType as MarketType,
+      selection: market.selection,
+      odd: market.bookmakerOdd,
+      probability: market.probability,
+      ev: market.ev,
+      confidence: market.confidence,
+    });
+    if (added) {
+      toast.success(`${market.selection} adicionado ao bilhete`, {
+        action: {
+          label: 'Ver bilhete',
+          onClick: () => router.push('/tickets'),
+        },
+      });
+    } else {
+      toast.info('Seleção já está no bilhete');
+    }
+  };
 
   const handleRun = () => {
     runAnalysis.mutate(10, {
@@ -86,6 +122,13 @@ export function AnalysisPanel({ matchId }: AnalysisPanelProps) {
             <Target className="h-4 w-4 text-primary" />
             Analysis Engine
           </CardTitle>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Use o botão <Plus className="inline h-3 w-3" /> para montar um bilhete em{' '}
+            <Link href="/tickets" className="text-primary hover:underline">
+              Bilhetes
+            </Link>
+            {draftCount > 0 ? ` (${draftCount} no rascunho)` : ''}
+          </p>
           {latest?.analyzedAt && (
             <p className="mt-1 text-xs text-muted-foreground">
               Última análise:{' '}
@@ -129,7 +172,7 @@ export function AnalysisPanel({ matchId }: AnalysisPanelProps) {
                   <TableHead className="text-right">Odd casa</TableHead>
                   <TableHead className="text-right">EV</TableHead>
                   <TableHead className="text-right">Conf.</TableHead>
-                  <TableHead className="text-right">Ação</TableHead>
+                  <TableHead className="text-right">Bilhete</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -158,14 +201,27 @@ export function AnalysisPanel({ matchId }: AnalysisPanelProps) {
                       {m.confidence}%
                     </TableCell>
                     <TableCell className="text-right">
-                      <Badge variant={RECOMMENDATION_VARIANT[m.recommendation]}>
-                        {RECOMMENDATION_LABELS[m.recommendation]}
-                      </Badge>
+                      <div className="flex items-center justify-end gap-1">
+                        <Badge variant={RECOMMENDATION_VARIANT[m.recommendation]}>
+                          {RECOMMENDATION_LABELS[m.recommendation]}
+                        </Badge>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8"
+                          title="Adicionar ao bilhete"
+                          onClick={() => handleAddToTicket(m)}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
+
+            <TicketDraftBanner />
           </>
         )}
       </CardContent>
