@@ -18,6 +18,7 @@
 
 ### Próximo
 
+- [x] Dashboard e Scanner EV+ com dados reais da API
 - [ ] Data Engine — importação APIs externas
 - [ ] Integração LLM opcional no AI Engine
 

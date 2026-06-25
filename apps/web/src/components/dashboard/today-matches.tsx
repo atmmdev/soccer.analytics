@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -15,8 +16,9 @@ function MatchList({ matches }: { matches: TodayMatch[] }) {
   return (
     <div className="space-y-2">
       {matches.map((match) => (
-        <div
+        <Link
           key={match.id}
+          href={`/matches/${match.id}`}
           className="flex items-center gap-3 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2.5 transition-colors hover:bg-secondary/40"
         >
           <span className="w-10 shrink-0 text-xs font-mono text-muted-foreground">
@@ -30,9 +32,9 @@ function MatchList({ matches }: { matches: TodayMatch[] }) {
             <span className="text-base">{match.awayFlag}</span>
           </div>
           <Badge variant="success" className="shrink-0 font-mono">
-            {match.score}
+            {match.score > 0 ? `${match.score}%` : '—'}
           </Badge>
-        </div>
+        </Link>
       ))}
     </div>
   );

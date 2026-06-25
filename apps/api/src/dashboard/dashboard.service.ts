@@ -1,78 +1,226 @@
 import { Injectable } from '@nestjs/common';
+import { MatchStatus, TicketStatus } from '@prisma/client';
+import { PrismaService } from '../prisma/prisma.service';
+import { BankrollService } from '../bankroll/bankroll.service';
+import { AnalysisService } from '../analysis/analysis.service';
+import { AnalyzerService } from '../analyzer/analyzer.service';
 
 @Injectable()
 export class DashboardService {
-  getDashboard() {
+  constructor(
+    private prisma: PrismaService,
+    private bankroll: BankrollService,
+    private analysis: AnalysisService,
+    private analyzer: AnalyzerService,
+  ) {}
+
+  async getDashboard() {
+    const [
+      bankrollSummary,
+      bankrollHistory,
+      evPlusRaw,
+      todayMatchesRaw,
+      latestTicket,
+      recentTickets,
+      todayEntries,
+    ] = await Promise.all([
+      this.bankroll.getSummary(),
+      this.bankroll.getHistory(),
+      this.analysis.getAnalyzedMarkets('ev-plus'),
+      this.getTodayMatches(),
+      this.prisma.ticket.findFirst({
+        where: { status: TicketStatus.DRAFT },
+        orderBy: { updatedAt: 'desc' },
+        include: { selections: true },
+      }),
+      this.prisma.ticket.findMany({
+        where: { status: { in: [TicketStatus.WON, TicketStatus.LOST] } },
+        orderBy: { updatedAt: 'desc' },
+        take: 5,
+      }),
+      this.getTodayBankrollProfit(),
+    ]);
+
+    const matchAnalysis = todayMatchesRaw[0]
+      ? await this.buildMatchAnalysis(todayMatchesRaw[0].id)
+      : this.emptyMatchAnalysis();
+
+    const evMarkets = evPlusRaw.slice(0, 8).map((m, i) => ({
+      id: `${m.matchId}-${i}`,
+      market: `${m.matchLabel} — ${m.market}`,
+      probability: Math.round(m.probability * 1000) / 10,
+      fairOdd: m.fairOdd,
+      bookmakerOdd: m.bookmakerOdd,
+      ev: Math.round(m.ev * 1000) / 10,
+    }));
+
+    const ticketBuilder = latestTicket
+      ? {
+          selections: latestTicket.selections.map((s) => ({
+            market: s.selection,
+            odd: s.odd,
+          })),
+          combinedOdd: latestTicket.combinedOdd ?? 0,
+          probability: 0,
+          ev: Math.round((latestTicket.overallEV ?? 0) * 1000) / 10,
+          suggestedStake: latestTicket.stake ?? 0,
+          potentialReturn: latestTicket.potentialReturn ?? 0,
+        }
+      : {
+          selections: [],
+          combinedOdd: 0,
+          probability: 0,
+          ev: 0,
+          suggestedStake: 0,
+          potentialReturn: 0,
+        };
+
+    const recentEntries = recentTickets.map((t) => ({
+      id: t.id,
+      date: new Date(t.updatedAt).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+      }),
+      market: t.name ?? 'Bilhete',
+      odd: t.combinedOdd ?? 0,
+      stake: t.stake ?? 0,
+      result: t.status === TicketStatus.WON ? ('win' as const) : ('loss' as const),
+      profit:
+        t.status === TicketStatus.WON
+          ? (t.actualReturn ?? 0) - (t.stake ?? 0)
+          : -(t.stake ?? 0),
+    }));
+
+    const topEv = evPlusRaw[0];
+
     return {
       summary: {
-        bankroll: { value: 1250, change: 120, changePercent: 9.68 },
-        profitToday: { value: 86.35, changePercent: 6.91 },
-        roi: { value: 12.84, change: 2.45 },
-        greens: { count: 128, percent: 71.51 },
-        reds: { count: 51, percent: 28.49 },
-        evPlusToday: 24,
+        bankroll: {
+          value: bankrollSummary.balance,
+          change: bankrollSummary.profit,
+          changePercent: bankrollSummary.roi,
+        },
+        profitToday: {
+          value: todayEntries,
+          changePercent: bankrollSummary.roi,
+        },
+        roi: { value: bankrollSummary.roi, change: bankrollSummary.yield },
+        greens: {
+          count: bankrollSummary.ticketsWon,
+          percent: bankrollSummary.winRate,
+        },
+        reds: {
+          count: bankrollSummary.ticketsLost,
+          percent:
+            bankrollSummary.ticketsWon + bankrollSummary.ticketsLost > 0
+              ? Math.round(
+                  (bankrollSummary.ticketsLost /
+                    (bankrollSummary.ticketsWon + bankrollSummary.ticketsLost)) *
+                    1000,
+                ) / 10
+              : 0,
+        },
+        evPlusToday: evPlusRaw.length,
       },
-      todayMatches: [
-        { id: '1', time: '16:00', homeTeam: 'Brasil', awayTeam: 'Escócia', homeFlag: '🇧🇷', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', competition: 'Amistoso', score: 91, status: 'scheduled' },
-        { id: '2', time: '16:00', homeTeam: 'Marrocos', awayTeam: 'Tunísia', homeFlag: '🇲🇦', awayFlag: '🇹🇳', competition: 'Amistoso', score: 88, status: 'scheduled' },
-        { id: '3', time: '16:00', homeTeam: 'Honduras', awayTeam: 'Nicarágua', homeFlag: '🇭🇳', awayFlag: '🇳🇮', competition: 'Amistoso', score: 85, status: 'scheduled' },
-        { id: '4', time: '19:00', homeTeam: 'França', awayTeam: 'Noruega', homeFlag: '🇫🇷', awayFlag: '🇳🇴', competition: 'Eliminatórias', score: 82, status: 'scheduled' },
-        { id: '5', time: '19:00', homeTeam: 'Alemanha', awayTeam: 'Itália', homeFlag: '🇩🇪', awayFlag: '🇮🇹', competition: 'Nations League', score: 79, status: 'scheduled' },
-      ],
-      matchAnalysis: {
-        homeTeam: 'Brasil',
-        awayTeam: 'Escócia',
-        homeFlag: '🇧🇷',
-        awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
-        stats: [
-          { label: 'Gols marcados (média)', home: 2.1, away: 1.3 },
-          { label: 'Gols sofridos (média)', home: 0.8, away: 1.5 },
-          { label: 'Escanteios (média)', home: 6.2, away: 4.8 },
-          { label: 'Finalizações (média)', home: 14.5, away: 10.2 },
-          { label: 'Posse (média)', home: 58, away: 46, suffix: '%' },
-          { label: 'BTTS', home: 62, away: 48, suffix: '%' },
-          { label: 'Over 2.5', home: 71, away: 55, suffix: '%' },
-          { label: 'Cartões (média)', home: 2.4, away: 3.1 },
-        ],
-        homeForm: ['W', 'W', 'D', 'W', 'W'],
-        awayForm: ['L', 'D', 'W', 'L', 'D'],
-      },
-      ticketBuilder: {
-        selections: [
-          { market: 'Brasil - Vencedor', odd: 1.65 },
-          { market: 'Over 2.5 Gols', odd: 1.85 },
-          { market: 'Brasil +1.5 Escanteios', odd: 1.65 },
-        ],
-        combinedOdd: 5.04,
-        probability: 55,
-        ev: 12.45,
-        suggestedStake: 20,
-        potentialReturn: 100.8,
-      },
-      evMarkets: [
-        { id: '1', market: 'Brasil - Vencedor', probability: 68, fairOdd: 1.47, bookmakerOdd: 1.65, ev: 12.2 },
-        { id: '2', market: 'Over 2.5 Gols', probability: 62, fairOdd: 1.61, bookmakerOdd: 1.85, ev: 14.9 },
-        { id: '3', market: 'BTTS - Sim', probability: 58, fairOdd: 1.72, bookmakerOdd: 1.90, ev: 10.5 },
-        { id: '4', market: 'Brasil +1.5 Escanteios', probability: 71, fairOdd: 1.41, bookmakerOdd: 1.65, ev: 17.0 },
-        { id: '5', market: 'Under 4.5 Cartões', probability: 65, fairOdd: 1.54, bookmakerOdd: 1.72, ev: 11.7 },
-      ],
-      bankrollHistory: [
-        { date: '01/06', value: 980 },
-        { date: '05/06', value: 1020 },
-        { date: '10/06', value: 1050 },
-        { date: '15/06', value: 1080 },
-        { date: '20/06', value: 1120 },
-        { date: '25/06', value: 1180 },
-        { date: '30/06', value: 1250 },
-      ],
-      recentEntries: [
-        { id: '1', date: '24/06', market: 'Brasil - Vencedor', odd: 1.65, stake: 20, result: 'win', profit: 13 },
-        { id: '2', date: '23/06', market: 'Over 2.5 Gols', odd: 1.85, stake: 15, result: 'win', profit: 12.75 },
-        { id: '3', date: '22/06', market: 'BTTS - Sim', odd: 1.90, stake: 20, result: 'loss', profit: -20 },
-        { id: '4', date: '21/06', market: 'França - Vencedor', odd: 1.55, stake: 25, result: 'win', profit: 13.75 },
-        { id: '5', date: '20/06', market: 'Under 3.5 Gols', odd: 1.72, stake: 20, result: 'win', profit: 14.4 },
-      ],
-      tip: 'Dica do dia: Times com média acima de 6 escanteios por jogo têm 73% de chance de bater Over 8.5 escanteios em casa.',
+      todayMatches: todayMatchesRaw,
+      matchAnalysis,
+      ticketBuilder,
+      evMarkets,
+      bankrollHistory: bankrollHistory.map(({ date, value }) => ({ date, value })),
+      recentEntries,
+      tip: topEv
+        ? `Destaque EV+: ${topEv.market} em ${topEv.matchLabel} (+${(topEv.ev * 100).toFixed(1)}%). Execute análises nos jogos do dia para mais oportunidades.`
+        : 'Execute análises nos jogos agendados para descobrir mercados EV+.',
     };
+  }
+
+  private async getTodayMatches() {
+    const now = new Date();
+    const start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(now);
+    end.setHours(23, 59, 59, 999);
+
+    const matches = await this.prisma.match.findMany({
+      where: {
+        matchDate: { gte: start, lte: end },
+        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+      },
+      include: { homeTeam: true, awayTeam: true, competition: true },
+      orderBy: { matchDate: 'asc' },
+      take: 8,
+    });
+
+    const result = [];
+    for (const m of matches) {
+      const snapshot = await this.prisma.snapshot.findFirst({
+        where: { matchId: m.id },
+        orderBy: { analyzedAt: 'desc' },
+      });
+      result.push({
+        id: m.id,
+        time: new Date(m.matchDate).toLocaleTimeString('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        homeTeam: m.homeTeam.name,
+        awayTeam: m.awayTeam.name,
+        homeFlag: '',
+        awayFlag: '',
+        competition: m.competition.name,
+        score: snapshot ? Math.round(snapshot.overallConfidence) : 0,
+        status:
+          m.status === MatchStatus.LIVE
+            ? ('live' as const)
+            : ('scheduled' as const),
+      });
+    }
+    return result;
+  }
+
+  private async buildMatchAnalysis(matchId: string) {
+    try {
+      const analysis = await this.analyzer.analyzeMatch(matchId, 10, 'home');
+      return {
+        homeTeam: analysis.match.homeTeam.name,
+        awayTeam: analysis.match.awayTeam.name,
+        homeFlag: '',
+        awayFlag: '',
+        stats: analysis.stats.map((s) => ({
+          label: s.label,
+          home: s.home,
+          away: s.away,
+          suffix: s.suffix,
+        })),
+        homeForm: analysis.homeForm,
+        awayForm: analysis.awayForm,
+      };
+    } catch {
+      return this.emptyMatchAnalysis();
+    }
+  }
+
+  private emptyMatchAnalysis() {
+    return {
+      homeTeam: '—',
+      awayTeam: '—',
+      homeFlag: '',
+      awayFlag: '',
+      stats: [],
+      homeForm: [] as ('W' | 'D' | 'L')[],
+      awayForm: [] as ('W' | 'D' | 'L')[],
+    };
+  }
+
+  private async getTodayBankrollProfit() {
+    const now = new Date();
+    const start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+
+    const entries = await this.prisma.bankrollEntry.findMany({
+      where: { createdAt: { gte: start } },
+    });
+
+    return Math.round(entries.reduce((sum, e) => sum + e.amount, 0) * 100) / 100;
   }
 }

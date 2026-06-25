@@ -21,27 +21,35 @@ import { DashboardTip } from '@/components/dashboard/dashboard-tip';
 import { apiClient } from '@/lib/api/client';
 import { dashboardData } from '@/lib/mock/dashboard';
 import type { DashboardData } from '@/lib/mock/dashboard';
+import { Loader2 } from 'lucide-react';
 
 function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 async function fetchDashboard(): Promise<DashboardData> {
-  try {
-    const { data } = await apiClient.get<DashboardData>('/dashboard');
-    return data;
-  } catch {
-    return dashboardData;
-  }
+  const { data } = await apiClient.get<DashboardData>('/dashboard');
+  return data;
 }
 
 export default function DashboardPage() {
-  const { data = dashboardData } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['dashboard'],
     queryFn: fetchDashboard,
   });
 
-  const { summary } = data;
+  if (isLoading) {
+    return (
+      <div className="flex min-h-full items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  const resolved = data ?? (isError ? dashboardData : null);
+  if (!resolved) return null;
+
+  const { summary } = resolved;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -55,22 +63,22 @@ export default function DashboardPage() {
           <StatCard
             title="Banca Atual"
             value={formatCurrency(summary.bankroll.value)}
-            change={`+${formatCurrency(summary.bankroll.change)} / +${summary.bankroll.changePercent}%`}
-            changeType="positive"
+            change={`${summary.bankroll.change >= 0 ? '+' : ''}${formatCurrency(summary.bankroll.change)} / ${summary.bankroll.changePercent >= 0 ? '+' : ''}${summary.bankroll.changePercent}%`}
+            changeType={summary.bankroll.change >= 0 ? 'positive' : 'negative'}
             icon={Wallet}
           />
           <StatCard
             title="Lucro Hoje"
             value={formatCurrency(summary.profitToday.value)}
-            change={`+${summary.profitToday.changePercent}%`}
-            changeType="positive"
+            change={`${summary.profitToday.value >= 0 ? '+' : ''}${formatCurrency(summary.profitToday.value)}`}
+            changeType={summary.profitToday.value >= 0 ? 'positive' : 'negative'}
             icon={TrendingUp}
           />
           <StatCard
             title="ROI"
             value={`${summary.roi.value}%`}
-            change={`+${summary.roi.change}%`}
-            changeType="positive"
+            change={`${summary.roi.change >= 0 ? '+' : ''}${summary.roi.change}% yield`}
+            changeType={summary.roi.value >= 0 ? 'positive' : 'negative'}
             icon={Percent}
           />
           <StatCard
@@ -101,24 +109,24 @@ export default function DashboardPage() {
 
         <div className="grid gap-4 xl:grid-cols-3">
           <div className="xl:col-span-1">
-            <TodayMatches matches={data.todayMatches} />
+            <TodayMatches matches={resolved.todayMatches} />
           </div>
           <div className="xl:col-span-1">
-            <MatchAnalysis data={data.matchAnalysis} />
+            <MatchAnalysis data={resolved.matchAnalysis} />
           </div>
           <div className="xl:col-span-1">
-            <TicketBuilderWidget data={data.ticketBuilder} />
+            <TicketBuilderWidget data={resolved.ticketBuilder} />
           </div>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <EvMarketsTable markets={data.evMarkets} />
-          <BankrollChart data={data.bankrollHistory} />
+          <EvMarketsTable markets={resolved.evMarkets} />
+          <BankrollChart data={resolved.bankrollHistory} />
         </div>
 
-        <RecentEntries entries={data.recentEntries} />
+        <RecentEntries entries={resolved.recentEntries} />
 
-        <DashboardTip tip={data.tip} />
+        <DashboardTip tip={resolved.tip} />
       </div>
     </div>
   );
