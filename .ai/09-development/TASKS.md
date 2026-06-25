@@ -24,6 +24,8 @@
 - [x] Analysis + Analyzer conectados ao Statistics Engine
 - [x] Importação de estatísticas de partida (xG, chutes, escanteios) via API-Football
 - [x] Alertas EV+ (hoje/amanhã) + badge dinâmico no header
+- [x] Widget Match Analysis — botão Analisar Jogo + snapshot Poisson no dashboard
+- [x] Página Relatórios — performance banca, bilhetes, precisão análises + export JSON
 - [ ] Integração LLM opcional no AI Engine
 
 ## Setup

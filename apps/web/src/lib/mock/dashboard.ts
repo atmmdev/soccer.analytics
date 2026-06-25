@@ -21,6 +21,7 @@ export interface TodayMatch {
 }
 
 export interface MatchAnalysisData {
+  matchId?: string | null;
   homeTeam: string;
   awayTeam: string;
   homeFlag: string;
@@ -33,6 +34,15 @@ export interface MatchAnalysisData {
   }[];
   homeForm: ('W' | 'D' | 'L')[];
   awayForm: ('W' | 'D' | 'L')[];
+  statsSource?: 'computed' | 'fallback' | null;
+  poisson?: {
+    predictedScore: string | null;
+    confidence: number;
+    homeExpectedGoals: number;
+    awayExpectedGoals: number;
+    topEvMarket: string | null;
+    topEv: number | null;
+  } | null;
 }
 
 export interface TicketSelection {
@@ -101,6 +111,7 @@ export const dashboardData: DashboardData = {
     { id: '5', time: '19:00', homeTeam: 'Alemanha', awayTeam: 'Itália', homeFlag: '🇩🇪', awayFlag: '🇮🇹', competition: 'Nations League', score: 79, status: 'scheduled', day: 'today' },
   ],
   matchAnalysis: {
+    matchId: null,
     homeTeam: 'Brasil',
     awayTeam: 'Escócia',
     homeFlag: '🇧🇷',

@@ -209,20 +209,45 @@ export class DashboardService {
 
   private async buildMatchAnalysis(matchId: string) {
     try {
-      const analysis = await this.analyzer.analyzeMatch(matchId, 10, 'home');
+      const [statsAnalysis, poisson] = await Promise.all([
+        this.analyzer.analyzeMatch(matchId, 10, 'home'),
+        this.analysis.getLatest(matchId),
+      ]);
+
+      let poissonBlock = null;
+      if (poisson?.markets?.length) {
+        const markets = poisson.markets as Array<{
+          selection: string;
+          ev: number;
+        }>;
+        const topEv = [...markets].sort((a, b) => b.ev - a.ev)[0];
+
+        poissonBlock = {
+          predictedScore: poisson.predictedResult,
+          confidence: poisson.overallConfidence,
+          homeExpectedGoals: poisson.homeExpectedGoals ?? 0,
+          awayExpectedGoals: poisson.awayExpectedGoals ?? 0,
+          topEvMarket: topEv?.selection ?? null,
+          topEv: topEv ? Math.round(topEv.ev * 1000) / 10 : null,
+        };
+      }
+
       return {
-        homeTeam: analysis.match.homeTeam.name,
-        awayTeam: analysis.match.awayTeam.name,
+        matchId,
+        homeTeam: statsAnalysis.match.homeTeam.name,
+        awayTeam: statsAnalysis.match.awayTeam.name,
         homeFlag: '',
         awayFlag: '',
-        stats: analysis.stats.map((s) => ({
+        stats: statsAnalysis.stats.map((s) => ({
           label: s.label,
           home: s.home,
           away: s.away,
           suffix: s.suffix,
         })),
-        homeForm: analysis.homeForm,
-        awayForm: analysis.awayForm,
+        homeForm: statsAnalysis.homeForm,
+        awayForm: statsAnalysis.awayForm,
+        statsSource: statsAnalysis.meta.source as 'computed' | 'fallback',
+        poisson: poissonBlock,
       };
     } catch {
       return this.emptyMatchAnalysis();
@@ -231,6 +256,7 @@ export class DashboardService {
 
   private emptyMatchAnalysis() {
     return {
+      matchId: null,
       homeTeam: '—',
       awayTeam: '—',
       homeFlag: '',
@@ -238,6 +264,8 @@ export class DashboardService {
       stats: [],
       homeForm: [] as ('W' | 'D' | 'L')[],
       awayForm: [] as ('W' | 'D' | 'L')[],
+      statsSource: null,
+      poisson: null,
     };
   }
 
