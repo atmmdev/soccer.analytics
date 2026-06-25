@@ -42,7 +42,7 @@
 - [x] Listagem de jogos com filtros
 - [x] Detalhes da partida
 - [x] Status (agendado, ao vivo, finalizado)
-- [ ] Integração Data Engine (importação)
+- [x] Integração Data Engine (importação API-Football)
 
 ---
 

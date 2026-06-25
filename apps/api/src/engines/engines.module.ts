@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AnalysisEngineModule } from './analysis-engine/analysis-engine.module';
 import { TicketEngineModule } from './ticket-engine/ticket-engine.module';
 import { SimulationEngineModule } from './simulation-engine/simulation-engine.module';
+import { DataEngineModule } from './data-engine/data-engine.module';
 import { AiEngineModule } from './ai-engine/ai-engine.module';
 
 /**
@@ -24,7 +25,7 @@ import { AiEngineModule } from './ai-engine/ai-engine.module';
  * - AiEngine: explains recommendations
  */
 @Module({
-  imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, AiEngineModule],
-  exports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, AiEngineModule],
+  imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, DataEngineModule, AiEngineModule],
+  exports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, DataEngineModule, AiEngineModule],
 })
 export class EnginesModule {}

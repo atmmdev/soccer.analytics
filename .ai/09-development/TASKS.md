@@ -1,6 +1,6 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: Data Engine + polish (próxima)
+## Fase Atual: Data Engine (parcial) + LLM opcional
 
 ### Concluído
 
@@ -19,7 +19,7 @@
 ### Próximo
 
 - [x] Dashboard e Scanner EV+ com dados reais da API
-- [ ] Data Engine — importação APIs externas
+- [x] Data Engine — adapter API-Football + importação jogos/odds
 - [ ] Integração LLM opcional no AI Engine
 
 ## Setup
