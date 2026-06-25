@@ -1,6 +1,6 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: 8 — Research Lab (próxima)
+## Fase Atual: 9 — AI Engine (próxima)
 
 ### Concluído
 
@@ -12,11 +12,12 @@
 - [x] Fase 5 (parcial) — Mercados EV+ na UI
 - [x] Fase 6 — Ticket Builder (montagem, correlação, salvar)
 - [x] Fase 7 — Bankroll (ROI, yield, drawdown, apostar/liquidar)
+- [x] Fase 8 — Research Lab (hipóteses e simulações)
 - [x] Script `pnpm start`
 
 ### Próximo
 
-- [ ] Fase 8 — Research Lab
+- [ ] Fase 9 — AI Engine
 - [ ] Data Engine — importação APIs externas
 
 ## Setup

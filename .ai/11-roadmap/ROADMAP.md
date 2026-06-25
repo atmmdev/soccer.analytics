@@ -109,10 +109,10 @@
 
 **Objetivo:** Laboratório de hipóteses
 
-- [ ] Criar estratégias de pesquisa
-- [ ] Executar simulações com histórico
-- [ ] Resultados: ROI, Yield, Win Rate, Drawdown
-- [ ] Comparar estratégias
+- [x] Criar estratégias de pesquisa
+- [x] Executar simulações com histórico sintético
+- [x] Resultados: ROI, Yield, Win Rate, Drawdown
+- [x] Comparar estratégias salvas
 
 ---
 
