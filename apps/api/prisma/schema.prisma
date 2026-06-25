@@ -1,0 +1,372 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────
+
+enum MatchStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+  POSTPONED
+  CANCELLED
+}
+
+enum MarketType {
+  MATCH_RESULT
+  BTTS
+  OVER_UNDER
+  CORNERS
+  CARDS
+  PLAYER
+  HANDICAP
+}
+
+enum TicketStatus {
+  DRAFT
+  PLACED
+  WON
+  LOST
+  VOID
+}
+
+enum RecommendationType {
+  BET
+  SKIP
+  WATCH
+}
+
+// ─── Core Entities ───────────────────────────────────────
+
+model Competition {
+  id        String   @id @default(cuid())
+  name      String
+  country   String?
+  logoUrl   String?  @map("logo_url")
+  externalId String? @unique @map("external_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  seasons Season[]
+  matches Match[]
+
+  @@map("competitions")
+}
+
+model Season {
+  id            String   @id @default(cuid())
+  name          String
+  year          Int
+  competitionId String   @map("competition_id")
+  externalId    String?  @unique @map("external_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  competition Competition @relation(fields: [competitionId], references: [id])
+  matches     Match[]
+
+  @@map("seasons")
+}
+
+model Team {
+  id         String   @id @default(cuid())
+  name       String
+  shortName  String?  @map("short_name")
+  logoUrl    String?  @map("logo_url")
+  country    String?
+  externalId String?  @unique @map("external_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  players          Player[]
+  homeMatches      Match[]           @relation("HomeTeam")
+  awayMatches      Match[]           @relation("AwayTeam")
+  teamStatistics   TeamStatistics[]
+
+  @@map("teams")
+}
+
+model Player {
+  id         String   @id @default(cuid())
+  name       String
+  position   String?
+  teamId     String?  @map("team_id")
+  externalId String?  @unique @map("external_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  team             Team?              @relation(fields: [teamId], references: [id])
+  playerStatistics PlayerStatistics[]
+
+  @@map("players")
+}
+
+model Match {
+  id            String      @id @default(cuid())
+  homeTeamId    String      @map("home_team_id")
+  awayTeamId    String      @map("away_team_id")
+  competitionId String      @map("competition_id")
+  seasonId      String?     @map("season_id")
+  matchDate     DateTime    @map("match_date")
+  status        MatchStatus @default(SCHEDULED)
+  homeScore     Int?        @map("home_score")
+  awayScore     Int?        @map("away_score")
+  round         String?
+  venue         String?
+  externalId    String?     @unique @map("external_id")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+
+  homeTeam        Team              @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam        Team              @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  competition     Competition       @relation(fields: [competitionId], references: [id])
+  season          Season?           @relation(fields: [seasonId], references: [id])
+  matchStatistics MatchStatistics?
+  odds            Odd[]
+  oddsHistory     OddsHistory[]
+  predictions     Prediction[]
+  snapshots       Snapshot[]
+  ticketSelections TicketSelection[]
+
+  @@index([matchDate])
+  @@index([status])
+  @@index([competitionId])
+  @@map("matches")
+}
+
+// ─── Statistics ──────────────────────────────────────────
+
+model MatchStatistics {
+  id              String @id @default(cuid())
+  matchId         String @unique @map("match_id")
+  homePossession  Float? @map("home_possession")
+  awayPossession  Float? @map("away_possession")
+  homeShots       Int?   @map("home_shots")
+  awayShots       Int?   @map("away_shots")
+  homeShotsOnTarget Int? @map("home_shots_on_target")
+  awayShotsOnTarget Int? @map("away_shots_on_target")
+  homeCorners     Int?   @map("home_corners")
+  awayCorners     Int?   @map("away_corners")
+  homeYellowCards Int?   @map("home_yellow_cards")
+  awayYellowCards Int?   @map("away_yellow_cards")
+  homeRedCards    Int?   @map("home_red_cards")
+  awayRedCards    Int?   @map("away_red_cards")
+  homeXG          Float? @map("home_xg")
+  awayXG          Float? @map("away_xg")
+  homePasses      Int?   @map("home_passes")
+  awayPasses      Int?   @map("away_passes")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@map("match_statistics")
+}
+
+model TeamStatistics {
+  id              String @id @default(cuid())
+  teamId          String @map("team_id")
+  period          Int
+  matchesPlayed   Int    @map("matches_played")
+  wins            Int    @default(0)
+  draws           Int    @default(0)
+  losses          Int    @default(0)
+  goalsFor        Int    @default(0) @map("goals_for")
+  goalsAgainst    Int    @default(0) @map("goals_against")
+  avgGoalsFor     Float  @map("avg_goals_for")
+  avgGoalsAgainst Float  @map("avg_goals_against")
+  avgCorners      Float? @map("avg_corners")
+  avgCards        Float? @map("avg_cards")
+  avgXG           Float? @map("avg_xg")
+  avgXGA          Float? @map("avg_xga")
+  isHome          Boolean @default(false) @map("is_home")
+  calculatedAt    DateTime @default(now()) @map("calculated_at")
+
+  team Team @relation(fields: [teamId], references: [id])
+
+  @@index([teamId, period])
+  @@map("team_statistics")
+}
+
+model PlayerStatistics {
+  id        String @id @default(cuid())
+  playerId  String @map("player_id")
+  period    Int
+  matches   Int    @default(0)
+  goals     Int    @default(0)
+  assists   Int    @default(0)
+  minutes   Int    @default(0)
+  yellowCards Int  @default(0) @map("yellow_cards")
+  redCards  Int    @default(0) @map("red_cards")
+  calculatedAt DateTime @default(now()) @map("calculated_at")
+
+  player Player @relation(fields: [playerId], references: [id])
+
+  @@index([playerId, period])
+  @@map("player_statistics")
+}
+
+// ─── Odds & Markets ──────────────────────────────────────
+
+model Market {
+  id          String     @id @default(cuid())
+  type        MarketType
+  name        String
+  description String?
+  createdAt   DateTime   @default(now()) @map("created_at")
+
+  odds Odd[]
+
+  @@map("markets")
+}
+
+model Odd {
+  id         String   @id @default(cuid())
+  matchId    String   @map("match_id")
+  marketId   String   @map("market_id")
+  selection  String
+  value      Float
+  bookmaker  String?
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  match  Match  @relation(fields: [matchId], references: [id])
+  market Market @relation(fields: [marketId], references: [id])
+
+  @@index([matchId])
+  @@map("odds")
+}
+
+model OddsHistory {
+  id         String   @id @default(cuid())
+  matchId    String   @map("match_id")
+  marketType MarketType @map("market_type")
+  selection  String
+  value      Float
+  bookmaker  String?
+  recordedAt DateTime @default(now()) @map("recorded_at")
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@index([matchId, recordedAt])
+  @@map("odds_history")
+}
+
+// ─── Analysis ────────────────────────────────────────────
+
+model Prediction {
+  id              String   @id @default(cuid())
+  matchId         String   @map("match_id")
+  predictedHomeScore Int?  @map("predicted_home_score")
+  predictedAwayScore Int?  @map("predicted_away_score")
+  confidence      Float
+  data            Json
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@index([matchId])
+  @@map("predictions")
+}
+
+model Snapshot {
+  id              String   @id @default(cuid())
+  matchId         String   @map("match_id")
+  analyzedAt      DateTime @default(now()) @map("analyzed_at")
+  data            Json
+  overallConfidence Float  @map("overall_confidence")
+  predictedResult String?  @map("predicted_result")
+  actualResult    String?  @map("actual_result")
+  accuracy        Float?
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@index([matchId])
+  @@index([analyzedAt])
+  @@map("snapshots")
+}
+
+// ─── Tickets ───────────────────────────────────────────────
+
+model Ticket {
+  id            String       @id @default(cuid())
+  name          String?
+  status        TicketStatus @default(DRAFT)
+  combinedOdd   Float?       @map("combined_odd")
+  stake         Float?
+  potentialReturn Float?     @map("potential_return")
+  actualReturn  Float?       @map("actual_return")
+  overallEV     Float?       @map("overall_ev")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+
+  selections TicketSelection[]
+
+  @@map("tickets")
+}
+
+model TicketSelection {
+  id           String             @id @default(cuid())
+  ticketId     String             @map("ticket_id")
+  matchId      String             @map("match_id")
+  marketType   MarketType         @map("market_type")
+  selection    String
+  odd          Float
+  probability  Float?
+  ev           Float?
+  confidence   Float?
+  recommendation RecommendationType?
+  createdAt    DateTime           @default(now()) @map("created_at")
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  match  Match  @relation(fields: [matchId], references: [id])
+
+  @@map("ticket_selections")
+}
+
+// ─── Research & Simulation ───────────────────────────────
+
+model ResearchStrategy {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  filters     Json
+  results     Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  simulations Simulation[]
+
+  @@map("research_strategies")
+}
+
+model Simulation {
+  id         String   @id @default(cuid())
+  strategyId String   @map("strategy_id")
+  results    Json
+  executedAt DateTime @default(now()) @map("executed_at")
+
+  strategy ResearchStrategy @relation(fields: [strategyId], references: [id])
+
+  @@map("simulations")
+}
+
+// ─── Bankroll ────────────────────────────────────────────
+
+model BankrollEntry {
+  id          String   @id @default(cuid())
+  amount      Float
+  type        String
+  description String?
+  ticketId    String?  @map("ticket_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("bankroll_entries")
+}

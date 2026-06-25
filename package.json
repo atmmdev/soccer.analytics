@@ -1,0 +1,33 @@
+{
+  "name": "soccer-analytics",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Soccer Analytics do ATM — Football Intelligence Platform",
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "start:lite": "node scripts/start.mjs --skip-docker --skip-db",
+    "dev": "concurrently \"pnpm --filter @soccer-analytics/api dev\" \"pnpm --filter @soccer-analytics/web dev\"",
+    "dev:api": "pnpm --filter @soccer-analytics/api dev",
+    "dev:web": "pnpm --filter @soccer-analytics/web dev",
+    "build": "pnpm --filter @soccer-analytics/api build && pnpm --filter @soccer-analytics/web build",
+    "build:api": "pnpm --filter @soccer-analytics/api build",
+    "build:web": "pnpm --filter @soccer-analytics/web build",
+    "db:generate": "pnpm --filter @soccer-analytics/api db:generate",
+    "db:migrate": "pnpm --filter @soccer-analytics/api db:migrate",
+    "db:push": "pnpm --filter @soccer-analytics/api db:push",
+    "db:seed": "pnpm --filter @soccer-analytics/api db:seed",
+    "db:studio": "pnpm --filter @soccer-analytics/api db:studio",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.4"
+}
