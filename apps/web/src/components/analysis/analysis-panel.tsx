@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Loader2, Play, Plus, Target } from 'lucide-react';
+import { useState } from 'react';
+import { Bot, Loader2, Play, Plus, Target } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,6 +24,8 @@ import {
 } from '@/types/analysis';
 import { useTicketDraftStore } from '@/stores/ticket-draft.store';
 import { TicketDraftBanner } from '@/components/tickets/ticket-draft-banner';
+import { AiExplanationPanel } from '@/components/ai/explanation-panel';
+import { useMatchExplanation } from '@/hooks/use-ai';
 import type { MarketType } from '@/types/ticket';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
@@ -71,6 +74,12 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
   const runAnalysis = useRunAnalysis(matchId);
   const addSelection = useTicketDraftStore((s) => s.addSelection);
   const draftCount = useTicketDraftStore((s) => s.selections.length);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const {
+    data: explanation,
+    isLoading: loadingExplanation,
+    isError: explanationError,
+  } = useMatchExplanation(matchId, showExplanation);
 
   const resolvedLabel = matchLabel ?? 'Jogo';
 
@@ -136,18 +145,35 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
             </p>
           )}
         </div>
-        <Button
-          size="sm"
-          onClick={handleRun}
-          disabled={runAnalysis.isPending}
-        >
+        <div className="flex gap-2">
+          {display && (
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={loadingExplanation}
+              onClick={() => setShowExplanation(true)}
+            >
+              {loadingExplanation ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Bot className="mr-2 h-4 w-4" />
+              )}
+              Explicar
+            </Button>
+          )}
+          <Button
+            size="sm"
+            onClick={handleRun}
+            disabled={runAnalysis.isPending}
+          >
           {runAnalysis.isPending ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           ) : (
             <Play className="mr-2 h-4 w-4" />
           )}
           Executar Análise
-        </Button>
+          </Button>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         {isLoading && !display ? (
@@ -222,6 +248,14 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
             </Table>
 
             <TicketDraftBanner />
+
+            {showExplanation && (
+              <AiExplanationPanel
+                explanation={explanation}
+                isLoading={loadingExplanation}
+                isError={explanationError}
+              />
+            )}
           </>
         )}
       </CardContent>

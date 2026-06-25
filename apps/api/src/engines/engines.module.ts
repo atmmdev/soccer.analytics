@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AnalysisEngineModule } from './analysis-engine/analysis-engine.module';
 import { TicketEngineModule } from './ticket-engine/ticket-engine.module';
 import { SimulationEngineModule } from './simulation-engine/simulation-engine.module';
+import { AiEngineModule } from './ai-engine/ai-engine.module';
 
 /**
  * Engines Module — aggregates all intelligence engines.
@@ -23,7 +24,7 @@ import { SimulationEngineModule } from './simulation-engine/simulation-engine.mo
  * - AiEngine: explains recommendations
  */
 @Module({
-  imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule],
-  exports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule],
+  imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, AiEngineModule],
+  exports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, AiEngineModule],
 })
 export class EnginesModule {}

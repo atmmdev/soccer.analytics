@@ -120,10 +120,11 @@
 
 **Objetivo:** Explicações inteligentes
 
-- [ ] Integração com LLM
-- [ ] Explicação de recomendações baseada em dados
-- [ ] Nunca inventar previsões
-- [ ] Justificativas com referência a estatísticas
+- [x] Motor de explicação baseado em dados (template)
+- [x] Explicação de recomendações com EV, prob. e confiança
+- [x] Nunca inventar previsões (só cita output da análise)
+- [x] Justificativas com referência a estatísticas
+- [ ] Integração opcional com LLM externo
 
 ---
 

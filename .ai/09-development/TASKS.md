@@ -1,6 +1,6 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: 9 — AI Engine (próxima)
+## Fase Atual: Data Engine + polish (próxima)
 
 ### Concluído
 
@@ -13,12 +13,13 @@
 - [x] Fase 6 — Ticket Builder (montagem, correlação, salvar)
 - [x] Fase 7 — Bankroll (ROI, yield, drawdown, apostar/liquidar)
 - [x] Fase 8 — Research Lab (hipóteses e simulações)
+- [x] Fase 9 — AI Engine (explicações baseadas em dados)
 - [x] Script `pnpm start`
 
 ### Próximo
 
-- [ ] Fase 9 — AI Engine
 - [ ] Data Engine — importação APIs externas
+- [ ] Integração LLM opcional no AI Engine
 
 ## Setup
 
