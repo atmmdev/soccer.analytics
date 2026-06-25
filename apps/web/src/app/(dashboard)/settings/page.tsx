@@ -11,6 +11,7 @@ import {
   useDataStatus,
   useImportFixtures,
   useImportOdds,
+  useImportStatistics,
 } from '@/hooks/use-data';
 import { toast } from 'sonner';
 
@@ -20,6 +21,7 @@ export default function SettingsPage() {
   const { data: status, isLoading } = useDataStatus();
   const importFixtures = useImportFixtures();
   const importOdds = useImportOdds();
+  const importStatistics = useImportStatistics();
 
   const provider = status?.providers[0];
   const isConfigured = provider?.configured ?? false;
@@ -63,6 +65,34 @@ export default function SettingsPage() {
     });
   };
 
+  const handleImportStatistics = () => {
+    importStatistics.mutate(date, {
+      onSuccess: (result) => {
+        if (result.matchesProcessed === 0) {
+          toast.warning(
+            result.errors[0] ??
+              'Nenhuma estatística importada. Só jogos finalizados sem stats na data.',
+          );
+          return;
+        }
+        toast.success(
+          `${result.statisticsCreated} criadas, ${result.statisticsUpdated} atualizadas (${result.matchesProcessed} jogos)`,
+        );
+        if (result.remainingWithoutStats > 0) {
+          toast.info(
+            `Ainda faltam ${result.remainingWithoutStats} jogos — clique novamente (limite 8/min por rate limit).`,
+          );
+        }
+        if (result.errors.length > 0) {
+          toast.warning(`${result.errors.length} aviso(s): ${result.errors[0]}`);
+        }
+      },
+      onError: (err: Error & { response?: { data?: { message?: string } } }) => {
+        toast.error(err.response?.data?.message ?? err.message ?? 'Falha na importação');
+      },
+    });
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <AppHeader title="Configurações" />
@@ -75,8 +105,7 @@ export default function SettingsPage() {
               Data Engine
             </CardTitle>
             <CardDescription>
-              Importação de jogos e odds via API-Football. Sem chave configurada, os dados
-              mock do seed continuam disponíveis.
+              Importação de jogos, odds e estatísticas (xG, chutes, escanteios) via API-Football.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -134,7 +163,26 @@ export default function SettingsPage() {
                 )}
                 Importar odds
               </Button>
+              <Button
+                variant="outline"
+                onClick={handleImportStatistics}
+                disabled={!isConfigured || importStatistics.isPending}
+              >
+                {importStatistics.isPending ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                )}
+                Importar estatísticas
+              </Button>
             </div>
+
+            {isConfigured && (
+              <p className="text-xs text-muted-foreground">
+                Estatísticas: até 8 jogos finalizados por clique (rate limit 10 req/min).
+                Importe jogos primeiro, depois estatísticas e odds.
+              </p>
+            )}
 
             {!isConfigured && (
               <p className="text-xs text-muted-foreground">

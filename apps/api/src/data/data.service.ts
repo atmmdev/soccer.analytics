@@ -16,4 +16,8 @@ export class DataService {
   importOdds(date: string) {
     return this.dataEngine.importOdds(date);
   }
+
+  importStatistics(date: string) {
+    return this.dataEngine.importStatistics(date);
+  }
 }

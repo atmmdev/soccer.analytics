@@ -26,3 +26,13 @@ export interface ImportOddsResult {
   skippedNoOdds: number;
   errors: string[];
 }
+
+export interface ImportStatisticsResult {
+  provider: string;
+  date: string;
+  matchesProcessed: number;
+  statisticsCreated: number;
+  statisticsUpdated: number;
+  remainingWithoutStats: number;
+  errors: string[];
+}

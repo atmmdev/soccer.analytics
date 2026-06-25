@@ -5,6 +5,7 @@ import {
   DataProvider,
   DataProviderStatus,
   ImportedFixture,
+  ImportedMatchStatistics,
   ImportedOdd,
 } from './data-provider.interface';
 
@@ -82,6 +83,65 @@ export class ApiFootballProvider implements DataProvider {
     }
 
     return map;
+  }
+
+  async fetchFixtureStatistics(
+    fixtureExternalId: string,
+    homeTeamExternalId: string,
+  ): Promise<ImportedMatchStatistics | null> {
+    const data = await this.request<{ response: ApiTeamStatistics[] }>(
+      '/fixtures/statistics',
+      { fixture: fixtureExternalId },
+    );
+
+    if (!data.response?.length) return null;
+
+    const homeEntry =
+      data.response.find((t) => String(t.team.id) === homeTeamExternalId) ??
+      data.response[0];
+    const awayEntry =
+      data.response.find((t) => String(t.team.id) !== String(homeEntry.team.id)) ??
+      data.response[1];
+
+    if (!awayEntry) return null;
+
+    const home = this.parseTeamStatistics(homeEntry.statistics);
+    const away = this.parseTeamStatistics(awayEntry.statistics);
+
+    return {
+      homePossession: home.possession,
+      awayPossession: away.possession,
+      homeShots: home.shots,
+      awayShots: away.shots,
+      homeShotsOnTarget: home.shotsOnTarget,
+      awayShotsOnTarget: away.shotsOnTarget,
+      homeCorners: home.corners,
+      awayCorners: away.corners,
+      homeYellowCards: home.yellowCards,
+      awayYellowCards: away.yellowCards,
+      homeRedCards: home.redCards,
+      awayRedCards: away.redCards,
+      homeXG: home.xg,
+      awayXG: away.xg,
+    };
+  }
+
+  private parseTeamStatistics(
+    statistics: Array<{ type: string; value: string | number | null }>,
+  ) {
+    const map = new Map(
+      statistics.map((s) => [s.type.toLowerCase(), s.value]),
+    );
+
+    return {
+      possession: parseStat(map.get('ball possession')),
+      shots: parseStat(map.get('total shots')),
+      shotsOnTarget: parseStat(map.get('shots on goal')),
+      corners: parseStat(map.get('corner kicks')),
+      yellowCards: parseStat(map.get('yellow cards')),
+      redCards: parseStat(map.get('red cards')),
+      xg: parseStat(map.get('expected goals') ?? map.get('expected_goals')),
+    };
   }
 
   private extractOddsFromEntries(entries: ApiOddsEntry[]): ImportedOdd[] {
@@ -282,4 +342,15 @@ interface ApiOddsEntry {
       values: Array<{ value: string; odd: string }>;
     }>;
   }>;
+}
+
+interface ApiTeamStatistics {
+  team: { id: number; name: string };
+  statistics: Array<{ type: string; value: string | number | null }>;
+}
+
+function parseStat(value: string | number | null | undefined): number | undefined {
+  if (value === null || value === undefined) return undefined;
+  const n = parseFloat(String(value).replace('%', '').trim());
+  return Number.isNaN(n) ? undefined : n;
 }

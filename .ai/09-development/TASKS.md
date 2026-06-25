@@ -22,6 +22,7 @@
 - [x] Data Engine — adapter API-Football + importação jogos/odds
 - [x] Statistics Engine — stats reais de jogos finalizados (gols, forma, H2H, xG estimado)
 - [x] Analysis + Analyzer conectados ao Statistics Engine
+- [x] Importação de estatísticas de partida (xG, chutes, escanteios) via API-Football
 - [ ] Integração LLM opcional no AI Engine
 
 ## Setup

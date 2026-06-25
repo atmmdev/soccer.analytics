@@ -27,6 +27,18 @@ export interface ImportOddsResult {
   errors: string[];
 }
 
+export interface ImportStatisticsResult {
+  provider: string;
+  date: string;
+  matchesProcessed: number;
+  statisticsCreated: number;
+  statisticsUpdated: number;
+  remainingWithoutStats: number;
+  errors: string[];
+}
+
+const STATS_BATCH_LIMIT = 8;
+
 @Injectable()
 export class DataEngineService {
   constructor(
@@ -143,6 +155,104 @@ export class DataEngineService {
     }
 
     return result;
+  }
+
+  async importStatistics(date: string): Promise<ImportStatisticsResult> {
+    this.assertDate(date);
+    const provider = this.getActiveProvider();
+    const { start, end } = this.getLocalDateRange(date);
+
+    const result: ImportStatisticsResult = {
+      provider: provider.name,
+      date,
+      matchesProcessed: 0,
+      statisticsCreated: 0,
+      statisticsUpdated: 0,
+      remainingWithoutStats: 0,
+      errors: [],
+    };
+
+    const candidates = await this.prisma.match.findMany({
+      where: {
+        externalId: { not: null },
+        status: MatchStatus.FINISHED,
+        matchDate: { gte: start, lte: end },
+      },
+      include: {
+        homeTeam: true,
+        matchStatistics: true,
+      },
+      orderBy: { matchDate: 'desc' },
+    });
+
+    const pending = candidates.filter((m) => !m.matchStatistics);
+    const batch = pending.slice(0, STATS_BATCH_LIMIT);
+    result.remainingWithoutStats = Math.max(0, pending.length - batch.length);
+
+    for (const match of batch) {
+      if (!match.externalId || !match.homeTeam.externalId) continue;
+
+      try {
+        const stats = await provider.fetchFixtureStatistics(
+          match.externalId,
+          match.homeTeam.externalId,
+        );
+
+        if (!stats) {
+          result.errors.push(
+            `${match.homeTeam.name} x stats indisponíveis na API`,
+          );
+          continue;
+        }
+
+        const data = {
+          homePossession: stats.homePossession ?? null,
+          awayPossession: stats.awayPossession ?? null,
+          homeShots: stats.homeShots ?? null,
+          awayShots: stats.awayShots ?? null,
+          homeShotsOnTarget: stats.homeShotsOnTarget ?? null,
+          awayShotsOnTarget: stats.awayShotsOnTarget ?? null,
+          homeCorners: stats.homeCorners ?? null,
+          awayCorners: stats.awayCorners ?? null,
+          homeYellowCards: stats.homeYellowCards ?? null,
+          awayYellowCards: stats.awayYellowCards ?? null,
+          homeRedCards: stats.homeRedCards ?? null,
+          awayRedCards: stats.awayRedCards ?? null,
+          homeXG: stats.homeXG ?? null,
+          awayXG: stats.awayXG ?? null,
+        };
+
+        if (match.matchStatistics) {
+          await this.prisma.matchStatistics.update({
+            where: { matchId: match.id },
+            data,
+          });
+          result.statisticsUpdated++;
+        } else {
+          await this.prisma.matchStatistics.create({
+            data: { matchId: match.id, ...data },
+          });
+          result.statisticsCreated++;
+        }
+
+        result.matchesProcessed++;
+      } catch (err) {
+        result.errors.push(
+          `Match ${match.externalId}: ${
+            err instanceof Error ? err.message : 'erro desconhecido'
+          }`,
+        );
+      }
+    }
+
+    return result;
+  }
+
+  private getLocalDateRange(date: string) {
+    const [y, m, d] = date.split('-').map(Number);
+    const start = new Date(y, m - 1, d, 0, 0, 0, 0);
+    const end = new Date(y, m - 1, d, 23, 59, 59, 999);
+    return { start, end };
   }
 
   private getActiveProvider() {

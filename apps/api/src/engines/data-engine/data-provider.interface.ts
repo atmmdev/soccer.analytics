@@ -41,10 +41,31 @@ export interface DataProviderStatus {
   message: string;
 }
 
+export interface ImportedMatchStatistics {
+  homePossession?: number;
+  awayPossession?: number;
+  homeShots?: number;
+  awayShots?: number;
+  homeShotsOnTarget?: number;
+  awayShotsOnTarget?: number;
+  homeCorners?: number;
+  awayCorners?: number;
+  homeYellowCards?: number;
+  awayYellowCards?: number;
+  homeRedCards?: number;
+  awayRedCards?: number;
+  homeXG?: number;
+  awayXG?: number;
+}
+
 export interface DataProvider {
   readonly name: string;
   getStatus(): DataProviderStatus;
   fetchFixtures(date: string): Promise<ImportedFixture[]>;
   fetchOdds(fixtureExternalId: string): Promise<ImportedOdd[]>;
   fetchOddsByDate(date: string): Promise<Map<string, ImportedOdd[]>>;
+  fetchFixtureStatistics(
+    fixtureExternalId: string,
+    homeTeamExternalId: string,
+  ): Promise<ImportedMatchStatistics | null>;
 }

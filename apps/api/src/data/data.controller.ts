@@ -29,4 +29,11 @@ export class DataController {
     const target = date ?? new Date().toISOString().slice(0, 10);
     return this.dataService.importOdds(target);
   }
+
+  @Post('import/statistics')
+  @ApiOperation({ summary: 'Import match statistics (xG, shots, corners) for finished matches' })
+  importStatistics(@Query('date') date?: string) {
+    const target = date ?? new Date().toISOString().slice(0, 10);
+    return this.dataService.importStatistics(target);
+  }
 }
