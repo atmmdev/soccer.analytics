@@ -1,6 +1,6 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: 7 — Bankroll (próxima)
+## Fase Atual: 8 — Research Lab (próxima)
 
 ### Concluído
 
@@ -11,11 +11,12 @@
 - [x] Fase 4 — Analysis Engine (Poisson, EV, confidence, snapshots)
 - [x] Fase 5 (parcial) — Mercados EV+ na UI
 - [x] Fase 6 — Ticket Builder (montagem, correlação, salvar)
+- [x] Fase 7 — Bankroll (ROI, yield, drawdown, apostar/liquidar)
 - [x] Script `pnpm start`
 
 ### Próximo
 
-- [ ] Fase 7 — Bankroll
+- [ ] Fase 8 — Research Lab
 - [ ] Data Engine — importação APIs externas
 
 ## Setup

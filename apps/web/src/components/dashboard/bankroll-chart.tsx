@@ -10,7 +10,7 @@ import {
   YAxis,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { BankrollPoint } from '@/lib/mock/dashboard';
+import type { BankrollPoint } from '@/types/bankroll';
 
 interface BankrollChartProps {
   data: BankrollPoint[];

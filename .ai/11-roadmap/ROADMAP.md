@@ -98,10 +98,10 @@
 
 **Objetivo:** Controle financeiro
 
-- [ ] Tracking de ROI/Yield
-- [ ] Drawdown
-- [ ] Histórico de bilhetes
-- [ ] Gráficos de performance
+- [x] Tracking de ROI/Yield
+- [x] Drawdown
+- [x] Histórico de bilhetes
+- [x] Gráficos de performance
 
 ---
 

@@ -14,6 +14,7 @@ import {
   useTicketCalculation,
   useTickets,
 } from '@/hooks/use-tickets';
+import { usePlaceTicket, useSettleTicket } from '@/hooks/use-bankroll';
 import { useTicketDraftStore } from '@/stores/ticket-draft.store';
 import { TICKET_STATUS_LABELS } from '@/types/ticket';
 import { isAxiosError } from 'axios';
@@ -218,6 +219,8 @@ export function TicketBuilder() {
 export function SavedTicketsList() {
   const { data: tickets, isLoading } = useTickets();
   const deleteTicket = useDeleteTicket();
+  const placeTicket = usePlaceTicket();
+  const settleTicket = useSettleTicket();
 
   if (isLoading) {
     return (
@@ -259,17 +262,65 @@ export function SavedTicketsList() {
               <Badge variant="outline">
                 {TICKET_STATUS_LABELS[ticket.status]}
               </Badge>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() =>
-                  deleteTicket.mutate(ticket.id, {
-                    onSuccess: () => toast.success('Bilhete removido'),
-                  })
-                }
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
+              {ticket.status === 'DRAFT' && (
+                <Button
+                  size="sm"
+                  disabled={placeTicket.isPending}
+                  onClick={() =>
+                    placeTicket.mutate(ticket.id, {
+                      onSuccess: () => toast.success('Bilhete apostado — stake debitada'),
+                      onError: () => toast.error('Falha ao apostar (verifique saldo)'),
+                    })
+                  }
+                >
+                  Apostar
+                </Button>
+              )}
+              {ticket.status === 'PLACED' && (
+                <div className="flex gap-1">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="text-emerald-400"
+                    disabled={settleTicket.isPending}
+                    onClick={() =>
+                      settleTicket.mutate(
+                        { ticketId: ticket.id, result: 'WON' },
+                        { onSuccess: () => toast.success('Green registrado') },
+                      )
+                    }
+                  >
+                    Green
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="text-red-400"
+                    disabled={settleTicket.isPending}
+                    onClick={() =>
+                      settleTicket.mutate(
+                        { ticketId: ticket.id, result: 'LOST' },
+                        { onSuccess: () => toast.success('Red registrado') },
+                      )
+                    }
+                  >
+                    Red
+                  </Button>
+                </div>
+              )}
+              {ticket.status === 'DRAFT' && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() =>
+                    deleteTicket.mutate(ticket.id, {
+                      onSuccess: () => toast.success('Bilhete removido'),
+                    })
+                  }
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              )}
             </div>
           </CardContent>
         </Card>
