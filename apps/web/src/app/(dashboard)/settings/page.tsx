@@ -1,125 +1,45 @@
 'use client';
 
-import { useState } from 'react';
 import { Database, Loader2, RefreshCw } from 'lucide-react';
 import { AppHeader } from '@/components/layout/app-header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import {
-  useDataStatus,
-  useImportFixtures,
-  useImportOdds,
-  useImportStatistics,
-} from '@/hooks/use-data';
+import { useDataStatus } from '@/hooks/use-data';
+import { useSyncStatus } from '@/hooks/use-sync';
+import { apiClient } from '@/lib/api/client';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+const STEP_LABELS: Record<string, string> = {
+  starting: 'Iniciando',
+  fixtures: 'Importando jogos',
+  resolve: 'Atualizando resultados',
+  odds: 'Importando odds',
+  statistics: 'Importando estatísticas',
+  analysis: 'Rodando análises Poisson',
+};
+
 export default function SettingsPage() {
-  const today = new Date().toISOString().slice(0, 10);
-  const [date, setDate] = useState(today);
   const { data: status, isLoading } = useDataStatus();
-  const importFixtures = useImportFixtures();
-  const importOdds = useImportOdds();
-  const importStatistics = useImportStatistics();
-  const [statsCooldown, setStatsCooldown] = useState(false);
+  const { data: sync, isLoading: loadingSync } = useSyncStatus();
+  const queryClient = useQueryClient();
+
+  const forceSync = useMutation({
+    mutationFn: async () => {
+      const { data } = await apiClient.post('/sync/run');
+      return data;
+    },
+    onSuccess: () => {
+      toast.success('Sincronização iniciada');
+      void queryClient.invalidateQueries({ queryKey: ['sync'] });
+      void queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+    },
+    onError: () => toast.error('Falha ao iniciar sincronização'),
+  });
 
   const provider = status?.providers[0];
   const isConfigured = provider?.configured ?? false;
-
-  const handleImportFixtures = () => {
-    importFixtures.mutate(date, {
-      onSuccess: (result) => {
-        toast.success(
-          `${result.fixturesCreated} criados, ${result.fixturesUpdated} atualizados (${result.fixturesFound} encontrados)`,
-        );
-        if (result.errors.length > 0) {
-          toast.warning(`${result.errors.length} erro(s) parcial(is)`);
-        }
-      },
-      onError: (err: Error & { response?: { data?: { message?: string } } }) => {
-        toast.error(err.response?.data?.message ?? err.message ?? 'Falha na importação');
-      },
-    });
-  };
-
-  const handleImportOdds = () => {
-    importOdds.mutate(date, {
-      onSuccess: (result) => {
-        if (result.oddsCreated === 0) {
-          toast.warning(
-            result.errors[0] ??
-              `Nenhuma odd salva. API retornou ${result.fixturesWithOdds} jogos com odds, ${result.skippedNoOdds} sem correspondência no banco.`,
-          );
-          return;
-        }
-        toast.success(
-          `${result.oddsCreated} odds em ${result.matchesProcessed} jogos (${result.fixturesWithOdds} com odds na API)`,
-        );
-        if (result.errors.length > 0) {
-          toast.warning(`${result.errors.length} aviso(s): ${result.errors[0]}`);
-        }
-      },
-      onError: (err: Error & { response?: { data?: { message?: string } } }) => {
-        toast.error(err.response?.data?.message ?? err.message ?? 'Falha na importação');
-      },
-    });
-  };
-
-  const handleImportStatistics = () => {
-    importStatistics.mutate(date, {
-      onSuccess: (result) => {
-        if (result.rateLimited) {
-          setStatsCooldown(true);
-          setTimeout(() => setStatsCooldown(false), 60_000);
-        }
-
-        const parts: string[] = [];
-
-        if (result.statisticsCreated > 0 || result.statisticsUpdated > 0) {
-          parts.push(
-            `${result.statisticsCreated + result.statisticsUpdated} com stats reais`,
-          );
-        }
-        if (result.skippedNoStats > 0) {
-          parts.push(`${result.skippedNoStats} sem cobertura na API`);
-        }
-        if (result.remainingWithoutStats > 0) {
-          parts.push(`${result.remainingWithoutStats} na fila`);
-        }
-
-        if (parts.length === 0 && !result.rateLimited) {
-          toast.info('Nenhum jogo finalizado pendente de estatísticas nesta data.');
-          return;
-        }
-
-        if (result.rateLimited) {
-          toast.warning(
-            `Limite da API atingido (10/min). Aguarde 1 minuto e clique de novo.${
-              parts.length ? ` Progresso: ${parts.join(' · ')}.` : ''
-            }`,
-            { duration: 8000 },
-          );
-          return;
-        }
-
-        if (result.errors.length > 0) {
-          toast.error(`Estatísticas: ${parts.join(' · ')}. ${result.errors[0]}`);
-          return;
-        }
-
-        toast.success(
-          `Estatísticas: ${parts.join(' · ')}${
-            result.remainingWithoutStats > 0 ? ' — clique de novo para continuar' : ''
-          }`,
-          { duration: 6000 },
-        );
-      },
-      onError: (err: Error & { response?: { data?: { message?: string } } }) => {
-        toast.error(err.response?.data?.message ?? err.message ?? 'Falha na importação');
-      },
-    });
-  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -129,12 +49,90 @@ export default function SettingsPage() {
         <Card className="border-border/60 bg-card/80">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <Database className="h-5 w-5 text-primary" />
-              Data Engine
+              <RefreshCw className="h-5 w-5 text-primary" />
+              Sincronização automática
             </CardTitle>
             <CardDescription>
-              Importação de jogos, odds e estatísticas (xG, chutes, escanteios) via API-Football.
+              Ao abrir o sistema, jogos, odds, estatísticas e análises Poisson são atualizados
+              automaticamente (hoje, amanhã e histórico recente).
             </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {loadingSync ? (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Carregando status...
+              </div>
+            ) : sync ? (
+              <div className="space-y-3 rounded-lg border border-border bg-secondary/30 p-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="font-medium">Status</p>
+                  <Badge
+                    variant={
+                      sync.status === 'completed'
+                        ? 'default'
+                        : sync.status === 'running'
+                          ? 'secondary'
+                          : sync.status === 'failed'
+                            ? 'destructive'
+                            : 'outline'
+                    }
+                  >
+                    {sync.status === 'running'
+                      ? 'Sincronizando'
+                      : sync.status === 'completed'
+                        ? 'Atualizado'
+                        : sync.status === 'failed'
+                          ? 'Falhou'
+                          : sync.status === 'skipped'
+                            ? 'Desativado'
+                            : 'Aguardando'}
+                  </Badge>
+                </div>
+                {sync.currentStep && sync.status === 'running' && (
+                  <p className="text-sm text-muted-foreground">
+                    Etapa: {STEP_LABELS[sync.currentStep] ?? sync.currentStep}
+                  </p>
+                )}
+                {sync.completedAt && (
+                  <p className="text-xs text-muted-foreground">
+                    Última sync:{' '}
+                    {new Date(sync.completedAt).toLocaleString('pt-BR')}
+                    {sync.syncDate ? ` · dia ${sync.syncDate}` : ''}
+                  </p>
+                )}
+                {sync.message && (
+                  <p className="text-sm text-muted-foreground">{sync.message}</p>
+                )}
+              </div>
+            ) : null}
+
+            <Button
+              onClick={() => forceSync.mutate()}
+              disabled={!isConfigured || forceSync.isPending || sync?.status === 'running'}
+            >
+              {forceSync.isPending || sync?.status === 'running' ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="mr-2 h-4 w-4" />
+              )}
+              Forçar sincronização agora
+            </Button>
+
+            <p className="text-xs text-muted-foreground">
+              A sync roda ao iniciar a API e a cada acesso autenticado (máx. a cada 4h).
+              Estatísticas respeitam o rate limit da API-Football (plano free: 10 req/min).
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-border/60 bg-card/80">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Database className="h-5 w-5 text-primary" />
+              Provedor de dados
+            </CardTitle>
+            <CardDescription>API-Football — fonte única de jogos, odds e estatísticas.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {isLoading ? (
@@ -154,75 +152,10 @@ export default function SettingsPage() {
               </div>
             )}
 
-            <div className="space-y-2">
-              <label htmlFor="import-date" className="text-sm font-medium">
-                Data de importação
-              </label>
-              <Input
-                id="import-date"
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="max-w-xs"
-              />
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              <Button
-                onClick={handleImportFixtures}
-                disabled={!isConfigured || importFixtures.isPending}
-              >
-                {importFixtures.isPending ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <RefreshCw className="mr-2 h-4 w-4" />
-                )}
-                Importar jogos
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleImportOdds}
-                disabled={!isConfigured || importOdds.isPending}
-              >
-                {importOdds.isPending ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <RefreshCw className="mr-2 h-4 w-4" />
-                )}
-                Importar odds
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleImportStatistics}
-                disabled={
-                  !isConfigured || importStatistics.isPending || statsCooldown
-                }
-              >
-                {importStatistics.isPending ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <RefreshCw className="mr-2 h-4 w-4" />
-                )}
-                {statsCooldown
-                  ? 'Aguarde 1 min…'
-                  : importStatistics.isPending
-                    ? 'Importando (~30s)…'
-                    : 'Importar estatísticas'}
-              </Button>
-            </div>
-
-            {isConfigured && (
-              <p className="text-xs text-muted-foreground">
-                Estatísticas: 5 jogos por clique, ~30s (pausa automática entre
-                requisições). Plano free = 10 req/min — se aparecer limite, aguarde
-                1 minuto antes de clicar de novo.
-              </p>
-            )}
-
             {!isConfigured && (
               <p className="text-xs text-muted-foreground">
                 Configure <code className="text-primary">API_FOOTBALL_KEY</code> em{' '}
-                <code>apps/api/.env</code> e reinicie a API. Plano gratuito: 100 req/dia.
+                <code>apps/api/.env</code> e reinicie a API.
               </p>
             )}
           </CardContent>

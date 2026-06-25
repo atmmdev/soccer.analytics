@@ -16,6 +16,7 @@
     "db:migrate": "pnpm --filter @soccer-analytics/api db:migrate",
     "db:push": "pnpm --filter @soccer-analytics/api db:push",
     "db:seed": "pnpm --filter @soccer-analytics/api db:seed",
+    "db:clean": "pnpm --filter @soccer-analytics/api db:clean",
     "db:studio": "pnpm --filter @soccer-analytics/api db:studio",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",

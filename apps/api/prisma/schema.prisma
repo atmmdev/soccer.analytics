@@ -358,6 +358,16 @@ model Simulation {
   @@map("simulations")
 }
 
+// ─── System ──────────────────────────────────────────────
+
+model AppState {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("app_state")
+}
+
 // ─── Bankroll ────────────────────────────────────────────
 
 model BankrollEntry {

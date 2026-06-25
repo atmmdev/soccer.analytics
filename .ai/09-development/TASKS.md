@@ -26,6 +26,8 @@
 - [x] Alertas EV+ (hoje/amanhã) + badge dinâmico no header
 - [x] Widget Match Analysis — botão Analisar Jogo + snapshot Poisson no dashboard
 - [x] Página Relatórios — performance banca, bilhetes, precisão análises + export JSON
+- [x] Sincronização automática diária (jogos, odds, stats, análises Poisson)
+- [x] Remoção de seed demo e mocks do dashboard
 - [ ] Integração LLM opcional no AI Engine
 
 ## Setup

@@ -149,13 +149,9 @@ export class DashboardService {
     const tomorrowEnd = new Date(tomorrowStart);
     tomorrowEnd.setHours(23, 59, 59, 999);
 
-    const importedCount = await this.prisma.match.count({
-      where: { externalId: { not: null } },
-    });
-
     const matches = await this.prisma.match.findMany({
       where: {
-        ...(importedCount > 0 ? { externalId: { not: null } } : {}),
+        externalId: { not: null },
         OR: [
           {
             matchDate: { gte: todayStart, lte: todayEnd },

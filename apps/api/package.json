@@ -15,6 +15,7 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "ts-node prisma/seed.ts",
+    "db:clean": "ts-node prisma/clean-demo-data.ts",
     "db:studio": "prisma studio"
   },
   "dependencies": {

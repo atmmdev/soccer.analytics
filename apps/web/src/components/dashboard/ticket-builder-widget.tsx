@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Ticket } from 'lucide-react';
-import type { TicketBuilderData } from '@/lib/mock/dashboard';
+import type { TicketBuilderData } from '@/types/dashboard';
 
 interface TicketBuilderWidgetProps {
   data: TicketBuilderData;

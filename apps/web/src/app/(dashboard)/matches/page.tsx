@@ -34,7 +34,7 @@ function MatchList({ status }: { status?: MatchStatus }) {
           Não foi possível carregar os jogos. Verifique se a API e o banco estão rodando.
         </p>
         <p className="mt-2 text-xs text-muted-foreground">
-          Execute: pnpm docker:up && pnpm db:push && pnpm db:seed
+          Os jogos são importados automaticamente via API-Football ao acessar o sistema.
         </p>
       </div>
     );

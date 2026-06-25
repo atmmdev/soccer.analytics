@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
-import type { RecentEntry } from '@/lib/mock/dashboard';
+import type { RecentEntry } from '@/types/dashboard';
 
 interface RecentEntriesProps {
   entries: RecentEntry[];

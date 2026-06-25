@@ -1,5 +1,6 @@
 import { AuthGuard } from '@/components/auth-guard';
 import { Sidebar } from '@/components/layout/sidebar';
+import { SyncProvider } from '@/components/sync/sync-provider';
 
 export default function DashboardLayout({
   children,
@@ -8,10 +9,12 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard>
-      <div className="flex h-screen overflow-hidden bg-background">
-        <Sidebar />
-        <main className="flex-1 overflow-y-auto">{children}</main>
-      </div>
+      <SyncProvider>
+        <div className="flex h-screen overflow-hidden bg-background">
+          <Sidebar />
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </div>
+      </SyncProvider>
     </AuthGuard>
   );
 }

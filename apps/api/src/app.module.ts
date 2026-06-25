@@ -15,6 +15,7 @@ import { AiModule } from './ai/ai.module';
 import { DataModule } from './data/data.module';
 import { AlertsModule } from './alerts/alerts.module';
 import { ReportsModule } from './reports/reports.module';
+import { SyncModule } from './sync/sync.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ReportsModule } from './reports/reports.module';
     DataModule,
     AlertsModule,
     ReportsModule,
+    SyncModule,
   ],
 })
 export class AppModule {}

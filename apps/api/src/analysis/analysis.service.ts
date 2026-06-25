@@ -1,18 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { MarketType, Prisma } from '@prisma/client';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { MatchStatus, Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { AnalysisEngineService, MarketOddInput } from '../engines/analysis-engine/analysis-engine.service';
 import { StatisticsEngineService } from '../engines/statistics-engine/statistics-engine.service';
 
-const DEFAULT_ODDS: MarketOddInput[] = [
-  { marketType: MarketType.MATCH_RESULT, selection: 'Casa', bookmakerOdd: 1.65 },
-  { marketType: MarketType.MATCH_RESULT, selection: 'Empate', bookmakerOdd: 3.6 },
-  { marketType: MarketType.MATCH_RESULT, selection: 'Fora', bookmakerOdd: 5.2 },
-  { marketType: MarketType.OVER_UNDER, selection: 'Over 2.5', bookmakerOdd: 1.85 },
-  { marketType: MarketType.OVER_UNDER, selection: 'Under 2.5', bookmakerOdd: 1.95 },
-  { marketType: MarketType.BTTS, selection: 'BTTS Sim', bookmakerOdd: 1.75 },
-  { marketType: MarketType.BTTS, selection: 'BTTS Não', bookmakerOdd: 2.05 },
-];
+const ANALYSIS_STALE_MS = 4 * 60 * 60 * 1000;
 
 @Injectable()
 export class AnalysisService {
@@ -40,14 +32,17 @@ export class AnalysisService {
       this.statisticsEngine.getGoalAverages(match.awayTeamId, period, 'away'),
     ]);
 
-    const odds: MarketOddInput[] =
-      match.odds.length > 0
-        ? match.odds.map((o) => ({
-            marketType: o.market.type,
-            selection: o.selection,
-            bookmakerOdd: o.value,
-          }))
-        : DEFAULT_ODDS;
+    const odds: MarketOddInput[] = match.odds.map((o) => ({
+      marketType: o.market.type,
+      selection: o.selection,
+      bookmakerOdd: o.value,
+    }));
+
+    if (odds.length === 0) {
+      throw new BadRequestException(
+        'Odds não disponíveis para este jogo. Aguarde a sincronização automática.',
+      );
+    }
 
     const result = this.analysisEngine.analyze(
       homeStats.gf,
@@ -235,5 +230,79 @@ export class AnalysisService {
 
   async getEvPlusMarkets() {
     return this.getAnalyzedMarkets('ev-plus');
+  }
+
+  async autoAnalyzeUpcoming(): Promise<number> {
+    const { start, end } = this.getUpcomingWindow();
+    const now = Date.now();
+
+    const matches = await this.prisma.match.findMany({
+      where: {
+        externalId: { not: null },
+        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        matchDate: { gte: start, lte: end },
+        odds: { some: {} },
+      },
+      include: {
+        snapshots: {
+          orderBy: { analyzedAt: 'desc' },
+          take: 1,
+        },
+      },
+    });
+
+    let count = 0;
+    for (const match of matches) {
+      const last = match.snapshots[0];
+      const stale =
+        !last || now - last.analyzedAt.getTime() > ANALYSIS_STALE_MS;
+
+      if (!stale) continue;
+
+      try {
+        await this.runAnalysis(match.id);
+        count++;
+      } catch {
+        // Skip matches that fail validation (e.g. missing stats)
+      }
+    }
+
+    return count;
+  }
+
+  async resolveFinishedSnapshots(): Promise<number> {
+    const pending = await this.prisma.snapshot.findMany({
+      where: {
+        accuracy: null,
+        match: {
+          status: MatchStatus.FINISHED,
+          homeScore: { not: null },
+          awayScore: { not: null },
+        },
+      },
+      select: { id: true },
+    });
+
+    let count = 0;
+    for (const snap of pending) {
+      try {
+        await this.resolveSnapshot(snap.id);
+        count++;
+      } catch {
+        // ignore individual failures
+      }
+    }
+
+    return count;
+  }
+
+  private getUpcomingWindow() {
+    const now = new Date();
+    const start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(start);
+    end.setDate(end.getDate() + 2);
+    end.setHours(23, 59, 59, 999);
+    return { start, end };
   }
 }

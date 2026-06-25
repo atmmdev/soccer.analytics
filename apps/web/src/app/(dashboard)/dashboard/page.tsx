@@ -8,6 +8,7 @@ import {
   CheckCircle,
   XCircle,
   Zap,
+  Loader2,
 } from 'lucide-react';
 import { AppHeader } from '@/components/layout/app-header';
 import { StatCard } from '@/components/dashboard/stat-card';
@@ -19,9 +20,8 @@ import { BankrollChart } from '@/components/dashboard/bankroll-chart';
 import { RecentEntries } from '@/components/dashboard/recent-entries';
 import { DashboardTip } from '@/components/dashboard/dashboard-tip';
 import { apiClient } from '@/lib/api/client';
-import { dashboardData } from '@/lib/mock/dashboard';
-import type { DashboardData } from '@/lib/mock/dashboard';
-import { Loader2 } from 'lucide-react';
+import type { DashboardData } from '@/types/dashboard';
+import { useSyncStatus } from '@/hooks/use-sync';
 
 function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -33,9 +33,11 @@ async function fetchDashboard(): Promise<DashboardData> {
 }
 
 export default function DashboardPage() {
-  const { data, isLoading, isError } = useQuery({
+  const { data: sync } = useSyncStatus();
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['dashboard'],
     queryFn: fetchDashboard,
+    refetchInterval: sync?.status === 'running' ? 5000 : false,
   });
 
   if (isLoading) {
@@ -46,10 +48,25 @@ export default function DashboardPage() {
     );
   }
 
-  const resolved = data ?? (isError ? dashboardData : null);
-  if (!resolved) return null;
+  if (isError || !data) {
+    return (
+      <div className="flex min-h-full flex-col">
+        <AppHeader title="Dashboard" subtitle="Visão geral do desempenho e oportunidades" />
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
+          <p className="text-muted-foreground">Não foi possível carregar o dashboard.</p>
+          <button
+            type="button"
+            onClick={() => refetch()}
+            className="text-sm text-primary hover:underline"
+          >
+            Tentar novamente
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-  const { summary } = resolved;
+  const { summary } = data;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -109,24 +126,24 @@ export default function DashboardPage() {
 
         <div className="grid gap-4 xl:grid-cols-3">
           <div className="xl:col-span-1">
-            <TodayMatches matches={resolved.todayMatches} />
+            <TodayMatches matches={data.todayMatches} />
           </div>
           <div className="xl:col-span-1">
-            <MatchAnalysis data={resolved.matchAnalysis} />
+            <MatchAnalysis data={data.matchAnalysis} />
           </div>
           <div className="xl:col-span-1">
-            <TicketBuilderWidget data={resolved.ticketBuilder} />
+            <TicketBuilderWidget data={data.ticketBuilder} />
           </div>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <EvMarketsTable markets={resolved.evMarkets} />
-          <BankrollChart data={resolved.bankrollHistory} />
+          <EvMarketsTable markets={data.evMarkets} />
+          <BankrollChart data={data.bankrollHistory} />
         </div>
 
-        <RecentEntries entries={resolved.recentEntries} />
+        <RecentEntries entries={data.recentEntries} />
 
-        <DashboardTip tip={resolved.tip} />
+        <DashboardTip tip={data.tip} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import type { TodayMatch } from '@/lib/mock/dashboard';
+import type { TodayMatch } from '@/types/dashboard';
 
 const tabs = ['Todos', 'Ao Vivo', 'Hoje', 'Amanhã'] as const;
 type Tab = (typeof tabs)[number];
@@ -78,10 +78,10 @@ function MatchList({ matches, emptyLabel }: { matches: TodayMatch[]; emptyLabel:
 }
 
 const emptyLabels: Record<Tab, string> = {
-  Todos: 'Nenhum jogo agendado para hoje ou amanhã.',
+  Todos: 'Aguardando sincronização ou nenhum jogo importado para hoje/amanhã.',
   'Ao Vivo': 'Nenhum jogo ao vivo no momento.',
-  Hoje: 'Nenhum jogo agendado para hoje.',
-  Amanhã: 'Nenhum jogo agendado para amanhã.',
+  Hoje: 'Nenhum jogo importado para hoje — aguarde a sincronização automática.',
+  Amanhã: 'Nenhum jogo importado para amanhã.',
 };
 
 export function TodayMatches({ matches }: TodayMatchesProps) {

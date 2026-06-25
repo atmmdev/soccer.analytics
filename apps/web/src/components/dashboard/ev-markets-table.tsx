@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import type { EvMarket } from '@/lib/mock/dashboard';
+import type { EvMarket } from '@/types/dashboard';
 
 interface EvMarketsTableProps {
   markets: EvMarket[];
