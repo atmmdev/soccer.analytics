@@ -1,40 +1,22 @@
 # TASKS.md — Tarefas de Desenvolvimento
 
-## Fase Atual: 2 — Match Center
+## Fase Atual: 4 — Analysis Engine (próxima)
 
-### Concluído (Fase 0 + 1)
+### Concluído
 
-- [x] Foundation completa (monorepo, auth, prisma, layout)
-- [x] Dashboard com widgets Shadcn
-- [x] Shadcn UI integrado
-- [x] Logo corrigido
-
-### Concluído (Fase 2)
-
-- [x] API `/matches` com filtros
-- [x] API `/matches/:id` detalhes
-- [x] API `/matches/competitions`
-- [x] Seed com times, competições e jogos
-- [x] Página Match Center com abas por status
-- [x] Página de detalhes da partida
+- [x] Fase 0 — Foundation
+- [x] Fase 1 — Dashboard + Shadcn UI
+- [x] Fase 2 — Match Center (listagem, detalhes, seed)
+- [x] Fase 3 — Match Analyzer (Casa/Fora/H2H, períodos, gráficos)
+- [x] Script `pnpm start`
 
 ### Próximo
 
-- [ ] Data Engine (importação de APIs externas)
-- [ ] Fase 3 — Match Analyzer
+- [ ] Fase 4 — Analysis Engine (probabilidades, EV, snapshots)
+- [ ] Data Engine — importação APIs externas
 
-## Como Usar
-
-1. Verificar fase em `ROADMAP.md`
-2. Pegar próxima tarefa não marcada
-3. Implementar seguindo `RULES.md`
-4. Marcar como concluída
-5. Atualizar roadmap se fase completa
-
-## Setup banco (necessário para jogos reais)
+## Setup
 
 ```bash
-pnpm docker:up
-pnpm db:push
-pnpm db:seed
+pnpm start
 ```

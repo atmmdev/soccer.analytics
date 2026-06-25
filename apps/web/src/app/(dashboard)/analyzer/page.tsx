@@ -1,8 +1,17 @@
-export default function AnalyzerPage() {
+import { Suspense } from 'react';
+import { Loader2 } from 'lucide-react';
+import AnalyzerPage from './analyzer-content';
+
+export default function AnalyzerPageWrapper() {
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold">Match Analyzer</h1>
-      <p className="mt-2 text-muted-foreground">Comparador de equipes — Fase 3</p>
-    </div>
+    <Suspense
+      fallback={
+        <div className="flex min-h-full items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      }
+    >
+      <AnalyzerPage />
+    </Suspense>
   );
 }

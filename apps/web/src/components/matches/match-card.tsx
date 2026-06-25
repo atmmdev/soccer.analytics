@@ -43,11 +43,9 @@ export function MatchCard({ match }: MatchCardProps) {
             </p>
             <div className="flex items-center justify-between gap-2">
               <span className="truncate font-medium">{match.homeTeam.name}</span>
-              
                 <span className="font-mono text-lg font-bold">
                   {match.homeScore ?? '-'}
                 </span>
-              
             </div>
             <div className="flex items-center justify-between gap-2">
               <span className="truncate font-medium">{match.awayTeam.name}</span>

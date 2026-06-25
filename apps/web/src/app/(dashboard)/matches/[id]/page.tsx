@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Loader2, MapPin, Trophy } from 'lucide-react';
+import { ArrowLeft, Loader2, MapPin, Trophy, BarChart3 } from 'lucide-react';
 import { AppHeader } from '@/components/layout/app-header';
 import { useMatch } from '@/hooks/use-matches';
 import { Badge } from '@/components/ui/badge';
@@ -127,11 +127,13 @@ export default function MatchDetailPage({
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              O Match Analyzer estará disponível na Fase 3. Aqui você verá comparação de
-              estatísticas, forma recente e mercados EV+.
+              Compare estatísticas, forma recente e H2H no Match Analyzer.
             </p>
-            <Button className="mt-4" variant="outline" disabled>
-              Analisar partida (em breve)
+            <Button className="mt-4" asChild>
+              <Link href={`/analyzer?matchId=${id}`}>
+                <BarChart3 className="mr-2 h-4 w-4" />
+                Analisar partida
+              </Link>
             </Button>
           </CardContent>
         </Card>

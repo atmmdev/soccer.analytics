@@ -35,7 +35,7 @@
 
 ---
 
-## Fase 2 — Match Center ⬅ ATUAL
+## Fase 2 — Match Center ✅
 
 **Objetivo:** Visualização e listagem de jogos
 
@@ -46,14 +46,14 @@
 
 ---
 
-## Fase 3 — Match Analyzer
+## Fase 3 — Match Analyzer ⬅ ATUAL
 
 **Objetivo:** Comparação detalhada de equipes
 
-- [ ] Comparador Casa vs Fora vs H2H
-- [ ] Períodos: 5, 10, 15, 20 jogos
-- [ ] Indicadores: gols, escanteios, cartões, xG, etc.
-- [ ] Gráficos comparativos (Recharts)
+- [x] Comparador Casa vs Fora vs H2H
+- [x] Períodos: 5, 10, 15, 20 jogos
+- [x] Indicadores: gols, escanteios, cartões, xG, etc.
+- [x] Gráficos comparativos (Recharts)
 
 ---
 
