@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { AnalysisPanel } from '@/components/analysis/analysis-panel';
 import { STATUS_LABELS, STATUS_VARIANT } from '@/types/match';
 import { use } from 'react';
 
@@ -121,9 +122,11 @@ export default function MatchDetailPage({
           </CardContent>
         </Card>
 
+        <AnalysisPanel matchId={id} />
+
         <Card className="border-border/60 bg-card/50">
           <CardHeader>
-            <CardTitle className="text-base">Análise</CardTitle>
+            <CardTitle className="text-base">Match Analyzer</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AnalysisEngineModule } from './analysis-engine/analysis-engine.module';
 
 /**
  * Engines Module — aggregates all intelligence engines.
@@ -20,8 +21,7 @@ import { Module } from '@nestjs/common';
  * - AiEngine: explains recommendations
  */
 @Module({
-  imports: [],
-  providers: [],
-  exports: [],
+  imports: [AnalysisEngineModule],
+  exports: [AnalysisEngineModule],
 })
 export class EnginesModule {}

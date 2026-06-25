@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { AnalysisPanel } from '@/components/analysis/analysis-panel';
 import type { AnalysisPeriod, AnalysisView } from '@/types/analyzer';
 import { PERIODS, VIEW_LABELS } from '@/types/analyzer';
 
@@ -194,6 +195,8 @@ export default function AnalyzerPage() {
                 awayTeam={analysis.match.awayTeam.name}
               />
             </div>
+
+            {matchId && <AnalysisPanel matchId={matchId} />}
           </>
         )}
       </div>

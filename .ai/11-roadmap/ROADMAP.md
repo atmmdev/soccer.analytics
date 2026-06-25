@@ -61,12 +61,12 @@
 
 **Objetivo:** Motor de análise funcional
 
-- [ ] Pipeline de análise completo
-- [ ] Cálculo de probabilidades
-- [ ] Cálculo de EV
-- [ ] Confidence scoring
-- [ ] Snapshots automáticos
-- [ ] Atualização pós-jogo
+- [x] Pipeline de análise completo
+- [x] Cálculo de probabilidades (Poisson)
+- [x] Cálculo de EV
+- [x] Confidence scoring
+- [x] Snapshots automáticos
+- [x] Atualização pós-jogo (`POST /analysis/snapshots/:id/resolve`)
 
 ---
 
@@ -74,10 +74,11 @@
 
 **Objetivo:** Análise por mercado
 
-- [ ] Todos os tipos de mercado
-- [ ] Probabilidade + Odd Justa + EV por mercado
-- [ ] Confidence Score por mercado
-- [ ] Recomendações BET/SKIP/WATCH
+- [x] Mercados 1X2, Over/Under, BTTS
+- [x] Probabilidade + Odd Justa + EV por mercado
+- [x] Confidence Score por mercado
+- [x] Recomendações BET/SKIP/WATCH
+- [ ] Escanteios, cartões, handicap, jogador
 
 ---
 

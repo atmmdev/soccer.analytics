@@ -157,7 +157,48 @@ async function main() {
     }
   }
 
-  console.log(`Seeded ${markets.length} markets, ${teamsData.length} teams, ${matches.length} matches`);
+  const marketByType = new Map(
+    (await prisma.market.findMany()).map((m) => [m.type, m.id]),
+  );
+
+  const oddsTemplates: Array<{
+    type: MarketType;
+    selection: string;
+    value: number;
+  }> = [
+    { type: MarketType.MATCH_RESULT, selection: 'Casa', value: 1.65 },
+    { type: MarketType.MATCH_RESULT, selection: 'Empate', value: 3.6 },
+    { type: MarketType.MATCH_RESULT, selection: 'Fora', value: 5.2 },
+    { type: MarketType.OVER_UNDER, selection: 'Over 2.5', value: 1.85 },
+    { type: MarketType.OVER_UNDER, selection: 'Under 2.5', value: 1.95 },
+    { type: MarketType.BTTS, selection: 'BTTS Sim', value: 1.75 },
+    { type: MarketType.BTTS, selection: 'BTTS Não', value: 2.05 },
+  ];
+
+  const scheduledMatches = await prisma.match.findMany({
+    where: { status: MatchStatus.SCHEDULED },
+  });
+
+  let oddsCount = 0;
+  for (const match of scheduledMatches) {
+    const existingOdds = await prisma.odd.count({ where: { matchId: match.id } });
+    if (existingOdds > 0) continue;
+
+    for (const odd of oddsTemplates) {
+      await prisma.odd.create({
+        data: {
+          matchId: match.id,
+          marketId: marketByType.get(odd.type)!,
+          selection: odd.selection,
+          value: odd.value,
+          bookmaker: 'Mock',
+        },
+      });
+      oddsCount++;
+    }
+  }
+
+  console.log(`Seeded ${markets.length} markets, ${teamsData.length} teams, ${matches.length} matches, ${oddsCount} odds`);
   console.log('Seed completed!');
 }
 
