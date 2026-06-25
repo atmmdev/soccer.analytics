@@ -22,6 +22,7 @@ export default function SettingsPage() {
   const importFixtures = useImportFixtures();
   const importOdds = useImportOdds();
   const importStatistics = useImportStatistics();
+  const [statsCooldown, setStatsCooldown] = useState(false);
 
   const provider = status?.providers[0];
   const isConfigured = provider?.configured ?? false;
@@ -68,24 +69,51 @@ export default function SettingsPage() {
   const handleImportStatistics = () => {
     importStatistics.mutate(date, {
       onSuccess: (result) => {
-        if (result.matchesProcessed === 0) {
+        if (result.rateLimited) {
+          setStatsCooldown(true);
+          setTimeout(() => setStatsCooldown(false), 60_000);
+        }
+
+        const parts: string[] = [];
+
+        if (result.statisticsCreated > 0 || result.statisticsUpdated > 0) {
+          parts.push(
+            `${result.statisticsCreated + result.statisticsUpdated} com stats reais`,
+          );
+        }
+        if (result.skippedNoStats > 0) {
+          parts.push(`${result.skippedNoStats} sem cobertura na API`);
+        }
+        if (result.remainingWithoutStats > 0) {
+          parts.push(`${result.remainingWithoutStats} na fila`);
+        }
+
+        if (parts.length === 0 && !result.rateLimited) {
+          toast.info('Nenhum jogo finalizado pendente de estatísticas nesta data.');
+          return;
+        }
+
+        if (result.rateLimited) {
           toast.warning(
-            result.errors[0] ??
-              'Nenhuma estatística importada. Só jogos finalizados sem stats na data.',
+            `Limite da API atingido (10/min). Aguarde 1 minuto e clique de novo.${
+              parts.length ? ` Progresso: ${parts.join(' · ')}.` : ''
+            }`,
+            { duration: 8000 },
           );
           return;
         }
-        toast.success(
-          `${result.statisticsCreated} criadas, ${result.statisticsUpdated} atualizadas (${result.matchesProcessed} jogos)`,
-        );
-        if (result.remainingWithoutStats > 0) {
-          toast.info(
-            `Ainda faltam ${result.remainingWithoutStats} jogos — clique novamente (limite 8/min por rate limit).`,
-          );
-        }
+
         if (result.errors.length > 0) {
-          toast.warning(`${result.errors.length} aviso(s): ${result.errors[0]}`);
+          toast.error(`Estatísticas: ${parts.join(' · ')}. ${result.errors[0]}`);
+          return;
         }
+
+        toast.success(
+          `Estatísticas: ${parts.join(' · ')}${
+            result.remainingWithoutStats > 0 ? ' — clique de novo para continuar' : ''
+          }`,
+          { duration: 6000 },
+        );
       },
       onError: (err: Error & { response?: { data?: { message?: string } } }) => {
         toast.error(err.response?.data?.message ?? err.message ?? 'Falha na importação');
@@ -166,21 +194,28 @@ export default function SettingsPage() {
               <Button
                 variant="outline"
                 onClick={handleImportStatistics}
-                disabled={!isConfigured || importStatistics.isPending}
+                disabled={
+                  !isConfigured || importStatistics.isPending || statsCooldown
+                }
               >
                 {importStatistics.isPending ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
                   <RefreshCw className="mr-2 h-4 w-4" />
                 )}
-                Importar estatísticas
+                {statsCooldown
+                  ? 'Aguarde 1 min…'
+                  : importStatistics.isPending
+                    ? 'Importando (~30s)…'
+                    : 'Importar estatísticas'}
               </Button>
             </div>
 
             {isConfigured && (
               <p className="text-xs text-muted-foreground">
-                Estatísticas: até 8 jogos finalizados por clique (rate limit 10 req/min).
-                Importe jogos primeiro, depois estatísticas e odds.
+                Estatísticas: 5 jogos por clique, ~30s (pausa automática entre
+                requisições). Plano free = 10 req/min — se aparecer limite, aguarde
+                1 minuto antes de clicar de novo.
               </p>
             )}
 

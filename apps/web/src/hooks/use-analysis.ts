@@ -30,6 +30,7 @@ export function useRunAnalysis(matchId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['analysis', 'latest', matchId] });
       queryClient.invalidateQueries({ queryKey: ['analysis', 'markets'] });
+      queryClient.invalidateQueries({ queryKey: ['alerts'] });
     },
   });
 }

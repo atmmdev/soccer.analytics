@@ -83,7 +83,7 @@ export function generateExplanation(input: MatchExplainInput): AiExplanation {
     ` ${skips} de ${input.markets.length} mercados marcados como ignorar.`;
 
   const risks: string[] = [
-    'Odds e estatísticas de equipe são dados de exemplo — validar com fonte real antes de apostar.',
+    'Análise baseada em histórico recente e odds importadas — confirme lineups e lesões antes de apostar.',
     'Modelo Poisson assume independência de gols; mercados correlacionados no mesmo jogo aumentam risco.',
   ];
 
@@ -111,8 +111,8 @@ export function generateExplanation(input: MatchExplainInput): AiExplanation {
     risks,
     dataSources: [
       'Analysis Engine (Poisson)',
-      'Odds do seed/mock',
-      'Stats fixas por time (exemplo)',
+      'Statistics Engine (jogos finalizados)',
+      'Odds importadas ou do banco',
     ],
     provider: 'template',
     generatedAt: new Date().toISOString(),

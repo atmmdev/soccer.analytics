@@ -23,6 +23,7 @@
 - [x] Statistics Engine — stats reais de jogos finalizados (gols, forma, H2H, xG estimado)
 - [x] Analysis + Analyzer conectados ao Statistics Engine
 - [x] Importação de estatísticas de partida (xG, chutes, escanteios) via API-Football
+- [x] Alertas EV+ (hoje/amanhã) + badge dinâmico no header
 - [ ] Integração LLM opcional no AI Engine
 
 ## Setup

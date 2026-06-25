@@ -33,11 +33,15 @@ export interface ImportStatisticsResult {
   matchesProcessed: number;
   statisticsCreated: number;
   statisticsUpdated: number;
+  skippedNoStats: number;
   remainingWithoutStats: number;
+  rateLimited: boolean;
   errors: string[];
 }
 
-const STATS_BATCH_LIMIT = 8;
+/** Plano free: 10 req/min — 5 jogos com pausa de 6,5s entre cada */
+const STATS_BATCH_LIMIT = 5;
+const STATS_REQUEST_DELAY_MS = 6500;
 
 @Injectable()
 export class DataEngineService {
@@ -168,7 +172,9 @@ export class DataEngineService {
       matchesProcessed: 0,
       statisticsCreated: 0,
       statisticsUpdated: 0,
+      skippedNoStats: 0,
       remainingWithoutStats: 0,
+      rateLimited: false,
       errors: [],
     };
 
@@ -180,6 +186,7 @@ export class DataEngineService {
       },
       include: {
         homeTeam: true,
+        awayTeam: true,
         matchStatistics: true,
       },
       orderBy: { matchDate: 'desc' },
@@ -187,10 +194,12 @@ export class DataEngineService {
 
     const pending = candidates.filter((m) => !m.matchStatistics);
     const batch = pending.slice(0, STATS_BATCH_LIMIT);
-    result.remainingWithoutStats = Math.max(0, pending.length - batch.length);
 
-    for (const match of batch) {
+    for (let i = 0; i < batch.length; i++) {
+      const match = batch[i];
       if (!match.externalId || !match.homeTeam.externalId) continue;
+
+      const label = `${match.homeTeam.name} vs ${match.awayTeam.name}`;
 
       try {
         const stats = await provider.fetchFixtureStatistics(
@@ -199,9 +208,20 @@ export class DataEngineService {
         );
 
         if (!stats) {
-          result.errors.push(
-            `${match.homeTeam.name} x stats indisponíveis na API`,
-          );
+          await this.prisma.matchStatistics.create({ data: { matchId: match.id } });
+          result.skippedNoStats++;
+          continue;
+        }
+
+        const hasData =
+          stats.homeXG != null ||
+          stats.awayXG != null ||
+          stats.homeShots != null ||
+          stats.homePossession != null;
+
+        if (!hasData) {
+          await this.prisma.matchStatistics.create({ data: { matchId: match.id } });
+          result.skippedNoStats++;
           continue;
         }
 
@@ -237,15 +257,45 @@ export class DataEngineService {
 
         result.matchesProcessed++;
       } catch (err) {
-        result.errors.push(
-          `Match ${match.externalId}: ${
-            err instanceof Error ? err.message : 'erro desconhecido'
-          }`,
-        );
+        const msg = err instanceof Error ? err.message : 'erro desconhecido';
+        if (this.isRateLimitError(msg)) {
+          result.rateLimited = true;
+          break;
+        }
+        result.errors.push(`${label}: ${msg}`);
+      }
+
+      if (i < batch.length - 1 && !result.rateLimited) {
+        await this.sleep(STATS_REQUEST_DELAY_MS);
       }
     }
 
+    result.remainingWithoutStats = await this.countPendingStatistics(start, end);
+
     return result;
+  }
+
+  private async countPendingStatistics(start: Date, end: Date) {
+    return this.prisma.match.count({
+      where: {
+        externalId: { not: null },
+        status: MatchStatus.FINISHED,
+        matchDate: { gte: start, lte: end },
+        matchStatistics: null,
+      },
+    });
+  }
+
+  private isRateLimitError(message: string) {
+    return (
+      message.includes('Limite de requisições') ||
+      message.includes('rate limit') ||
+      message.includes('429')
+    );
+  }
+
+  private sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   private getLocalDateRange(date: string) {

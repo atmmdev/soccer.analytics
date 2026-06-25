@@ -33,6 +33,8 @@ export interface ImportStatisticsResult {
   matchesProcessed: number;
   statisticsCreated: number;
   statisticsUpdated: number;
+  skippedNoStats: number;
   remainingWithoutStats: number;
+  rateLimited: boolean;
   errors: string[];
 }

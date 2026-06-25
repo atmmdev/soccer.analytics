@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Bell, LogOut, Search, User } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -14,6 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAuthStore } from '@/stores/auth.store';
 import { useRouter } from 'next/navigation';
+import { useAlertsSummary } from '@/hooks/use-alerts';
 
 interface AppHeaderProps {
   title: string;
@@ -24,6 +26,8 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const router = useRouter();
+  const { data: alertSummary } = useAlertsSummary();
+  const alertCount = alertSummary?.bet ?? 0;
 
   const handleLogout = () => {
     logout();
@@ -49,11 +53,15 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
             />
           </div>
 
-          <Button variant="outline" size="icon" className="relative h-9 w-9 shrink-0">
-            <Bell className="h-4 w-4" />
-            <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-              3
-            </span>
+          <Button variant="outline" size="icon" className="relative h-9 w-9 shrink-0" asChild>
+            <Link href="/alerts" aria-label="Alertas EV+">
+              <Bell className="h-4 w-4" />
+              {alertCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground">
+                  {alertCount > 9 ? '9+' : alertCount}
+                </span>
+              )}
+            </Link>
           </Button>
 
           <DropdownMenu>
