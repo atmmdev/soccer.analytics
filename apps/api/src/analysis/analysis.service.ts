@@ -1,8 +1,14 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MatchStatus, Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { AnalysisEngineService, MarketOddInput } from '../engines/analysis-engine/analysis-engine.service';
+import {
+  AnalysisEngineService,
+  MarketOddInput,
+  calculateExpectedGoals,
+} from '../engines/analysis-engine/analysis-engine.service';
 import { StatisticsEngineService } from '../engines/statistics-engine/statistics-engine.service';
+import { PlayerEngineService } from '../engines/player-engine/player-engine.service';
+import { DataEngineService } from '../engines/data-engine/data-engine.service';
 
 const ANALYSIS_STALE_MS = 4 * 60 * 60 * 1000;
 
@@ -12,6 +18,8 @@ export class AnalysisService {
     private prisma: PrismaService,
     private analysisEngine: AnalysisEngineService,
     private statisticsEngine: StatisticsEngineService,
+    private playerEngine: PlayerEngineService,
+    private dataEngine: DataEngineService,
   ) {}
 
   async runAnalysis(matchId: string, period = 10) {
@@ -49,6 +57,41 @@ export class AnalysisService {
         ? 88
         : 68;
 
+    const { home: homeXg, away: awayXg } = calculateExpectedGoals(
+      homeTeamStats.avgGoalsFor,
+      homeTeamStats.avgGoalsAgainst,
+      awayTeamStats.avgGoalsFor,
+      awayTeamStats.avgGoalsAgainst,
+    );
+
+    const playerSelections = odds
+      .filter((o) => o.marketType.toUpperCase() === 'PLAYER')
+      .map((o) => o.selection);
+
+    const starterIds = match.externalId
+      ? await this.dataEngine.fetchLineupStarters(match.externalId)
+      : new Set<string>();
+
+    const playerCtxRaw = await this.playerEngine.buildPlayerContextForMatch(
+      match.id,
+      match.homeTeamId,
+      match.awayTeamId,
+      homeXg,
+      awayXg,
+      homeTeamStats.avgGoalsFor,
+      awayTeamStats.avgGoalsFor,
+      playerSelections,
+      period,
+      starterIds,
+    );
+
+    const playerContext = Object.fromEntries(
+      Object.entries(playerCtxRaw).map(([key, value]) => [
+        key,
+        { probability: value.probability, hasModel: value.hasModel },
+      ]),
+    );
+
     const result = this.analysisEngine.analyze(
       {
         goalsFor: homeTeamStats.avgGoalsFor,
@@ -65,6 +108,7 @@ export class AnalysisService {
       odds,
       period,
       statsQuality,
+      playerContext,
     );
 
     const snapshotData = {

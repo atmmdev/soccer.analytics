@@ -232,7 +232,10 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
                       <div className="font-medium">{m.selection}</div>
                       <div className="text-xs text-muted-foreground">
                         {MARKET_TYPE_LABELS[m.marketType] ?? m.marketType}
-                        {m.marketType === 'PLAYER' && ' · sem modelo de jogador'}
+                        {m.marketType === 'PLAYER' &&
+                          (m.playerModel
+                            ? ' · modelo Poisson (gols/90)'
+                            : ' · sem histórico do jogador')}
                       </div>
                     </TableCell>
                     <TableCell className="text-right font-mono">

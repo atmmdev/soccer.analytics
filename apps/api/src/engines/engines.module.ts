@@ -5,6 +5,7 @@ import { SimulationEngineModule } from './simulation-engine/simulation-engine.mo
 import { StatisticsEngineModule } from './statistics-engine/statistics-engine.module';
 import { DataEngineModule } from './data-engine/data-engine.module';
 import { AiEngineModule } from './ai-engine/ai-engine.module';
+import { PlayerEngineModule } from './player-engine/player-engine.module';
 
 /**
  * Engines Module — aggregates all intelligence engines.
@@ -26,7 +27,7 @@ import { AiEngineModule } from './ai-engine/ai-engine.module';
  * - AiEngine: explains recommendations
  */
 @Module({
-  imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, StatisticsEngineModule, DataEngineModule, AiEngineModule],
-  exports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, StatisticsEngineModule, DataEngineModule, AiEngineModule],
+  imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, StatisticsEngineModule, DataEngineModule, AiEngineModule, PlayerEngineModule],
+  exports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, StatisticsEngineModule, DataEngineModule, AiEngineModule, PlayerEngineModule],
 })
 export class EnginesModule {}

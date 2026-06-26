@@ -58,6 +58,26 @@ export interface ImportedMatchStatistics {
   awayXG?: number;
 }
 
+export interface ImportedPlayerPerformance {
+  playerExternalId: string;
+  playerName: string;
+  teamExternalId: string;
+  position?: string;
+  minutes: number;
+  goals: number;
+  assists: number;
+  shots: number;
+  shotsOnTarget: number;
+  wasStarter: boolean;
+}
+
+export interface ImportedLineupPlayer {
+  playerExternalId: string;
+  playerName: string;
+  teamExternalId: string;
+  isStarter: boolean;
+}
+
 export interface DataProvider {
   readonly name: string;
   getStatus(): DataProviderStatus;
@@ -68,4 +88,6 @@ export interface DataProvider {
     fixtureExternalId: string,
     homeTeamExternalId: string,
   ): Promise<ImportedMatchStatistics | null>;
+  fetchFixturePlayers(fixtureExternalId: string): Promise<ImportedPlayerPerformance[]>;
+  fetchFixtureLineups(fixtureExternalId: string): Promise<ImportedLineupPlayer[]>;
 }

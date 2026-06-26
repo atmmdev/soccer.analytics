@@ -24,6 +24,12 @@ export interface MarketAnalysisResult {
   ev: number;
   confidence: number;
   recommendation: Recommendation;
+  playerModel?: boolean;
+}
+
+export interface PlayerMarketContext {
+  probability: number;
+  hasModel: boolean;
 }
 
 export interface AnalysisEngineResult {
@@ -202,6 +208,7 @@ function resolveProbability(
   matrix: number[][],
   cornerLambda: number,
   cardLambda: number,
+  playerContext?: Record<string, PlayerMarketContext>,
 ): number {
   if (goalMap[odd.selection] !== undefined) {
     return goalMap[odd.selection];
@@ -218,7 +225,8 @@ function resolveProbability(
   }
 
   if (type === 'PLAYER') {
-    // Sem stats de jogador — usa prob. implícita da odd (mercado eficiente)
+    const ctx = playerContext?.[odd.selection];
+    if (ctx?.hasModel) return ctx.probability;
     return Math.min(0.95, Math.max(0.02, 1 / odd.bookmakerOdd));
   }
 
@@ -245,11 +253,15 @@ function marketConfidence(
   probability: number,
   marketType: string,
   statsQuality: number,
+  playerContext?: Record<string, PlayerMarketContext>,
+  selection?: string,
 ): number {
   const edgeBoost = probability > 0.55 || probability < 0.45 ? 1.05 : 0.92;
   const type = marketType.toUpperCase();
 
   if (type === 'PLAYER') {
+    const hasModel = selection ? playerContext?.[selection]?.hasModel : false;
+    if (hasModel) return Math.round(baseConfidence * 0.72);
     return Math.min(50, Math.round(baseConfidence * 0.55));
   }
 
@@ -265,8 +277,13 @@ function getMarketRecommendation(
   ev: number,
   confidence: number,
   marketType: string,
+  playerContext?: Record<string, PlayerMarketContext>,
+  selection?: string,
 ): Recommendation {
-  if (marketType.toUpperCase() === 'PLAYER') return 'SKIP';
+  if (marketType.toUpperCase() === 'PLAYER') {
+    const hasModel = selection ? playerContext?.[selection]?.hasModel : false;
+    if (!hasModel) return 'SKIP';
+  }
   return getRecommendation(ev, confidence);
 }
 
@@ -276,6 +293,7 @@ export function runAnalysis(
   odds: MarketOddInput[],
   period = 10,
   statsQuality = 85,
+  playerContext: Record<string, PlayerMarketContext> = {},
 ): AnalysisEngineResult {
   const { home: homeXg, away: awayXg } = calculateExpectedGoals(
     home.goalsFor,
@@ -312,6 +330,7 @@ export function runAnalysis(
       matrix,
       cornerLambda,
       cardLambda,
+      playerContext,
     );
     const fairOdd = probability > 0 ? 1 / probability : 99;
     const ev = probability * odd.bookmakerOdd - 1;
@@ -320,7 +339,12 @@ export function runAnalysis(
       probability,
       odd.marketType,
       statsQuality,
+      playerContext,
+      odd.selection,
     );
+    const hasPlayerModel =
+      odd.marketType.toUpperCase() === 'PLAYER' &&
+      Boolean(playerContext[odd.selection]?.hasModel);
 
     return {
       marketType: odd.marketType,
@@ -330,7 +354,14 @@ export function runAnalysis(
       bookmakerOdd: odd.bookmakerOdd,
       ev: round(ev),
       confidence,
-      recommendation: getMarketRecommendation(ev, confidence, odd.marketType),
+      recommendation: getMarketRecommendation(
+        ev,
+        confidence,
+        odd.marketType,
+        playerContext,
+        odd.selection,
+      ),
+      ...(hasPlayerModel ? { playerModel: true } : {}),
     };
   });
 
@@ -357,7 +388,8 @@ export class AnalysisEngineService {
     odds: MarketOddInput[],
     period = 10,
     statsQuality = 85,
+    playerContext: Record<string, PlayerMarketContext> = {},
   ): AnalysisEngineResult {
-    return runAnalysis(home, away, odds, period, statsQuality);
+    return runAnalysis(home, away, odds, period, statsQuality, playerContext);
   }
 }

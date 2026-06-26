@@ -5,8 +5,10 @@ import {
   DataProvider,
   DataProviderStatus,
   ImportedFixture,
+  ImportedLineupPlayer,
   ImportedMatchStatistics,
   ImportedOdd,
+  ImportedPlayerPerformance,
 } from './data-provider.interface';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
@@ -124,6 +126,79 @@ export class ApiFootballProvider implements DataProvider {
       homeXG: home.xg,
       awayXG: away.xg,
     };
+  }
+
+  async fetchFixturePlayers(fixtureExternalId: string): Promise<ImportedPlayerPerformance[]> {
+    const data = await this.request<{ response: ApiFixturePlayersTeam[] }>(
+      '/fixtures/players',
+      { fixture: fixtureExternalId },
+    );
+
+    if (!data.response?.length) return [];
+
+    const performances: ImportedPlayerPerformance[] = [];
+
+    for (const teamEntry of data.response) {
+      const teamExternalId = String(teamEntry.team.id);
+
+      for (const entry of teamEntry.players ?? []) {
+        const stat = entry.statistics?.[0];
+        if (!stat) continue;
+
+        const minutes = parseStat(stat.games?.minutes) ?? 0;
+        if (minutes <= 0) continue;
+
+        performances.push({
+          playerExternalId: String(entry.player.id),
+          playerName: entry.player.name,
+          teamExternalId,
+          position: stat.games?.position ?? undefined,
+          minutes,
+          goals: parseStat(stat.goals?.total) ?? 0,
+          assists: parseStat(stat.goals?.assists) ?? 0,
+          shots: parseStat(stat.shots?.total) ?? 0,
+          shotsOnTarget: parseStat(stat.shots?.on) ?? 0,
+          wasStarter: stat.games?.substitute === false,
+        });
+      }
+    }
+
+    return performances;
+  }
+
+  async fetchFixtureLineups(fixtureExternalId: string): Promise<ImportedLineupPlayer[]> {
+    const data = await this.request<{ response: ApiFixtureLineup[] }>(
+      '/fixtures/lineups',
+      { fixture: fixtureExternalId },
+    );
+
+    if (!data.response?.length) return [];
+
+    const lineup: ImportedLineupPlayer[] = [];
+
+    for (const teamEntry of data.response) {
+      const teamExternalId = String(teamEntry.team.id);
+
+      for (const row of teamEntry.startXI ?? []) {
+        lineup.push({
+          playerExternalId: String(row.player.id),
+          playerName: row.player.name,
+          teamExternalId,
+          isStarter: true,
+        });
+      }
+
+      for (const row of teamEntry.substitutes ?? []) {
+        lineup.push({
+          playerExternalId: String(row.player.id),
+          playerName: row.player.name,
+          teamExternalId,
+          isStarter: false,
+        });
+      }
+    }
+
+    return lineup;
   }
 
   private parseTeamStatistics(
@@ -433,6 +508,24 @@ interface ApiOddsEntry {
 interface ApiTeamStatistics {
   team: { id: number; name: string };
   statistics: Array<{ type: string; value: string | number | null }>;
+}
+
+interface ApiFixturePlayersTeam {
+  team: { id: number; name: string };
+  players: Array<{
+    player: { id: number; name: string };
+    statistics: Array<{
+      games?: { minutes?: number | null; position?: string; substitute?: boolean };
+      goals?: { total?: number | null; assists?: number | null };
+      shots?: { total?: number | null; on?: number | null };
+    }>;
+  }>;
+}
+
+interface ApiFixtureLineup {
+  team: { id: number; name: string };
+  startXI?: Array<{ player: { id: number; name: string } }>;
+  substitutes?: Array<{ player: { id: number; name: string } }>;
 }
 
 function parseStat(value: string | number | null | undefined): number | undefined {

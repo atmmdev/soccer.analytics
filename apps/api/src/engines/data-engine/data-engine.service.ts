@@ -6,6 +6,7 @@ import {
   DataProviderStatus,
   ImportedFixture,
   ImportedOdd,
+  ImportedPlayerPerformance,
 } from './data-provider.interface';
 
 export interface ImportFixturesResult {
@@ -39,8 +40,21 @@ export interface ImportStatisticsResult {
   errors: string[];
 }
 
+export interface ImportPlayerStatsResult {
+  provider: string;
+  date: string;
+  matchesProcessed: number;
+  playersUpserted: number;
+  performancesCreated: number;
+  skippedNoData: number;
+  remainingWithoutPlayers: number;
+  rateLimited: boolean;
+  errors: string[];
+}
+
 /** Plano free: 10 req/min — 5 jogos com pausa de 6,5s entre cada */
 const STATS_BATCH_LIMIT = 5;
+const PLAYERS_BATCH_LIMIT = 5;
 const STATS_REQUEST_DELAY_MS = 6500;
 
 @Injectable()
@@ -273,6 +287,164 @@ export class DataEngineService {
     result.remainingWithoutStats = await this.countPendingStatistics(start, end);
 
     return result;
+  }
+
+  async importPlayerStats(date: string): Promise<ImportPlayerStatsResult> {
+    this.assertDate(date);
+    const provider = this.getActiveProvider();
+    const { start, end } = this.getLocalDateRange(date);
+
+    const result: ImportPlayerStatsResult = {
+      provider: provider.name,
+      date,
+      matchesProcessed: 0,
+      playersUpserted: 0,
+      performancesCreated: 0,
+      skippedNoData: 0,
+      remainingWithoutPlayers: 0,
+      rateLimited: false,
+      errors: [],
+    };
+
+    const candidates = await this.prisma.match.findMany({
+      where: {
+        externalId: { not: null },
+        status: MatchStatus.FINISHED,
+        matchDate: { gte: start, lte: end },
+      },
+      include: {
+        homeTeam: true,
+        awayTeam: true,
+        _count: { select: { playerPerformances: true } },
+      },
+      orderBy: { matchDate: 'desc' },
+    });
+
+    const pending = candidates.filter((m) => m._count.playerPerformances === 0);
+    const batch = pending.slice(0, PLAYERS_BATCH_LIMIT);
+
+    for (let i = 0; i < batch.length; i++) {
+      const match = batch[i];
+      if (!match.externalId) continue;
+
+      const label = `${match.homeTeam.name} vs ${match.awayTeam.name}`;
+
+      try {
+        const performances = await provider.fetchFixturePlayers(match.externalId);
+
+        if (performances.length === 0) {
+          result.skippedNoData++;
+          continue;
+        }
+
+        const teamByExternal = new Map<string, string>([
+          [match.homeTeam.externalId ?? '', match.homeTeamId],
+          [match.awayTeam.externalId ?? '', match.awayTeamId],
+        ]);
+
+        const upsertedPlayers = new Set<string>();
+
+        for (const perf of performances) {
+          const teamId = teamByExternal.get(perf.teamExternalId);
+          if (!teamId) continue;
+
+          const player = await this.upsertPlayer(perf, teamId);
+          upsertedPlayers.add(player.id);
+
+          await this.prisma.matchPlayerPerformance.upsert({
+            where: {
+              matchId_playerId: { matchId: match.id, playerId: player.id },
+            },
+            create: {
+              matchId: match.id,
+              playerId: player.id,
+              minutes: perf.minutes,
+              goals: perf.goals,
+              assists: perf.assists,
+              shots: perf.shots,
+              shotsOnTarget: perf.shotsOnTarget,
+              wasStarter: perf.wasStarter,
+            },
+            update: {
+              minutes: perf.minutes,
+              goals: perf.goals,
+              assists: perf.assists,
+              shots: perf.shots,
+              shotsOnTarget: perf.shotsOnTarget,
+              wasStarter: perf.wasStarter,
+            },
+          });
+          result.performancesCreated++;
+        }
+
+        result.playersUpserted += upsertedPlayers.size;
+        result.matchesProcessed++;
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'erro desconhecido';
+        if (this.isRateLimitError(msg)) {
+          result.rateLimited = true;
+          break;
+        }
+        result.errors.push(`${label}: ${msg}`);
+      }
+
+      if (i < batch.length - 1 && !result.rateLimited) {
+        await this.sleep(STATS_REQUEST_DELAY_MS);
+      }
+    }
+
+    result.remainingWithoutPlayers = await this.countPendingPlayerStats(start, end);
+
+    return result;
+  }
+
+  async fetchLineupStarters(fixtureExternalId: string): Promise<Set<string>> {
+    try {
+      const provider = this.getActiveProvider();
+      const lineups = await provider.fetchFixtureLineups(fixtureExternalId);
+      return new Set(
+        lineups.filter((p) => p.isStarter).map((p) => p.playerExternalId),
+      );
+    } catch {
+      return new Set();
+    }
+  }
+
+  private async upsertPlayer(perf: ImportedPlayerPerformance, teamId: string) {
+    const existing = await this.prisma.player.findUnique({
+      where: { externalId: perf.playerExternalId },
+    });
+
+    if (existing) {
+      return this.prisma.player.update({
+        where: { id: existing.id },
+        data: {
+          name: perf.playerName,
+          teamId,
+          position: perf.position ?? null,
+        },
+      });
+    }
+
+    return this.prisma.player.create({
+      data: {
+        externalId: perf.playerExternalId,
+        name: perf.playerName,
+        teamId,
+        position: perf.position ?? null,
+      },
+    });
+  }
+
+  private async countPendingPlayerStats(start: Date, end: Date) {
+    return this.prisma.match.count({
+      where: {
+        externalId: { not: null },
+        status: MatchStatus.FINISHED,
+        matchDate: { gte: start, lte: end },
+        playerPerformances: { none: {} },
+      },
+    });
   }
 
   private async countPendingStatistics(start: Date, end: Date) {

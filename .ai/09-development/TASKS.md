@@ -37,10 +37,10 @@
 - [x] Mercados de jogador (importação + listagem; EV via prob. implícita, SKIP)
 - [x] Paginação "Carregar mais" na página Jogos (useInfiniteQuery)
 - [x] Histórico de Análises — `GET /analysis/history` + página `/history`
+- [x] Player Engine — importação de stats via API-Football + modelo Poisson anytime scorer
 
 ### Próximo (pós-roadmap core)
 
-- [ ] Player Engine com stats reais (gols por jogador, minutos)
 - [ ] Export PDF nos Relatórios
 - [ ] Notificações push / e-mail para alertas EV+
 

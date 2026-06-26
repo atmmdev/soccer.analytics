@@ -12,6 +12,16 @@ export interface SyncStatus {
   result: Record<string, unknown> | null;
 }
 
+export const SYNC_STEP_LABELS: Record<string, string> = {
+  starting: 'Iniciando',
+  fixtures: 'Importando jogos',
+  resolve: 'Atualizando resultados',
+  odds: 'Importando odds',
+  statistics: 'Importando estatísticas',
+  players: 'Importando stats de jogadores',
+  analysis: 'Rodando análises Poisson',
+};
+
 export function useSyncStatus() {
   return useQuery({
     queryKey: ['sync', 'status'],

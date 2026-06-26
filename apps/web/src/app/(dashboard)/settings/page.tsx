@@ -6,19 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useDataStatus } from '@/hooks/use-data';
-import { useSyncStatus } from '@/hooks/use-sync';
+import { useSyncStatus, SYNC_STEP_LABELS } from '@/hooks/use-sync';
 import { apiClient } from '@/lib/api/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-const STEP_LABELS: Record<string, string> = {
-  starting: 'Iniciando',
-  fixtures: 'Importando jogos',
-  resolve: 'Atualizando resultados',
-  odds: 'Importando odds',
-  statistics: 'Importando estatísticas',
-  analysis: 'Rodando análises Poisson',
-};
+const STEP_LABELS = SYNC_STEP_LABELS;
 
 export default function SettingsPage() {
   const { data: status, isLoading } = useDataStatus();

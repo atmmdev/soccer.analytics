@@ -102,6 +102,7 @@ model Player {
 
   team             Team?              @relation(fields: [teamId], references: [id])
   playerStatistics PlayerStatistics[]
+  matchPerformances MatchPlayerPerformance[]
 
   @@map("players")
 }
@@ -132,6 +133,7 @@ model Match {
   predictions     Prediction[]
   snapshots       Snapshot[]
   ticketSelections TicketSelection[]
+  playerPerformances MatchPlayerPerformance[]
 
   @@index([matchDate])
   @@index([status])
@@ -209,6 +211,26 @@ model PlayerStatistics {
 
   @@index([playerId, period])
   @@map("player_statistics")
+}
+
+model MatchPlayerPerformance {
+  id            String   @id @default(cuid())
+  matchId       String   @map("match_id")
+  playerId      String   @map("player_id")
+  minutes       Int      @default(0)
+  goals         Int      @default(0)
+  assists       Int      @default(0)
+  shots         Int      @default(0)
+  shotsOnTarget Int      @default(0) @map("shots_on_target")
+  wasStarter    Boolean  @default(false) @map("was_starter")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  match  Match  @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  player Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([matchId, playerId])
+  @@index([playerId])
+  @@map("match_player_performances")
 }
 
 // ─── Odds & Markets ──────────────────────────────────────

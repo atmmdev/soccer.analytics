@@ -159,6 +159,17 @@ export class SyncService implements OnModuleInit {
         }
       }
 
+      await this.writeState({ syncDate, status: 'running', currentStep: 'players', result });
+      result.players = [] as unknown[];
+      for (const date of fixtureDates) {
+        for (let batch = 0; batch < STATS_MAX_BATCHES_PER_DATE; batch++) {
+          const players = await this.dataEngine.importPlayerStats(date);
+          (result.players as unknown[]).push(players);
+          if (players.rateLimited || players.remainingWithoutPlayers === 0) break;
+          await this.sleep(6500);
+        }
+      }
+
       await this.writeState({ syncDate, status: 'running', currentStep: 'analysis', result });
       result.analysesRun = await this.analysis.autoAnalyzeUpcoming();
 

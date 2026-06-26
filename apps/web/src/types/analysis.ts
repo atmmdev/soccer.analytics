@@ -9,6 +9,7 @@ export interface MarketAnalysis {
   ev: number;
   confidence: number;
   recommendation: Recommendation;
+  playerModel?: boolean;
 }
 
 export interface AnalysisResult {

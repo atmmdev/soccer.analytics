@@ -20,4 +20,8 @@ export class DataService {
   importStatistics(date: string) {
     return this.dataEngine.importStatistics(date);
   }
+
+  importPlayerStats(date: string) {
+    return this.dataEngine.importPlayerStats(date);
+  }
 }

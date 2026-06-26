@@ -36,4 +36,11 @@ export class DataController {
     const target = date ?? new Date().toISOString().slice(0, 10);
     return this.dataService.importStatistics(target);
   }
+
+  @Post('import/players')
+  @ApiOperation({ summary: 'Import player performance stats for finished matches' })
+  importPlayers(@Query('date') date?: string) {
+    const target = date ?? new Date().toISOString().slice(0, 10);
+    return this.dataService.importPlayerStats(target);
+  }
 }

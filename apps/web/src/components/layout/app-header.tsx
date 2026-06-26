@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Bell, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { GlobalSearch } from '@/components/layout/global-search';
+import { SyncStatusMenu } from '@/components/layout/sync-status-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -46,6 +47,8 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
 
         <div className="flex flex-1 items-center justify-end gap-4">
           <GlobalSearch />
+
+          <SyncStatusMenu />
 
           <Button variant="outline" size="icon" className="relative h-9 w-9 shrink-0" asChild>
             <Link href="/alerts" aria-label="Alertas EV+">
