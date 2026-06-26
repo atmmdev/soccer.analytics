@@ -28,7 +28,10 @@
 - [x] Página Relatórios — performance banca, bilhetes, precisão análises + export JSON
 - [x] Sincronização automática diária (jogos, odds, stats, análises Poisson)
 - [x] Remoção de seed demo e mocks do dashboard
-- [ ] Integração LLM opcional no AI Engine
+- [x] Busca global no header (jogos, times, mercados EV+)
+- [x] LLM opcional no AI Engine (OpenAI — fallback template)
+- [x] Research Lab com histórico real de jogos finalizados
+- [ ] Mercados avançados no Analysis Engine (escanteios, cartões)
 
 ## Setup
 

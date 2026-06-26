@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Bell, LogOut, Search, User } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Bell, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { GlobalSearch } from '@/components/layout/global-search';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -45,13 +45,7 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-4">
-          <div className="relative hidden max-w-md flex-1 md:block">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder="Buscar jogos, times, mercados..."
-              className="h-9 bg-secondary/50 pl-9"
-            />
-          </div>
+          <GlobalSearch />
 
           <Button variant="outline" size="icon" className="relative h-9 w-9 shrink-0" asChild>
             <Link href="/alerts" aria-label="Alertas EV+">

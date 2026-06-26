@@ -29,6 +29,7 @@ export interface SimulationResult {
   finalBankroll: number;
   sampleSize: number;
   isSynthetic: boolean;
+  dataSource?: 'history' | 'synthetic';
   bets: Array<{
     matchLabel: string;
     odd: number;

@@ -19,6 +19,11 @@ export class MatchQueryDto {
   @IsDateString()
   date?: string;
 
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  q?: string;
+
   @ApiPropertyOptional({ default: 1 })
   @IsOptional()
   @Type(() => Number)

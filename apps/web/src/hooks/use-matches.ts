@@ -6,6 +6,7 @@ interface MatchFilters {
   status?: MatchStatus;
   competitionId?: string;
   date?: string;
+  q?: string;
   page?: number;
   limit?: number;
 }

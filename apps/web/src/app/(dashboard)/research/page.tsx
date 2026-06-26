@@ -62,7 +62,9 @@ function ResultsPanel({ result }: { result: SimulationResult }) {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        <Badge variant="secondary">Dados sintéticos</Badge>
+        <Badge variant={result.dataSource === 'history' ? 'default' : 'secondary'}>
+          {result.dataSource === 'history' ? 'Histórico real' : 'Fallback sintético'}
+        </Badge>
         <Badge variant="outline">{result.totalBets} apostas simuladas</Badge>
       </div>
 
@@ -218,7 +220,7 @@ export default function ResearchPage() {
     <div className="flex min-h-full flex-col">
       <AppHeader
         title="Research Lab"
-        subtitle="Valide hipóteses com simulações em dados sintéticos"
+        subtitle="Valide hipóteses com jogos finalizados do banco (fallback sintético se pouco histórico)"
       />
 
       <div className="flex-1 space-y-6 p-6">

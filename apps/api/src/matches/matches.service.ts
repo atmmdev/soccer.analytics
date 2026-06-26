@@ -30,6 +30,19 @@ export class MatchesService {
       where.competitionId = query.competitionId;
     }
 
+    if (query.q) {
+      where.AND = [
+        ...(Array.isArray(where.AND) ? where.AND : where.AND ? [where.AND] : []),
+        {
+          OR: [
+            { homeTeam: { name: { contains: query.q, mode: 'insensitive' } } },
+            { awayTeam: { name: { contains: query.q, mode: 'insensitive' } } },
+            { competition: { name: { contains: query.q, mode: 'insensitive' } } },
+          ],
+        },
+      ];
+    }
+
     if (query.date) {
       const start = new Date(`${query.date}T00:00:00.000Z`);
       const end = new Date(`${query.date}T23:59:59.999Z`);

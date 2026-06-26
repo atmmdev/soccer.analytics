@@ -16,6 +16,7 @@ import { DataModule } from './data/data.module';
 import { AlertsModule } from './alerts/alerts.module';
 import { ReportsModule } from './reports/reports.module';
 import { SyncModule } from './sync/sync.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { SyncModule } from './sync/sync.module';
     AlertsModule,
     ReportsModule,
     SyncModule,
+    SearchModule,
   ],
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { AppHeader } from '@/components/layout/app-header';
 import { MatchCard } from '@/components/matches/match-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -14,10 +15,14 @@ const statusTabs: { value: string; label: string; status?: MatchStatus }[] = [
   { value: 'FINISHED', label: 'Finalizados', status: 'FINISHED' },
 ];
 
-function MatchList({ status }: { status?: MatchStatus }) {
-  const { data, isLoading, isError } = useMatches(
-    status ? { status, limit: 50 } : { limit: 50 },
-  );
+function MatchList({ status, q }: { status?: MatchStatus; q?: string }) {
+  const filters = {
+    ...(status ? { status } : {}),
+    ...(q ? { q } : {}),
+    limit: 50,
+  };
+
+  const { data, isLoading, isError } = useMatches(filters);
 
   if (isLoading) {
     return (
@@ -43,14 +48,18 @@ function MatchList({ status }: { status?: MatchStatus }) {
   if (!data?.data.length) {
     return (
       <div className="rounded-lg border border-border/60 bg-card/50 p-8 text-center">
-        <p className="text-muted-foreground">Nenhum jogo encontrado.</p>
+        <p className="text-muted-foreground">
+          {q ? `Nenhum jogo encontrado para "${q}".` : 'Nenhum jogo encontrado.'}
+        </p>
       </div>
     );
   }
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-muted-foreground mb-4">{data.meta.total} jogos</p>
+      <p className="mb-4 text-xs text-muted-foreground">
+        {data.meta.total} jogos{q ? ` · busca: "${q}"` : ''}
+      </p>
       {data.data.map((match) => (
         <MatchCard key={match.id} match={match} />
       ))}
@@ -59,13 +68,19 @@ function MatchList({ status }: { status?: MatchStatus }) {
 }
 
 export default function MatchesPage() {
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q') ?? undefined;
   const { data: competitions } = useCompetitions();
 
   return (
     <div className="flex min-h-full flex-col">
       <AppHeader
         title="Jogos"
-        subtitle="Match Center — visualize e filtre partidas"
+        subtitle={
+          q
+            ? `Resultados para "${q}"`
+            : 'Match Center — visualize e filtre partidas'
+        }
       />
 
       <div className="flex-1 p-6">
@@ -93,7 +108,7 @@ export default function MatchesPage() {
 
           {statusTabs.map((tab) => (
             <TabsContent key={tab.value} value={tab.value}>
-              <MatchList status={tab.status} key={tab.value} />
+              <MatchList status={tab.status} q={q} key={`${tab.value}-${q ?? ''}`} />
             </TabsContent>
           ))}
         </Tabs>

@@ -51,7 +51,9 @@ export function AiExplanationPanel({
           IA Trader — Explicação
         </CardTitle>
         <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary">Baseado nos dados da análise</Badge>
+          <Badge variant="secondary">
+            {explanation.provider === 'openai' ? 'OpenAI + dados reais' : 'Template + dados reais'}
+          </Badge>
           {explanation.topPick && (
             <Badge variant="success">Destaque: {explanation.topPick}</Badge>
           )}

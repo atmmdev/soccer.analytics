@@ -8,6 +8,6 @@ export interface AiExplanation {
   }>;
   risks: string[];
   dataSources: string[];
-  provider: 'template';
+  provider: 'template' | 'openai';
   generatedAt: string;
 }

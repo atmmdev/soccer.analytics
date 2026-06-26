@@ -53,7 +53,7 @@ export class ResearchService {
   async runSimulation(id: string) {
     const strategy = await this.findOne(id);
     const filters = strategy.filters as unknown as StrategyFilters;
-    const result = this.simulationEngine.simulate(filters);
+    const result = await this.simulationEngine.simulate(filters);
 
     const simulation = await this.prisma.simulation.create({
       data: {

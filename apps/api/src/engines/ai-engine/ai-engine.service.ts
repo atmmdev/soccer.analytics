@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 export interface MarketExplainInput {
   selection: string;
@@ -30,7 +31,7 @@ export interface AiExplanation {
   }>;
   risks: string[];
   dataSources: string[];
-  provider: 'template';
+  provider: 'template' | 'openai';
   generatedAt: string;
 }
 
@@ -112,7 +113,7 @@ export function generateExplanation(input: MatchExplainInput): AiExplanation {
     dataSources: [
       'Analysis Engine (Poisson)',
       'Statistics Engine (jogos finalizados)',
-      'Odds importadas ou do banco',
+      'Odds importadas',
     ],
     provider: 'template',
     generatedAt: new Date().toISOString(),
@@ -121,7 +122,125 @@ export function generateExplanation(input: MatchExplainInput): AiExplanation {
 
 @Injectable()
 export class AiEngineService {
-  explainMatch(input: MatchExplainInput): AiExplanation {
-    return generateExplanation(input);
+  private readonly logger = new Logger(AiEngineService.name);
+
+  constructor(private config: ConfigService) {}
+
+  async explainMatch(input: MatchExplainInput): Promise<AiExplanation> {
+    const template = generateExplanation(input);
+    const apiKey = this.config.get<string>('OPENAI_API_KEY');
+
+    if (!apiKey) {
+      return template;
+    }
+
+    try {
+      const enhanced = await this.enhanceWithOpenAi(input, template, apiKey);
+      return { ...enhanced, provider: 'openai' };
+    } catch (err) {
+      this.logger.warn(
+        `OpenAI fallback to template: ${err instanceof Error ? err.message : 'unknown'}`,
+      );
+      return template;
+    }
+  }
+
+  private async enhanceWithOpenAi(
+    input: MatchExplainInput,
+    template: AiExplanation,
+    apiKey: string,
+  ): Promise<AiExplanation> {
+    const model = this.config.get<string>('OPENAI_MODEL') ?? 'gpt-4o-mini';
+
+    const marketData = input.markets
+      .map(
+        (m) =>
+          `${m.selection}: prob=${formatPct(m.probability)}, odd=${m.bookmakerOdd}, EV=${formatPct(m.ev)}, conf=${m.confidence}%, rec=${m.recommendation}`,
+      )
+      .join('\n');
+
+    const prompt = `Você é analista esportivo quantitativo. Reescreva a explicação abaixo em português claro e profissional.
+
+REGRAS OBRIGATÓRIAS:
+- Use APENAS os números fornecidos. Nunca invente estatísticas, odds ou previsões.
+- Mantenha as recomendações BET/WATCH/SKIP exatamente como indicadas.
+- Tom: inteligência esportiva, não casa de apostas.
+
+Jogo: ${input.matchLabel}${input.competition ? ` (${input.competition})` : ''}
+Placar previsto: ${input.predictedScore}
+xG: ${input.homeExpectedGoals.toFixed(2)} - ${input.awayExpectedGoals.toFixed(2)}
+Confiança: ${input.overallConfidence}%
+
+Mercados:
+${marketData}
+
+Resumo template:
+${template.summary}
+
+Retorne JSON válido:
+{
+  "summary": "parágrafo de 2-4 frases",
+  "marketInsights": [{"selection":"...","explanation":"...","recommendation":"BET|WATCH|SKIP"}],
+  "risks": ["risco 1", "risco 2"]
+}`;
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0.3,
+        response_format: { type: 'json_object' },
+        messages: [
+          {
+            role: 'system',
+            content: 'Responda apenas JSON válido em português do Brasil.',
+          },
+          { role: 'user', content: prompt },
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`OpenAI ${response.status}: ${body.slice(0, 200)}`);
+    }
+
+    const data = (await response.json()) as {
+      choices?: Array<{ message?: { content?: string } }>;
+    };
+
+    const content = data.choices?.[0]?.message?.content;
+    if (!content) throw new Error('Resposta vazia da OpenAI');
+
+    const parsed = JSON.parse(content) as {
+      summary?: string;
+      marketInsights?: Array<{
+        selection: string;
+        explanation: string;
+        recommendation: string;
+      }>;
+      risks?: string[];
+    };
+
+    return {
+      summary: parsed.summary ?? template.summary,
+      topPick: template.topPick,
+      marketInsights:
+        parsed.marketInsights?.length
+          ? parsed.marketInsights.map((m) => ({
+              selection: m.selection,
+              explanation: m.explanation,
+              recommendation: m.recommendation,
+            }))
+          : template.marketInsights,
+      risks: parsed.risks?.length ? parsed.risks : template.risks,
+      dataSources: [...template.dataSources, 'OpenAI (reescrita)'],
+      provider: 'openai',
+      generatedAt: new Date().toISOString(),
+    };
   }
 }
