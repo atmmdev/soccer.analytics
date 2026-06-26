@@ -35,8 +35,14 @@
 - [x] Mercados avançados no Analysis Engine (escanteios, cartões via Poisson)
 - [x] Handicap asiático no Analysis Engine + importação de odds
 - [x] Mercados de jogador (importação + listagem; EV via prob. implícita, SKIP)
+- [x] Paginação "Carregar mais" na página Jogos (useInfiniteQuery)
+- [x] Histórico de Análises — `GET /analysis/history` + página `/history`
 
-## Setup
+### Próximo (pós-roadmap core)
+
+- [ ] Player Engine com stats reais (gols por jogador, minutos)
+- [ ] Export PDF nos Relatórios
+- [ ] Notificações push / e-mail para alertas EV+
 
 ```bash
 pnpm start

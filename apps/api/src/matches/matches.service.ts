@@ -20,7 +20,9 @@ export class MatchesService {
     const limit = query.limit ?? 20;
     const skip = (page - 1) * limit;
 
-    const where: Prisma.MatchWhereInput = {};
+    const where: Prisma.MatchWhereInput = {
+      externalId: { not: null },
+    };
 
     if (query.status) {
       where.status = query.status;
@@ -53,7 +55,7 @@ export class MatchesService {
       this.prisma.match.findMany({
         where,
         include: matchInclude,
-        orderBy: { matchDate: 'asc' },
+        orderBy: { matchDate: 'desc' },
         skip,
         take: limit,
       }),
@@ -83,9 +85,16 @@ export class MatchesService {
 
   async getCompetitions() {
     return this.prisma.competition.findMany({
+      where: {
+        matches: { some: { externalId: { not: null } } },
+      },
       orderBy: { name: 'asc' },
       include: {
-        _count: { select: { matches: true } },
+        _count: {
+          select: {
+            matches: { where: { externalId: { not: null } } },
+          },
+        },
       },
     });
   }

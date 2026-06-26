@@ -28,6 +28,20 @@ export class AnalysisController {
     return this.analysisService.resolveSnapshot(id);
   }
 
+  @Get('history')
+  @ApiOperation({ summary: 'Analysis snapshot history with accuracy tracking' })
+  history(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('status') status?: 'all' | 'resolved' | 'pending',
+  ) {
+    return this.analysisService.getHistory(
+      page ? parseInt(page, 10) : 1,
+      limit ? parseInt(limit, 10) : 20,
+      status ?? 'all',
+    );
+  }
+
   @Get('markets/ev-plus')
   @ApiOperation({ summary: 'List EV+ markets from recent analyses' })
   evPlus() {

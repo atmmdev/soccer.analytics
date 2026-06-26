@@ -316,6 +316,68 @@ export class AnalysisService {
     return count;
   }
 
+  async getHistory(page = 1, limit = 20, status: 'all' | 'resolved' | 'pending' = 'all') {
+    const skip = (page - 1) * limit;
+
+    const where =
+      status === 'resolved'
+        ? { accuracy: { not: null } }
+        : status === 'pending'
+          ? { accuracy: null }
+          : {};
+
+    const [rows, total] = await Promise.all([
+      this.prisma.snapshot.findMany({
+        where,
+        orderBy: { analyzedAt: 'desc' },
+        skip,
+        take: limit,
+        include: {
+          match: {
+            include: { homeTeam: true, awayTeam: true, competition: true },
+          },
+        },
+      }),
+      this.prisma.snapshot.count({ where }),
+    ]);
+
+    const data = rows.map((snap) => {
+      const payload = snap.data as {
+        markets?: Array<{ ev: number; recommendation: string }>;
+      };
+      const markets = payload.markets ?? [];
+      const evPlus = markets.filter((m) => m.ev > 0.05 && m.recommendation !== 'SKIP').length;
+      const bet = markets.filter((m) => m.recommendation === 'BET').length;
+
+      return {
+        id: snap.id,
+        matchId: snap.matchId,
+        matchLabel: snap.match
+          ? `${snap.match.homeTeam.name} vs ${snap.match.awayTeam.name}`
+          : '—',
+        competition: snap.match?.competition?.name ?? '',
+        matchStatus: snap.match?.status ?? null,
+        analyzedAt: snap.analyzedAt,
+        predictedResult: snap.predictedResult,
+        actualResult: snap.actualResult,
+        accuracy: snap.accuracy,
+        overallConfidence: snap.overallConfidence,
+        evPlusCount: evPlus,
+        betCount: bet,
+      };
+    });
+
+    return {
+      data,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
+
   private getUpcomingWindow() {
     const now = new Date();
     const start = new Date(now);

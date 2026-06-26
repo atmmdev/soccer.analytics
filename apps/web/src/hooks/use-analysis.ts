@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '@/lib/api/client';
 import type { AnalysisResult, EvPlusMarket, LatestAnalysis } from '@/types/analysis';
+import type { AnalysisHistoryResponse } from '@/types/analysis-history';
 
 export function useLatestAnalysis(matchId: string) {
   return useQuery({
@@ -49,4 +50,20 @@ export function useAnalyzedMarkets(filter: 'all' | 'ev-plus' | 'bet' = 'all') {
 
 export function useEvPlusMarkets() {
   return useAnalyzedMarkets('ev-plus');
+}
+
+export function useAnalysisHistory(
+  page: number,
+  status: 'all' | 'resolved' | 'pending' = 'all',
+) {
+  return useQuery({
+    queryKey: ['analysis', 'history', page, status],
+    queryFn: async () => {
+      const { data } = await apiClient.get<AnalysisHistoryResponse>(
+        '/analysis/history',
+        { params: { page, limit: 20, status } },
+      );
+      return data;
+    },
+  });
 }

@@ -1,14 +1,18 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { AppHeader } from '@/components/layout/app-header';
 import { MatchCard } from '@/components/matches/match-card';
 import { CompetitionFilter } from '@/components/matches/competition-filter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useMatches, useCompetitions } from '@/hooks/use-matches';
+import { Button } from '@/components/ui/button';
+import { useInfiniteMatches, useCompetitions } from '@/hooks/use-matches';
 import type { MatchStatus } from '@/types/match';
 import { Loader2 } from 'lucide-react';
+import { useMemo } from 'react';
+
+const PAGE_SIZE = 30;
 
 const statusTabs: { value: string; label: string; status?: MatchStatus }[] = [
   { value: 'all', label: 'Todos' },
@@ -30,10 +34,10 @@ function MatchList({
     ...(status ? { status } : {}),
     ...(q ? { q } : {}),
     ...(competitionId ? { competitionId } : {}),
-    limit: 50,
   };
 
-  const { data, isLoading, isError } = useMatches(filters);
+  const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteMatches(filters, PAGE_SIZE);
 
   if (isLoading) {
     return (
@@ -56,7 +60,7 @@ function MatchList({
     );
   }
 
-  if (!data?.data.length) {
+  if (!data?.pages.length || !data.pages[0].data.length) {
     return (
       <div className="rounded-lg border border-border/60 bg-card/50 p-8 text-center">
         <p className="text-muted-foreground">
@@ -70,15 +74,34 @@ function MatchList({
     );
   }
 
+  const total = data.pages[0].meta.total;
+  const matches = data.pages.flatMap((p) => p.data);
+  const showing = matches.length;
+
   return (
     <div className="space-y-3">
       <p className="mb-4 text-xs text-muted-foreground">
-        {data.meta.total} jogos
+        Exibindo {showing} de {total} jogos
         {q ? ` · busca: "${q}"` : ''}
       </p>
-      {data.data.map((match) => (
+      {matches.map((match) => (
         <MatchCard key={match.id} match={match} />
       ))}
+
+      {hasNextPage && (
+        <div className="flex justify-center pt-4">
+          <Button
+            variant="outline"
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : null}
+            Carregar mais ({total - showing} restantes)
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

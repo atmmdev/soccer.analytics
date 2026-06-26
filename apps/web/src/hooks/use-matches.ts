@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import { apiClient } from '@/lib/api/client';
 import type { Match, MatchesResponse, MatchStatus, Competition } from '@/types/match';
 
@@ -20,6 +20,24 @@ export function useMatches(filters: MatchFilters = {}) {
       });
       return data;
     },
+  });
+}
+
+export function useInfiniteMatches(
+  filters: Omit<MatchFilters, 'page'> = {},
+  pageSize = 30,
+) {
+  return useInfiniteQuery({
+    queryKey: ['matches', 'infinite', filters, pageSize],
+    queryFn: async ({ pageParam }) => {
+      const { data } = await apiClient.get<MatchesResponse>('/matches', {
+        params: { ...filters, page: pageParam, limit: pageSize },
+      });
+      return data;
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.meta.page < lastPage.meta.totalPages ? lastPage.meta.page + 1 : undefined,
   });
 }
 
