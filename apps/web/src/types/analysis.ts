@@ -14,6 +14,8 @@ export interface MarketAnalysis {
 export interface AnalysisResult {
   homeExpectedGoals: number;
   awayExpectedGoals: number;
+  expectedCorners?: number;
+  expectedCards?: number;
   predictedScore: string;
   overallConfidence: number;
   markets: MarketAnalysis[];
@@ -37,6 +39,8 @@ export interface LatestAnalysis {
   accuracy: number | null;
   homeExpectedGoals?: number;
   awayExpectedGoals?: number;
+  expectedCorners?: number;
+  expectedCards?: number;
   markets: MarketAnalysis[];
   period: number;
 }
@@ -54,6 +58,16 @@ export interface EvPlusMarket {
   confidence: number;
   recommendation: Recommendation;
 }
+
+export const MARKET_TYPE_LABELS: Record<string, string> = {
+  MATCH_RESULT: 'Resultado',
+  OVER_UNDER: 'Gols O/U',
+  BTTS: 'BTTS',
+  CORNERS: 'Escanteios',
+  CARDS: 'Cartões',
+  HANDICAP: 'Handicap',
+  PLAYER: 'Jogador',
+};
 
 export const RECOMMENDATION_LABELS: Record<Recommendation, string> = {
   BET: 'Apostar',

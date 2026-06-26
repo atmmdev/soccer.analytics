@@ -19,6 +19,7 @@ import { useLatestAnalysis, useRunAnalysis } from '@/hooks/use-analysis';
 import {
   RECOMMENDATION_LABELS,
   RECOMMENDATION_VARIANT,
+  MARKET_TYPE_LABELS,
   type LatestAnalysis,
   type AnalysisResult,
 } from '@/types/analysis';
@@ -44,26 +45,49 @@ function AnalysisSummary({
 }: {
   data: LatestAnalysis | AnalysisResult;
 }) {
+  const predicted =
+    'predictedScore' in data ? data.predictedScore : data.predictedResult;
+
   return (
-    <div className="grid gap-4 sm:grid-cols-3">
-      <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
-        <p className="text-xs text-muted-foreground">Placar previsto</p>
-        <p className="mt-1 font-mono text-2xl font-bold">
-          {'predictedScore' in data ? data.predictedScore : data.predictedResult}
-        </p>
+    <div className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-3">
+        <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+          <p className="text-xs text-muted-foreground">Placar previsto</p>
+          <p className="mt-1 font-mono text-2xl font-bold">{predicted}</p>
+        </div>
+        <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+          <p className="text-xs text-muted-foreground">Gols esperados</p>
+          <p className="mt-1 font-mono text-lg font-semibold">
+            {data.homeExpectedGoals?.toFixed(2)} — {data.awayExpectedGoals?.toFixed(2)}
+          </p>
+        </div>
+        <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+          <p className="text-xs text-muted-foreground">Confiança geral</p>
+          <p className="mt-1 font-mono text-2xl font-bold text-primary">
+            {data.overallConfidence}%
+          </p>
+        </div>
       </div>
-      <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
-        <p className="text-xs text-muted-foreground">Gols esperados</p>
-        <p className="mt-1 font-mono text-lg font-semibold">
-          {data.homeExpectedGoals?.toFixed(2)} — {data.awayExpectedGoals?.toFixed(2)}
-        </p>
-      </div>
-      <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
-        <p className="text-xs text-muted-foreground">Confiança geral</p>
-        <p className="mt-1 font-mono text-2xl font-bold text-primary">
-          {data.overallConfidence}%
-        </p>
-      </div>
+      {(data.expectedCorners != null || data.expectedCards != null) && (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {data.expectedCorners != null && (
+            <div className="rounded-lg border border-border/60 bg-muted/20 px-4 py-3">
+              <p className="text-xs text-muted-foreground">Escanteios esperados (total)</p>
+              <p className="mt-1 font-mono text-lg font-semibold">
+                {data.expectedCorners.toFixed(1)}
+              </p>
+            </div>
+          )}
+          {data.expectedCards != null && (
+            <div className="rounded-lg border border-border/60 bg-muted/20 px-4 py-3">
+              <p className="text-xs text-muted-foreground">Cartões esperados (total)</p>
+              <p className="mt-1 font-mono text-lg font-semibold">
+                {data.expectedCards.toFixed(1)}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -203,8 +227,13 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
               </TableHeader>
               <TableBody>
                 {display.markets.map((m) => (
-                  <TableRow key={m.selection}>
-                    <TableCell className="font-medium">{m.selection}</TableCell>
+                  <TableRow key={`${m.marketType}-${m.selection}`}>
+                    <TableCell>
+                      <div className="font-medium">{m.selection}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {MARKET_TYPE_LABELS[m.marketType] ?? m.marketType}
+                      </div>
+                    </TableCell>
                     <TableCell className="text-right font-mono">
                       {formatPct(m.probability)}
                     </TableCell>

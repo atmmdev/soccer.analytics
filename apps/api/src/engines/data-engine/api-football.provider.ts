@@ -308,7 +308,35 @@ export class ApiFootballProvider implements DataProvider {
         .filter(Boolean) as ImportedOdd[];
     }
 
+    if (normalized.includes('corner')) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.CORNERS);
+    }
+
+    if (normalized.includes('card') && !normalized.includes('corner')) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.CARDS);
+    }
+
     return [];
+  }
+
+  private mapOverUnderLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    marketType: 'CORNERS' | 'CARDS',
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const match = v.value.match(/^(Over|Under)\s+([\d.]+)$/i);
+        if (!match) return null;
+        const side = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+        return {
+          marketType,
+          selection: `${side} ${match[2]}`,
+          value: parseFloat(v.odd),
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
   }
 }
 

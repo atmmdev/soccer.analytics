@@ -31,7 +31,9 @@
 - [x] Busca global no header (jogos, times, mercados EV+)
 - [x] LLM opcional no AI Engine (OpenAI — fallback template)
 - [x] Research Lab com histórico real de jogos finalizados
-- [ ] Mercados avançados no Analysis Engine (escanteios, cartões)
+- [x] Filtro de campeonato na página Jogos (busca + lista)
+- [x] Mercados avançados no Analysis Engine (escanteios, cartões via Poisson)
+- [ ] Handicap e mercados de jogador
 
 ## Setup
 

@@ -7,6 +7,14 @@ export interface MarketOddInput {
   selection: string;
   bookmakerOdd: number;
 }
+
+export interface TeamMetricsInput {
+  goalsFor: number;
+  goalsAgainst: number;
+  avgCorners: number;
+  avgCards: number;
+}
+
 export interface MarketAnalysisResult {
   marketType: string;
   selection: string;
@@ -21,6 +29,8 @@ export interface MarketAnalysisResult {
 export interface AnalysisEngineResult {
   homeExpectedGoals: number;
   awayExpectedGoals: number;
+  expectedCorners: number;
+  expectedCards: number;
   predictedScore: string;
   overallConfidence: number;
   markets: MarketAnalysisResult[];
@@ -140,33 +150,97 @@ export function getRecommendation(ev: number, confidence: number): Recommendatio
   return 'SKIP';
 }
 
+function parseLineFromSelection(selection: string): number | null {
+  const match = selection.match(/(\d+\.5|\d+)/);
+  return match ? parseFloat(match[1]) : null;
+}
+
+function isOverSelection(selection: string): boolean {
+  return selection.trim().toLowerCase().startsWith('over');
+}
+
+/** P(total > line) para linhas .5 via Poisson */
+export function probabilityOverLine(lambda: number, line: number): number {
+  const minOver = Math.ceil(line - 0.001);
+  let pUnder = 0;
+  for (let k = 0; k < minOver; k++) {
+    pUnder += poisson(Math.max(0.1, lambda), k);
+  }
+  return Math.min(0.99, Math.max(0.01, 1 - pUnder));
+}
+
+function resolveProbability(
+  odd: MarketOddInput,
+  goalMap: Record<string, number>,
+  cornerLambda: number,
+  cardLambda: number,
+): number {
+  if (goalMap[odd.selection] !== undefined) {
+    return goalMap[odd.selection];
+  }
+
+  const line = parseLineFromSelection(odd.selection);
+  if (line === null) return 0.5;
+
+  const isOver = isOverSelection(odd.selection);
+  const type = odd.marketType.toUpperCase();
+
+  if (type === 'CORNERS') {
+    const pOver = probabilityOverLine(cornerLambda, line);
+    return isOver ? pOver : 1 - pOver;
+  }
+
+  if (type === 'CARDS') {
+    const pOver = probabilityOverLine(cardLambda, line);
+    return isOver ? pOver : 1 - pOver;
+  }
+
+  return 0.5;
+}
+
+function marketConfidence(
+  baseConfidence: number,
+  probability: number,
+  marketType: string,
+  statsQuality: number,
+): number {
+  const edgeBoost = probability > 0.55 || probability < 0.45 ? 1.05 : 0.92;
+  const type = marketType.toUpperCase();
+  const advancedPenalty =
+    type === 'CORNERS' || type === 'CARDS' ? statsQuality / 100 : 1;
+
+  return Math.round(baseConfidence * edgeBoost * advancedPenalty);
+}
+
 export function runAnalysis(
-  homeGoalsFor: number,
-  homeGoalsAgainst: number,
-  awayGoalsFor: number,
-  awayGoalsAgainst: number,
+  home: TeamMetricsInput,
+  away: TeamMetricsInput,
   odds: MarketOddInput[],
   period = 10,
+  statsQuality = 85,
 ): AnalysisEngineResult {
-  const { home, away } = calculateExpectedGoals(
-    homeGoalsFor,
-    homeGoalsAgainst,
-    awayGoalsFor,
-    awayGoalsAgainst,
+  const { home: homeXg, away: awayXg } = calculateExpectedGoals(
+    home.goalsFor,
+    home.goalsAgainst,
+    away.goalsFor,
+    away.goalsAgainst,
   );
 
-  const matrix = scoreMatrix(home, away);
+  const cornerLambda = Math.max(1, home.avgCorners + away.avgCorners);
+  const cardLambda = Math.max(0.5, home.avgCards + away.avgCards);
+
+  const matrix = scoreMatrix(homeXg, awayXg);
   const result1x2 = probability1X2(matrix);
   const over25 = probabilityOver25(matrix);
   const btts = probabilityBtts(matrix);
   const predictedScore = mostLikelyScore(matrix);
 
-  const baseConfidence = calculateConfidence(period, 85, 75);
+  const baseConfidence = calculateConfidence(period, statsQuality, 75);
 
   const probabilityMap: Record<string, number> = {
-    'Casa': result1x2.home,
-    'Empate': result1x2.draw,
-    'Fora': result1x2.away,
+    Casa: result1x2.home,
+    Empate: result1x2.draw,
+    Fora: result1x2.away,
     'Over 2.5': over25,
     'Under 2.5': 1 - over25,
     'BTTS Sim': btts,
@@ -174,11 +248,14 @@ export function runAnalysis(
   };
 
   const markets: MarketAnalysisResult[] = odds.map((odd) => {
-    const probability = probabilityMap[odd.selection] ?? 0.5;
+    const probability = resolveProbability(odd, probabilityMap, cornerLambda, cardLambda);
     const fairOdd = probability > 0 ? 1 / probability : 99;
     const ev = probability * odd.bookmakerOdd - 1;
-    const confidence = Math.round(
-      baseConfidence * (probability > 0.55 || probability < 0.45 ? 1.05 : 0.92),
+    const confidence = marketConfidence(
+      baseConfidence,
+      probability,
+      odd.marketType,
+      statsQuality,
     );
 
     return {
@@ -194,8 +271,10 @@ export function runAnalysis(
   });
 
   return {
-    homeExpectedGoals: round(home),
-    awayExpectedGoals: round(away),
+    homeExpectedGoals: round(homeXg),
+    awayExpectedGoals: round(awayXg),
+    expectedCorners: round(cornerLambda),
+    expectedCards: round(cardLambda),
     predictedScore,
     overallConfidence: baseConfidence,
     markets,
@@ -209,20 +288,12 @@ function round(n: number) {
 @Injectable()
 export class AnalysisEngineService {
   analyze(
-    homeGoalsFor: number,
-    homeGoalsAgainst: number,
-    awayGoalsFor: number,
-    awayGoalsAgainst: number,
+    home: TeamMetricsInput,
+    away: TeamMetricsInput,
     odds: MarketOddInput[],
     period = 10,
+    statsQuality = 85,
   ): AnalysisEngineResult {
-    return runAnalysis(
-      homeGoalsFor,
-      homeGoalsAgainst,
-      awayGoalsFor,
-      awayGoalsAgainst,
-      odds,
-      period,
-    );
+    return runAnalysis(home, away, odds, period, statsQuality);
   }
 }

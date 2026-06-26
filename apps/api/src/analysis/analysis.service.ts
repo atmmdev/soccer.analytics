@@ -27,9 +27,9 @@ export class AnalysisService {
 
     if (!match) throw new NotFoundException('Match not found');
 
-    const [homeStats, awayStats] = await Promise.all([
-      this.statisticsEngine.getGoalAverages(match.homeTeamId, period, 'home'),
-      this.statisticsEngine.getGoalAverages(match.awayTeamId, period, 'away'),
+    const [homeTeamStats, awayTeamStats] = await Promise.all([
+      this.statisticsEngine.computeTeamStats(match.homeTeamId, period, 'home'),
+      this.statisticsEngine.computeTeamStats(match.awayTeamId, period, 'away'),
     ]);
 
     const odds: MarketOddInput[] = match.odds.map((o) => ({
@@ -44,13 +44,27 @@ export class AnalysisService {
       );
     }
 
+    const statsQuality =
+      homeTeamStats.source === 'computed' && awayTeamStats.source === 'computed'
+        ? 88
+        : 68;
+
     const result = this.analysisEngine.analyze(
-      homeStats.gf,
-      homeStats.ga,
-      awayStats.gf,
-      awayStats.ga,
+      {
+        goalsFor: homeTeamStats.avgGoalsFor,
+        goalsAgainst: homeTeamStats.avgGoalsAgainst,
+        avgCorners: homeTeamStats.avgCorners,
+        avgCards: homeTeamStats.avgCards,
+      },
+      {
+        goalsFor: awayTeamStats.avgGoalsFor,
+        goalsAgainst: awayTeamStats.avgGoalsAgainst,
+        avgCorners: awayTeamStats.avgCorners,
+        avgCards: awayTeamStats.avgCards,
+      },
       odds,
       period,
+      statsQuality,
     );
 
     const snapshotData = {
@@ -62,13 +76,15 @@ export class AnalysisService {
       },
       homeExpectedGoals: result.homeExpectedGoals,
       awayExpectedGoals: result.awayExpectedGoals,
+      expectedCorners: result.expectedCorners,
+      expectedCards: result.expectedCards,
       markets: result.markets,
       period,
       statsSource: {
-        home: homeStats.source,
-        away: awayStats.source,
-        homeMatches: homeStats.matchesPlayed,
-        awayMatches: awayStats.matchesPlayed,
+        home: homeTeamStats.source,
+        away: awayTeamStats.source,
+        homeMatches: homeTeamStats.matchesPlayed,
+        awayMatches: awayTeamStats.matchesPlayed,
       },
     };
 
@@ -118,6 +134,8 @@ export class AnalysisService {
       markets: unknown[];
       homeExpectedGoals?: number;
       awayExpectedGoals?: number;
+      expectedCorners?: number;
+      expectedCards?: number;
       period?: number;
     };
 
@@ -130,6 +148,8 @@ export class AnalysisService {
       accuracy: snapshot.accuracy,
       homeExpectedGoals: data.homeExpectedGoals,
       awayExpectedGoals: data.awayExpectedGoals,
+      expectedCorners: data.expectedCorners,
+      expectedCards: data.expectedCards,
       markets: data.markets,
       period: data.period ?? 10,
     };
