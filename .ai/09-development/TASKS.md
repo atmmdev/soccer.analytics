@@ -33,7 +33,8 @@
 - [x] Research Lab com histórico real de jogos finalizados
 - [x] Filtro de campeonato na página Jogos (busca + lista)
 - [x] Mercados avançados no Analysis Engine (escanteios, cartões via Poisson)
-- [ ] Handicap e mercados de jogador
+- [x] Handicap asiático no Analysis Engine + importação de odds
+- [x] Mercados de jogador (importação + listagem; EV via prob. implícita, SKIP)
 
 ## Setup
 

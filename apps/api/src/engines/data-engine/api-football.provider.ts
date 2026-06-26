@@ -316,7 +316,65 @@ export class ApiFootballProvider implements DataProvider {
       return this.mapOverUnderLines(values, bookmaker, MarketType.CARDS);
     }
 
+    if (
+      normalized.includes('asian handicap') ||
+      (normalized.includes('handicap') &&
+        !normalized.includes('corner') &&
+        !normalized.includes('card'))
+    ) {
+      return this.mapHandicapLines(values, bookmaker);
+    }
+
+    if (
+      normalized.includes('goal scorer') ||
+      normalized.includes('goalscorer') ||
+      normalized.includes('anytime scorer')
+    ) {
+      return this.mapGoalScorerLines(values, bookmaker);
+    }
+
     return [];
+  }
+
+  private mapHandicapLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const match = v.value.match(/^(Home|Away)\s*([+-][\d.]+)$/i);
+        if (!match) return null;
+
+        const side = match[1].toLowerCase() === 'home' ? 'Casa' : 'Fora';
+        const line = match[2];
+
+        return {
+          marketType: MarketType.HANDICAP,
+          selection: `${side} ${line}`,
+          value: parseFloat(v.odd),
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapGoalScorerLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const name = v.value.trim();
+        if (!name || name.toLowerCase() === 'no goalscorer') return null;
+
+        return {
+          marketType: MarketType.PLAYER,
+          selection: name,
+          value: parseFloat(v.odd),
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
   }
 
   private mapOverUnderLines(

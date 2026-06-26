@@ -169,9 +169,37 @@ export function probabilityOverLine(lambda: number, line: number): number {
   return Math.min(0.99, Math.max(0.01, 1 - pUnder));
 }
 
+function parseHandicapSelection(
+  selection: string,
+): { side: 'home' | 'away'; line: number } | null {
+  const match = selection.trim().match(/^(Casa|Fora|Home|Away)\s*([+-]\d+(?:\.\d+)?)$/i);
+  if (!match) return null;
+
+  const sideKey = match[1].toLowerCase();
+  const side = sideKey === 'casa' || sideKey === 'home' ? 'home' : 'away';
+  return { side, line: parseFloat(match[2]) };
+}
+
+/** Handicap asiático: linha aplicada ao time selecionado */
+export function probabilityHandicapCover(
+  matrix: number[][],
+  side: 'home' | 'away',
+  line: number,
+): number {
+  let p = 0;
+  for (let h = 0; h < matrix.length; h++) {
+    for (let a = 0; a < matrix[h].length; a++) {
+      const covers = side === 'home' ? h + line > a : a + line > h;
+      if (covers) p += matrix[h][a];
+    }
+  }
+  return Math.min(0.99, Math.max(0.01, p));
+}
+
 function resolveProbability(
   odd: MarketOddInput,
   goalMap: Record<string, number>,
+  matrix: number[][],
   cornerLambda: number,
   cardLambda: number,
 ): number {
@@ -179,11 +207,25 @@ function resolveProbability(
     return goalMap[odd.selection];
   }
 
+  const type = odd.marketType.toUpperCase();
+
+  if (type === 'HANDICAP') {
+    const parsed = parseHandicapSelection(odd.selection);
+    if (parsed) {
+      return probabilityHandicapCover(matrix, parsed.side, parsed.line);
+    }
+    return 0.5;
+  }
+
+  if (type === 'PLAYER') {
+    // Sem stats de jogador — usa prob. implícita da odd (mercado eficiente)
+    return Math.min(0.95, Math.max(0.02, 1 / odd.bookmakerOdd));
+  }
+
   const line = parseLineFromSelection(odd.selection);
   if (line === null) return 0.5;
 
   const isOver = isOverSelection(odd.selection);
-  const type = odd.marketType.toUpperCase();
 
   if (type === 'CORNERS') {
     const pOver = probabilityOverLine(cornerLambda, line);
@@ -206,10 +248,26 @@ function marketConfidence(
 ): number {
   const edgeBoost = probability > 0.55 || probability < 0.45 ? 1.05 : 0.92;
   const type = marketType.toUpperCase();
+
+  if (type === 'PLAYER') {
+    return Math.min(50, Math.round(baseConfidence * 0.55));
+  }
+
   const advancedPenalty =
-    type === 'CORNERS' || type === 'CARDS' ? statsQuality / 100 : 1;
+    type === 'CORNERS' || type === 'CARDS' || type === 'HANDICAP'
+      ? statsQuality / 100
+      : 1;
 
   return Math.round(baseConfidence * edgeBoost * advancedPenalty);
+}
+
+function getMarketRecommendation(
+  ev: number,
+  confidence: number,
+  marketType: string,
+): Recommendation {
+  if (marketType.toUpperCase() === 'PLAYER') return 'SKIP';
+  return getRecommendation(ev, confidence);
 }
 
 export function runAnalysis(
@@ -248,7 +306,13 @@ export function runAnalysis(
   };
 
   const markets: MarketAnalysisResult[] = odds.map((odd) => {
-    const probability = resolveProbability(odd, probabilityMap, cornerLambda, cardLambda);
+    const probability = resolveProbability(
+      odd,
+      probabilityMap,
+      matrix,
+      cornerLambda,
+      cardLambda,
+    );
     const fairOdd = probability > 0 ? 1 / probability : 99;
     const ev = probability * odd.bookmakerOdd - 1;
     const confidence = marketConfidence(
@@ -266,7 +330,7 @@ export function runAnalysis(
       bookmakerOdd: odd.bookmakerOdd,
       ev: round(ev),
       confidence,
-      recommendation: getRecommendation(ev, confidence),
+      recommendation: getMarketRecommendation(ev, confidence, odd.marketType),
     };
   });
 

@@ -102,6 +102,15 @@ export function validateCorrelations(
         matchIds: [matchId],
       });
     }
+
+    const hasHandicap = sels.some((s) => s.marketType === MarketType.HANDICAP);
+    if (hasResult && hasHandicap) {
+      warnings.push({
+        code: 'CORRELATED',
+        message: 'Handicap e 1X2 no mesmo jogo são correlacionados — evite combinar.',
+        matchIds: [matchId],
+      });
+    }
   }
 
   return { warnings, valid };
