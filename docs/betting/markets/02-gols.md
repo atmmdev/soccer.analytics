@@ -74,11 +74,11 @@ Prorrogação **não** conta salvo mercado explícito (qualificação, método v
 
 ## Exemplo GREEN
 
-O2.5 · 2-1 → GREEN
+**Over 2.5 gols** · Final 2-1 (3 gols) → **GREEN** @ 1,95
 
 ## Exemplo RED
 
-O2.5 · 1-1 → RED
+**Over 2.5** · Final 1-1 (2 gols) → **RED**
 
 ## Exemplo VOID
 
@@ -86,7 +86,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -185,11 +185,11 @@ Prorrogação **não** conta salvo mercado explícito (qualificação, método v
 
 ## Exemplo GREEN
 
-U3.5 · 2-1 → GREEN
+**Under 3.5 gols** · Final 2-1 (3 gols) → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Under 3.5** · Final 4-1 (5 gols) → **RED**
 
 ## Exemplo VOID
 
@@ -197,7 +197,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -296,11 +296,11 @@ Prorrogação **não** conta salvo mercado explícito (qualificação, método v
 
 ## Exemplo GREEN
 
-BTTS Sim · 2-1 → GREEN
+**BTTS Sim** · Final 2-1 → **GREEN** @ 1,75
 
 ## Exemplo RED
 
-BTTS Sim · 2-0 → RED
+**BTTS Sim** · Final 2-0 → **RED**
 
 ## Exemplo VOID
 
@@ -308,7 +308,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -407,11 +407,11 @@ Prorrogação **não** conta salvo mercado explícito (qualificação, método v
 
 ## Exemplo GREEN
 
-Casa abre · Casa → GREEN
+**Primeiro gol Casa** · Final 2-1 (casa abre) → **GREEN** @ 2,10
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Primeiro gol Casa** · Fora abre, final 1-2 → **RED**
 
 ## Exemplo VOID
 
@@ -419,7 +419,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -509,11 +509,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Fora fecha 1-2 → Fora GREEN
+**Último gol Fora** · Final 1-2 (fora fecha) → **GREEN** @ 2,30
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Último gol Fora** · Final 2-1 (casa fecha) → **RED**
 
 ## Exemplo VOID
 
@@ -521,7 +521,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -611,11 +611,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa CS Sim · 2-0 → GREEN
+**Casa não sofre gol Sim** · Final 2-0 → **GREEN** @ 2,50
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Casa não sofre gol Sim** · Final 1-1 → **RED**
 
 ## Exemplo VOID
 
@@ -623,7 +623,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -699,33 +699,33 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Haverá gol de cabeça.
+Aposta **Sim/Não** se haverá **pelo menos um gol de cabeça** na partida (90 min + acréscimos).
 
 > **Engine Soccer Analytics:** Statistics (roadmap)
 
 ## Como funciona
 
-Selecione o desfecho entre as opções da casa. A liquidação ocorre ao fim do período definido (90 min + acréscimos do tempo regulamentar), salvo indicação em contrário no boletim.
+- Critério Opta: gol marcado com cabeça (inclui travesseiro).
+- Correlaciona com times fortes no jogo aéreo e escanteios.
+- Alta variância — evento raro em jogos de baixa média.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Gol de cabeça válido no TR (Opta). Gol anulado por VAR → removido. Prorrogação não conta.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Gol de cabeça Sim** · Gol de cabeça 1-0 → **GREEN** @ 3,00
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
-
-## Exemplo VOID
-
-Partida cancelada ou jogador não titular — VOID.
+**Gol de cabeça Sim** · Final 2-1, todos gols de pé → **RED**
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- [03-escanteios.md](./03-escanteios.md) — jogo aéreo
+- [05-chutes.md](./05-chutes.md) — volume ofensivo
+- [10-outros-mercados.md](./10-outros-mercados.md)
 
 ## Quando utilizar
 
@@ -801,25 +801,26 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Gol de fora da grande área.
+Aposta **Sim/Não** se haverá **gol marcado de fora da área de pênalti** (Opta).
 
-> **Engine Soccer Analytics:** Analysis Engine
+> **Engine Soccer Analytics:** Statistics (roadmap)
 
 ## Como funciona
 
-Selecione o desfecho entre as opções da casa. A liquidação ocorre ao fim do período definido (90 min + acréscimos do tempo regulamentar), salvo indicação em contrário no boletim.
+- Evento raro; correlaciona com chutes de longa distância e meias finalizadores.
+- Linha de odds alta (3,00+).
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Posição do chute no momento do disparo (Opta). Gol anulado VAR → removido. Prorrogação não conta.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Gol fora da área Sim** · Gol de fora 2-1 → **GREEN** @ 5,00
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Gol fora da área Sim** · Final 2-1, todos dentro da área → **RED**
 
 ## Exemplo VOID
 
@@ -827,7 +828,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -917,11 +918,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Pênalti convertido → Sim GREEN
+**Gol de pênalti Sim** · Pênalti convertido 1-0 → **GREEN** @ 4,50
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Gol de pênalti Sim** · Sem pênalti ou perdido → **RED**
 
 ## Exemplo VOID
 
@@ -929,7 +930,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -1019,11 +1020,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa Sim · 1-0 → GREEN
+**Casa marca Sim** · Final 1-0 → **GREEN** @ 1,35
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Casa marca Sim** · Final 0-0 → **RED**
 
 ## Exemplo VOID
 
@@ -1031,7 +1032,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -1121,11 +1122,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Fora Não · 2-0 → GREEN
+**Fora não marca Sim** · Final 2-0 → **GREEN** @ 1,70
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Fora não marca Sim** · Final 2-1 → **RED**
 
 ## Exemplo VOID
 
@@ -1133,7 +1134,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -1223,11 +1224,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-2-3 · 2-1 → GREEN
+**Faixa 2-3 gols totais** · Final 2-1 (3 gols) → **GREEN** @ 2,10
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Faixa 2-3 gols** · Final 1-0 (1 gol) → **RED**
 
 ## Exemplo VOID
 
@@ -1235,7 +1236,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -1311,25 +1312,27 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Ao vivo — próximo gol.
+Aposta **ao vivo** em qual time marca o **próximo gol** da partida.
 
-> **Engine Soccer Analytics:** Analysis Engine
+> **Engine Soccer Analytics:** Live (roadmap)
 
 ## Como funciona
 
-Selecione o desfecho entre as opções da casa. A liquidação ocorre ao fim do período definido (90 min + acréscimos do tempo regulamentar), salvo indicação em contrário no boletim.
+- Odds atualizadas em tempo real conforme placar e tempo.
+- Se ninguém marca mais → **VOID** ou opção "Sem mais gols".
+- Own goal: regra Bet365 — geralmente conta para o time beneficiado.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Próximo gol após confirmação da aposta. VAR pode anular.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Próximo gol Casa** · Placar 0-0, casa marca 1-0 → **GREEN** @ 2,20
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Próximo gol Casa** · Fora marca 0-1 → **RED**
 
 ## Exemplo VOID
 
@@ -1337,7 +1340,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -1425,11 +1428,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-1-0 HT, 2-0 FT → GREEN
+**Gol em ambos tempos Sim** · HT 1-0, FT 2-0 → **GREEN** @ 2,80
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Gol ambos tempos Sim** · HT 1-0, FT 1-0 (sem gol 2T) → **RED**
 
 ## Exemplo VOID
 
@@ -1437,7 +1440,7 @@ Partida cancelada ou jogador não titular — VOID.
 
 ## Mercados relacionados
 
-- Outros mercados em `02-gols.md`
+- Ver [01-resultados.md](./01-resultados.md), [07-marcadores.md](./07-marcadores.md), [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
 
 ## Quando utilizar
 
@@ -1508,4 +1511,12 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 - Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
 
 ---
+---
 
+## Referências
+
+- [../ai/probabilidades.md](../ai/probabilidades.md) — Poisson e Over/Under
+- [../ai/correlacoes.md](../ai/correlacoes.md) — BTTS × Over, CS × Under
+- [01-resultados.md](./01-resultados.md) — resultado + gols combinados
+- [07-marcadores.md](./07-marcadores.md) — props de jogador
+- [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md) — gols por período

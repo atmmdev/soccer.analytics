@@ -69,42 +69,41 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Contagem Opta de passes completados. Titular obrigatório; saída antes do apito final — stat congelada no minuto de saída. Acréscimos contam.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Rodri Over 68.5 passes completos** · 72 completados → **GREEN** @ 1,87
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Rodri Over 68.5** · 65 completados → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Jogador reserva (não titular) → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Passes Tentados](#passes-tentados)
+- [Ações de Criação](#ações-de-criação)
+- Posse de bola ([10-outros-mercados.md](./10-outros-mercados.md))
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Meio-campista titular em time dominante posse
+- Adversário baixo bloco (mais passes laterais/back)
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo direto / poucos passes esperados
+- Risco de substituição antes dos 60'
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Passes completos/90 (últimos 10)
+- Posse média do time
+- Minutos esperados (titular)
 
 ## Perfil ideal
 
@@ -173,42 +172,39 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Todos passes tentados (completos + incompletos). Critério Opta. Titular obrigatório.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Bruno Fernandes Over 82.5 tentados** · 89 → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 82.5** · 78 tentados → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Passes Completos](#passes-completos)
+- Taxa de acerto = completos/tentados
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Criador ofensivo titular
+- Time favorito com posse alta
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogador substituído cedo habitualmente
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Tentados/90
+- % posse time
+- PPDA adversário
 
 ## Perfil ideal
 
@@ -277,42 +273,40 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Passe ou toque que leva diretamente ao gol (Opta). Gol anulado por VAR → assistência removida se gol anulado.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Salah marcar assistência** · Gol 2-0 aos 67' → **GREEN** @ 3,20
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Salah assistência** · 0 assistências → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Não titular → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [07-marcadores.md](./07-marcadores.md)
+- [xA do Jogador](#xa-do-jogador)
+- [Ações de Criação](#ações-de-criação)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Extremo/ME criador vs defesa frágil
+- xA/90 elevado
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Odd muito baixa sem volume esperado
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- xA, assistências/90
+- Chances criadas
+- Adversário xGA alto
 
 ## Perfil ideal
 
@@ -381,42 +375,39 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Desarmes bem-sucedidos (Opta tackle won). Acréscimos contam.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Casemiro Over 3.5 desarmes** · 5 → **GREEN** @ 1,95
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 3.5** · 2 desarmes → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Interceptações](#interceptações)
+- [04-cartoes-faltas.md](./04-cartoes-faltas.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Volante destruidor vs meio criativo
+- Adversário posse alta
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo de um time só (poucos duelos)
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Desarmes/90
+- PPDA time
+- Posse adversária
 
 ## Perfil ideal
 
@@ -485,42 +476,37 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Interceptação de passe adversário (Opta).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Kanté Over 1.5 interceptações** · 3 → **GREEN** @ 1,85
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 1.5** · 1 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Desarmes](#desarmes)
+- Pressing (PPDA)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Meio defensivo vs jogo de passes
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo direto, poucos passes adversários
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Interceptações/90
+- Passes adversário tentados
 
 ## Perfil ideal
 
@@ -589,42 +575,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Drible concluído com sucesso (Opta).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Vinícius Over 2.5 dribles** · 4 → **GREEN** @ 2,00
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 2.5** · 1 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Chutes do Jogador](#chutes-do-jogador)
+- Extremos vs laterais fracos
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Extremo 1v1 vs defesa lenta
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Adversário bloco compacto, pouco espaço
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Dribles/90
+- Duelos ganhos
+- xThreat
 
 ## Perfil ideal
 
@@ -693,42 +675,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Faltas cometidas pelo jogador (Opta). Cartão por falta ainda conta como falta.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Casemiro Over 1.5 faltas cometidas** · 3 → **GREEN** @ 1,80
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 1.5** · 0 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [04-cartoes-faltas.md](./04-cartoes-faltas.md)
+- [Faltas Sofridas](#faltas-sofridas)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Volante/agressor vs dribladores
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Árbitro permissivo sem faltas
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Faltas/90
+- Estilo árbitro
+- Adversário dribles/jogo
 
 ## Perfil ideal
 
@@ -797,42 +775,37 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Faltas sofridas pelo jogador (Opta).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Grealish Over 2.5 faltas sofridas** · 4 → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 2.5** · 1 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Faltas Cometidas](#faltas-cometidas)
+- Extremos velocistas
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Jogador referência com dribles
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Adversário não marca homem a homem
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Faltas sofridas/90
+- Dribles tentados
 
 ## Perfil ideal
 
@@ -901,42 +874,37 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Impedimentos marcados contra o jogador (Opta).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Haaland Over 0.5 impedimentos** · 2 → **GREEN** @ 1,75
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 0.5** · 0 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [10-outros-mercados.md](./10-outros-mercados.md)
+- Defesa linha alta adversária
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Atacante profundo vs defesa alta
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Bloco baixo, sem linha alta
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Impedimentos/90
+- Profundidade média defesa adversária
 
 ## Perfil ideal
 
@@ -1005,42 +973,39 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Finalizações do jogador (Opta shot definition). Bloqueios podem contar.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Haaland Over 3.5 chutes** · 5 → **GREEN** @ 1,88
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 3.5** · 2 chutes → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [05-chutes.md](./05-chutes.md)
+- [Chutes no Gol do Jogador](#chutes-no-gol-do-jogador)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Atacante central titular
+- xG/90 alto
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogador recuado / extremo sem chute
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Chutes/90
+- xG jogador
+- Minutos esperados
 
 ## Perfil ideal
 
@@ -1109,42 +1074,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+SOT do jogador (Opta). Trave conta se entraria.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Kane Over 1.5 SOT** · 3 → **GREEN** @ 2,05
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 1.5** · 1 SOT → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Chutes do Jogador](#chutes-do-jogador)
+- [xG do Jogador](#xg-do-jogador)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Finalizador vs defesa permeável
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- xG baixo, chutes de longe
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- SOT/90
+- xG/90
+- Conversão histórica
 
 ## Perfil ideal
 
@@ -1213,42 +1174,37 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Gol marcado pelo jogador (90 min + acréscimos). Gol contra **não** conta. Titular obrigatório.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Haaland Over 0.5 gols** · 2 gols → **GREEN** @ 1,65
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 0.5** · 0 gols → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [07-marcadores.md](./07-marcadores.md)
+- [xG do Jogador](#xg-do-jogador)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Pênalti taker / centroavante vs xGA alto
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Sem dados MatchPlayerPerformance
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Gols/90, xG/90
+- λ Poisson Player Engine
 
 ## Perfil ideal
 
@@ -1317,42 +1273,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Amarelo ou vermelho ao jogador conta. Dois amarelos = vermelho (2 cartões). Comissão técnica excluída.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Casemiro receber cartão Sim** · Amarelo 34' → **GREEN** @ 2,40
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Receber cartão Sim** · sem cartão → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [04-cartoes-faltas.md](./04-cartoes-faltas.md)
+- Árbitro e faltas/90
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Jogador agressivo + árbitro rigoroso
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Árbitro permissivo
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Cartões/90
+- Faltas/90
+- Histórico árbitro
 
 ## Perfil ideal
 
@@ -1421,42 +1373,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Defesas (saves) do goleiro titular — Opta save definition.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Alisson Over 2.5 defesas** · 4 → **GREEN** @ 1,85
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 2.5** · 1 defesa → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Goleiro reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [10-outros-mercados.md](./10-outros-mercados.md)
+- SOT adversário projetado
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Goleiro vs ataque forte (muitos SOT)
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo sem chutes (Under shots)
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Saves/90
+- SOT faced
+- xSV
 
 ## Perfil ideal
 
@@ -1525,42 +1473,37 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Cruzamentos do jogador (Opta cross).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Alexander-Arnold Over 4.5 cruzamentos** · 7 → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 4.5** · 3 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- Laterais ofensivos
+- Escanteios ([03-escanteios.md](./03-escanteios.md))
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Lateral/alas vs defesa baixa
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo pelo meio, poucos cruzamentos
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Cruzamentos/90
+- xA de cruzamento
 
 ## Perfil ideal
 
@@ -1629,42 +1572,39 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Key passes + ações que levam a chute (Opta shot-creating actions).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**De Bruyne Over 3.5 ações criação** · 5 → **GREEN** @ 1,92
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 3.5** · 2 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Assistências](#assistências)
+- [xA do Jogador](#xa-do-jogador)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Meia criador titular
+- Adversário concede muitas chances
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Time ultra-defensivo
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- SCA/90
+- xA
+- Chances criadas
 
 ## Perfil ideal
 
@@ -1733,42 +1673,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Toques dentro da área adversária (Opta touches in box).
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Salah Over 5.5 toques na área** · 8 → **GREEN** @ 1,88
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 5.5** · 4 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [xG do Jogador](#xg-do-jogador)
+- Presença na área
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Atacante de área vs defesa alta
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Extremo recuado
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Toques área/90
+- xG
+- Entradas área
 
 ## Perfil ideal
 
@@ -1837,42 +1773,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Distância total percorrida (Opta, km). Disponível em competições selecionadas.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Declan Rice Over 10.5 km** · 11,2 km → **GREEN** @ 1,85
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 10.5 km** · 9,8 km → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- Meio box-to-box
+- Pressing alto
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Meio volume alto vs posse equilibrada
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Dados indisponíveis na competição
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- km/jogo
+- PPDA
+- Minutos
 
 ## Perfil ideal
 
@@ -1941,42 +1873,39 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Mercado de linha sobre xG **ou** proxy via chutes/SOT conforme disponibilidade Bet365. Confirmar definição no boletim.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**Haaland Over 0.8 xG (linha)** · xG 1,12 → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 0.8 xG** · xG 0,45 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Gols (prop)](#gols-prop)
+- [07-marcadores.md](./07-marcadores.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Modelo xG calibrado
+- Atacante central titular
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Mercado sem definição clara no boletim
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- xG/90
+- Chutes/SOT
+- Qualidade chances
 
 ## Perfil ideal
 
@@ -2045,42 +1974,38 @@ Oponente e posição ajustam expectativa.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+Linha sobre xA esperado ou proxy de chances criadas — ver boletim.
 
 ## Exemplo GREEN
 
-Over linha · stat acima → GREEN
+**De Bruyne Over 0.4 xA** · xA 0,62 → **GREEN** @ 2,00
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 0.4 xA** · xA 0,18 → **RED**
 
 ## Exemplo VOID
 
-Reserva → VOID
+Reserva → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `06-estatisticas-jogador.md`
+- [Assistências](#assistências)
+- [Ações de Criação](#ações-de-criação)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Criador vs defesa frágil
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Amostra xA instável
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- xA/90
+- Key passes
+- SCA
 
 ## Perfil ideal
 
@@ -2132,4 +2057,12 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 - Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
 
 ---
+---
 
+## Referências
+
+- [../ai/indicadores.md](../ai/indicadores.md) — stats por jogador
+- [../ai/correlacoes.md](../ai/correlacoes.md) — props correlacionados
+- [07-marcadores.md](./07-marcadores.md) — gols e anytime scorer
+- [05-chutes.md](./05-chutes.md) — chutes e SOT
+- [04-cartoes-faltas.md](./04-cartoes-faltas.md) — cartões e faltas por jogador

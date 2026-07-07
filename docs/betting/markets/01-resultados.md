@@ -381,11 +381,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-HT 1-0 apostado · HT 1-0 → GREEN
+**HT 1-0 apostado · HT 1-0 →** → **GREEN**
 
 ## Exemplo RED
 
-HT 1-0 apostado · HT 1-1 → RED
+**HT 1-0 apostado · HT 1-1 →** → **RED**
 
 ## Exemplo VOID
 
@@ -484,11 +484,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa vence 1-0 → GREEN
+**Casa vence 1-0 →** → **GREEN**
 
 ## Exemplo RED
 
-0-1 → RED
+**0-1 →** → **RED**
 
 ## Exemplo VOID
 
@@ -689,11 +689,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-X/1 · HT 0-0, FT 2-1 → GREEN
+**X/1 · HT 0-0, FT 2-1 →** → **GREEN**
 
 ## Exemplo RED
 
-X/1 · FT 1-1 → RED
+**X/1 · FT 1-1 →** → **RED**
 
 ## Exemplo VOID
 
@@ -791,11 +791,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa + BTTS Sim · 3-1 → GREEN
+**Casa + BTTS Sim · 3-1 →** → **GREEN**
 
 ## Exemplo RED
 
-Casa + BTTS Sim · 2-0 → RED
+**Casa + BTTS Sim · 2-0 →** → **RED**
 
 ## Exemplo VOID
 
@@ -893,11 +893,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa + O2.5 · 3-1 → GREEN
+**Casa + O2.5 · 3-1 →** → **GREEN**
 
 ## Exemplo RED
 
-Casa + O2.5 · 2-0 → RED
+**Casa + O2.5 · 2-0 →** → **RED**
 
 ## Exemplo VOID
 
@@ -995,11 +995,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-X + U2.5 · 1-1 → GREEN
+**X + U2.5 · 1-1 →** → **GREEN**
 
 ## Exemplo RED
 
-X + U2.5 · 2-2 → RED
+**X + U2.5 · 2-2 →** → **RED**
 
 ## Exemplo VOID
 
@@ -1097,11 +1097,11 @@ Prorrogação e pênaltis contam só neste mercado em jogos de copa.
 
 ## Exemplo GREEN
 
-Casa nos pênaltis → GREEN
+**Casa nos pênaltis** · Empate TR, casa vence pênaltis → **GREEN** @ 3,50
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Casa nos pênaltis** · Fora vence pênaltis → **RED**
 
 ## Exemplo VOID
 
@@ -1200,11 +1200,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa qualifica no agregado → GREEN
+**Casa qualifica** · Agregado 3-2 após 2º jogo → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Casa qualifica** · Fora avança no agregado → **RED**
 
 ## Exemplo VOID
 
@@ -1303,11 +1303,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa -1 · 3-1 → GREEN
+**Casa -1 · 3-1 →** → **GREEN**
 
 ## Exemplo RED
 
-Casa -1 · 2-1 → RED
+**Casa -1 · 2-1 →** → **RED**
 
 ## Exemplo VOID
 
@@ -1405,11 +1405,11 @@ Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols co
 
 ## Exemplo GREEN
 
-Casa -2 · 4-1 → GREEN
+**Casa -2 · 4-1 →** → **GREEN**
 
 ## Exemplo RED
 
-Casa -2 · 3-1 → RED
+**Casa -2 · 3-1 →** → **RED**
 
 ## Exemplo VOID
 
@@ -1488,4 +1488,11 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 - Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
 
 ---
+---
 
+## Referências
+
+- [../ai/probabilidades.md](../ai/probabilidades.md) — matriz Poisson e fair odds
+- [../ai/correlacoes.md](../ai/correlacoes.md) — combinações resultado + gols
+- [02-gols.md](./02-gols.md) — mercados de gols relacionados
+- [09-mercados-asiaticos.md](./09-mercados-asiaticos.md) — handicap asiático

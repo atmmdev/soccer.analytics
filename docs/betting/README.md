@@ -1,6 +1,6 @@
 # Betting — Documentação Oficial
 
-> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.0  
+> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.1  
 > **Público-alvo:** analistas humanos, operadores de banca, engenheiros de produto e agentes de IA  
 > **Idioma:** Português (Brasil)
 
@@ -263,6 +263,13 @@ As seções **Como a Bet365 contabiliza** descrevem regras **geralmente aplicáv
 
 Ao alterar regras ou adicionar mercados, incremente a versão no topo do README e registre em changelog do projeto.
 
+#### Changelog
+
+| Versão | Data | Alterações |
+|--------|------|------------|
+| **1.1** | jul/2026 | Revisão fina: exemplos concretos em 01/02/06, seções Bet365 por mercado (06), referências cruzadas em todos os arquivos `markets/`, correção de mercados genéricos em 02 (gol cabeça, fora da área, próximo gol) |
+| **1.0** | jul/2026 | Estrutura inicial: 10 categorias, glossário, ai/, examples/ |
+
 ---
 
 ## Contribuição
@@ -282,4 +289,4 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 ---
 
-*Soccer Analytics — Betting Module Documentation · Última atualização: 2026*
+*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.1 (revisão fina)*
