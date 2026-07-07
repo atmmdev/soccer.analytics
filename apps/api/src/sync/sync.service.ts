@@ -8,6 +8,8 @@ import { AnalysisService } from '../analysis/analysis.service';
 const SYNC_STATE_KEY = 'daily_sync';
 const RESYNC_INTERVAL_MS = 4 * 60 * 60 * 1000;
 const STATS_MAX_BATCHES_PER_DATE = 3;
+const FIXTURE_LOOKBACK_DAYS = 1;
+const FIXTURE_LOOKAHEAD_DAYS = 1;
 
 export type SyncStatusValue = 'idle' | 'running' | 'completed' | 'failed' | 'skipped';
 
@@ -40,7 +42,7 @@ export class SyncService implements OnModuleInit {
     private config: ConfigService,
     private dataEngine: DataEngineService,
     private analysis: AnalysisService,
-  ) {}
+  ) { }
 
   onModuleInit() {
     void this.ensureDailySync();
@@ -119,7 +121,9 @@ export class SyncService implements OnModuleInit {
 
     const result: Record<string, unknown> = {
       fixtures: [] as unknown[],
+      fixtureErrors: [] as string[],
       odds: [] as unknown[],
+      oddsErrors: [] as string[],
       statistics: [] as unknown[],
       analysesRun: 0,
       snapshotsResolved: 0,
@@ -135,8 +139,14 @@ export class SyncService implements OnModuleInit {
 
       const fixtureDates = this.getFixtureDates();
       for (const date of fixtureDates) {
-        const fixtures = await this.dataEngine.importFixtures(date);
-        (result.fixtures as unknown[]).push(fixtures);
+        try {
+          const fixtures = await this.dataEngine.importFixtures(date);
+          (result.fixtures as unknown[]).push(fixtures);
+        } catch (err) {
+          const message = err instanceof Error ? err.message : 'Erro desconhecido';
+          (result.fixtureErrors as string[]).push(`${date}: ${message}`);
+          this.logger.warn(`Skipping fixtures import for ${date}: ${message}`);
+        }
       }
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'resolve', result });
@@ -145,8 +155,14 @@ export class SyncService implements OnModuleInit {
       await this.writeState({ syncDate, status: 'running', currentStep: 'odds', result });
       const oddsDates = [syncDate, this.offsetDate(syncDate, 1)];
       for (const date of oddsDates) {
-        const odds = await this.dataEngine.importOdds(date);
-        (result.odds as unknown[]).push(odds);
+        try {
+          const odds = await this.dataEngine.importOdds(date);
+          (result.odds as unknown[]).push(odds);
+        } catch (err) {
+          const message = err instanceof Error ? err.message : 'Erro desconhecido';
+          (result.oddsErrors as string[]).push(`${date}: ${message}`);
+          this.logger.warn(`Skipping odds import for ${date}: ${message}`);
+        }
       }
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'statistics', result });
@@ -201,7 +217,7 @@ export class SyncService implements OnModuleInit {
   private getFixtureDates(): string[] {
     const today = new Date();
     const dates: string[] = [];
-    for (let offset = -7; offset <= 1; offset++) {
+    for (let offset = -FIXTURE_LOOKBACK_DAYS; offset <= FIXTURE_LOOKAHEAD_DAYS; offset++) {
       dates.push(this.formatDate(this.addDays(today, offset)));
     }
     return dates;

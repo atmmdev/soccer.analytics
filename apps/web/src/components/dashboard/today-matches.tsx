@@ -1,16 +1,30 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import type { TodayMatch } from '@/types/dashboard';
 
 const tabs = ['Todos', 'Ao Vivo', 'Hoje', 'Amanhã'] as const;
 type Tab = (typeof tabs)[number];
+const ALL_COMPETITIONS_VALUE = '__all_competitions__';
 
 interface TodayMatchesProps {
   matches: TodayMatch[];
+}
+
+interface CompetitionOption {
+  name: string;
+  count: number;
 }
 
 function filterByTab(matches: TodayMatch[], tab: Tab): TodayMatch[] {
@@ -77,6 +91,23 @@ function MatchList({ matches, emptyLabel }: { matches: TodayMatch[]; emptyLabel:
   );
 }
 
+function filterByCompetition(matches: TodayMatch[], competition: string): TodayMatch[] {
+  if (competition === ALL_COMPETITIONS_VALUE) return matches;
+  return matches.filter((m) => m.competition === competition);
+}
+
+function buildCompetitionOptions(matches: TodayMatch[]): CompetitionOption[] {
+  const counts = new Map<string, number>();
+
+  for (const match of matches) {
+    counts.set(match.competition, (counts.get(match.competition) ?? 0) + 1);
+  }
+
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+}
+
 const emptyLabels: Record<Tab, string> = {
   Todos: 'Aguardando sincronização ou nenhum jogo importado para hoje/amanhã.',
   'Ao Vivo': 'Nenhum jogo ao vivo no momento.',
@@ -85,10 +116,51 @@ const emptyLabels: Record<Tab, string> = {
 };
 
 export function TodayMatches({ matches }: TodayMatchesProps) {
+  const [selectedCompetition, setSelectedCompetition] = useState(ALL_COMPETITIONS_VALUE);
+
+  const competitionOptions = useMemo(
+    () => buildCompetitionOptions(filterByTab(matches, 'Todos')),
+    [matches],
+  );
+
+  useEffect(() => {
+    if (
+      selectedCompetition !== ALL_COMPETITIONS_VALUE &&
+      !competitionOptions.some((option) => option.name === selectedCompetition)
+    ) {
+      setSelectedCompetition(ALL_COMPETITIONS_VALUE);
+    }
+  }, [competitionOptions, selectedCompetition]);
+
+  function getEmptyLabel(tab: Tab): string {
+    if (selectedCompetition === ALL_COMPETITIONS_VALUE) {
+      return emptyLabels[tab];
+    }
+
+    return `Nenhum jogo de ${selectedCompetition} no filtro ${tab}.`;
+  }
+
   return (
     <Card className="border-border/60 bg-card/80">
       <CardHeader className="pb-3">
-        <CardTitle className="text-base">Jogos do Dia</CardTitle>
+        <div className="flex items-center justify-between gap-3">
+          <CardTitle className="text-base">Jogos do Dia</CardTitle>
+          <div className="w-[200px]">
+            <Select value={selectedCompetition} onValueChange={setSelectedCompetition}>
+              <SelectTrigger className="h-8 bg-secondary/20 text-xs">
+                <SelectValue placeholder="Campeonato" />
+              </SelectTrigger>
+              <SelectContent align="end">
+                <SelectItem value={ALL_COMPETITIONS_VALUE}>Todos campeonatos</SelectItem>
+                {competitionOptions.map((competition) => (
+                  <SelectItem key={competition.name} value={competition.name}>
+                    {competition.name} ({competition.count})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="Hoje">
@@ -102,8 +174,8 @@ export function TodayMatches({ matches }: TodayMatchesProps) {
           {tabs.map((tab) => (
             <TabsContent key={tab} value={tab} className="mt-0">
               <MatchList
-                matches={filterByTab(matches, tab)}
-                emptyLabel={emptyLabels[tab]}
+                matches={filterByCompetition(filterByTab(matches, tab), selectedCompetition)}
+                emptyLabel={getEmptyLabel(tab)}
               />
             </TabsContent>
           ))}
