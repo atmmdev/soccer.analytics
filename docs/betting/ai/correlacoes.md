@@ -86,6 +86,24 @@ Mercados no mesmo jogo **não são independentes**. Correlação **positiva** am
 32. **Tiros de meta altos** → **pressão alta** → **+Escanteios**
 33. **Pênalti marcado** → **+Cartão** (às vezes) → **+Gol** → afeta múltiplas pernas
 
+### Combinações operacionais fortes (playbook)
+
+Pares validados operacionalmente — correlacionados **+** a **++**; usar com penalidade no Score IA:
+
+| Combinação | Narrativa | Correlação |
+|------------|-----------|------------|
+| **Over 1.5 FT + BTTS** | Jogo aberto com ambos marcando | ++ |
+| **Over 2.5 FT + BTTS** | Jogo franco | ++ |
+| **SOT Over + Over 1.5 FT** | Volume chutes → gols | + |
+| **Over 0.5 HT + Over 1.5 FT** | Ritmo desde o início | ++ |
+| **Escanteios Over + SOT Over** | Pressão pelos lados | + |
+| **BTTS + Over 2.5** | Máxima abertura | ++ |
+| **Dupla chance + Over 1.5** | Favorito + gols | + |
+
+Critérios de elegibilidade por perna: [marcado-de-atuacao.md](./marcado-de-atuacao.md) · perfil de liga: [ligas.md](./ligas.md).
+
+---
+
 ### Combinações perigosas (evitar na mesma múltipla)
 
 | Perna A | Perna B | Correlação |
@@ -134,4 +152,6 @@ Valores: 0 = independente, 1 = mesma variável latente.
 ## Referências
 
 - [score.md](./score.md) — penalidade de correlação
+- [marcado-de-atuacao.md](./marcado-de-atuacao.md) — combinações fortes
+- [ligas.md](./ligas.md) — contexto por competição
 - [examples/](../examples/) — bilhetes com análise de correlação

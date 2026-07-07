@@ -14,5 +14,6 @@ Documentação do projeto organizada por módulo.
 - [README](./betting/README.md) — índice e convenções
 - [Glossário](./betting/glossary.md) — termos de apostas esportivas
 - [Mercados](./betting/markets/) — 10 categorias (01–10)
-- [IA](./betting/ai/) — score, EV, correlações, checklist
+- [IA](./betting/ai/) — score, EV, correlações, checklist, ligas, marcado de atuação
+- [Estratégias](./betting/strategies/) — apostas ao vivo
 - [Exemplos](./betting/examples/) — bilhetes modelo

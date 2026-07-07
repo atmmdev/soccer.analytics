@@ -1,6 +1,6 @@
 # Betting — Documentação Oficial
 
-> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.1  
+> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.2  
 > **Público-alvo:** analistas humanos, operadores de banca, engenheiros de produto e agentes de IA  
 > **Idioma:** Português (Brasil)
 
@@ -28,6 +28,7 @@ docs/betting/
 ├── glossary.md               ← Termos e definições
 ├── markets/                  ← Mercados por categoria (01–10)
 ├── ai/                       ← Regras e métodos para agentes de IA
+├── strategies/               ← Playbooks operacionais (live, etc.)
 └── examples/                 ← Bilhetes modelo com justificativa analítica
 ```
 
@@ -52,6 +53,9 @@ docs/betting/
 | IA — Checklist | [ai/checklist.md](./ai/checklist.md) | Análise pré-jogo |
 | IA — Value Bet | [ai/value-bet.md](./ai/value-bet.md) | EV, edge, ROI, CLV |
 | IA — Probabilidades | [ai/probabilidades.md](./ai/probabilidades.md) | Odds justas e margem |
+| IA — Ligas | [ai/ligas.md](./ai/ligas.md) | Mercados por competição |
+| IA — Marcado de Atuação | [ai/marcado-de-atuacao.md](./ai/marcado-de-atuacao.md) | Gate 4/7 e odds operacionais |
+| Estratégias Live | [strategies/live.md](./strategies/live.md) | Métodos in-play (Over HT, cantos) |
 | Exemplos | [examples/](./examples/) | Bilhetes conservador a agressivo — ver [examples/README.md](./examples/README.md) |
 
 ---
@@ -99,11 +103,13 @@ Os mercados de futebol são agrupados em **dez categorias funcionais**. Cada cat
 ### Para agentes de IA
 
 1. **Ingestão:** indexar todos os arquivos `.md` como knowledge base.
-2. **Pré-análise:** executar [ai/checklist.md](./ai/checklist.md) e coletar indicadores de [ai/indicadores.md](./ai/indicadores.md).
-3. **Modelagem:** aplicar fórmulas de [ai/probabilidades.md](./ai/probabilidades.md) e [ai/value-bet.md](./ai/value-bet.md).
-4. **Score:** calcular confiança com [ai/score.md](./ai/score.md).
-5. **Correlação:** validar bilhetes com [ai/correlacoes.md](./ai/correlacoes.md) antes de sugerir combinações.
-6. **Liquidação:** usar seções **Como a Bet365 contabiliza** para simular backtest.
+2. **Pré-análise:** executar [ai/checklist.md](./ai/checklist.md) e [ai/marcado-de-atuacao.md](./ai/marcado-de-atuacao.md) (gate 4/7).
+3. **Contexto liga:** consultar [ai/ligas.md](./ai/ligas.md) para mercados compatíveis.
+4. **Modelagem:** aplicar fórmulas de [ai/probabilidades.md](./ai/probabilidades.md) e [ai/value-bet.md](./ai/value-bet.md).
+5. **Score:** calcular confiança com [ai/score.md](./ai/score.md).
+6. **Correlação:** validar bilhetes com [ai/correlacoes.md](./ai/correlacoes.md) antes de sugerir combinações.
+7. **Live (opcional):** regras em [strategies/live.md](./strategies/live.md).
+8. **Liquidação:** usar seções **Como a Bet365 contabiliza** para simular backtest.
 
 ### Fluxo recomendado de análise
 
@@ -267,6 +273,7 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 | Versão | Data | Alterações |
 |--------|------|------------|
+| **1.2** | jul/2026 | Integração playbook sports-trading: `ai/ligas.md`, `ai/marcado-de-atuacao.md`, `strategies/live.md`, exemplo Brasileirão 6 perfis, gate 4/7 no checklist |
 | **1.1** | jul/2026 | Revisão fina: exemplos concretos em 01/02/06, seções Bet365 por mercado (06), referências cruzadas em todos os arquivos `markets/`, correção de mercados genéricos em 02 (gol cabeça, fora da área, próximo gol) |
 | **1.0** | jul/2026 | Estrutura inicial: 10 categorias, glossário, ai/, examples/ |
 
@@ -289,4 +296,4 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 ---
 
-*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.1 (revisão fina)*
+*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.2*

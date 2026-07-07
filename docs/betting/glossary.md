@@ -298,6 +298,10 @@ Aposta durante a partida. Odds dinâmicas; maior variância e necessidade de lat
 
 ## M
 
+### Marcado de Atuação
+
+Filtro operacional que exige **≥ 4 de 7 critérios** estatísticos/contextuais antes de elegibilidade de aposta. Ver [ai/marcado-de-atuacao.md](./ai/marcado-de-atuacao.md).
+
 ### Margem da casa / Overround / Vig
 
 Percentual embutido nas odds para garantir lucro da operadora. Soma das probabilidades implícitas > 100%.

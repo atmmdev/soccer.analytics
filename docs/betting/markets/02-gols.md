@@ -8,6 +8,8 @@
 
 Contagem e natureza dos gols. Núcleo Poisson.
 
+**Odds operacionais:** Over 1.5 FT 1,30–1,45 · Over 2.5 FT 1,70–1,95 · BTTS 1,70–2,00 — ver [marcado-de-atuacao.md](../ai/marcado-de-atuacao.md).
+
 ### Mercados neste arquivo
 
 | # | Mercado | Engine |
@@ -123,9 +125,11 @@ Apostador sem dados; perseguição de odd alta.
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
+| Linha | Over (pré-jogo) |
+|-------|-----------------|
+| **1.5** | 1,30 – 1,45 |
+| **2.5** | 1,70 – 1,95 |
+| **3.5** | 2,20 – 2,60 |
 
 Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
 

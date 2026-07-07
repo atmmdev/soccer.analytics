@@ -19,6 +19,7 @@
 |---|------|---------|
 | 1.1 | Fixture confirmada (data, hora, estádio) | ✅ |
 | 1.2 | Competição e fase (liga, copa, amistoso) | ✅ |
+| 1.2a | Liga mapeada em [ligas.md](./ligas.md) — mercados compatíveis | ⚠️ |
 | 1.3 | Jogo importado na API (`externalId`) | ✅ |
 | 1.4 | Odds disponíveis e atualizadas | ✅ |
 
@@ -51,6 +52,7 @@
 | 3.7 | Escanteios médios (se mercado) | ⚠️ |
 | 3.8 | Cartões médios (se mercado) | ⚠️ |
 | 3.9 | H2H últimos 5–10 | ⚠️ |
+| 3.10 | **Marcado de Atuação ≥ 4/7** ([marcado-de-atuacao.md](./marcado-de-atuacao.md)) | ✅ |
 
 ---
 
@@ -151,3 +153,5 @@ notas: "Casa xG 1.8 últimos 10; visitante xGA 1.9"
 - [indicadores.md](./indicadores.md)
 - [value-bet.md](./value-bet.md)
 - [score.md](./score.md)
+- [marcado-de-atuacao.md](./marcado-de-atuacao.md)
+- [ligas.md](./ligas.md)

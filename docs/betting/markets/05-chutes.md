@@ -8,6 +8,8 @@
 
 Mercados baseados em **volume e qualidade ofensiva**: finalizações totais, no gol (SOT), fora, bloqueadas, por time, cabeçadas, fora da área e por tempo. Correlacionam fortemente com **xG**, escanteios e pressão — úteis quando o modelo de gols está equilibrado mas há edge no volume.
 
+**Odds operacionais:** SOT Over 1,70–2,10 · gate ≥ 9 SOT somados ([marcado-de-atuacao.md](../ai/marcado-de-atuacao.md)).
+
 ### Mercados neste arquivo
 
 | # | Mercado | Engine | Dificuldade |

@@ -8,6 +8,8 @@
 
 Mercados sobre **cantos (corner kicks)** — totais, por time, intervalo, handicap e linhas asiáticas. Escanteios correlacionam com **posse**, cruzamentos, bloqueios e pressão ofensiva. No Soccer Analytics, `λ_corners = avgCorners_casa + avgCorners_fora` alimenta `probabilityOverLine()`.
 
+**Odds operacionais:** Over 8.5/9.5 → 1,75–1,95 ([marcado-de-atuacao.md](../ai/marcado-de-atuacao.md)).
+
 ### Mercados neste arquivo
 
 | # | Mercado | Dificuldade |
