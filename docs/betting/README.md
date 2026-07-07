@@ -43,9 +43,9 @@ docs/betting/
 | Chutes | [markets/05-chutes.md](./markets/05-chutes.md) | Finalizações, no gol, bloqueadas, por tempo |
 | Stats jogador | [markets/06-estatisticas-jogador.md](./markets/06-estatisticas-jogador.md) | Gols, assistências, passes, desarmes |
 | Marcadores | [markets/07-marcadores.md](./markets/07-marcadores.md) | Anytime, primeiro, hat-trick |
-| Tempo | [markets/08-primeiro-segundo-tempo.md](./markets/08-primeiro-segundo-tempo.md) | HT, 2º tempo, mais gols em qual período |
-| Asiáticos | [markets/09-mercados-asiaticos.md](./markets/09-mercados-asiaticos.md) | Handicap, gols, escanteios, cartões |
-| Outros | [markets/10-outros-mercados.md](./markets/10-outros-mercados.md) | Posse, impedimentos, especiais |
+| Tempo | [markets/08-primeiro-segundo-tempo.md](./markets/08-primeiro-segundo-tempo.md) | HT/2T, gols por período, BTTS por tempo |
+| Asiáticos | [markets/09-mercados-asiaticos.md](./markets/09-mercados-asiaticos.md) | Handicap, O/U .25/.75, push, half win/loss |
+| Outros | [markets/10-outros-mercados.md](./markets/10-outros-mercados.md) | Posse, especiais, promos, Bet Builder |
 | IA — Score | [ai/score.md](./ai/score.md) | Escala 0–100 e pesos |
 | IA — Correlações | [ai/correlacoes.md](./ai/correlacoes.md) | Dependência entre mercados |
 | IA — Indicadores | [ai/indicadores.md](./ai/indicadores.md) | xG, PPDA, shots, etc. |
@@ -71,7 +71,7 @@ Os mercados de futebol são agrupados em **dez categorias funcionais**. Cada cat
 | 07 | Marcadores | Quem marca gol | Anytime Scorer, Primeiro Marcador |
 | 08 | Primeiro e segundo tempo | Recorte temporal | Resultado HT, Gols 1º Tempo |
 | 09 | Mercados asiáticos | Linhas .25/.75, push, meio green | Handicap -0.5, Over 2.25 |
-| 10 | Outros | Especiais e estatísticas raras | Posse, Impedimentos, Acréscimos |
+| 10 | Outros | Especiais e estatísticas raras | Posse, Bet Builder, promos, acréscimos |
 
 ### Relação com o Soccer Analytics
 

@@ -1,46 +1,37 @@
 # 03 — Escanteios
 
-> **Módulo:** Soccer Analytics · Betting · **Categoria:** 03
-> **Liquidação padrão:** 90 minutos + acréscimos
-> **Referência:** Bet365 (regras gerais)
+> **Módulo:** Soccer Analytics · Betting · **Categoria:** 03  
+> **Liquidação padrão:** 90 minutos + acréscimos  
+> **Engine:** Analysis Engine (Poisson O/U)
 
 ## Visão geral
 
-Cantos — Poisson λ escanteios.
+Mercados sobre **cantos (corner kicks)** — totais, por time, intervalo, handicap e linhas asiáticas. Escanteios correlacionam com **posse**, cruzamentos, bloqueios e pressão ofensiva. No Soccer Analytics, `λ_corners = avgCorners_casa + avgCorners_fora` alimenta `probabilityOverLine()`.
 
 ### Mercados neste arquivo
 
-| # | Mercado | Engine |
-|---|---------|--------|
-| 1 | Total Escanteios | Poisson |
-| 2 | Alternativos | Poisson |
-| 3 | Por Time | Poisson |
-| 4 | Primeiro | Poisson |
-| 5 | Último | Poisson |
-| 6 | Asiáticos | Poisson |
-| 7 | Handicap | Poisson |
-| 8 | Por Tempo | Poisson |
-| 9 | Intervalo | Poisson |
-| 10 | Exatos | Poisson |
-| 11 | Primeiro a X | Poisson |
+| # | Mercado | Dificuldade |
+|---|---------|-------------|
+| 1 | Total Escanteios | Médio |
+| 2 | Escanteios Alternativos | Médio |
+| 3 | Escanteios Por Time | Médio |
+| 4 | Primeiro Escanteio | Alto |
+| 5 | Último Escanteio | Alto |
+| 6 | Escanteios Asiáticos | Médio |
+| 7 | Handicap Escanteios | Médio |
+| 8 | Escanteios Por Tempo | Alto |
+| 9 | Escanteios Intervalo | Alto |
+| 10 | Escanteios Exatos | Muito Alto |
+| 11 | Primeiro a X Escanteios | Alto |
 
-### Integração Soccer Analytics
-
-λ = f(média casa, média fora, estilo posse).
+### Modelo Soccer Analytics
 
 ```
-λ_casa, λ_fora → matriz Poisson → P(mercado)
-Player Engine → P(jogador marca / stat ≥ linha)
+λ = max(1, home.avgCorners + away.avgCorners)
+P(Over L) = 1 - Σ Poisson(λ,k) para k ≤ floor(L)
 ```
 
-### Tabela de liquidação rápida
-
-| Termo | Significado |
-|-------|-------------|
-| GREEN | Aposta ganha |
-| RED | Aposta perdida |
-| VOID | Stake devolvido |
-| PUSH | Linha exata (asiáticos) — devolução |
+Importado via `MatchStatistics.homeCorners` / `awayCorners`.
 
 ---
 
@@ -48,110 +39,99 @@ Player Engine → P(jogador marca / stat ≥ linha)
 
 ## O que é
 
-Mercado de apostas **Total Escanteios** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under no **número total de escanteios** dos dois times no tempo regulamentar. Linha principal típica: **9.5**, **10.5**, **11.5** (varia por liga).
 
 ## Como funciona
 
-Mercado **Total Escanteios** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Escanteio concedido quando bola sai pela linha de fundo após toque de defensor (último toque).
+- **Não** confundir com lateral ou tiro de meta.
+- Poisson com λ = soma das médias históricas ajustada por estilo (posse, cruzamentos).
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+| Conta | Não conta |
+|-------|-----------|
+| Escanteio **cobrado** | Escanteio concedido mas não cobrado (raro) |
+| Cantos repetidos (short corner) | — |
+| Acréscimos 1T e 2T | Prorrogação |
+
+**GREEN Over 10.5:** 11+ escanteios · **RED:** ≤ 10
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Total Escanteios)
+**Man City vs Burnley** · 7+4 = **11 cantos** · **Over 10.5** @ 1,88 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**9 cantos** totais · Over 10.5 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Partida abandonada → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Escanteios Por Time
+- Handicap Escanteios
+- Total Chutes / Bloqueados
+- Over gols (correlação +)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Favorito em casa vs bloco baixo (monólogo → cantos)
+- Média combinada > linha + 1,0 nos últimos 10
+- EV+ no Analysis Engine com λ calibrado
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo Under 1.5 gols esperado com dois times fechados
+- Chuva extrema (menos cruzamentos)
+- Time já classificado sem pressão
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+| Indicador | Peso |
+|-----------|------|
+| Escanteios/jogo (10j) | Alto |
+| Posse % | Médio |
+| Cruzamentos | Alto |
+| Chutes bloqueados | Médio |
+| xG (pressão) | Médio |
+| Estilo (asas vs meio) | Médio |
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- PL, Bundesliga — alto volume de cantos
+- Favorito vs defesa reativa
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Serie A fechada 0-0
+- Amistoso
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- VAR / tempo parado reduz ritmo 2T
+- Líder recua e adversário para de atacar
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+| Linha | Over |
+|-------|------|
+| 9.5 | 1,85 – 2,00 |
+| 10.5 | 1,88 – 2,05 |
+| 11.5 | 1,90 – 2,08 |
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] λ_corners calculado (Statistics Engine)
+- [ ] Comparar P(Over) vs odd
+- [ ] EV > 5%
+- [ ] Evitar duplicar Over gols + Over cantos sem edge conjunto
 
 ---
 
@@ -159,110 +139,71 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Escanteios Alternativos** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Linhas **alternativas** de Over/Under (ex.: 8.5, 12.5, 13.5) além da linha principal — permite ajustar risco/retorno.
 
 ## Como funciona
 
-Mercado **Escanteios Alternativos** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Mesma liquidação que Total Escanteios; apenas a linha numérica muda. Over 8.5 = barreira baixa; Over 12.5 = agressivo.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Idêntico ao Total Escanteios.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Escanteios Alternativos)
+**Over 12.5** · 14 cantos → **GREEN** @ 2,40
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**12 cantos** · Over 12.5 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Cancelado → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Total Escanteios (linha principal)
+- Escanteios Asiáticos
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Modelo indica 12 cantos esperados mas linha principal 10.5 com odd baixa → usar Over 12.5
+- Under alternativo em jogo fechado (Under 8.5)
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Linhas extremas sem histórico (Over 15.5)
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Distribuição completa (não só média)
+- Desvio padrão cantos/jogo
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Analista que calibra λ e busca odd em linha secundária
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Chute no escuro em linha alta
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Maior variância em linhas extremas
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+8.5 Over: 1,50 – 1,70 · 12.5 Over: 2,20 – 2,60
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Fair odd calculada para linha específica
+- [ ] Não confundir com linha principal da mesma casa
 
 ---
 
@@ -270,110 +211,72 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Escanteios Por Time** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under de escanteios **de um time only** (ex.: Arsenal Over 6.5 cantos).
 
 ## Como funciona
 
-Mercado **Escanteios Por Time** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Apenas cantos **a favor** do time selecionado. Adversário pode ter linha separada.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Cantos conquistados pelo time, incluindo quando adversário toca por último na saída de bola.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Escanteios Por Time)
+**Liverpool Over 7.5** · Liverpool **9** cantos → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Liverpool **6** → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Total Escanteios
+- Handicap Escanteios
+- Posse / Chutes time
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Mandante dominante monopoliza cantos
+- Visitante joga no contra e cede cantos sem ter muitos
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo equilibrado com posse 50-50
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Cantos casa/fora split
+- Oponente cantos conceded
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Casa top-4 vs bloco
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Fora com posse
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- 2T defensivo reduz cantos favorito
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,05
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Split ≥ 10 jogos
+- [ ] Estilo cruzamento confirmado
 
 ---
 
@@ -381,110 +284,73 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Primeiro Escanteio** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta em **qual time cobra o primeiro escanteio** da partida (ou "nenhum" em mercados raros).
 
 ## Como funciona
 
-Mercado **Primeiro Escanteio** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Vence quem **cobrar** o primeiro corner.
+- Ritmo inicial e pressão definem edge.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Primeiro escanteio **executado** (não apenas concedido). Se jogo termina 0 cantos → regras específicas (VOID/RED).
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Primeiro Escanteio)
+Aposta **Casa primeiro canto** · Min 3' canto casa → **GREEN** @ 1,75
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Visitante cobra primeiro → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+0 escanteios no jogo (raro) → ver regras
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Último Escanteio
+- Primeiro a X Escanteios
+- Resultado 1T
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Casa historically pressiona nos primeiros 15'
+- Adversário cede cantos cedo
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo cauteloso mata-mata
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % primeiro canto casa (10j)
+- Cantos 0-15'
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Mandante forte início
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Jogo fechado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Gol cedo muda dinâmica
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,70 – 2,10 (dupla via)
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Histórico início de jogo
+- [ ] Stake reduzido
 
 ---
 
@@ -492,110 +358,70 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Último Escanteio** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Qual time cobra o **último escanteio** do tempo regulamentar.
 
 ## Como funciona
 
-Mercado **Último Escanteio** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Similar ao primeiro; sensível a final de jogo (time perdendo pressiona).
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Último canto **cobrado** antes do apito final (+ acréscimos).
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Último Escanteio)
+**Visitante último canto** · 90+4' canto visitante → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa cobra último → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+0 cantos → regras casa
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Primeiro Escanteio
+- Escanteios 2T
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time habitualmente pressiona no final
+- Adversário abre placar e sofre reação
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo decidido cedo
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Cantos 75-90+'
+- Substituições ofensivas
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Favorito perdendo
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Controle total 3-0
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Árbitro encerra sem canto final
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,75 – 2,15
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Padrão 2T documentado
 
 ---
 
@@ -603,110 +429,76 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Escanteios Asiáticos** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total de escanteios com **linhas asiáticas** (.25 / .75) — meio green, meio red ou push.
 
 ## Como funciona
 
-Mercado **Escanteios Asiáticos** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+| Linha | 10 cantos | 11 cantos |
+|-------|-----------|-----------|
+| Over 10.25 | Meio RED | Meio GREEN + push |
+| Over 10.5 | RED | GREEN |
+| Over 10.75 | RED | Meio GREEN |
+
+Metade da stake em duas linhas adjacentes.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Divisão de stake conforme tabela asiática padrão.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Escanteios Asiáticos)
+**Over 10.5 asiático** · 11 cantos → **GREEN** integral
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+10 cantos · Over 10.5 → **RED**
 
-## Exemplo VOID
+## Exemplo VOID / PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+Linha inteira 10.0 · exatamente 10 → push metade
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Total Escanteios
+- [09-mercados-asiaticos.md](./09-mercados-asiaticos.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Quer reduzir variância vs linha .5 pura
+- Modelo projeta ~10,8 cantos → linha 10.25
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Sem entender meio green/red
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- λ com decimal próximo à linha
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Apostador avançado
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Iniciante
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Confusão na liquidação
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,90 – 2,00 (linhas .25)
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Entender split de stake
+- [ ] Comparar com linha europeia equivalente
 
 ---
 
@@ -714,110 +506,75 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Handicap Escanteios** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap aplicado ao **número de escanteios** de cada time (ex.: Casa -2.5 cantos).
 
 ## Como funciona
 
-Mercado **Handicap Escanteios** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
 ```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
+Casa -2.5: cantos_casa - 2.5 > cantos_fora → GREEN
 ```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+
+Pode ser asiático ou europeu conforme mercado.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Diferença de cantos após handicap. Empate após handicap em linha europeia = RED terceira via.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Handicap Escanteios)
+**Casa -1.5** · Casa 8, Fora 5 → 8-1.5=6.5 > 5 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa 6, Fora 5 → 4.5 < 5 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Escanteios Por Time
+- Handicap Asiático (gols)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Dominância clara de cantos esperada
+- Favorito vs bloco
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo equilibrado
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Diferença média cantos
+- Posse
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- City/Liverpool em casa
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Derby equilibrado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Visitante recua com cantos no 2T
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Média diferença cantos ≥ 10 jogos
+- [ ] EV calculado na diferença, não no total
 
 ---
 
@@ -825,110 +582,69 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Escanteios Por Tempo** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under de escanteios no **1º tempo** ou **2º tempo** separadamente.
 
 ## Como funciona
 
-Mercado **Escanteios Por Tempo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- **1T:** do kick-off ao apito do intervalo (+ acréscimo 1T).
+- **2T:** reinício ao apito final.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Cantos atribuídos ao período em que foram **cobrados**.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Escanteios Por Tempo)
+**Over 5.5 cantos 1T** · 7 no intervalo → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+5 no 1T → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono no 1T → regras Bet365
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Escanteios Intervalo
+- Gols por tempo
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Histórico 65% cantos no 2T (time ajusta no intervalo)
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Primeiro jogo técnico novo
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Split cantos 1T/2T
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Times pressão alta início ou fim
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Sem padrão temporal
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Mudança tática HT
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,05
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Amostra split ≥ 15 jogos
 
 ---
 
@@ -936,110 +652,70 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Escanteios Intervalo** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total de escanteios **somente no 1º tempo** (mercado explícito "Intervalo" ou HT).
 
 ## Como funciona
 
-Mercado **Escanteios Intervalo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Equivalente a Escanteios Por Tempo (1T) — nomenclatura Bet365 pode variar.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Até apito do intervalo inclusive acréscimos do 1T.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Escanteios Intervalo)
+**Over 4.5 HT** · 6 cantos 1T → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+4 cantos → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono antes HT → VOID
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Escanteios Por Tempo
+- Resultado Intervalo
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Times começam forte
+- Derby intenso início
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogos mornos 0-0 HT habituais
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Cantos médios 1T
+- xG 1T
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Pressing alto inicial
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Catenaccio
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Árbitro apita cedo demais
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,80 – 2,00
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Confirmar definição HT na Bet365
 
 ---
 
@@ -1047,110 +723,70 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Escanteios Exatos** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta no **número exato** total de escanteios (ex.: exatamente 10) ou faixa estreita.
 
 ## Como funciona
 
-Mercado **Escanteios Exatos** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Alta variância; odds altas. P(exato) via Poisson: `P(k=10) = Poisson(λ,10)`.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Total exato no TR. Qualquer outro número = RED.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Escanteios Exatos)
+**Exatamente 10 cantos** · Final 10 → **GREEN** @ 8,00
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+9 ou 11 cantos → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Cancelado → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Total Over/Under
+- Faixa de gols (analogia)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ muito estável (σ baixo)
+- Odd value em cauda Poisson
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Quase sempre — entretenimento + stake mínimo
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Desvio padrão histórico baixo
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Modelo calibrado + stake 0,25%
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Palpite sem dados
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Variância extrema
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+6,00 – 15,00+
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Muito Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Stake ≤ 0,25% banca
+- [ ] P(exato) > 1/odd
 
 ---
 
@@ -1158,110 +794,87 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Primeiro a X Escanteios** no futebol, categoria **Escanteios**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Qual time atinge **primeiro** a marca de X escanteios (ex.: **primeiro a 5 cantos**).
 
 ## Como funciona
 
-Mercado **Primeiro a X Escanteios** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Race market: primeiro a 5, 7, etc.
+- Se ninguém atinge X → regras específicas (VOID ou RED todos).
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Time que **cobrar** o X-ésimo escanteio primeiro vence.
 
 ## Exemplo GREEN
 
-Over 9.5 · 11 cantos → GREEN (exemplo Primeiro a X Escanteios)
+**Casa primeiro a 7** · Casa chega a 7 antes → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Visitante chega a 7 primeiro → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Jogo termina com ambos < 7 → ver regras
 
 ## Mercados relacionados
 
-- Outros mercados em `03-escanteios.md`
+- Primeiro Escanteio
+- Handicap Cantos
+- Escanteios Por Time
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Dominância esperada clara
+- Favorito monopoliza cantos
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo fechado com total Under cantos
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Velocidade acumulação cantos
+- Média total vs X
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Favorito -1.5 cantos implícito
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Total Under 9.5 esperado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Adversário para de atacar após placar
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,75 – 2,20
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] X < média total esperada
+- [ ] Dominância histórica confirmada
 
 ---
 
+## Matriz de correlação
+
+|  | Over gols | Chutes | Posse | Cartões |
+|--|-----------|--------|-------|---------|
+| Over cantos | + | ++ | + | + fraco |
+| Cantos time | + | ++ | ++ | — |
+
+---
+
+## Referências
+
+- Analysis Engine: `probabilityOverLine()` · `apps/api/src/engines/analysis-engine/`
+- [05-chutes.md](./05-chutes.md) · [09-mercados-asiaticos.md](./09-mercados-asiaticos.md)
+- [../ai/correlacoes.md](../ai/correlacoes.md)

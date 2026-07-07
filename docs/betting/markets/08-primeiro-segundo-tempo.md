@@ -1,45 +1,38 @@
 # 08 — Primeiro e Segundo Tempo
 
-> **Módulo:** Soccer Analytics · Betting · **Categoria:** 08
-> **Liquidação padrão:** 90 minutos + acréscimos
-> **Referência:** Bet365 (regras gerais)
+> **Módulo:** Soccer Analytics · Betting · **Categoria:** 08  
+> **Liquidação:** período específico (1T, 2T ou comparação)  
+> **Engine:** Analysis Engine (Poisson com fator temporal)
 
 ## Visão geral
 
-Mercados por período.
+Mercados recortados por **período da partida**. O tempo regulamentar divide-se em 1º tempo (45 min + acréscimo 1T) e 2º tempo (45 min + acréscimo 2T). Modelagem usa **λ_HT ≈ λ_total × 0,43–0,46** e **λ_2T ≈ λ_total × 0,54–0,57** (ajustável por time).
 
 ### Mercados neste arquivo
 
-| # | Mercado | Engine |
-|---|---------|--------|
-| 1 | Resultado 1º Tempo | Poisson |
-| 2 | Resultado 2º Tempo | Poisson |
-| 3 | Gols 1º Tempo O/U | Poisson |
-| 4 | Gols 2º Tempo O/U | Poisson |
-| 5 | BTTS 1º Tempo | Poisson |
-| 6 | BTTS 2º Tempo | Poisson |
-| 7 | Mais Gols Qual Período | Poisson |
-| 8 | Time Marca Ambos Tempos | Poisson |
-| 9 | Gols Exatos 1º Tempo | Poisson |
-| 10 | Vencer Ambos Tempos | Poisson |
+| # | Mercado | Dificuldade |
+|---|---------|-------------|
+| 1 | Resultado 1º Tempo | Médio |
+| 2 | Resultado 2º Tempo | Médio |
+| 3 | Gols 1º Tempo Over/Under | Médio |
+| 4 | Gols 2º Tempo Over/Under | Médio |
+| 5 | BTTS 1º Tempo | Alto |
+| 6 | BTTS 2º Tempo | Alto |
+| 7 | Mais Gols em Qual Período | Médio |
+| 8 | Time Marca em Ambos os Tempos | Alto |
+| 9 | Gols Exatos 1º Tempo | Muito Alto |
+| 10 | Vencer Ambos os Tempos | Muito Alto |
 
-### Integração Soccer Analytics
-
-λ_HT e λ_2T fatores da λ total.
+### Modelo Soccer Analytics
 
 ```
-λ_casa, λ_fora → matriz Poisson → P(mercado)
-Player Engine → P(jogador marca / stat ≥ linha)
+λ_HT = λ_total × f_HT    (f_HT default 0,45)
+λ_2T = λ_total × (1 - f_HT)
+P(Over 0.5 HT) = 1 - Poisson(λ_HT, 0)
+Matriz Poisson reduzida → 1X2 intervalo
 ```
 
-### Tabela de liquidação rápida
-
-| Termo | Significado |
-|-------|-------------|
-| GREEN | Aposta ganha |
-| RED | Aposta perdida |
-| VOID | Stake devolvido |
-| PUSH | Linha exata (asiáticos) — devolução |
+**Status:** parcialmente modelado; fator temporal calibrável por liga/time.
 
 ---
 
@@ -47,110 +40,91 @@ Player Engine → P(jogador marca / stat ≥ linha)
 
 ## O que é
 
-Mercado de apostas **Resultado 1º Tempo** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta **1X2** considerando **apenas o placar ao intervalo** (fim do 1º tempo + acréscimos do 1T).
 
 ## Como funciona
 
-Mercado **Resultado 1º Tempo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- **1:** casa lidera no intervalo.
+- **X:** empate no intervalo.
+- **2:** fora lidera no intervalo.
+- Gols do 2T **irrelevantes**.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+| Situação | Liquidação |
+|----------|------------|
+| HT 1-0, aposta **1** | **GREEN** |
+| HT 0-0, aposta **1** | **RED** |
+| HT 1-1, aposta **X** | **GREEN** |
+| Gol anulado VAR antes intervalo | Placar após decisão final |
+| Abandono antes HT | Regras Bet365 (VOID comum) |
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Real Madrid vs Barcelona** · HT **2-1** · Aposta **1** @ 2,40 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT **0-0** · Aposta **1** → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Partida abandonada 30' sem retorno → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Resultado Final
+- Intervalo/Final
+- Gols 1T Over/Under
+- [01-resultados.md](./01-resultados.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time forte início (≥ 55% lidera HT em casa)
+- Adversário começa lento fora
+- λ_HT favorável com edge vs odd
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Times equilibrados sem padrão HT
+- Primeiro jogo técnico novo
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % vitórias/empates HT (10j)
+- xG 1T (se disponível)
+- Gols 0-15' e 15-30'
+- Histórico H2H HT
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Casa pressiona alto (Liverpool, Bayern)
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Jogo mata-mata cauteloso 0-0 HT
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Gol HT muda tudo; variância maior que FT em amostras pequenas
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+| Seleção | Faixa |
+|---------|-------|
+| Favorito HT | 1,90 – 2,60 |
+| Empate HT | 2,20 – 2,80 |
+| Zebra HT | 4,00 – 8,00 |
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] f_HT calibrado por time
+- [ ] P(1X2 HT) vs odds
+- [ ] EV > 5%
 
 ---
 
@@ -158,110 +132,75 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Resultado 2º Tempo** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta **1X2** considerando **apenas gols marcados no 2º tempo** (inclui acréscimos 2T).
 
 ## Como funciona
 
-Mercado **Resultado 2º Tempo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Placar "virtual" 2T = gols FT − gols HT.
+- Ex.: FT 2-1, HT 1-0 → 2T = **1-1** (empate no 2T).
+- Três vias: quem "venceu" o 2T.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Calcula diferença de gols entre intervalo e final. Empate no 2T (ex.: 1-1 no 2T) = **X**.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+FT 1-0 HT, FT 3-1 → 2T **2-1** · Aposta **1** (casa vence 2T) → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+FT 1-0 HT, FT 1-0 → 2T **0-0** · Aposta **1** → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono no 2T → regras
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Resultado 1T
+- Gols 2T Over/Under
+- Mais Gols em Qual Período
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time famoso por reação 2T
+- Adversário cede gols após intervalo
+- Substitutos ofensivos impactantes
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Líder administra 2T sem marcar
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Gols marcados/sofridos 2T
+- Substituições habituais 60'
+- xG 2T estimado
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Time com banco forte
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Líder 2-0 HT recua
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Interpretação confusa para apostadores
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,90 – 3,00
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Separar stats 2T dos últimos 10 jogos
 
 ---
 
@@ -269,110 +208,83 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Gols 1º Tempo Over/Under** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under de **total de gols no 1º tempo** (ex.: Over 0.5, Over 1.5 HT).
 
 ## Como funciona
 
-Mercado **Gols 1º Tempo Over/Under** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
 ```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
+λ_HT = λ_total × f_HT
+P(Over 0.5 HT) = 1 - e^(-λ_HT)
+P(Over 1.5 HT) = 1 - P(0) - P(1) via Poisson
 ```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+
+Linhas comuns: **0.5**, **1.5**, **2.5** gols HT.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols até apito do intervalo (+ acréscimo 1T). Gols anulados VAR não contam.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Over 1.5 HT** · HT **2-0** (2 gols) → **GREEN** @ 2,10
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT **1-0** (1 gol) · Over 1.5 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono 1T → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Over 2.5 FT
+- BTTS 1T
+- Resultado 1T
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ_HT > 1,2 (jogos abertos)
+- Times que marcam cedo
+- Over 0.5 HT com odd value (barreira baixa)
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Catenaccio 0-0 HT habitual
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % Over 0.5 HT / Over 1.5 HT
+- xG 1T
+- Ritmo inicial
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Bundesliga, PL abertas
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Serie A fechada
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Gol único decide Over 0.5 vs Under 1.5
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+| Linha | Over |
+|-------|------|
+| 0.5 HT | 1,35 – 1,50 |
+| 1.5 HT | 2,00 – 2,40 |
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] λ_HT calculado
+- [ ] Comparar com linha Bet365
 
 ---
 
@@ -380,110 +292,73 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Gols 2º Tempo Over/Under** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under de gols **somente no 2º tempo**.
 
 ## Como funciona
 
-Mercado **Gols 2º Tempo Over/Under** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+λ_2T = λ_total − λ_HT (ou fator 0,55). Mesma lógica Poisson.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols após reinício até apito final (+ acréscimo 2T).
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+HT 0-0, FT 2-1 → **3 gols 2T** · Over 1.5 2T → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 1-0, FT 1-0 → 0 gols 2T · Over 0.5 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono início 2T → regras
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Gols 1T O/U
+- Mais Gols Qual Período
+- Over 2.5 FT
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Times reagem 2T (perdendo HT)
+- Substitutos decisivos
+- λ_2T > 1,3
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Líder fecha jogo 2T
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Gols 2T/jogo
+- xG 2T
+- Padrão substituições
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Favorito perdendo HT
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- 3-0 HT administração
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Depende de dinâmica HT
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+Over 0.5 2T: 1,25 – 1,40 · Over 1.5 2T: 1,85 – 2,15
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Stats 2T separadas
 
 ---
 
@@ -491,110 +366,72 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **BTTS 1º Tempo** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+**Ambas marcam no 1º tempo** — Sim/Não.
 
 ## Como funciona
 
-Mercado **BTTS 1º Tempo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- **Sim:** ambos ≥ 1 gol no 1T.
+- **Não:** pelo menos um sem gol no 1T.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+HT 1-1 → **Sim** GREEN · HT 1-0 → **Não** GREEN
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**BTTS Sim 1T** · HT 1-1 → **GREEN** @ 3,50
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 2-0 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono 1T → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- BTTS FT
+- BTTS 2T
+- Over 1.5 HT
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Jogos abertos desde início
+- H2H BTTS HT frequente
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogos fechados 0-0 HT
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % BTTS 1T
+- xG ambos 1T
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Derby ofensivo
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Final defensiva
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Alta variância; odd Sim alta
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+Sim: 3,00 – 5,00 · Não: 1,15 – 1,25
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Frequência BTTS 1T > implícita
 
 ---
 
@@ -602,110 +439,68 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **BTTS 2º Tempo** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Ambas marcam **no 2º tempo** apenas.
 
 ## Como funciona
 
-Mercado **BTTS 2º Tempo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+HT 0-0, FT 1-1 → ambos marcaram 2T → **Sim** GREEN.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols 2T de cada time ≥ 1.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+HT 0-0, FT 2-1 → casa 2T, fora 1T → **Sim** GREEN
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 1-0, FT 2-0 → fora não marcou 2T → **Não** GREEN (se apostou Sim → RED)
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- BTTS 1T · BTTS FT
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- 0-0 HT habitual + gols 2T
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Líder administra
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- BTTS 2T %
+- Padrão 0-0 HT → gols 2T
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Jogos "segundo tempo show"
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Controle total favorito
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Interpretação placar 2T
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+Sim: 2,50 – 4,00
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Histórico 0-0 HT + BTTS 2T
 
 ---
 
@@ -713,110 +508,71 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Mais Gols em Qual Período** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta em qual período terá **mais gols**: **1º tempo**, **2º tempo** ou **empate** (mesmo número).
 
 ## Como funciona
 
-Mercado **Mais Gols em Qual Período** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Conta gols HT vs gols 2T.
+- Empate: ex. HT 1-0, FT 2-1 → 1 gol cada → **Empate**.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Compara totais; três vias.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+HT 0-0, FT 3-0 → 0 HT, 3 2T → Aposta **2º tempo** → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 2-0, FT 2-1 → 2 HT, 1 2T → Aposta **2T** → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+0-0 total → **Empate** GREEN se apostou empate
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Gols 1T/2T O/U
+- Resultado intervalo
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Padrão claro (65% gols 2T)
+- Times ajustam no intervalo
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Sem padrão temporal
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % gols 1T vs 2T liga/time
+- f_HT calibrado
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Times "second half teams"
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Distribuição 50-50
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Um gol muda período vencedor
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1T: 2,80 – 3,50 · 2T: 2,00 – 2,60 · Empate: 3,50 – 4,50
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Split gols 1T/2T ≥ 15 jogos
 
 ---
 
@@ -824,110 +580,72 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Time Marca em Ambos os Tempos** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta em **um time** marcar **≥ 1 gol no 1T** E **≥ 1 gol no 2T**.
 
 ## Como funciona
 
-Mercado **Time Marca em Ambos os Tempos** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Ex.: "Casa marca ambos tempos" — casa gol HT + casa gol 2T.
+- FT 2-0 HT 1-0 → casa marcou 1T sim, 2T sim (1 gol 2T) → **GREEN**.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols do time em cada período separadamente.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**City marca ambos** · HT 1-0, FT 3-0 → **GREEN** @ 2,20
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 1-0, FT 1-0 → City não marcou 2T → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- BTTS FT
+- Over gols time
+- Vencer ambos tempos
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Favorito dominante 90 min
+- Média > 70% marca 1T e 2T
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Time marca cedo e administra
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % marca 1T e 2T
+- xG por período
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- City, Bayern casa
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- 1-0 e fecha
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Correlação ++ com Over FT
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,90 – 2,80
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Frequência ambos tempos > 1/odd
 
 ---
 
@@ -935,110 +653,69 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Gols Exatos 1º Tempo** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta no **número exato de gols no 1T** (0, 1, 2, 3+).
 
 ## Como funciona
 
-Mercado **Gols Exatos 1º Tempo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Poisson com λ_HT: P(k gols) = Poisson(λ_HT, k).
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Total gols HT exato. 3+ agrupa 3 ou mais.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Exatamente 2 gols HT** · HT 1-1 → **GREEN** @ 4,50
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 1-0 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Placar exato HT
+- Gols O/U 1T
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ_HT estável, σ baixo
+- Edge em cauda Poisson
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Stake mínimo apenas
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Distribuição gols HT
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Modelo calibrado
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Palpite
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Muito Alto variância
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+3,50 – 8,00+
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Muito Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Stake ≤ 0,25%
 
 ---
 
@@ -1046,110 +723,78 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Vencer Ambos os Tempos** no futebol, categoria **Primeiro e Segundo Tempo**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Time **vence o placar do 1T** (ex.: 1-0) **E vence o placar do 2T** (ex.: 2-0 no 2T).
 
 ## Como funciona
 
-Mercado **Vencer Ambos os Tempos** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Casa vence HT (1-0) + casa vence 2T (2-0 no 2T) = **GREEN**.
+- FT 3-0 HT 1-0 → 2T 2-0 → **GREEN**.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Compara placares parciais; time deve "ganhar" cada período.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+HT 2-0, FT 4-1 → 2T 2-1 casa → casa venceu 1T e 2T → **GREEN** @ 3,00
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 1-0, FT 1-1 → empate 2T → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `08-primeiro-segundo-tempo.md`
+- Intervalo/Final Casa/Casa
+- Vencer cada tempo
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Dominância extrema esperada
+- Favorito -2 handicap alinhado
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Qualquer jogo equilibrado
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % domínio 90 min
+- xG diff
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- City vs lanterna
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Derby
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Muito Alto
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+2,50 – 5,00
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Muito Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Stake mínimo
+- [ ] Não correlacionar com -1.5 handicap sem cálculo
 
 ---
 
+## Referências
+
+- [01-resultados.md](./01-resultados.md) — Resultado Intervalo
+- [02-gols.md](./02-gols.md) — Over/Under
+- Analysis Engine — fator temporal (roadmap)
+- [../ai/probabilidades.md](../ai/probabilidades.md)

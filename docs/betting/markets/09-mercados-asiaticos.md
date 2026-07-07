@@ -1,45 +1,41 @@
 # 09 — Mercados Asiáticos
 
-> **Módulo:** Soccer Analytics · Betting · **Categoria:** 09
-> **Liquidação padrão:** 90 minutos + acréscimos
-> **Referência:** Bet365 (regras gerais)
+> **Módulo:** Soccer Analytics · Betting · **Categoria:** 09  
+> **Conceito central:** linhas com .25 / .75 → meio green, meio red, push  
+> **Engine:** Analysis Engine — `probabilityHandicapCover()` · `probabilityOverLine()`
 
 ## Visão geral
 
-Linhas .25/.75 — push e meio green.
+Mercados **asiáticos** eliminam ou reduzem o empate na aposta usando linhas divididas. Metade da stake em duas linhas adjacentes. Comuns em **gols**, **escanteios**, **cartões** e recortes por **tempo**.
+
+### Tipos de resultado asiático
+
+| Resultado | Significado |
+|-----------|-------------|
+| **GREEN** | Stake ganha integral |
+| **RED** | Stake perde integral |
+| **PUSH / VOID parcial** | Metade stake devolvida |
+| **Half WIN** | Metade ganha, metade push |
+| **Half LOSS** | Metade perde, metade push |
 
 ### Mercados neste arquivo
 
-| # | Mercado | Engine |
-|---|---------|--------|
-| 1 | AH Gols | Poisson |
-| 2 | OU Asiático Gols | Poisson |
-| 3 | AH Escanteios | Poisson |
-| 4 | OU Asiático Escanteios | Poisson |
-| 5 | AH Cartões | Poisson |
-| 6 | OU Asiático Cartões | Poisson |
-| 7 | AH 1º Tempo | Poisson |
-| 8 | OU Asiático 1º Tempo | Poisson |
-| 9 | AH 2º Tempo | Poisson |
-| 10 | OU Asiático 2º Tempo | Poisson |
+| # | Mercado | Dificuldade |
+|---|---------|-------------|
+| 1 | Handicap Asiático Gols | Médio |
+| 2 | Over/Under Asiático Gols | Médio |
+| 3 | Handicap Asiático Escanteios | Alto |
+| 4 | Over/Under Asiático Escanteios | Alto |
+| 5 | Handicap Asiático Cartões | Alto |
+| 6 | Over/Under Asiático Cartões | Alto |
+| 7 | Handicap Asiático 1º Tempo | Alto |
+| 8 | Over/Under Asiático 1º Tempo | Alto |
+| 9 | Handicap Asiático 2º Tempo | Alto |
+| 10 | Over/Under Asiático 2º Tempo | Alto |
 
-### Integração Soccer Analytics
+### Soccer Analytics
 
-Matriz Poisson + regras de split em quartos.
-
-```
-λ_casa, λ_fora → matriz Poisson → P(mercado)
-Player Engine → P(jogador marca / stat ≥ linha)
-```
-
-### Tabela de liquidação rápida
-
-| Termo | Significado |
-|-------|-------------|
-| GREEN | Aposta ganha |
-| RED | Aposta perdida |
-| VOID | Stake devolvido |
-| PUSH | Linha exata (asiáticos) — devolução |
+Handicap gols implementado em `probabilityHandicapCover(matrix, side, line)`.
 
 ---
 
@@ -47,106 +43,84 @@ Player Engine → P(jogador marca / stat ≥ linha)
 
 ## O que é
 
-Mercado de apostas **Handicap Asiático Gols** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap aplicado ao **placar de gols** — linhas: **0**, **±0.25**, **±0.5**, **±0.75**, **±1**, etc.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+| Linha | Exemplo placar | Resultado Casa |
+|-------|----------------|----------------|
+| **0.0** | Empate | PUSH (void) |
+| **-0.5** | Vitória casa | GREEN |
+| **-0.5** | Empate | RED |
+| **-0.25** | Empate | **Half LOSS** |
+| **-0.25** | Vitória casa 1 gol | **Half WIN** |
+| **-0.75** | Vitória 1 gol | **Half WIN** |
+| **-0.75** | Vitória 2+ | GREEN |
+
+Stake dividida: -0.25 = metade em 0.0 + metade em -0.5.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Tempo regulamentar. Liquidação conforme tabela asiática padrão.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+**Casa -0.5** · Final **2-1** → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Casa -0.5** · **1-1** → **RED**
 
-## Exemplo VOID
+## Exemplo VOID / PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+**Casa 0.0** · **1-1** → **PUSH** (stake devolvido)
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Handicap Europeu
+- Empate Anula (≈ 0.0)
+- [01-resultados.md](./01-resultados.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Quer cobertura parcial no empate (0.0, -0.25)
+- Modelo Poisson favorece vitória estreita → -0.25 value
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Sem entender half win/loss
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Matriz Poisson placares
+- P(cover) por linha
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Favorito estreito (vitória 1 gol provável)
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Zebra ou empate provável sem linha 0.0
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Confusão liquidação
+- Empate 1-1 half loss em -0.25
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+-0.5: 1,85 – 2,00 · 0.0: 1,75 – 1,90 · -0.25: 1,95 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Entender split stake
+- [ ] `probabilityHandicapCover()` no engine
+- [ ] EV inclui cenários half
 
 ---
 
@@ -154,106 +128,75 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Over/Under Asiático Gols** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total gols com linhas **2.25**, **2.75**, **3.25**, etc.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+| Linha | 2 gols | 3 gols |
+|-------|--------|--------|
+| Over 2.25 | Half LOSS | Half WIN |
+| Over 2.5 | RED | GREEN |
+| Over 2.75 | RED | Half WIN + push |
+| Under 2.25 | Half WIN | Half LOSS |
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Metade Over X.0, metade Over X.5 (ou Under equivalente).
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+**Over 2.5** · 3 gols → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**Over 2.5** · 2 gols → **RED**
 
-## Exemplo VOID
+## Exemplo HALF
 
-Partida cancelada ou jogador não titular — VOID.
+**Over 2.25** · 2 gols → **Half LOSS** (metade RED, metade push)
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Over/Under europeu
+- [02-gols.md](./02-gols.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ ≈ 2,7 → linha 2.75 reduz variância vs 2.5
+- Modelo entre duas linhas europeias
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Iniciante sem tabela asiática
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- λ Poisson total
+- P(2) vs P(3) específicas
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Analista com λ decimal preciso
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Aposta "no feeling"
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Liquidação parcial confunde
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+2.25 Over: 1,90 – 2,05
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Simular half outcomes no EV
 
 ---
 
@@ -261,106 +204,69 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Handicap Asiático Escanteios** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap na **diferença de escanteios** com linhas asiáticas.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+Casa -1.25 cantos: metade -1.0 + metade -1.5.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Cantos cobrados; diferença após handicap.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+**Casa -0.5 cantos** · Casa 8, Fora 6 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa 7, Fora 7 · -0.5 → **RED**
 
-## Exemplo VOID
+## Exemplo PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+**0.0** · Empate cantos → **PUSH**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- [03-escanteios.md](./03-escanteios.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Dominância cantos esperada
+- λ_corners diff > 2
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo equilibrado
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Diff cantos médio
+- Posse
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Favorito vs bloco
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Contra-ataque
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Menor liquidez
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,05
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] λ cantos calibrado
 
 ---
 
@@ -368,106 +274,67 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Over/Under Asiático Escanteios** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total cantos linhas **10.25**, **10.75**, etc.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+Idêntico a gols asiático com λ_corners.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Split stake padrão.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+**Over 10.5** · 11 cantos → **GREEN**
+
+## Exemplo HALF
+
+**Over 10.25** · 10 cantos → **Half LOSS**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
-
-## Exemplo VOID
-
-Partida cancelada ou jogador não titular — VOID.
+**Over 10.5** · 10 → **RED**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Total Escanteios
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ ≈ 10,8
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Dados cantos fracos
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- λ_corners Poisson
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- PL alta cantos
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Jogo fechado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Variância cantos
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,88 – 2,02
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Poisson λ cantos
 
 ---
 
@@ -475,106 +342,68 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Handicap Asiático Cartões** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap diferença **cartões** linha asiática.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+Casa -0.5 cartões: casa precisa receber menos cartões que fora + 0.5.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Cartões amarelos + vermelhos contados.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+Casa 2 cartões, Fora 4 · Casa -0.5 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa 3, Fora 3 · -0.5 → **RED**
 
-## Exemplo VOID
+## Exemplo PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+0.0 · empate → **PUSH**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- [04-cartoes-faltas.md](./04-cartoes-faltas.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time mais disciplinado vs agressivo
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Árbitro homogêneo
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Diff cartões
+- Árbitro
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Técnico vs destroyer
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Derby equilibrado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Cartão 90+ muda
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Árbitro consultado
 
 ---
 
@@ -582,106 +411,68 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Over/Under Asiático Cartões** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total cartões **4.25**, **4.75**, etc.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+Poisson λ_cards.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Split asiático.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+**Over 4.5** · 5 cartões → **GREEN**
+
+## Exemplo HALF
+
+**Over 4.25** · 4 cartões → **Half LOSS**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
-
-## Exemplo VOID
-
-Partida cancelada ou jogador não titular — VOID.
+**Over 4.5** · 4 → **RED**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Total Cartões
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Derby + árbitro rigoroso
+- λ ≈ 4,7
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Amistoso
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- λ_cards + árbitro
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Clássico tenso
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Permissivo
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Vermelho imprevisível
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,88 – 2,05
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Ajuste árbitro em λ
 
 ---
 
@@ -689,106 +480,70 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Handicap Asiático 1º Tempo** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap **gols** aplicado **somente ao placar do 1T**.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+Casa -0.25 HT: metade 0.0 HT + metade -0.5 HT.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Placar intervalo apenas.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+HT 1-0 · Casa -0.5 HT → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 0-0 · Casa -0.5 HT → **RED**
 
-## Exemplo VOID
+## Exemplo PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+HT 0-0 · Casa 0.0 HT → **PUSH**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- [08-primeiro-segundo-tempo.md](./08-primeiro-segundo-tempo.md)
+- Handicap FT
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Favorito início forte
+- λ_HT favorece
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo fechado HT
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- xG 1T
+- % lidera HT
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Pressing alto início
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Mata-mata
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Amostra HT menor
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,90 – 2,15
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] f_HT calibrado
 
 ---
 
@@ -796,106 +551,68 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Over/Under Asiático 1º Tempo** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total gols **1T** linhas **0.75**, **1.25**, etc.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+λ_HT Poisson.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols até intervalo.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+**Over 0.5 HT** · HT 1-0 → **GREEN**
+
+## Exemplo HALF
+
+**Over 0.75 HT** · 0 gols HT → **Half LOSS**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
-
-## Exemplo VOID
-
-Partida cancelada ou jogador não titular — VOID.
+**Over 1.5 HT** · 1 gol HT → **RED**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Gols 1T O/U europeu
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ_HT > 0,9
+- Over 0.75 vs 0.5 europeu
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- 0-0 HT habitual
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Over 0.5 HT %
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Jogo aberto início
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Fechado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Um gol decide half
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+0.75 Over: 1,45 – 1,60
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] λ_HT
 
 ---
 
@@ -903,106 +620,69 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Handicap Asiático 2º Tempo** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap gols **somente 2T**.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+Placar virtual 2T = FT − HT com handicap.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols após intervalo.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+HT 0-0, FT 2-0 → 2T 2-0 · Casa -0.5 2T → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+HT 1-0, FT 1-0 → 2T 0-0 · -0.5 → **RED**
 
-## Exemplo VOID
+## Exemplo PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+Empate 2T · linha 0.0 → **PUSH**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Resultado 2T
+- Handicap FT
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Reação 2T esperada
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Administração
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Gols 2T
+- Subs
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Favorito perdendo HT
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- 3-0 HT
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Cálculo 2T confuso
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,90 – 2,15
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Stats 2T
 
 ---
 
@@ -1010,106 +690,86 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Over/Under Asiático 2º Tempo** no futebol, categoria **Mercados Asiáticos**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total gols **2T** linhas asiáticas **1.25**, **1.75**, etc.
 
 ## Como funciona
 
-Linhas .25/.75 dividem stake.
-Push em linha inteira.
-Ex.: -0.25 perde metade se empate.
+λ_2T Poisson.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Gols pós-intervalo.
 
 ## Exemplo GREEN
 
-Casa -0.5 · 2-1 → GREEN
+HT 0-0, FT 2-1 → 3 gols 2T · Over 1.5 2T → **GREEN**
+
+## Exemplo HALF
+
+Over 1.25 2T · 1 gol 2T → **Half LOSS**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
-
-## Exemplo VOID
-
-Partida cancelada ou jogador não titular — VOID.
+Over 1.5 2T · 1 gol → **RED**
 
 ## Mercados relacionados
 
-- Outros mercados em `09-mercados-asiaticos.md`
+- Gols 2T O/U
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- λ_2T > 1,4
+- 0-0 HT + jogo abre 2T
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Líder fecha
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- λ_2T
+- Padrão 0-0 HT
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Second half open
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Controle
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Depende HT
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1.25 Over 2T: 1,50 – 1,70
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] λ_2T calculado
 
 ---
 
+## Tabela resumo — Handicap asiático gols
+
+| Placar | Casa -0.5 | Casa -0.25 | Casa 0.0 | Casa +0.5 |
+|--------|-----------|------------|----------|-----------|
+| Vitória 2+ | GREEN | GREEN | GREEN | GREEN |
+| Vitória 1 | GREEN | Half WIN | GREEN | GREEN |
+| Empate | RED | Half LOSS | PUSH | GREEN |
+| Derrota 1 | RED | RED | RED | Half WIN |
+| Derrota 2+ | RED | RED | RED | RED |
+
+---
+
+## Referências
+
+- `probabilityHandicapCover()` — Analysis Engine
+- [01-resultados.md](./01-resultados.md) — Handicap Europeu
+- [03-escanteios.md](./03-escanteios.md) · [04-cartoes-faltas.md](./04-cartoes-faltas.md)

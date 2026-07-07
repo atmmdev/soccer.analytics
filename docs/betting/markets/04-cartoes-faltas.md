@@ -1,45 +1,36 @@
 # 04 — Cartões e Faltas
 
-> **Módulo:** Soccer Analytics · Betting · **Categoria:** 04
-> **Liquidação padrão:** 90 minutos + acréscimos
-> **Referência:** Bet365 (regras gerais)
+> **Módulo:** Soccer Analytics · Betting · **Categoria:** 04  
+> **Liquidação padrão:** 90 minutos + acréscimos  
+> **Engine:** Analysis Engine (Poisson O/U para totais)
 
 ## Visão geral
 
-Disciplina — λ cartões e árbitro.
+Mercados de **disciplina** (cartões amarelos e vermelhos) e **infrações** (faltas). Cartões contam para totais: amarelo = 1, vermelho = 1 (direto ou 2º amarelo). Correlacionam com **derby**, árbitro, stakes e intensidade — menos com gols, mais com contexto emocional.
 
 ### Mercados neste arquivo
 
-| # | Mercado | Engine |
-|---|---------|--------|
-| 1 | Total Cartões | Poisson |
-| 2 | Por Time | Poisson |
-| 3 | Primeiro | Poisson |
-| 4 | Último | Poisson |
-| 5 | Jogador Cartão | Player Engine |
-| 6 | Vermelho | Poisson |
-| 7 | Ambos Cartão | Poisson |
-| 8 | Handicap | Poisson |
-| 9 | Asiáticos | Poisson |
-| 10 | Faltas | Statistics |
+| # | Mercado | Dificuldade |
+|---|---------|-------------|
+| 1 | Total Cartões | Médio |
+| 2 | Cartões Por Time | Médio |
+| 3 | Primeiro Cartão | Alto |
+| 4 | Último Cartão | Alto |
+| 5 | Jogador Recebe Cartão | Alto |
+| 6 | Cartão Vermelho no Jogo | Muito Alto |
+| 7 | Ambos Recebem Cartão | Médio |
+| 8 | Handicap Cartões | Médio |
+| 9 | Cartões Asiáticos | Médio |
+| 10 | Total Faltas | Alto |
 
-### Integração Soccer Analytics
-
-Cartões: amarelo=1; 2º amarelo+vermelho=2; vermelho direto=1.
+### Modelo Soccer Analytics
 
 ```
-λ_casa, λ_fora → matriz Poisson → P(mercado)
-Player Engine → P(jogador marca / stat ≥ linha)
+λ_cards = max(0.5, home.avgCards + away.avgCards)
+P(Over L) via Poisson (Analysis Engine)
 ```
 
-### Tabela de liquidação rápida
-
-| Termo | Significado |
-|-------|-------------|
-| GREEN | Aposta ganha |
-| RED | Aposta perdida |
-| VOID | Stake devolvido |
-| PUSH | Linha exata (asiáticos) — devolução |
+Ajuste manual: árbitro +15–25% λ se média cartões/jogo > 5.
 
 ---
 
@@ -47,110 +38,102 @@ Player Engine → P(jogador marca / stat ≥ linha)
 
 ## O que é
 
-Mercado de apostas **Total Cartões** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under no **número total de cartões** (amarelos + vermelhos) de ambos os times.
 
 ## Como funciona
 
-Mercado **Total Cartões** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+| Cartão | Pontos no total |
+|--------|-----------------|
+| Amarelo | 1 |
+| Vermelho direto | 1 |
+| 2º amarelo → vermelho | 1 amarelo + 1 vermelho = **2** no total Bet365 |
+
+Linhas típicas: **3.5**, **4.5**, **5.5** cartões.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+- Cartões mostrados a **jogadores em campo** e **banco** (segundo amarelo) conforme regra Opta.
+- Cartão para **comissão técnica** pode contar em mercados específicos — total geral geralmente **jogadores**.
+- Acréscimos **contam**.
+- Prorrogação **não** conta.
+
+**GREEN Over 4.5:** 5+ cartões
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Atlético vs Sevilla** · 3 amarelos + 1 vermelho = **5** · **Over 4.5** @ 1,95 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+**4 cartões** · Over 4.5 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Jogo cancelado → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Cartões Por Time
+- Jogador Recebe Cartão
+- Total Faltas
+- Cartões Asiáticos
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Derby / rivalidade alta
+- Árbitro com média > 5 cartões/jogo
+- Mata-mata tenso; rebaixamento
+- λ modelo > linha + edge
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Amistoso verão
+- Árbitro permissivo (< 3 cartões/jogo)
+- Times já classificados sem stakes
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+| Indicador | Peso |
+|-----------|------|
+| Cartões/jogo (10j) | Alto |
+| Árbitro média | **Muito alto** |
+| Faltas/jogo | Médio |
+| Derby | Alto |
+| Importância jogo | Médio |
+| Clima quente | Médio |
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- La Liga derby, PL grande rivalidade
+- Árbitro conhecido por cartões
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Amistoso pré-temporada
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Árbitro muda estilo no 2T
+- VAR evita cartão
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+| Linha | Over |
+|-------|------|
+| 3.5 | 1,80 – 1,95 |
+| 4.5 | 1,85 – 2,00 |
+| 5.5 | 1,90 – 2,05 |
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Árbitro designado e média consultada
+- [ ] λ_cards no Analysis Engine
+- [ ] EV > 5%
+- [ ] Contexto derby/mata-mata
 
 ---
 
@@ -158,110 +141,74 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Cartões Por Time** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under de cartões **de um time** (ex.: Roma Over 2.5 cartões).
 
 ## Como funciona
 
-Mercado **Cartões Por Time** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Contam apenas cartões recebidos por jogadores daquele time (inclui vermelho).
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Mesmas regras de contagem por time. Comissão técnica separada se mercado específico.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Roma Over 2.5** · Roma **3** amarelos → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Roma **2** cartões → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Total Cartões
+- Handicap Cartões
+- Jogador Recebe Cartão
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time agressivo / muitas faltas táticas
+- Adversário provoca, jogo quente
+- Visitante sob pressão faltoso
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Time disciplinado (≤ 1.5 cartões/jogo)
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Cartões casa/fora split
+- Faltas cometidas
+- Posição tática (volantes)
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Atletico-style pressing agressivo
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Possession team calma
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Árbitro perdão early → RED Under
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Split cartões time ≥ 10 jogos
+- [ ] Árbitro compatível
 
 ---
 
@@ -269,110 +216,72 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Primeiro Cartão** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta em **qual time recebe o primeiro cartão** (ou qual jogador em mercados estendidos).
 
 ## Como funciona
 
-Mercado **Primeiro Cartão** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Vence quem **receber** o primeiro cartão (amarelo ou vermelho).
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Primeiro cartão **mostrado** pelo árbitro. Cartão rescindido por VAR — liquidação após decisão final.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+Aposta **Casa primeiro cartão** · 12' amarelo casa → **GREEN** @ 1,85
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Visitante cartão 8' → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+0 cartões no jogo → regras
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Último Cartão
+- Jogador Recebe Cartão
+- Primeiro Escanteio (correlação fraca)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Derby com histórico cartão cedo
+- Árbitro rigoroso início
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Árbitro permissivo 1T
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % primeiro cartão casa
+- Faltas 0-15'
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Clássico tenso
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Jogo amistoso
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- VAR adia cartão
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,75 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Histórico início
+- [ ] Stake reduzido
 
 ---
 
@@ -380,110 +289,70 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Último Cartão** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Qual time recebe o **último cartão** do tempo regulamentar.
 
 ## Como funciona
 
-Mercado **Último Cartão** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Útil em jogos tensos com faltas táticas no final.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Último cartão antes do apito final (+ acréscimos).
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Visitante último cartão** · 90+3' → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa último → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+0 cartões → regras
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Primeiro Cartão
+- Over cartões 2T
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time perdendo comete faltas tardias
+- Derby com cartões 2T
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogo controlado
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Cartões 75-90+'
+- Cartões quando perdendo
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Mata-mata emocionante
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- 3-0 administrado
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Árbitro não cartões no final
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,80 – 2,15
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Padrão 2T documentado
 
 ---
 
@@ -491,101 +360,92 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Jogador Recebe Cartão** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Player Engine
+Aposta em jogador específico **receber cartão** (amarelo ou vermelho) durante a partida.
 
 ## Como funciona
 
-Selecione o desfecho entre as opções da casa. A liquidação ocorre ao fim do período definido (90 min + acréscimos do tempo regulamentar), salvo indicação em contrário no boletim.
+- **Sim** se jogador recebe ≥ 1 cartão.
+- Volantes / zagueiros / "destruidores" — targets comuns.
+- Odds por jogador listadas.
 
 ## Como a Bet365 contabiliza
 
-Tempo regulamentar (90 min + acréscimos). Critério Opta/Stats Perform. Gols contra contam para o time beneficiado.
+| Situação | Liquidação |
+|----------|------------|
+| Amarelo ou vermelho | **GREEN** |
+| Não entra em campo | **VOID** |
+| Entra reserva sem cartão | **RED** |
+| Cartão para banco (não jogador) | **RED** no prop jogador |
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Casemiro recebe cartão** @ 2,10 · 34' amarelo → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Sem cartão → **RED**
 
 ## Exemplo VOID
 
-Não titular → VOID
+Lesionado, não entra → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Cartão Vermelho
+- Total Cartões
+- Faltas jogador
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Jogador média > 0,4 cartões/jogo
+- Árbitro rigoroso
+- Adversário dribladores (faltas táticas)
+- EV vs histórico
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Jogador disciplinado
+- Árbitro permissivo
+- Jogador reserva provável
 
 ## Indicadores importantes
 
-- xG e xGA dos últimos 10 jogos
-- Forma recente (W-D-L)
-- Lesões e suspensões
-- Motivação (tabela, mata-mata)
+- Cartões/jogo jogador
+- Faltas cometidas/jogo
+- Árbitro
+- Posição (DM, CB)
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Casemiro, Felipe Melo type vs dribladores
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Atacante que não marca falta
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Jogador substituído cedo sem cartão
+- VAR não mostra cartão
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+| Perfil | Faixa |
+|--------|-------|
+| Cartão-fácil | 1,80 – 2,50 |
+| Médio | 3,00 – 5,00 |
+| Raro | 6,00+ |
 
 ## Grau de dificuldade
 
-**Alto** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Titular confirmado
+- [ ] Média cartões ≥ 8 jogos
+- [ ] Árbitro consultado
+- [ ] Regra VOID "must play"
 
 ---
 
@@ -593,110 +453,75 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Cartão Vermelho no Jogo** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta **Sim/Não** se haverá **pelo menos um cartão vermelho** na partida.
 
 ## Como funciona
 
-Mercado **Cartão Vermelho no Jogo** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- **Sim:** qualquer vermelho (direto ou 2º amarelo).
+- Alta variância; odds Sim típicas 3,00–5,00.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Qualquer vermelho a jogador em campo conta. Vermelho comissão técnica — ver mercado específico.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Sim vermelho** @ 4,00 · 67' expulsão → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Só amarelos → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono antes vermelho → VOID
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Total Cartões Over alto
+- Jogador Recebe Cartão
+- Derby markets
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Derby histórico expulsões
+- Árbitro expulsivo
+- Jogo decisivo tenso
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Amistoso / árbitro permissivo
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- % jogos com vermelho (10j)
+- Árbitro vermelhos/jogo
+- Rivalidade
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Derby caliente
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Bundesliga disciplinada média
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Variância extrema
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+Sim: 3,50 – 5,50 · Não: 1,15 – 1,25
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Muito Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Stake ≤ 0,5%
+- [ ] Frequência histórica vermelho > implícita
 
 ---
 
@@ -704,110 +529,73 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Ambos Recebem Cartão** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Aposta se **ambos os times** recebem **pelo menos um cartão** cada (BTTS equivalente para cartões).
 
 ## Como funciona
 
-Mercado **Ambos Recebem Cartão** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- **Sim:** time A ≥ 1 cartão E time B ≥ 1 cartão.
+- **Não:** pelo menos um time sem cartão.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Cartões a jogadores de cada time. Time sem cartão = Não ganha.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Sim** · Casa 2, Fora 1 cartão → **GREEN** @ 1,75
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa 3, Fora 0 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Total Cartões
+- BTTS (correlação fraca +)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Jogo equilibrado tenso
+- Ambos média cartões > 1,8/jogo
+- Derby
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Favorito domina sem resposta
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Cartões médios cada time
+- Árbitro
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Rivalidade equilibrada
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Favorito 3-0 sem reação
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Um time ultra-disciplinado
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+Sim: 1,70 – 2,00 · Não: 1,80 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Ambos times média cartões > 1,5
+- [ ] Árbitro não ultra-permissivo
 
 ---
 
@@ -815,110 +603,72 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Handicap Cartões** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Handicap na **diferença de cartões** entre times (ex.: Casa -1.5 cartões).
 
 ## Como funciona
 
-Mercado **Handicap Cartões** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
 ```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
+Casa -1.5: cartões_casa - 1.5 > cartões_fora → GREEN
 ```
-Matriz de placares para mercados dependentes de gols de ambos os times.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Diferença após handicap. Linhas .5 ou asiáticas.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Casa -1.5** · Casa 4, Fora 2 → 2.5 > 2 → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+Casa 3, Fora 2 → 1.5 < 2 → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Abandono → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Cartões Por Time
+- Handicap gols
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Time mais agressivo / provocador esperado
+- Visitante joga sujo histórico
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Árbitro trata igual
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Diferença média cartões
+- Estilo jogo
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Casa agressiva vs visitante técnico
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Árbitro homogêneo
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Cartões concentrados um time só
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,10
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Diferença histórica ≥ 10 jogos
 
 ---
 
@@ -926,110 +676,74 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Cartões Asiáticos** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Total cartões com **linhas asiáticas** (.25 / .75) — meio green/red/push.
 
 ## Como funciona
 
-Mercado **Cartões Asiáticos** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+Idêntico a escanteios asiáticos aplicado a λ cartões.
+
+| Linha | 4 cartões | 5 cartões |
+|-------|-----------|-----------|
+| Over 4.25 | Meio RED | Meio GREEN + push |
+| Over 4.5 | RED | GREEN |
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Split stake conforme tabela asiática.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Over 4.5** · 5 cartões → **GREEN**
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+4 cartões · Over 4.5 → **RED**
 
-## Exemplo VOID
+## Exemplo PUSH
 
-Partida cancelada ou jogador não titular — VOID.
+Over 4.0 · exatamente 4 → push (se linha existir)
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Total Cartões
+- [09-mercados-asiaticos.md](./09-mercados-asiaticos.md)
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Reduzir variância
+- λ ≈ 4,7 → linha 4.75
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- Sem entender meio resultado
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- λ decimal
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- Apostador avançado
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Iniciante
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Confusão liquidação
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,88 – 2,02
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Médio**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Entender split stake asiático
 
 ---
 
@@ -1037,110 +751,95 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 ## O que é
 
-Mercado de apostas **Total Faltas** no futebol, categoria **Cartões e Faltas**. Oferecido pela Bet365 e casas similares; modelado no Soccer Analytics quando indicado.
-
-> **Engine Soccer Analytics:** Analysis Engine (Poisson)
+Over/Under no **número total de faltas** marcadas pelo árbitro (ambos times).
 
 ## Como funciona
 
-Mercado **Total Faltas** liquidado no tempo regulamentar.
-λ estimado: média histórica ajustada por xG/xGA e contexto.
-```
-P(k) = (λ^k × e^-λ) / k!
-P(Over L) = 1 - Σ P(k) para k ≤ floor(L)
-```
-Matriz de placares para mercados dependentes de gols de ambos os times.
+- Faltas ≠ cartões (nem toda falta é cartão).
+- Linhas típicas: **20.5**, **22.5**, **24.5** faltas.
+- Dados via Opta; disponibilidade Bet365 varia por competição.
 
 ## Como a Bet365 contabiliza
 
-Gols em acréscimos do 1º e 2º tempo **contam**.
-Gols contra: atribuídos ao time beneficiado; não ao adversário em props de jogador.
-Partida abandonada: regras específicas; geralmente VOID se < 90 min.
-Prorrogação **não** conta salvo mercado explícito (qualificação, método vitória).
+Faltas sancionadas pelo árbitro principal. Faltas não marcadas (vantagem) — critério Opta.
 
 ## Exemplo GREEN
 
-Seleção correta — GREEN.
+**Over 22.5 faltas** · 25 faltas → **GREEN** @ 1,90
 
 ## Exemplo RED
 
-Seleção incorreta — RED.
+22 faltas → **RED**
 
 ## Exemplo VOID
 
-Partida cancelada ou jogador não titular — VOID.
+Cancelado → **VOID**
 
 ## Mercados relacionados
 
-- Outros mercados em `04-cartoes-faltas.md`
+- Total Cartões (correlação +)
+- Cartões Por Time
 
 ## Quando utilizar
 
-- Edge positivo no modelo Soccer Analytics
-- Indicadores alinhados com a seleção
-- Liquidez e odd estável no mercado
+- Árbitro marca muitas faltas
+- Jogo físico (Premier League, Serie A)
+- Derby sem necessariamente muitos cartões
 
 ## Quando evitar
 
-- Amostra estatística insuficiente
-- Notícia de lesão não precificada
-- Correlação excessiva no bilhete
+- La Liga técnica permissiva
+- Árbitro deixa jogar
 
 ## Indicadores importantes
 
-- λ total (Poisson) e xG combinado
-- Média de gols da liga
-- Ritmo (PPDA, finalizações)
-- Contexto tático (precisa ganhar vs administrar)
+- Faltas/jogo árbitro
+- Faltas/jogo times
+- Estilo (pressing vs posse)
 
 ## Perfil ideal
 
-Analista com modelo calibrado e amostra ≥ 10 jogos.
+- PL física, árbitro rigoroso em faltas
 
 ## Perfil ruim
 
-Apostador sem dados; perseguição de odd alta.
+- Tiki-taka permissivo
 
 ## Riscos
 
-- Variância inerente ao futebol
-- Gol nos acréscimos altera liquidação
-- Dados de última hora (escalação)
+- Dados faltas menos disponíveis que cartões
+- Liquidez baixa
 
 ## Odds médias
 
-| Contexto | Faixa típica (decimal) |
-|----------|------------------------|
-| Seleção principal | 1,80 – 3,50 |
-
-Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilidades.md)).
+1,85 – 2,05
 
 ## Grau de dificuldade
 
-**Médio** — escala Soccer Analytics.
-
-| Nível | Descrição |
-|-------|-----------|
-| Muito Baixo | Alta previsibilidade |
-| Baixo | Favorito claro |
-| Médio | Mercado principal |
-| Alto | Props / eventos raros |
-| Muito Alto | Combinações / hat-trick |
+**Alto**
 
 ## Checklist
 
-- [ ] Confirmar regra de tempo (90 min vs intervalo)
-- [ ] Verificar escalação e ausências
-- [ ] Calcular P_real no Analysis/Player Engine
-- [ ] Comparar EV = P_real × odd - 1
-- [ ] Validar correlação com outras pernas
-- [ ] Registrar odd no momento da aposta (CLV)
-
-### Notas Soccer Analytics
-
-- Mercado indexável para agentes de IA em `markets/`.
-- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
-- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+- [ ] Fonte dados faltas confirmada
+- [ ] Árbitro média faltas > linha
+- [ ] Roadmap Statistics Engine (importação)
 
 ---
 
+## Tabela árbitro (ajuste λ)
+
+| Média cartões/jogo árbitro | Ajuste λ |
+|----------------------------|----------|
+| < 3,5 | -15% |
+| 3,5 – 4,5 | baseline |
+| 4,5 – 5,5 | +10% |
+| > 5,5 | +20% |
+
+---
+
+## Referências
+
+- Analysis Engine: `probabilityOverLine()` para cartões
+- [../ai/indicadores.md](../ai/indicadores.md) — árbitro
+- [09-mercados-asiaticos.md](./09-mercados-asiaticos.md)
+- `avgCards` em Statistics Engine
