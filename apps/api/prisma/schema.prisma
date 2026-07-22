@@ -469,13 +469,40 @@ model StudyTicketLeg {
 
 // ─── Bankroll ────────────────────────────────────────────
 
+enum BankrollPeriodStatus {
+  OPEN
+  CLOSED
+}
+
+model BankrollPeriod {
+  id             String               @id @default(cuid())
+  name           String
+  status         BankrollPeriodStatus @default(OPEN)
+  startsAt       DateTime             @map("starts_at")
+  endsAt         DateTime?            @map("ends_at")
+  initialAmount  Float                @map("initial_amount")
+  closingBalance Float?               @map("closing_balance")
+  notes          String?
+  createdAt      DateTime             @default(now()) @map("created_at")
+  updatedAt      DateTime             @updatedAt @map("updated_at")
+
+  entries BankrollEntry[]
+
+  @@index([status])
+  @@map("bankroll_periods")
+}
+
 model BankrollEntry {
   id          String   @id @default(cuid())
   amount      Float
   type        String
   description String?
   ticketId    String?  @map("ticket_id")
+  periodId    String?  @map("period_id")
   createdAt   DateTime @default(now()) @map("created_at")
 
+  period BankrollPeriod? @relation(fields: [periodId], references: [id], onDelete: Cascade)
+
+  @@index([periodId])
   @@map("bankroll_entries")
 }

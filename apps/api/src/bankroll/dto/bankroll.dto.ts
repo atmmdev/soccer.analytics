@@ -1,4 +1,13 @@
-import { IsEnum, IsIn, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import {
+  IsDateString,
+  IsEnum,
+  IsIn,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+  MinLength,
+} from 'class-validator';
 
 export enum BankrollEntryType {
   DEPOSIT = 'DEPOSIT',
@@ -20,6 +29,34 @@ export class CreateBankrollEntryDto {
   @IsOptional()
   @IsString()
   description?: string;
+
+  @IsOptional()
+  @IsString()
+  periodId?: string;
+}
+
+export class CreateBankrollPeriodDto {
+  @IsString()
+  @MinLength(2)
+  name: string;
+
+  @IsNumber()
+  @Min(0.01)
+  initialAmount: number;
+
+  @IsOptional()
+  @IsDateString()
+  startsAt?: string;
+
+  @IsOptional()
+  @IsString()
+  notes?: string;
+}
+
+export class CloseBankrollPeriodDto {
+  @IsOptional()
+  @IsString()
+  notes?: string;
 }
 
 export class SettleTicketDto {
