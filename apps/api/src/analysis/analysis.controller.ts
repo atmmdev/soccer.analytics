@@ -50,7 +50,13 @@ export class AnalysisController {
 
   @Get('markets')
   @ApiOperation({ summary: 'List analyzed markets (all, ev-plus, or bet)' })
-  markets(@Query('filter') filter?: 'all' | 'ev-plus' | 'bet') {
-    return this.analysisService.getAnalyzedMarkets(filter ?? 'all');
+  markets(
+    @Query('filter') filter?: 'all' | 'ev-plus' | 'bet',
+    @Query('competitionId') competitionId?: string,
+  ) {
+    return this.analysisService.getAnalyzedMarkets(
+      filter ?? 'all',
+      competitionId || undefined,
+    );
   }
 }

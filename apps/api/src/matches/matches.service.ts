@@ -46,8 +46,9 @@ export class MatchesService {
     }
 
     if (query.date) {
-      const start = new Date(`${query.date}T00:00:00.000Z`);
-      const end = new Date(`${query.date}T23:59:59.999Z`);
+      const [y, m, d] = query.date.split('-').map(Number);
+      const start = new Date(y, m - 1, d, 0, 0, 0, 0);
+      const end = new Date(y, m - 1, d, 23, 59, 59, 999);
       where.matchDate = { gte: start, lte: end };
     }
 

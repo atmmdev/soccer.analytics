@@ -36,12 +36,18 @@ export function useRunAnalysis(matchId: string) {
   });
 }
 
-export function useAnalyzedMarkets(filter: 'all' | 'ev-plus' | 'bet' = 'all') {
+export function useAnalyzedMarkets(
+  filter: 'all' | 'ev-plus' | 'bet' = 'all',
+  competitionId?: string | null,
+) {
   return useQuery({
-    queryKey: ['analysis', 'markets', filter],
+    queryKey: ['analysis', 'markets', filter, competitionId ?? null],
     queryFn: async () => {
       const { data } = await apiClient.get<EvPlusMarket[]>('/analysis/markets', {
-        params: { filter },
+        params: {
+          filter,
+          ...(competitionId ? { competitionId } : {}),
+        },
       });
       return data;
     },

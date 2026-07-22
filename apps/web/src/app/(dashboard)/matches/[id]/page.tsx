@@ -125,6 +125,7 @@ export default function MatchDetailPage({
         <AnalysisPanel
           matchId={id}
           matchLabel={`${match.homeTeam.name} vs ${match.awayTeam.name}`}
+          canAnalyze={match.status === 'SCHEDULED' || match.status === 'LIVE'}
         />
 
         <Card className="border-border/60 bg-card/50">

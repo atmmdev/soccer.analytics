@@ -51,13 +51,21 @@ export interface EvPlusMarket {
   matchId: string;
   matchLabel: string;
   competition: string;
+  competitionId?: string | null;
+  homeTeam?: string;
+  awayTeam?: string;
+  homeLogoUrl?: string | null;
+  awayLogoUrl?: string | null;
   market: string;
+  marketType?: string;
   probability: number;
   fairOdd: number;
   bookmakerOdd: number;
   ev: number;
   confidence: number;
   recommendation: Recommendation;
+  playerModel?: boolean;
+  modelSupported?: boolean;
 }
 
 export const MARKET_TYPE_LABELS: Record<string, string> = {

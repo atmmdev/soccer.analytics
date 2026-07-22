@@ -34,6 +34,8 @@ import { toast } from 'sonner';
 interface AnalysisPanelProps {
   matchId: string;
   matchLabel?: string;
+  /** Só jogos agendados ou ao vivo */
+  canAnalyze?: boolean;
 }
 
 function formatPct(value: number) {
@@ -92,7 +94,11 @@ function AnalysisSummary({
   );
 }
 
-export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
+export function AnalysisPanel({
+  matchId,
+  matchLabel,
+  canAnalyze = true,
+}: AnalysisPanelProps) {
   const router = useRouter();
   const { data: latest, isLoading } = useLatestAnalysis(matchId);
   const runAnalysis = useRunAnalysis(matchId);
@@ -103,7 +109,7 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
     data: explanation,
     isLoading: loadingExplanation,
     isError: explanationError,
-  } = useMatchExplanation(matchId, showExplanation);
+  } = useMatchExplanation(matchId, showExplanation && canAnalyze);
 
   const resolvedLabel = matchLabel ?? 'Jogo';
 
@@ -133,6 +139,10 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
   };
 
   const handleRun = () => {
+    if (!canAnalyze) {
+      toast.error('Análise só para jogos agendados ou ao vivo');
+      return;
+    }
     runAnalysis.mutate(10, {
       onSuccess: () => toast.success('Análise concluída e snapshot salvo'),
       onError: (error) => {
@@ -145,7 +155,26 @@ export function AnalysisPanel({ matchId, matchLabel }: AnalysisPanelProps) {
     });
   };
 
-  const display = runAnalysis.data ?? latest;
+  const display = canAnalyze ? (runAnalysis.data ?? latest) : null;
+
+  if (!canAnalyze) {
+    return (
+      <Card className="border-border/60 bg-card/50">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Target className="h-4 w-4 text-primary" />
+            Analysis Engine
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Análises de mercado só são feitas para jogos <strong>agendados</strong> ou{' '}
+            <strong>ao vivo</strong>. Jogos encerrados não entram na fila de análise.
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card className="border-border/60 bg-card/50">

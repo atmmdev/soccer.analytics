@@ -149,26 +149,32 @@ export class DashboardService {
     const tomorrowEnd = new Date(tomorrowStart);
     tomorrowEnd.setHours(23, 59, 59, 999);
 
-    const matches = await this.prisma.match.findMany({
-      where: {
-        externalId: { not: null },
-        OR: [
-          {
-            matchDate: { gte: todayStart, lte: todayEnd },
-            status: {
-              in: [MatchStatus.SCHEDULED, MatchStatus.LIVE, MatchStatus.FINISHED],
-            },
-          },
-          {
-            matchDate: { gte: tomorrowStart, lte: tomorrowEnd },
-            status: MatchStatus.SCHEDULED,
-          },
-        ],
-      },
-      include: { homeTeam: true, awayTeam: true, competition: true },
-      orderBy: { matchDate: 'asc' },
-      take: 60,
-    });
+    // Busca hoje e amanhã em paralelo — evita que finalizados de hoje
+    // consumam o take:N e escondam os jogos de amanhã.
+    const [todayMatches, tomorrowMatches] = await Promise.all([
+      this.prisma.match.findMany({
+        where: {
+          externalId: { not: null },
+          matchDate: { gte: todayStart, lte: todayEnd },
+          status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        },
+        include: { homeTeam: true, awayTeam: true, competition: true },
+        orderBy: { matchDate: 'asc' },
+        take: 40,
+      }),
+      this.prisma.match.findMany({
+        where: {
+          externalId: { not: null },
+          matchDate: { gte: tomorrowStart, lte: tomorrowEnd },
+          status: MatchStatus.SCHEDULED,
+        },
+        include: { homeTeam: true, awayTeam: true, competition: true },
+        orderBy: { matchDate: 'asc' },
+        take: 40,
+      }),
+    ]);
+
+    const matches = [...todayMatches, ...tomorrowMatches];
 
     const result = [];
     for (const m of matches) {
@@ -194,9 +200,7 @@ export class DashboardService {
         status:
           m.status === MatchStatus.LIVE
             ? ('live' as const)
-            : m.status === MatchStatus.FINISHED
-              ? ('finished' as const)
-              : ('scheduled' as const),
+            : ('scheduled' as const),
         day: matchDay as 'today' | 'tomorrow',
       });
     }

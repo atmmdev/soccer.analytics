@@ -127,7 +127,7 @@ export class SyncService implements OnModuleInit {
       oddsErrors: [] as string[],
       statistics: [] as unknown[],
       analysesRun: 0,
-      snapshotsResolved: 0,
+      snapshotsDiscarded: 0,
     };
 
     try {
@@ -151,7 +151,7 @@ export class SyncService implements OnModuleInit {
       }
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'resolve', result });
-      result.snapshotsResolved = await this.analysis.resolveFinishedSnapshots();
+      result.snapshotsDiscarded = await this.analysis.discardInactiveAnalyses();
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'odds', result });
       const oddsDates = [syncDate, this.offsetDate(syncDate, 1)];

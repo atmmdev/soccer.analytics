@@ -5,12 +5,14 @@ export interface Team {
   name: string;
   shortName: string | null;
   country: string | null;
+  logoUrl?: string | null;
 }
 
 export interface Competition {
   id: string;
   name: string;
   country: string | null;
+  logoUrl?: string | null;
 }
 
 export interface Match {

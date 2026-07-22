@@ -30,10 +30,18 @@ export default function AnalyzerPage() {
   const [period, setPeriod] = useState<AnalysisPeriod>(10);
   const [view, setView] = useState<AnalysisView>('home');
 
-  const { data: matchesData, isLoading: loadingMatches } = useMatches({
+  const { data: scheduledData, isLoading: loadingScheduled } = useMatches({
     status: 'SCHEDULED',
     limit: 50,
   });
+  const { data: liveData, isLoading: loadingLive } = useMatches({
+    status: 'LIVE',
+    limit: 50,
+  });
+  const loadingMatches = loadingScheduled || loadingLive;
+  const matchesData = {
+    data: [...(liveData?.data ?? []), ...(scheduledData?.data ?? [])],
+  };
   const { data: analysis, isLoading: loadingAnalysis } = useMatchAnalysis(
     matchId,
     period,
@@ -45,18 +53,20 @@ export default function AnalyzerPage() {
   }, [initialMatchId]);
 
   useEffect(() => {
-    if (!matchId && matchesData?.data.length) {
+    if (!matchId && matchesData.data.length) {
       setMatchId(matchesData.data[0].id);
     }
-  }, [matchId, matchesData]);
+  }, [matchId, matchesData.data]);
 
-  const matches = matchesData?.data ?? [];
+  const matches = matchesData.data;
   const selectedMatch = matches.find((m) => m.id === matchId);
   const matchLabel = analysis
     ? `${analysis.match.homeTeam.name} vs ${analysis.match.awayTeam.name}`
     : selectedMatch
       ? `${selectedMatch.homeTeam.name} vs ${selectedMatch.awayTeam.name}`
       : undefined;
+  const canAnalyze =
+    selectedMatch?.status === 'SCHEDULED' || selectedMatch?.status === 'LIVE';
 
   return (
     <div className="flex min-h-full flex-col">
@@ -207,7 +217,13 @@ export default function AnalyzerPage() {
           </>
         )}
 
-        {matchId && <AnalysisPanel matchId={matchId} matchLabel={matchLabel} />}
+        {matchId && (
+          <AnalysisPanel
+            matchId={matchId}
+            matchLabel={matchLabel}
+            canAnalyze={canAnalyze || !selectedMatch}
+          />
+        )}
       </div>
     </div>
   );

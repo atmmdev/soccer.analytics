@@ -11,6 +11,10 @@ import { PlayerEngineService } from '../engines/player-engine/player-engine.serv
 import { DataEngineService } from '../engines/data-engine/data-engine.service';
 
 const ANALYSIS_STALE_MS = 4 * 60 * 60 * 1000;
+const ANALYZABLE_STATUSES: MatchStatus[] = [
+  MatchStatus.SCHEDULED,
+  MatchStatus.LIVE,
+];
 
 @Injectable()
 export class AnalysisService {
@@ -34,6 +38,12 @@ export class AnalysisService {
     });
 
     if (!match) throw new NotFoundException('Match not found');
+
+    if (!ANALYZABLE_STATUSES.includes(match.status)) {
+      throw new BadRequestException(
+        'Análise só é permitida para jogos agendados ou ao vivo. Jogos encerrados não são analisados.',
+      );
+    }
 
     const [homeTeamStats, awayTeamStats] = await Promise.all([
       this.statisticsEngine.computeTeamStats(match.homeTeamId, period, 'home'),
@@ -222,8 +232,17 @@ export class AnalysisService {
     });
   }
 
-  async getAnalyzedMarkets(filter: 'all' | 'ev-plus' | 'bet' = 'all') {
+  async getAnalyzedMarkets(
+    filter: 'all' | 'ev-plus' | 'bet' = 'all',
+    competitionId?: string,
+  ) {
     const snapshots = await this.prisma.snapshot.findMany({
+      where: {
+        match: {
+          status: { in: ANALYZABLE_STATUSES },
+          ...(competitionId ? { competitionId } : {}),
+        },
+      },
       orderBy: { analyzedAt: 'desc' },
       take: 50,
       include: {
@@ -238,13 +257,21 @@ export class AnalysisService {
       matchId: string;
       matchLabel: string;
       competition: string;
+      competitionId: string | null;
+      homeTeam: string;
+      awayTeam: string;
+      homeLogoUrl: string | null;
+      awayLogoUrl: string | null;
       market: string;
+      marketType: string;
       probability: number;
       fairOdd: number;
       bookmakerOdd: number;
       ev: number;
       confidence: number;
       recommendation: string;
+      playerModel?: boolean;
+      modelSupported?: boolean;
     };
 
     const rows: MarketRow[] = [];
@@ -254,12 +281,15 @@ export class AnalysisService {
       const data = snap.data as {
         markets?: Array<{
           selection: string;
+          marketType?: string;
           probability: number;
           fairOdd: number;
           bookmakerOdd: number;
           ev: number;
           confidence: number;
           recommendation: string;
+          playerModel?: boolean;
+          modelSupported?: boolean;
         }>;
       };
 
@@ -278,13 +308,21 @@ export class AnalysisService {
           matchId: snap.matchId,
           matchLabel: `${snap.match.homeTeam.name} vs ${snap.match.awayTeam.name}`,
           competition: snap.match.competition?.name ?? '',
+          competitionId: snap.match.competitionId ?? null,
+          homeTeam: snap.match.homeTeam.name,
+          awayTeam: snap.match.awayTeam.name,
+          homeLogoUrl: snap.match.homeTeam.logoUrl ?? null,
+          awayLogoUrl: snap.match.awayTeam.logoUrl ?? null,
           market: m.selection,
+          marketType: m.marketType ?? 'MATCH_RESULT',
           probability: m.probability,
           fairOdd: m.fairOdd,
           bookmakerOdd: m.bookmakerOdd,
           ev: m.ev,
           confidence: m.confidence,
           recommendation: m.recommendation,
+          playerModel: m.playerModel,
+          modelSupported: m.modelSupported,
         });
       }
     }
@@ -334,41 +372,37 @@ export class AnalysisService {
     return count;
   }
 
-  async resolveFinishedSnapshots(): Promise<number> {
-    const pending = await this.prisma.snapshot.findMany({
+  /**
+   * Descarta snapshots de jogos que não estão agendados/ao vivo.
+   * Análises de mercado só valem para jogos ainda em aberto.
+   */
+  async discardInactiveAnalyses(): Promise<number> {
+    const result = await this.prisma.snapshot.deleteMany({
       where: {
-        accuracy: null,
         match: {
-          status: MatchStatus.FINISHED,
-          homeScore: { not: null },
-          awayScore: { not: null },
+          status: { notIn: ANALYZABLE_STATUSES },
         },
       },
-      select: { id: true },
     });
+    return result.count;
+  }
 
-    let count = 0;
-    for (const snap of pending) {
-      try {
-        await this.resolveSnapshot(snap.id);
-        count++;
-      } catch {
-        // ignore individual failures
-      }
-    }
-
-    return count;
+  /** @deprecated Prefer discardInactiveAnalyses — placares encerrados não mantêm análise de mercado */
+  async resolveFinishedSnapshots(): Promise<number> {
+    return this.discardInactiveAnalyses();
   }
 
   async getHistory(page = 1, limit = 20, status: 'all' | 'resolved' | 'pending' = 'all') {
     const skip = (page - 1) * limit;
 
-    const where =
-      status === 'resolved'
+    const where: Prisma.SnapshotWhereInput = {
+      match: { status: { in: ANALYZABLE_STATUSES } },
+      ...(status === 'resolved'
         ? { accuracy: { not: null } }
         : status === 'pending'
           ? { accuracy: null }
-          : {};
+          : {}),
+    };
 
     const [rows, total] = await Promise.all([
       this.prisma.snapshot.findMany({
