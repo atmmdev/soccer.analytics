@@ -138,7 +138,7 @@ export function TicketBuilder() {
           </div>
         ) : (
           <div className="space-y-2">
-            {selections.map((sel, index) => (
+            {selections.map((sel) => (
               <div
                 key={`${sel.matchId}-${sel.selection}`}
                 className="flex flex-wrap items-center gap-3 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2"
@@ -151,24 +151,6 @@ export function TicketBuilder() {
                     EV {sel.ev != null ? formatPct(sel.ev) : "—"}
                   </p>
                 </div>
-
-                {index === 0 ? (
-                  <div className="w-[100px] shrink-0 space-y-1">
-                    <label className="text-[10px] text-muted-foreground">
-                      Stake (R$)
-                    </label>
-                    <Input
-                      type="number"
-                      min={0}
-                      step={1}
-                      className="h-8 font-mono text-sm"
-                      value={stake}
-                      onChange={(e) => setStake(Number(e.target.value) || 0)}
-                    />
-                  </div>
-                ) : (
-                  <div className="hidden w-[100px] shrink-0 sm:block" />
-                )}
 
                 <div className="w-[88px] shrink-0 space-y-1">
                   <label className="text-[10px] text-muted-foreground">
@@ -191,7 +173,7 @@ export function TicketBuilder() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="mt-8 h-8 w-8 shrink-0"
+                  className="h-8 w-8 shrink-0 self-end"
                   onClick={() => removeSelection(sel.matchId, sel.selection)}
                 >
                   <Trash2 className="h-4 w-4" />
@@ -221,7 +203,7 @@ export function TicketBuilder() {
               <Loader2 className="h-5 w-5 animate-spin text-primary" />
             </div>
           ) : calc && selections.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+            <div className="grid w-full grid-cols-2 gap-3 text-sm sm:grid-cols-5">
               <div>
                 <p className="text-xs text-muted-foreground">Odd total</p>
                 <p className="font-mono font-bold">
@@ -241,6 +223,19 @@ export function TicketBuilder() {
                     ? `${calc.overallEV >= 0 ? "+" : ""}${formatPct(calc.overallEV)}`
                     : "—"}
                 </p>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs text-muted-foreground">
+                  Stake (R$)
+                </label>
+                <Input
+                  type="number"
+                  min={0}
+                  step={1}
+                  className="h-8 font-mono text-sm"
+                  value={stake}
+                  onChange={(e) => setStake(Number(e.target.value) || 0)}
+                />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">

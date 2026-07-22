@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '@/lib/api/client';
 import type { AnalysisResult, EvPlusMarket, LatestAnalysis } from '@/types/analysis';
 import type { AnalysisHistoryResponse } from '@/types/analysis-history';
+import type { LeagueTicketSuggestionsResponse } from '@/types/league-suggestions';
 
 export function useLatestAnalysis(matchId: string) {
   return useQuery({
@@ -31,6 +32,9 @@ export function useRunAnalysis(matchId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['analysis', 'latest', matchId] });
       queryClient.invalidateQueries({ queryKey: ['analysis', 'markets'] });
+      queryClient.invalidateQueries({
+        queryKey: ['analysis', 'league-ticket-suggestions'],
+      });
       queryClient.invalidateQueries({ queryKey: ['alerts'] });
     },
   });
@@ -71,5 +75,33 @@ export function useAnalysisHistory(
       );
       return data;
     },
+  });
+}
+
+export function useLeagueTicketSuggestions(
+  legs = 3,
+  competitionId?: string,
+  options?: { enabled?: boolean },
+) {
+  return useQuery({
+    queryKey: [
+      'analysis',
+      'league-ticket-suggestions',
+      legs,
+      competitionId ?? 'catalog',
+    ],
+    queryFn: async () => {
+      const { data } = await apiClient.get<LeagueTicketSuggestionsResponse>(
+        '/analysis/league-ticket-suggestions',
+        {
+          params: {
+            legs,
+            ...(competitionId ? { competitionId } : {}),
+          },
+        },
+      );
+      return data;
+    },
+    enabled: options?.enabled ?? true,
   });
 }

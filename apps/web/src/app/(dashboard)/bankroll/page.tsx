@@ -1042,34 +1042,34 @@ export default function BankrollPage() {
             {history && history.length > 0 && <BankrollChart data={history} />}
 
             <Card className="border-border/60 bg-card/80">
-              <CardHeader>
-                <CardTitle className="text-base">Resumo de apostas</CardTitle>
-              </CardHeader>
-              <CardContent className="grid grid-cols-3 gap-4 text-sm">
-                <div>
-                  <p className="text-muted-foreground">Total apostado</p>
-                  <p className="font-mono font-bold">
-                    {formatCurrency(summary.totalStaked)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">Bilhetes apostados</p>
+                <CardHeader>
+                  <CardTitle className="text-base">Resumo de apostas</CardTitle>
+                </CardHeader>
+                <CardContent className="grid grid-cols-3 gap-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground">Total apostado</p>
+                    <p className="font-mono font-bold">
+                      {formatCurrency(summary.totalStaked)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Bilhetes apostados</p>
                   <p className="font-mono font-bold">
                     {summary.ticketsPlaced}
                   </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-emerald-400" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="h-4 w-4 text-emerald-400" />
                   <span className="text-emerald-400">
                     {summary.ticketsWon} greens
                   </span>
-                  <TrendingDown className="ml-2 h-4 w-4 text-red-400" />
+                    <TrendingDown className="ml-2 h-4 w-4 text-red-400" />
                   <span className="text-red-400">
                     {summary.ticketsLost} reds
                   </span>
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                </CardContent>
+              </Card>
 
             <Card className="border-border/60 bg-card/80">
               <CardHeader>
@@ -1099,16 +1099,16 @@ export default function BankrollPage() {
                           ENTRY_TYPE_LABELS[entry.type] ?? entry.type;
 
                         return (
-                          <TableRow key={entry.id}>
-                            <TableCell className="text-muted-foreground">
-                              {new Date(entry.createdAt).toLocaleString('pt-BR')}
-                            </TableCell>
-                            <TableCell>
+                        <TableRow key={entry.id}>
+                          <TableCell className="text-muted-foreground">
+                            {new Date(entry.createdAt).toLocaleString('pt-BR')}
+                          </TableCell>
+                          <TableCell>
                               <Badge variant="outline">{typeLabel}</Badge>
-                            </TableCell>
-                            <TableCell>{entry.description ?? '—'}</TableCell>
-                            <TableCell
-                              className={`text-right font-mono font-semibold ${
+                          </TableCell>
+                          <TableCell>{entry.description ?? '—'}</TableCell>
+                          <TableCell
+                            className={`text-right font-mono font-semibold ${
                                 entry.amount >= 0
                                   ? 'text-emerald-400'
                                   : 'text-red-400'
@@ -1128,8 +1128,8 @@ export default function BankrollPage() {
                                 />
                               ) : (
                                 <>
-                                  {entry.amount >= 0 ? '+' : ''}
-                                  {formatCurrency(entry.amount)}
+                            {entry.amount >= 0 ? '+' : ''}
+                            {formatCurrency(entry.amount)}
                                 </>
                               )}
                             </TableCell>
@@ -1184,9 +1184,9 @@ export default function BankrollPage() {
                                     </div>
                                   )
                                 ) : null}
-                              </TableCell>
+                          </TableCell>
                             )}
-                          </TableRow>
+                        </TableRow>
                         );
                       })}
                     </TableBody>

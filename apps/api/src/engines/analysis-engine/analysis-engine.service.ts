@@ -126,6 +126,16 @@ function probabilityBtts(matrix: number[][]): number {
 }
 
 function mostLikelyScore(matrix: number[][]): string {
+  const cell = mostLikelyScoreCell(matrix);
+  return `${cell.home}-${cell.away}`;
+}
+
+/** Célula mais provável da matriz Poisson (placar exato). */
+export function mostLikelyScoreCell(matrix: number[][]): {
+  home: number;
+  away: number;
+  probability: number;
+} {
   let bestH = 0;
   let bestA = 0;
   let bestP = 0;
@@ -138,7 +148,7 @@ function mostLikelyScore(matrix: number[][]): string {
       }
     }
   }
-  return `${bestH}-${bestA}`;
+  return { home: bestH, away: bestA, probability: bestP };
 }
 
 export function calculateConfidence(

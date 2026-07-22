@@ -7,13 +7,19 @@ import {
   TicketBuilder,
 } from '@/components/tickets/ticket-builder';
 import { StudyTicketsPanel } from '@/components/tickets/study-tickets-panel';
+import { LeagueSuggestions } from '@/components/tickets/league-suggestions';
 
 export default function TicketsPage() {
   return (
     <div className="flex min-h-full flex-col">
-      <AppHeader title="Bilhetes" subtitle="Monte bilhetes com EV · Estude apostas reais importadas da Bet365" />
+      <AppHeader
+        title="Bilhetes"
+        subtitle="Monte bilhetes com EV · Estude apostas reais importadas da Bet365"
+      />
 
       <div className="flex-1 space-y-6 p-6">
+        <LeagueSuggestions />
+
         <div className="flex w-full gap-4">
           <Card className="min-w-0 w-[60%] border-border/60 bg-card/80">
             <CardHeader>

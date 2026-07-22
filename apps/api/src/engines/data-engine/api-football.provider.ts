@@ -203,6 +203,67 @@ export class ApiFootballProvider implements DataProvider {
     return lineup;
   }
 
+  /**
+   * Confrontos diretos (API-Football) — placares no ponto de vista do mandante atual.
+   */
+  async fetchHeadToHead(
+    homeTeamExternalId: string,
+    awayTeamExternalId: string,
+    last = 10,
+  ): Promise<Array<{ homeGoals: number; awayGoals: number }>> {
+    const data = await this.request<{ response: ApiFixture[] }>(
+      '/fixtures/headtohead',
+      {
+        h2h: `${homeTeamExternalId}-${awayTeamExternalId}`,
+        last: String(last),
+      },
+    );
+
+    const out: Array<{ homeGoals: number; awayGoals: number }> = [];
+    for (const item of data.response ?? []) {
+      if (item.fixture.status.short !== 'FT' && item.fixture.status.short !== 'AET') {
+        continue;
+      }
+      const hs = item.goals.home;
+      const as = item.goals.away;
+      if (hs == null || as == null) continue;
+
+      const homeWasHome = String(item.teams.home.id) === homeTeamExternalId;
+      out.push({
+        homeGoals: homeWasHome ? hs : as,
+        awayGoals: homeWasHome ? as : hs,
+      });
+    }
+    return out;
+  }
+
+  /**
+   * Últimos jogos finalizados de um time — gols marcados/sofridos na perspectiva do time.
+   */
+  async fetchTeamRecentResults(
+    teamExternalId: string,
+    last = 10,
+  ): Promise<Array<{ scored: number; conceded: number }>> {
+    const data = await this.request<{ response: ApiFixture[] }>('/fixtures', {
+      team: teamExternalId,
+      last: String(last),
+      status: 'FT-AET',
+    });
+
+    const out: Array<{ scored: number; conceded: number }> = [];
+    for (const item of data.response ?? []) {
+      const hs = item.goals.home;
+      const as = item.goals.away;
+      if (hs == null || as == null) continue;
+      const isHome = String(item.teams.home.id) === teamExternalId;
+      out.push({
+        scored: isHome ? hs : as,
+        conceded: isHome ? as : hs,
+      });
+    }
+    return out;
+  }
+
   private parseTeamStatistics(
     statistics: Array<{ type: string; value: string | number | null }>,
   ) {

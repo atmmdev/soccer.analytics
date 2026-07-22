@@ -48,6 +48,21 @@ export class AnalysisController {
     return this.analysisService.getEvPlusMarkets();
   }
 
+  @Get('league-ticket-suggestions')
+  @ApiOperation({
+    summary:
+      'Sugestões por campeonato: 6 múltiplas 1X2 + 4 placares H2H + 4 pós-análise (mercados). Sem competitionId retorna só a lista.',
+  })
+  leagueTicketSuggestions(
+    @Query('legs') legs?: string,
+    @Query('competitionId') competitionId?: string,
+  ) {
+    return this.analysisService.getLeagueTicketSuggestions(
+      legs ? parseInt(legs, 10) : 3,
+      competitionId || undefined,
+    );
+  }
+
   @Get('markets')
   @ApiOperation({ summary: 'List analyzed markets (all, ev-plus, or bet)' })
   markets(

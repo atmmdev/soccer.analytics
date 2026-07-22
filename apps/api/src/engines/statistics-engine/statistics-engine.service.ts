@@ -195,11 +195,12 @@ export class StatisticsEngineService {
     for (const m of matches) {
       const hs = m.homeScore!;
       const as = m.awayScore!;
-      lastMeetings.push(`${hs}-${as}`);
 
       const upcomingHomeWasHome = m.homeTeamId === homeTeamId;
       const homeScored = upcomingHomeWasHome ? hs : as;
       const awayScored = upcomingHomeWasHome ? as : hs;
+      // Placares no ponto de vista do mandante atual (para Poisson / sugestão)
+      lastMeetings.push(`${homeScored}-${awayScored}`);
 
       if (homeScored > awayScored) homeWins++;
       else if (homeScored < awayScored) awayWins++;

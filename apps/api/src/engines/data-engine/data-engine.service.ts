@@ -685,4 +685,24 @@ export class DataEngineService {
 
     return created;
   }
+
+  async fetchRemoteH2H(
+    homeTeamExternalId: string,
+    awayTeamExternalId: string,
+    last = 10,
+  ) {
+    return this.apiFootball.fetchHeadToHead(
+      homeTeamExternalId,
+      awayTeamExternalId,
+      last,
+    );
+  }
+
+  async fetchRemoteTeamForm(teamExternalId: string, last = 10) {
+    return this.apiFootball.fetchTeamRecentResults(teamExternalId, last);
+  }
+
+  isApiFootballConfigured() {
+    return this.apiFootball.getStatus().configured;
+  }
 }
