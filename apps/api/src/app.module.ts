@@ -9,6 +9,7 @@ import { MatchesModule } from './matches/matches.module';
 import { AnalyzerModule } from './analyzer/analyzer.module';
 import { AnalysisModule } from './analysis/analysis.module';
 import { TicketsModule } from './tickets/tickets.module';
+import { StudyTicketsModule } from './study-tickets/study-tickets.module';
 import { BankrollModule } from './bankroll/bankroll.module';
 import { ResearchModule } from './research/research.module';
 import { AiModule } from './ai/ai.module';
@@ -30,6 +31,7 @@ import { SearchModule } from './search/search.module';
     AnalyzerModule,
     AnalysisModule,
     TicketsModule,
+    StudyTicketsModule,
     BankrollModule,
     ResearchModule,
     AiModule,

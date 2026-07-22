@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.598Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "20052026-112615hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/20052026-112615hs.pdf",
+  "bet365Ref": "SF6831988801I",
+  "placedAt": "2026-05-20T14:26:15.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 13.31,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 26,
+  "potentialReturn": 346.06,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "SC Freiburg v Aston Villa",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas",
+      "selection": "John McGinn: 2+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "SC Freiburg v Aston Villa",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Aston Villa",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "SC Freiburg v Aston Villa",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Ollie Watkins: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "SC Freiburg v Aston Villa",
+      "matchDate": null,
+      "market": "Vincenzo Grifo",
+      "selection": "Derry Scherhant: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "SC Freiburg v Aston Villa",
+      "matchDate": null,
+      "market": "Mais de 7 Escanteios",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "SC Freiburg v Aston Villa",
+      "matchDate": null,
+      "market": "Aston Villa - Mais de 1 Cartões",
+      "selection": "Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "SF6831988801I 20/05/202611:26:15",
+    "Criar Aposta 26,00",
+    "SC Freiburg v Aston Villa",
+    "Total da Aposta R$13,31",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "John McGinn: 2+ Faltas Cometidas",
+    "Jogador - Faltas Cometidas",
+    "Resultado Final: Aston Villa",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Ollie Watkins: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Derry Scherhant: 1+ Chutes ao Gol",
+    "Vincenzo Grifo",
+    "Jogador - Chutes ao Gol",
+    "Mais de 7 Escanteios",
+    "Escanteios",
+    "Aston Villa - Mais de 1 Cartões",
+    "Time Visitante - Total de Cartões - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

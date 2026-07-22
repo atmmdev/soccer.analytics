@@ -1,0 +1,863 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.434Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "24062026-092539hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/24062026-092539hs.pdf",
+  "bet365Ref": "XP4598099061I",
+  "placedAt": "2026-06-24T12:25:39.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Bósnia e Herzegovina ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Edin Dzeko",
+      "selection": "Ermin Mahmic: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 1º Tempo para Bósnia e Herzegovina",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 2º Tempo para Bósnia e Herzegovina",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 2º Tempo para Qatar",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 1º Tempo para Qatar",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Bósnia e Herzegovina",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Bósnia e Herzegovina",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Qatar",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Qatar",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 0,
+      "matchLabel": "Bósnia e Herzegovina v Qatar",
+      "matchDate": null,
+      "market": "Partida - Mais de 1.5 Gols",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 8 Escanteios",
+      "selection": "Total de Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Breel Embolo: 1+ Chutes ao Gol",
+      "selection": "Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 1º Tempo para Suíça",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 2º Tempo para Suíça",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 2º Tempo para Canadá",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0 Escanteios no 1º Tempo para Canadá",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0 Cartões",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Suíça",
+      "selection": "Total de Cartões - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Suíça",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Canadá",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Canadá",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 23,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Canadá",
+      "matchDate": null,
+      "market": "Achraf Hakimi: 1+ Chutes ao Gol",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 24,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "Resultado Final: Marrocos",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 25,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 26,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Marrocos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 27,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Marrocos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 28,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Haiti",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 29,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Haiti",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 30,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Marrocos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 31,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Marrocos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 32,
+      "builderGroup": 2,
+      "matchLabel": "Marrocos v Haiti",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Haiti",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 33,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 34,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 35,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 36,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 37,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Escócia - Mais de 0 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 38,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 39,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 40,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Escócia - Mais de 0.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 41,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time da Casa - Impedimentos",
+      "selection": "Escócia - Mais de 0.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 42,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time Visitante - Impedimentos",
+      "selection": "Brasil - Mais de 0.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 43,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Tiro Livre - 2 Opções",
+      "selection": "Mais de 3.5 Tiros Livres no 1º Tempo para Escócia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 44,
+      "builderGroup": 3,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Tiro Livre - 2 Opções",
+      "selection": "Mais de 3.5 Tiros Livres no 1º Tempo para Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "XP4598099061I 24/06/202609:25:39",
+    "Criar Aposta 1,00",
+    "Bósnia e Herzegovina v Qatar",
+    "Criar Aposta 1,00",
+    "Suíça v Canadá",
+    "Criar Aposta 1,00",
+    "Marrocos v Haiti",
+    "Criar Aposta 1,00",
+    "Escócia v Brasil",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Bósnia e Herzegovina ou Empate",
+    "Chance Dupla",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Ermin Mahmic: 1+ Chutes ao Gol",
+    "Edin Dzeko",
+    "Jogador - Chutes ao Gol",
+    "Mais de 0 Escanteios no 1º Tempo para Bósnia e Herzegovina",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Bósnia e Herzegovina",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Qatar",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Qatar",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Bósnia e Herzegovina",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Bósnia e Herzegovina",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Qatar",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Qatar",
+    "1º Tempo - Time 2 - Chutes ao Gol Ganhou",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 8 Escanteios",
+    "Escanteios",
+    "Breel Embolo: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Mais de 0 Escanteios no 1º Tempo para Suíça",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Suíça",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Canadá",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Canadá",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Cartões",
+    "Total de Cartões - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Suíça",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Suíça",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Canadá",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Canadá",
+    "1º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Achraf Hakimi: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Marrocos",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 0 Escanteios no 1º Tempo para Marrocos",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Marrocos",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Haiti",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Haiti",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Marrocos",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Marrocos",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Haiti",
+    "1º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Resultado Final: Brasil",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 1 Escanteios no 1º Tempo para Brasil",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Brasil",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Escócia - Mais de 0 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Brasil",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Brasil",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Escócia - Mais de 0.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol",
+    "Escócia - Mais de 0.5 Impedimentos",
+    "Time da Casa - Impedimentos",
+    "Brasil - Mais de 0.5 Impedimentos",
+    "Time Visitante - Impedimentos",
+    "Mais de 3.5 Tiros Livres no 1º Tempo para Escócia",
+    "Time da Casa - 1º Tempo - Tiro Livre - 2 Opções",
+    "Mais de 3.5 Tiros Livres no 1º Tempo para Brasil",
+    "Time Visitante - 1º Tempo - Tiro Livre - 2 Opções Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

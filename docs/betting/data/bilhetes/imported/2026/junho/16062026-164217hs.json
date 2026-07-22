@@ -1,0 +1,227 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.675Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16062026-164217hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/16062026-164217hs.pdf",
+  "bet365Ref": "CP4282535551W",
+  "placedAt": "2026-06-16T19:42:17.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 105.4,
+  "potentialReturn": 1054,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "França v Senegal",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Time Visitante - Impedimentos",
+      "selection": "Noruega - Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Time da Casa - Impedimentos",
+      "selection": "Iraque - Mais de 0.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Resultado Final: Argentina",
+      "selection": "Jogador a Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Jogador a Marcar ou Dar Assistência",
+      "selection": "Para Kylian Mbappe Marcar ou Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Total de Escanteios",
+      "selection": "Mais de 8 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Partida - Impedimentos",
+      "selection": "Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Lionel Messi",
+      "selection": "Nicolas Paz - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "CP4282535551W 16/06/202616:42:17",
+    "Criar Aposta 4,00",
+    "França v Senegal",
+    "Criar Aposta 3,10",
+    "Iraque v Noruega",
+    "Criar Aposta 7,50 8,50",
+    "Aposta Aumentada",
+    "Argentina v Argélia",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Kylian Mbappe Marcar ou Dar Assistência",
+    "Jogador a Marcar ou Dar Assistência",
+    "Resultado Final: França",
+    "Resultado Final",
+    "Mais de 8 Escanteios",
+    "Total de Escanteios",
+    "Mais de 1.5 Impedimentos",
+    "Partida - Impedimentos Ganhou",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Noruega - Mais de 1.5 Impedimentos",
+    "Time Visitante - Impedimentos",
+    "Iraque - Mais de 0.5 Impedimentos",
+    "Time da Casa - Impedimentos Perdeu",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Nicolas Paz - Para Dar Assistência",
+    "Lionel Messi",
+    "Jogador a Dar Assistência",
+    "Resultado Final: Argentina",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado Recebido"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.216Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "11062026-092538hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/11062026-092538hs.pdf",
+  "bet365Ref": "RP1612004761I",
+  "placedAt": "2026-06-11T12:25:38.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 841,
+  "potentialReturn": 8410,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "México v África do Sul",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Raúl Jiménez: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Coreia do Sul",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Coreia do Sul",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Tchéquia",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Tchéquia",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Coreia do Sul",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Coreia do Sul",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Tchéquia",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Tchéquia",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Lyle Foster",
+      "selection": "Thalente Mbatha: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "RP1612004761I 11/06/202609:25:38",
+    "Criar Aposta 26,00 29,00",
+    "Aposta Aumentada",
+    "México v África do Sul",
+    "Criar Aposta 26,00 29,00",
+    "Aposta Aumentada",
+    "Coreia do Sul v Tchéquia",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Raúl Jiménez: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Thalente Mbatha: 2+ Chutes ao Gol",
+    "Lyle Foster",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Coreia do Sul",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Coreia do Sul",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Tchéquia",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Tchéquia",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Coreia do Sul",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Coreia do Sul",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Tchéquia",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Tchéquia",
+    "2º Tempo - Time 2 - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

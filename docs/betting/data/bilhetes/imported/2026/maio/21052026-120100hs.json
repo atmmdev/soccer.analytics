@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.805Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "21052026-120100hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/21052026-120100hs.pdf",
+  "bet365Ref": "FF7888981481I",
+  "placedAt": "2026-05-21T15:01:00.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 91,
+  "potentialReturn": 910,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Atlético Mineiro v Cienciano",
+      "matchDate": "21/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Atlético Mineiro e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Racing Club v Caracas",
+      "matchDate": "21/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Racing Club e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.25,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Peñarol v Corinthians",
+      "matchDate": "21/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Corinthians e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 8,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "FF7888981481I 21/05/202612:01:00",
+    "Atlético Mineiro e Sim 3,50",
+    "Atlético Mineiro v Cienciano 21/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Racing Club e Sim 3,25",
+    "Racing Club v Caracas 21/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Corinthians e Sim 8,00",
+    "Peñarol v Corinthians 21/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

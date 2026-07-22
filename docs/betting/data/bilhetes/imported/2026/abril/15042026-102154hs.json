@@ -1,0 +1,205 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.804Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "15042026-102154hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/15042026-102154hs.pdf",
+  "bet365Ref": "SA7387360051I",
+  "placedAt": "2026-04-15T13:21:54.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": 31.5,
+  "potentialReturn": 1575,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bayern de Munique v Real Madrid",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bayern de Munique v Real Madrid",
+      "matchDate": null,
+      "market": "Total de Gols - 1º Tempo",
+      "selection": "Menos de 4 Gols no 1º Tempo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bayern de Munique v Real Madrid",
+      "matchDate": null,
+      "market": "2º Tempo - Gols",
+      "selection": "Mais de 0 Gols no 2º Tempo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Bayern de Munique v Real Madrid",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Real Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Arsenal v Sporting",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Arsenal v Sporting",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 2.5 Chutes ao Gol no 1º Tempo para Arsenal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Arsenal v Sporting",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 2.5 Chutes ao Gol no 2º Tempo para Arsenal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Arsenal v Sporting",
+      "matchDate": null,
+      "market": "Time da Casa - Impedimentos",
+      "selection": "Arsenal - Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Arsenal v Sporting",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Arsenal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "SA7387360051I 15/04/202610:21:54",
+    "Criar Aposta 3,50",
+    "Bayern de Munique v Real Madrid",
+    "Criar Aposta 9,00",
+    "Arsenal v Sporting",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Menos de 4 Gols no 1º Tempo",
+    "Total de Gols - 1º Tempo",
+    "Mais de 0 Gols no 2º Tempo",
+    "2º Tempo - Gols",
+    "Maior Número de Escanteios: Real Madrid",
+    "Escanteios - Aposta Comparativa Perdeu",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Mais de 2.5 Chutes ao Gol no 1º Tempo para Arsenal",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 2.5 Chutes ao Gol no 2º Tempo para Arsenal",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Arsenal - Mais de 1.5 Impedimentos",
+    "Time da Casa - Impedimentos",
+    "Maior Número de Escanteios: Arsenal",
+    "Escanteios - Aposta Comparativa Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

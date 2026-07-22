@@ -1,0 +1,319 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.524Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "15062026-140005hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/15062026-140005hs.pdf",
+  "bet365Ref": "HP3008947941I",
+  "placedAt": "2026-06-15T17:00:05.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 580,
+  "potentialReturn": 5800,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Bélgica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Egito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Bélgica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Egito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Bélgica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Egito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Bélgica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Egito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Uruguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Uruguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Uruguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 1,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Time - Para Receber o Maior Número de Cartões",
+      "selection": "Maior Número de Cartões: Arábia Saudita",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Irã v Nova Zelândia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Irã",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 2,
+      "matchLabel": "Irã v Nova Zelândia",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Irã",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 2,
+      "matchLabel": "Irã v Nova Zelândia",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Irã",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "HP3008947941I 15/06/202614:00:05",
+    "Criar Aposta 26,00 29,00",
+    "Aposta Aumentada",
+    "Bélgica v Egito",
+    "Criar Aposta 4,50 5,00",
+    "Aposta Aumentada",
+    "Arábia Saudita v Uruguai",
+    "Criar Aposta 3,75 4,00",
+    "Aposta Aumentada",
+    "Irã v Nova Zelândia",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Mais de 1 Escanteios no 1º Tempo para Bélgica",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Egito",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Bélgica",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Egito",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Bélgica",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Egito",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Bélgica",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Egito",
+    "2º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Resultado Final: Uruguai",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Maior Número de Chutes ao Gol: Uruguai",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Escanteios: Uruguai",
+    "Escanteios - Aposta Comparativa",
+    "Maior Número de Cartões: Arábia Saudita",
+    "Time - Para Receber o Maior Número de Cartões Perdeu",
+    "Resultado Final: Irã",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Maior Número de Chutes ao Gol: Irã",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Escanteios: Irã",
+    "Escanteios - Aposta Comparativa Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

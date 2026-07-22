@@ -1,0 +1,206 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.111Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "19022026-090027hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/19022026-090027hs.pdf",
+  "bet365Ref": "BA6473931871I",
+  "placedAt": "2026-02-19T12:00:27.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 60,
+  "unitStake": 60,
+  "numBets": 1,
+  "combinedOdd": 72.25,
+  "potentialReturn": 4335,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Athletico Paranaense v Corinthians",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Athletico Paranaense v Corinthians",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Athletico Paranaense v Corinthians",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes ao Gol",
+      "selection": "Corinthians - Mais de 1.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Athletico Paranaense v Corinthians",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Corinthians",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Athletico Paranaense v Corinthians",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "BA6473931871I 19/02/202609:00:27",
+    "Criar Aposta 8,50",
+    "Lanús v Flamengo",
+    "Criar Aposta 8,50",
+    "Athletico Paranaense v Corinthians",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$60,00",
+    "Total da Aposta R$60,00",
+    "Retorno R$0,00",
+    "Resultado Final: Flamengo",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Flamengo",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+    "2º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Resultado Final: Athletico Paranaense",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Corinthians - Mais de 1.5 Chutes ao Gol",
+    "Time Visitante - Chutes ao Gol",
+    "Mais de 1 Escanteios no 1º Tempo para Corinthians",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Athletico Paranaense",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

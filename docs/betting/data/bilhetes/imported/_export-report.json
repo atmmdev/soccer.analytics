@@ -1,0 +1,21 @@
+{
+  "exportedAt": "2026-07-22T00:34:04.976Z",
+  "totalPdfs": 450,
+  "ok": 450,
+  "skipped": 0,
+  "failed": 0,
+  "withWarnings": 215,
+  "oddSuspect": 216,
+  "byMonth": {
+    "2025": 2,
+    "2026/abril": 160,
+    "2026/fevereiro": 52,
+    "2026/janeiro": 16,
+    "2026/julho": 41,
+    "2026/junho": 85,
+    "2026/maio": 61,
+    "2026/março": 33
+  },
+  "failures": [],
+  "note": "Bilhetes com oddSuspect (odd ~1.00 ou ausente) devem ser revisados na UI antes de deletar o PDF."
+}

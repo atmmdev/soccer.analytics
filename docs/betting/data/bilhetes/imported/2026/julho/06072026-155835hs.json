@@ -1,0 +1,190 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.117Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "06072026-155835hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/06072026-155835hs.pdf",
+  "bet365Ref": "QY2335309181I",
+  "placedAt": "2026-07-06T18:58:35.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 25,
+  "unitStake": 25,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": null,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Para Cristiano Ronaldo marcar um Cabeceio",
+      "selection": "l d",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Diogo Dalot: 2+ Faltas Cometidas",
+      "selection": "Marcar de Cabeça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas",
+      "selection": "Joao Cancelo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Nuno Mendes",
+      "selection": "Nelson Semedo: 1+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Marc Cucurella: 2+ Faltas Cometidas",
+      "selection": "Jogador - Faltas Cometidas - Alternativas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Pedri: 1+ Faltas Cometidas",
+      "selection": "Jogador - Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": null,
+      "market": "Folarin Balogun: 1+ Chutes ao Gol",
+      "selection": "Jogador - Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "EUA v Bélgica",
+      "matchDate": null,
+      "market": "Kevin De Bruyne: 2+ Chutes",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "QY2335309181I 06/07/202615:58:35",
+    "Criar Aposta 1,00",
+    "Portugal v Espanha",
+    "Criar Aposta 1,00",
+    "EUA v Bélgica",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$25,00",
+    "Total da Aposta R$25,00",
+    "(R$15,00 Créditos de Aposta + R$10,00 )",
+    "Retorno Líquido R$0,00",
+    "l d",
+    "Para Cristiano Ronaldo marcar um Cabeceio",
+    "Marcar de Cabeça",
+    "Diogo Dalot: 2+ Faltas Cometidas",
+    "Joao Cancelo",
+    "Jogador - Faltas Cometidas",
+    "Nelson Semedo: 1+ Faltas Cometidas",
+    "Nuno Mendes",
+    "Jogador - Faltas Cometidas - Alternativas",
+    "Marc Cucurella: 2+ Faltas Cometidas",
+    "Jogador - Faltas Cometidas",
+    "Pedri: 1+ Faltas Cometidas",
+    "Jogador - Faltas Cometidas Perdeu",
+    "Folarin Balogun: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Kevin De Bruyne: 2+ Chutes Anulado",
+    "Chutes Ganhou"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

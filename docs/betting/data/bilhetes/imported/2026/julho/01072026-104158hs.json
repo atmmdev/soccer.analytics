@@ -1,0 +1,254 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.379Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01072026-104158hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/01072026-104158hs.pdf",
+  "bet365Ref": "AP5112161631I",
+  "placedAt": "2026-07-01T13:41:58.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Harry Kane - Para Marcar",
+      "selection": "L l d",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Resultado Final: Inglaterra",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Inglaterra - Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Kevin De Bruyne",
+      "selection": "Nicolas Raskin: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Romelu Lukaku: 1+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: EUA",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Folarin Balogun: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "AP5112161631I 01/07/202610:41:58",
+    "Criar Aposta 1,00",
+    "Inglaterra v RD Congo",
+    "Criar Aposta 1,00",
+    "Bélgica v Senegal",
+    "Criar Aposta 1,00",
+    "EUA v Bósnia e Herzegovina",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "L l d",
+    "Harry Kane - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Resultado Final: Inglaterra",
+    "Resultado Final",
+    "Pagamento Antecipado 90'+ Acréscimos",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Inglaterra - Mais de 5 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Nicolas Raskin: 1+ Chutes ao Gol",
+    "Kevin De Bruyne",
+    "Jogador - Chutes ao Gol",
+    "Romelu Lukaku: 1+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "90'+ Acréscimos",
+    "Mais de 5 Escanteios",
+    "Escanteios Perdeu",
+    "90'+ Acréscimos",
+    "Resultado Final: EUA",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido 90'+ Acréscimos",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Folarin Balogun: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

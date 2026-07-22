@@ -1,0 +1,165 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.654Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "17042026-113239hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/17042026-113239hs.pdf",
+  "bet365Ref": "KF2068147861I",
+  "placedAt": "2026-04-17T14:32:39.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 80,
+  "unitStake": 80,
+  "numBets": 1,
+  "combinedOdd": 7.5852,
+  "potentialReturn": 606.82,
+  "actualReturn": 80,
+  "cashOut": {
+    "at": "2026-04-17T14:34:57.000Z",
+    "value": 80,
+    "usedStake": 80,
+    "originalStake": 80,
+    "total": 80
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Inter de Milão v Cagliari",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Inter de Milão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Inter de Milão v Cagliari",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Sassuolo v Como",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Sassuolo v Como",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "St Pauli v Köln",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "St Pauli v Köln",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "KF2068147861I 17/04/202611:32:39",
+    "Criar Aposta 1,72",
+    "Inter de Milão v Cagliari",
+    "Criar Aposta 2,10",
+    "Sassuolo v Como",
+    "Criar Aposta 2,10",
+    "St Pauli v Köln",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$80,00",
+    "Total da Aposta R$80,00",
+    "Retorno R$80,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 17/04/2026 11:34:57",
+    "Aposta Utilizada R$80,00",
+    "Encerrar Aposta - Valor R$80,00",
+    "Aposta Original R$80,00",
+    "Encerrar Aposta - Total R$80,00",
+    "Resultado Final: Inter de Milão Anulado",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 2.5 Gols Anulado",
+    "Total de Gols Anulado",
+    "Para Ambos os Times Marcarem Anulado",
+    "Para Ambos os Times Marcarem",
+    "Mais de 2 Gols Anulado",
+    "Total de Gols - 3 Opções - Alternativas Anulado",
+    "Para Ambos os Times Marcarem Anulado",
+    "Para Ambos os Times Marcarem",
+    "Mais de 2 Gols Anulado",
+    "Total de Gols - 3 Opções - Alternativas Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

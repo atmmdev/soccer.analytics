@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.487Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "24062026-152742hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/24062026-152742hs.pdf",
+  "bet365Ref": "QP2913512211I",
+  "placedAt": "2026-06-24T18:27:42.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 50,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 210,
+  "cashOut": {
+    "at": "2026-06-25T00:03:42.000Z",
+    "value": 210,
+    "usedStake": 50,
+    "originalStake": 50,
+    "total": 210
+  },
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Vinicius Jr.: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Escócia v Brasil",
+      "matchDate": null,
+      "market": "Jogador - Para Sofrer Falta",
+      "selection": "Vinicius Jr.: 3+ Faltas Sofridas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "QP2913512211I 24/06/202615:27:42",
+    "Criar Aposta 1,00",
+    "Escócia v Brasil",
+    "Total da Aposta R$50,00",
+    "Retorno R$210,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 24/06/2026 21:03:42",
+    "Aposta Utilizada R$50,00",
+    "Encerrar Aposta - Valor R$210,00",
+    "Aposta Original R$50,00",
+    "Encerrar Aposta - Total R$210,00",
+    "07/02/2025)",
+    "Vinicius Jr.: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Vinicius Jr.: 3+ Faltas Sofridas",
+    "Jogador - Para Sofrer Falta Ganhou"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.256Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "12042026-090054hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/12042026-090054hs.pdf",
+  "bet365Ref": "FA3013877921I",
+  "placedAt": "2026-04-12T12:00:54.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 442,
+  "potentialReturn": 4420,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Fluminense v Flamengo",
+      "matchDate": "12/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Fluminense 1-0",
+      "period": "90'+ Acréscimos",
+      "odd": 8.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Corinthians v Palmeiras",
+      "matchDate": "12/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Corinthians 1-0",
+      "period": "90'+ Acréscimos",
+      "odd": 8,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Cruzeiro v Bragantino",
+      "matchDate": "12/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 1-1",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "FA3013877921I 12/04/202609:00:54",
+    "Fluminense 1-0 8,50",
+    "Fluminense v Flamengo 12/04/2026",
+    "Resultado Correto Perdeu",
+    "Corinthians 1-0 8,00",
+    "Corinthians v Palmeiras 12/04/2026",
+    "Resultado Correto Perdeu",
+    "Empate 1-1 6,50",
+    "Cruzeiro v Bragantino 12/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

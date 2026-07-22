@@ -1,0 +1,224 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.621Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14022026-090637hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/14022026-090637hs.pdf",
+  "bet365Ref": "TA6514533691I",
+  "placedAt": "2026-02-14T12:06:37.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 11.6645,
+  "potentialReturn": 116.65,
+  "actualReturn": 28.38,
+  "cashOut": {
+    "at": "2026-02-14T21:30:50.000Z",
+    "value": 28.38,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 28.38
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Inter de Milão v Juventus",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Inter de Milão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Inter de Milão v Juventus",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Inter de Milão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Real Madrid v Real Sociedad",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Real Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Real Madrid v Real Sociedad",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Liverpool v Brighton",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Liverpool",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Liverpool v Brighton",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Liverpool - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Liverpool v Brighton",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Liverpool - Mais de 2.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Paris FC v Lens",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Lens",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Paris FC v Lens",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "TA6514533691I 14/02/202609:06:37",
+    "Criar Aposta 2,10",
+    "Inter de Milão v Juventus",
+    "Criar Aposta 1,50",
+    "Real Madrid v Real Sociedad",
+    "Criar Aposta 1,61",
+    "Liverpool v Brighton",
+    "Criar Aposta 2,30",
+    "Paris FC v Lens",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$28,38",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 14/02/2026 18:30:50",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$28,38",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$28,38",
+    "Resultado Final: Inter de Milão",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Inter de Milão",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Real Madrid",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou",
+    "Resultado Final: Liverpool",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Liverpool - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Liverpool - Mais de 2.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol Ganhou",
+    "Resultado Final: Lens",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,362 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.174Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "07072026-122406hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/07072026-122406hs.pdf",
+  "bet365Ref": "HY2062657521I",
+  "placedAt": "2026-07-07T15:24:06.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Lionel Messi - Para Marcar",
+      "selection": "L l d t",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Lionel Messi: 2+ Chutes ao Gol",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Resultado Final: Argentina",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Oufa Shobeir: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Breel Embolo",
+      "selection": "Cedric Itten - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Cedric Itten: 2+ Chutes ao Gol",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Breel Embolo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 0 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Para Ambos os Times Receberem um Cartão",
+      "selection": "Para Ambos os Times Receberem Um Cartão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 1,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes",
+      "selection": "Maior Número de Chutes: Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "HY2062657521I 07/07/202612:24:06",
+    "Criar Aposta 1,00",
+    "Argentina v Egito",
+    "Criar Aposta 1,00",
+    "Suíça v Colômbia",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "L l d t",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Lionel Messi: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Argentina",
+    "Resultado Final",
+    "Pagamento Antecipado 90'+ Acréscimos",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para Argentina",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para Argentina",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Oufa Shobeir: 3+ Defesas",
+    "Goleiro - Defesas - Alternativas",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Argentina",
+    "1º Tempo - Time 1 - Chutes ao Gol Ganhou",
+    "90'+ Acréscimos",
+    "Cedric Itten - Para Marcar",
+    "Breel Embolo",
+    "Para Marcar a Qualquer Momento",
+    "Cedric Itten: 2+ Chutes ao Gol",
+    "Breel Embolo",
+    "Jogador - Chutes ao Gol",
+    "Mais de 0 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para Colômbia",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para Colômbia",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Para Ambos os Times Receberem Um Cartão",
+    "Para Ambos os Times Receberem um Cartão",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Colômbia",
+    "Escanteios - Aposta Comparativa",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes: Colômbia",
+    "Time - Para Conseguir Mais Chutes Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

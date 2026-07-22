@@ -1,0 +1,353 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:04.056Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "15032026-154651hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/março/15032026-154651hs.pdf",
+  "bet365Ref": "YA4030836091I",
+  "placedAt": "2026-03-15T18:46:51.000Z",
+  "betType": "7 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 100.8,
+  "potentialReturn": 1008,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Fluminense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Fluminense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Partida - Chutes ao Gol",
+      "selection": "Mais de 4.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Fluminense v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Bahia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Internacional",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Bahia",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Bahia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Bahia",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Bahia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Bahia",
+      "matchDate": null,
+      "market": "Partida - Chutes ao Gol",
+      "selection": "Mais de 5.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Santos v Corinthians",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Santos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Santos v Corinthians",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Santos - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": null,
+      "matchLabel": "Coritiba v Remo",
+      "matchDate": "15/03/2026",
+      "market": "Resultado Final",
+      "selection": "Coritiba",
+      "period": "90'+ Acréscimos",
+      "odd": 1.75,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": null,
+      "matchLabel": "Palmeiras v Mirassol",
+      "matchDate": "15/03/2026",
+      "market": "Resultado Final",
+      "selection": "Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": 1.6,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": null,
+      "matchLabel": "Bragantino v São Paulo",
+      "matchDate": "15/03/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3.1,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": null,
+      "matchLabel": "Cruzeiro v Vasco da Gama",
+      "matchDate": "15/03/2026",
+      "market": "Resultado Final",
+      "selection": "Cruzeiro",
+      "period": "90'+ Acréscimos",
+      "odd": 1.9,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "YA4030836091I 15/03/202615:46:51",
+    "Criar Aposta 15,00",
+    "Fluminense v Athletico Paranaense",
+    "Criar Aposta 2,40",
+    "Internacional v Bahia",
+    "Criar Aposta 2,80",
+    "Santos v Corinthians",
+    "Coritiba 1,75",
+    "Coritiba v Remo 15/03/2026",
+    "Resultado Final Ganhou",
+    "Palmeiras 1,60",
+    "Palmeiras v Mirassol 15/03/2026",
+    "Resultado Final Ganhou",
+    "Empate 3,10",
+    "Bragantino v São Paulo 15/03/2026",
+    "Resultado Final Perdeu",
+    "Cruzeiro 1,90",
+    "Cruzeiro v Vasco da Gama 15/03/2026",
+    "Resultado Final Perdeu",
+    "Tipo de Aposta: 7 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Mais de 0 Escanteios no 1º Tempo para Fluminense",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Fluminense",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Athletico Paranaense",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Athletico Paranaense",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 4.5 Chutes ao Gol",
+    "Partida - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Resultado Final: Athletico Paranaense",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado",
+    "Resultado Final: Internacional",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Bahia",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Bahia",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 5.5 Chutes ao Gol",
+    "Partida - Chutes ao Gol Perdeu",
+    "Resultado Final: Santos",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Santos - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

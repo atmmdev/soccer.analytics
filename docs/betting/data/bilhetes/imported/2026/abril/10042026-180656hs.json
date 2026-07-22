@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.124Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "10042026-180656hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/10042026-180656hs.pdf",
+  "bet365Ref": "CA3607250031I",
+  "placedAt": "2026-04-10T21:06:56.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Final",
+  "status": "LOST",
+  "stake": 20,
+  "unitStake": 20,
+  "numBets": 1,
+  "combinedOdd": 15.096,
+  "potentialReturn": 301.92,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Remo v Vasco da Gama",
+      "matchDate": "11/04/2026",
+      "market": "Resultado Final",
+      "selection": "Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": 2.4,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Internacional v Grêmio",
+      "matchDate": "11/04/2026",
+      "market": "Resultado Final",
+      "selection": "Internacional",
+      "period": "90'+ Acréscimos",
+      "odd": 1.85,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Mirassol v Bahia",
+      "matchDate": "11/04/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3.4,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "CA3607250031I 10/04/202618:06:56",
+    "Vasco da Gama 2,40",
+    "Remo v Vasco da Gama 11/04/2026",
+    "Resultado Final Perdeu",
+    "Internacional 1,85",
+    "Internacional v Grêmio 11/04/2026",
+    "Resultado Final Perdeu",
+    "Empate 3,40",
+    "Mirassol v Bahia 11/04/2026",
+    "Resultado Final Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$20,00",
+    "Total da Aposta R$20,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

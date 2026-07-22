@@ -1,0 +1,356 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.232Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "09072026-105156hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/09072026-105156hs.pdf",
+  "bet365Ref": "EY8614556381I",
+  "placedAt": "2026-07-09T13:51:56.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Noruega - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Inglaterra - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Noruega - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes ao Gol",
+      "selection": "Inglaterra - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "França v Marrocos",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Intervalo/Final do Jogo",
+      "selection": "I: Argentina - F: Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Espanha - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Bélgica - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Espanha - Mais de 2.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes ao Gol",
+      "selection": "Bélgica - Mais de 2.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Kylian Mbappe: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Soufiane Rahimi: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 3,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "EY8614556381I 09/07/202610:51:56",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Noruega v Inglaterra",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "França v Marrocos",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Argentina v Suíça",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Espanha v Bélgica",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam",
+    "90'+ Acréscimos",
+    "Noruega - Mais de 3 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Inglaterra - Mais de 3 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Noruega - Mais de 3.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Inglaterra - Mais de 3.5 Chutes ao Gol",
+    "Time Visitante - Chutes ao Gol Perdeu",
+    "90'+ Acréscimos",
+    "Kylian Mbappe: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Soufiane Rahimi: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols Perdeu",
+    "90'+ Acréscimos",
+    "I: Argentina - F: Argentina",
+    "Intervalo/Final do Jogo",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes ao Gol: Argentina",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Argentina",
+    "Escanteios - Aposta Comparativa Perdeu",
+    "90'+ Acréscimos",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam",
+    "90'+ Acréscimos",
+    "Espanha - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Bélgica - Mais de 2 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Espanha - Mais de 2.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Bélgica - Mais de 2.5 Chutes ao Gol",
+    "Time Visitante - Chutes ao Gol Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

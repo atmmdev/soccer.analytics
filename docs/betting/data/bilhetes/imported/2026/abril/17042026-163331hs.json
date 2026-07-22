@@ -1,0 +1,272 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.723Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "17042026-163331hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/17042026-163331hs.pdf",
+  "bet365Ref": "PF7648635721I",
+  "placedAt": "2026-04-17T19:33:31.000Z",
+  "betType": "8 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 55,
+  "unitStake": 55,
+  "numBets": 1,
+  "combinedOdd": 35.9828,
+  "potentialReturn": 1979.05,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Millwall v QPR",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Millwall",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Millwall v QPR",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Portsmouth v Leicester",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Portsmouth v Leicester",
+      "matchDate": null,
+      "market": "Time - Total de Gols",
+      "selection": "Leicester Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Sheff Wed v Charlton",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Sheff Wed v Charlton",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Charlton",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Swansea v Southampton",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Southampton",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Swansea v Southampton",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 4,
+      "matchLabel": "Preston v West Brom",
+      "matchDate": null,
+      "market": "Resultado Final: West Brom",
+      "selection": "Preços Ajustados",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 4,
+      "matchLabel": "Preston v West Brom",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Menos de 3.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": null,
+      "matchLabel": "Hull v Birmingham",
+      "matchDate": "18/04/2026",
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 1.66,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": null,
+      "matchLabel": "Wrexham v Stoke",
+      "matchDate": "18/04/2026",
+      "market": "Resultado Final – Preços Ajustados",
+      "selection": "Wrexham",
+      "period": "90'+ Acréscimos",
+      "odd": 1.66,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "PF7648635721I 17/04/202616:33:31",
+    "Mais de 0 1,071",
+    "Derby v Oxford Utd 18/04/2026",
+    "Total de Gols - 3 Opções - Alternativas Ganhou",
+    "Criar Aposta 2,00",
+    "Millwall v QPR",
+    "Criar Aposta 1,57",
+    "Portsmouth v Leicester",
+    "Sim 1,66",
+    "Hull v Birmingham 18/04/2026",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Criar Aposta 2,15",
+    "Sheff Wed v Charlton",
+    "Criar Aposta 2,05",
+    "Swansea v Southampton",
+    "Wrexham 1,66",
+    "Wrexham v Stoke 18/04/2026",
+    "Resultado Final – Preços Ajustados Ganhou",
+    "Criar Aposta 2,60",
+    "Preston v West Brom",
+    "Tipo de Aposta: 8 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$55,00",
+    "Total da Aposta R$55,00",
+    "Retorno R$0,00",
+    "Resultado Final: Millwall",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols Ganhou",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Leicester Mais de 0.5",
+    "Time - Total de Gols Perdeu",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Charlton",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado",
+    "Resultado Final: Southampton",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols Ganhou",
+    "Preços Ajustados",
+    "Resultado Final: West Brom",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Menos de 3.5 Gols",
+    "Total de Gols Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 5 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.750Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "02072026-220704hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/02072026-220704hs.pdf",
+  "bet365Ref": "BP9819453091W",
+  "placedAt": "2026-07-03T01:07:04.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Breel Embolo",
+      "selection": "Zeki Amdouni: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Anis Hadj Moussa: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Riyad Mahrez",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "BP9819453091W 02/07/202622:07:04",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Suíça v Argélia",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Zeki Amdouni: 2+ Chutes ao Gol",
+    "Breel Embolo",
+    "Jogador - Chutes ao Gol",
+    "Anis Hadj Moussa: 2+ Chutes ao Gol",
+    "Riyad Mahrez",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

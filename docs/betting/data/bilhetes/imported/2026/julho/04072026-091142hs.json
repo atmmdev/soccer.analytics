@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.981Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "04072026-091142hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/04072026-091142hs.pdf",
+  "bet365Ref": "SY4132323351I",
+  "placedAt": "2026-07-04T12:11:42.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 117,
+  "potentialReturn": 1170,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Canadá v Marrocos",
+      "matchDate": "04/07/2026",
+      "market": "Resultado Correto",
+      "selection": "Marrocos 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 9,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Paraguai v França",
+      "matchDate": "04/07/2026",
+      "market": "Resultado Correto",
+      "selection": "França 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 13,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "SY4132323351I 04/07/202609:11:42",
+    "Marrocos 2-1 9,00",
+    "Canadá v Marrocos 04/07/2026",
+    "Resultado Correto Perdeu",
+    "França 3-1 13,00",
+    "Paraguai v França 04/07/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "90'+ Acréscimos",
+    "90'+ Acréscimos"
+  ],
+  "warnings": []
+}

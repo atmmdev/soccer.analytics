@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.590Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "13042026-210347hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/13042026-210347hs.pdf",
+  "bet365Ref": "TA5021054081W",
+  "placedAt": "2026-04-14T00:03:47.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 15,
+  "potentialReturn": 150,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Vélez Sarsfield v Central Córdoba SdE",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Vélez Sarsfield v Central Córdoba SdE",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Braian Romero: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Vélez Sarsfield v Central Córdoba SdE",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Michael Santos: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "TA5021054081W 13/04/202621:03:47",
+    "Criar Aposta 34,00 15,00",
+    "Aposta Aumentada",
+    "Vélez Sarsfield v Central Córdoba SdE",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Braian Romero: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Michael Santos: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

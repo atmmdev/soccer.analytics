@@ -1,0 +1,422 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.380Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22022026-130307hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/22022026-130307hs.pdf",
+  "bet365Ref": "QA3520477321W",
+  "placedAt": "2026-02-22T16:03:07.000Z",
+  "betType": "13 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 6.5,
+  "potentialReturn": 32.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Fluminense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Fluminense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": null,
+      "market": "Partida - Chutes ao Gol",
+      "selection": "Mais de 4.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Flamengo v Madureira",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Flamengo v Madureira",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Flamengo v Madureira",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Flamengo v Madureira",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": null,
+      "matchLabel": "Portuguesa v Corinthians",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Corinthians",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": null,
+      "matchLabel": "Juventude v Grêmio",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Grêmio",
+      "period": "90'+ Acréscimos",
+      "odd": 2.35,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": null,
+      "matchLabel": "São Jose RS v Novo Hamburgo",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "São Jose RS",
+      "period": "90'+ Acréscimos",
+      "odd": 2.05,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": null,
+      "matchLabel": "Atlético Mineiro v América Mineiro",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Atlético Mineiro",
+      "period": "90'+ Acréscimos",
+      "odd": 1.57,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": null,
+      "matchLabel": "Athletico Paranaense v Londrina",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": 1.75,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": null,
+      "matchLabel": "Paysandu v Castanhal",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Paysandu",
+      "period": "90'+ Acréscimos",
+      "odd": 1.5,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": null,
+      "matchLabel": "Náutico v Santa Cruz",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Náutico",
+      "period": "90'+ Acréscimos",
+      "odd": 1.65,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": null,
+      "matchLabel": "Lagarto v América SE",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Lagarto",
+      "period": "90'+ Acréscimos",
+      "odd": 1.6,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": null,
+      "matchLabel": "Fluminense PI v CA Piauiense",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Fluminense PI",
+      "period": "90'+ Acréscimos",
+      "odd": 2.35,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": null,
+      "matchLabel": "Ferroviária v Monte Azul",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Ferroviária",
+      "period": "90'+ Acréscimos",
+      "odd": 1.53,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": null,
+      "matchLabel": "XV de Piracicaba v Inter de Limeira",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "XV de Piracicaba",
+      "period": "90'+ Acréscimos",
+      "odd": 2.1,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "QA3520477321W 22/02/202613:03:07",
+    "Criar Aposta 5,00",
+    "Vasco da Gama v Fluminense",
+    "Criar Aposta 1,30",
+    "Flamengo v Madureira",
+    "Corinthians 1,83",
+    "Portuguesa v Corinthians 22/02/2026",
+    "Resultado Final Perdeu",
+    "Grêmio 2,35",
+    "Juventude v Grêmio 22/02/2026",
+    "Resultado Final Perdeu",
+    "São Jose RS 2,05",
+    "São Jose RS v Novo Hamburgo 22/02/2026",
+    "Resultado Final Perdeu",
+    "Atlético Mineiro 1,57",
+    "Atlético Mineiro v América Mineiro 22/02/2026",
+    "Resultado Final Perdeu",
+    "Athletico Paranaense 1,75",
+    "Athletico Paranaense v Londrina 22/02/2026",
+    "Resultado Final Perdeu",
+    "Paysandu 1,50",
+    "Paysandu v Castanhal 22/02/2026",
+    "Resultado Final Ganhou",
+    "Náutico 1,65",
+    "Náutico v Santa Cruz 22/02/2026",
+    "Resultado Final Ganhou",
+    "Lagarto 1,60",
+    "Lagarto v América SE 22/02/2026",
+    "Resultado Final Perdeu",
+    "Fluminense PI 2,35",
+    "Fluminense PI v CA Piauiense 22/02/2026",
+    "Resultado Final Perdeu",
+    "Ferroviária 1,53",
+    "Ferroviária v Monte Azul 22/02/2026",
+    "Resultado Final Ganhou",
+    "XV de Piracicaba 2,10",
+    "XV de Piracicaba v Inter de Limeira 22/02/2026",
+    "Resultado Final Ganhou",
+    "Tipo de Aposta: 13 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "Resultado Final: Vasco da Gama",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Vasco da Gama",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Vasco da Gama",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Fluminense",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Fluminense",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 4.5 Chutes ao Gol",
+    "Partida - Chutes ao Gol Perdeu",
+    "Resultado Final: Flamengo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para Flamengo",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Flamengo",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

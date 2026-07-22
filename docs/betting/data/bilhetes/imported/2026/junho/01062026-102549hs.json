@@ -1,0 +1,318 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.587Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01062026-102549hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/01062026-102549hs.pdf",
+  "bet365Ref": "CP1210558331I",
+  "placedAt": "2026-06-01T13:25:49.000Z",
+  "betType": "7 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 89.0625,
+  "potentialReturn": 890.63,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bulgária v Montenegro",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Bulgária ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bulgária v Montenegro",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bulgária v Montenegro",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 7 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Turquia v Macedônia do Norte",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Turquia v Macedônia do Norte",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Turquia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Turquia v Macedônia do Norte",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Turquia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Suécia",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Noruega - Mais de 4.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Suécia",
+      "matchDate": null,
+      "market": "Partida - Chutes ao Gol",
+      "selection": "Mais de 8.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Áustria v Tunísia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Áustria",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Áustria v Tunísia",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Áustria v Tunísia",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Áustria",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": null,
+      "matchLabel": "Eslováquia v Malta",
+      "matchDate": "01/06/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.2,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": null,
+      "matchLabel": "Colômbia v Costa Rica",
+      "matchDate": "01/06/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.14,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": null,
+      "matchLabel": "Canadá v Uzbequistão",
+      "matchDate": "01/06/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.3,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "CP1210558331I 01/06/202610:25:49",
+    "Criar Aposta 4,20 4,75",
+    "Aposta Aumentada",
+    "Bulgária v Montenegro",
+    "Mais de 1.5 1,20",
+    "Eslováquia v Malta 01/06/2026",
+    "Total de Gols Ganhou",
+    "Criar Aposta 1,25",
+    "Turquia v Macedônia do Norte",
+    "Criar Aposta 4,00",
+    "Noruega v Suécia",
+    "Criar Aposta 3,60 3,75",
+    "Aposta Aumentada",
+    "Áustria v Tunísia",
+    "Mais de 1.5 1,14",
+    "Colômbia v Costa Rica 01/06/2026",
+    "Total de Gols Ganhou",
+    "Mais de 1.5 1,30",
+    "Canadá v Uzbequistão 01/06/2026",
+    "Total de Gols Ganhou",
+    "Tipo de Aposta: 7 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Bulgária ou Empate",
+    "Chance Dupla",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 7 Escanteios",
+    "Escanteios Perdeu",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Mais de 0 Escanteios no 1º Tempo para Turquia",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Turquia",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Ganhou",
+    "Maior Número de Escanteios: Noruega",
+    "Escanteios - Aposta Comparativa",
+    "Noruega - Mais de 4.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol",
+    "Mais de 8.5 Chutes ao Gol",
+    "Partida - Chutes ao Gol Ganhou",
+    "Resultado Final: Áustria",
+    "Resultado Final",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções",
+    "Maior Número de Escanteios: Áustria",
+    "Escanteios - Aposta Comparativa Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

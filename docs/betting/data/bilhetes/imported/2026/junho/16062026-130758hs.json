@@ -1,0 +1,337 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.607Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16062026-130758hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/16062026-130758hs.pdf",
+  "bet365Ref": "DP6046707891W",
+  "placedAt": "2026-06-16T16:07:58.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 637.5,
+  "potentialReturn": 6375,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "França v Senegal",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Kylian Mbappe: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": null,
+      "market": "Resultado Final: Argentina",
+      "selection": "Jogador a Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Iraque",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Iraque",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Sadio Mane: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Lionel Messi",
+      "selection": "Nicolas Paz - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Total de Cartões - 3 Opções",
+      "selection": "Mais de 0 Cartões",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 2,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": null,
+      "market": "Partida - Impedimentos",
+      "selection": "Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "DP6046707891W 16/06/202613:07:58",
+    "Criar Aposta 13,00 15,00",
+    "Aposta Aumentada",
+    "França v Senegal",
+    "Criar Aposta 7,50 8,50",
+    "Aposta Aumentada",
+    "Argentina v Argélia",
+    "Criar Aposta 5,00",
+    "Iraque v Noruega",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Kylian Mbappe: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Sadio Mane: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Nicolas Paz - Para Dar Assistência",
+    "Lionel Messi",
+    "Jogador a Dar Assistência",
+    "Resultado Final: Argentina",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado Recebido",
+    "Resultado Final: Noruega",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Mais de 0 Escanteios no 1º Tempo para Noruega",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Noruega",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Cartões",
+    "Total de Cartões - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Noruega",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Noruega",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Iraque",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Iraque",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Impedimentos",
+    "Partida - Impedimentos Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.468Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14072026-151559hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/14072026-151559hs.pdf",
+  "bet365Ref": "EY3032130011I",
+  "placedAt": "2026-07-14T18:15:59.000Z",
+  "betType": "Simples",
+  "betLabel": "Resultado Correto",
+  "status": "CASHED_OUT",
+  "stake": 100,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 29,
+  "potentialReturn": 2900,
+  "actualReturn": 16.48,
+  "cashOut": {
+    "at": "2026-07-14T20:49:19.000Z",
+    "value": 16.48,
+    "usedStake": 100,
+    "originalStake": 100,
+    "total": 16.48
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "França v Espanha",
+      "matchDate": "14/07/2026",
+      "market": "Resultado Correto",
+      "selection": "França 3-2",
+      "period": "90'+ Acréscimos",
+      "odd": 29,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "EY3032130011I 14/07/202615:15:59",
+    "França 3-2 29,00",
+    "França v Espanha 14/07/2026",
+    "Resultado Correto Perdeu",
+    "Simples 1 x R$100,00",
+    "Total da Aposta R$100,00",
+    "Retorno R$16,48",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 14/07/2026 17:49:19",
+    "Aposta Utilizada R$100,00",
+    "Encerrar Aposta - Valor R$16,48",
+    "Aposta Original R$100,00",
+    "Encerrar Aposta - Total R$16,48",
+    "07/02/2025)",
+    "90'+ Acréscimos"
+  ],
+  "warnings": []
+}

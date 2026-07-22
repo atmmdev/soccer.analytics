@@ -1,0 +1,861 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.115Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "04022026-1700hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/04022026-1700hs.pdf",
+  "bet365Ref": "BA3270679351I",
+  "placedAt": "2026-02-04T20:00:15.000Z",
+  "betType": "6 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 61560,
+  "potentialReturn": 615600,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Internacional",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Flamengo",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Internacional",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Internacional",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Internacional",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Flamengo",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Internacional",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Internacional",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Internacional",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Internacional",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Internacional",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Bragantino",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Atlético Mineiro",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Atlético Mineiro",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Bragantino",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Bragantino",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Atlético Mineiro",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Atlético Mineiro",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 1,
+      "matchLabel": "Bragantino v Atlético Mineiro",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Bragantino",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 2,
+      "matchLabel": "Remo v Mirassol",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Remo",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 2,
+      "matchLabel": "Remo v Mirassol",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Mirassol",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 2,
+      "matchLabel": "Remo v Mirassol",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Mirassol",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 2,
+      "matchLabel": "Remo v Mirassol",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Remo",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 2,
+      "matchLabel": "Remo v Mirassol",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Remo",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 2,
+      "matchLabel": "Remo v Mirassol",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Mirassol",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Santos",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Santos",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para São Paulo",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 23,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para São Paulo",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 24,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Santos",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 25,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para São Paulo",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 26,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para São Paulo",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 27,
+      "builderGroup": 3,
+      "matchLabel": "Santos v São Paulo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Santos",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 28,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Grêmio",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 29,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Grêmio",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 30,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Botafogo",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 31,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Botafogo",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 32,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Grêmio",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 33,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Grêmio",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 34,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Botafogo",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 35,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Botafogo",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Botafogo",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 36,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Palmeiras",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 37,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Palmeiras",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 38,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Vitória",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 39,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Vitória",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 40,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Palmeiras",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 41,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Palmeiras",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 42,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Vitória",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 43,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Vitória",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 44,
+      "builderGroup": 5,
+      "matchLabel": "Palmeiras v Vitória",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "G l Ch 144 0 0 0 Wi d D kt 10 0",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "BA3270679351I 04/02/202617:00:15",
+    "Criar Aposta 7,50",
+    "Flamengo v Internacional",
+    "Criar Aposta 6,00",
+    "Bragantino v Atlético Mineiro",
+    "Criar Aposta 4,00",
+    "Remo v Mirassol",
+    "Criar Aposta 6,00",
+    "Santos v São Paulo",
+    "Criar Aposta 6,00",
+    "Grêmio v Botafogo",
+    "Criar Aposta 9,50",
+    "Palmeiras v Vitória",
+    "Tipo de Aposta: 6 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "G l Ch 144 0 0 0 Wi d D kt 10 0",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 1 Escanteios no 1º Tempo para Flamengo",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Internacional",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Flamengo",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Internacional",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Internacional",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Bragantino",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Atlético Mineiro",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Atlético Mineiro",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Bragantino",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Bragantino",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Atlético Mineiro",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Atlético Mineiro",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Bragantino",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Remo",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Mirassol",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Mirassol",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Remo",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Remo",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Mirassol",
+    "1º Tempo - Time 2 - Chutes ao Gol Ganhou",
+    "Mais de 1 Escanteios no 1º Tempo para Santos",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Santos",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para São Paulo",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para São Paulo",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Santos",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para São Paulo",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para São Paulo",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Santos",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Grêmio",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Grêmio",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Botafogo",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Botafogo",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Grêmio",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Grêmio",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Botafogo",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Botafogo",
+    "1º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Palmeiras",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Palmeiras",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Vitória",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Vitória",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Palmeiras",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Palmeiras",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Vitória",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Vitória",
+    "1º Tempo - Time 2 - Chutes ao Gol Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 6 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

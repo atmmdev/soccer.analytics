@@ -1,0 +1,166 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.260Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "10072026-223837hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/10072026-223837hs.pdf",
+  "bet365Ref": "KY9236841701I",
+  "placedAt": "2026-07-11T01:38:37.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "CASHED_OUT",
+  "stake": 14.11,
+  "unitStake": 14.11,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 1.16,
+  "cashOut": {
+    "at": "2026-07-11T22:50:53.000Z",
+    "value": 1.16,
+    "usedStake": 14.11,
+    "originalStake": 14.11,
+    "total": 1.16
+  },
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Harry Kane - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Harry Kane - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Inglaterra se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Argentina se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Lionel Messi - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "KY9236841701I 10/07/202622:38:37",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Noruega v Inglaterra",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Argentina v Suíça",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$14,11",
+    "Total da Aposta R$14,11",
+    "Retorno R$1,16",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 11/07/2026 19:50:53",
+    "Aposta Utilizada R$14,11",
+    "Encerrar Aposta - Valor R$1,16",
+    "Aposta Original R$14,11",
+    "Encerrar Aposta - Total R$1,16",
+    "Harry Kane - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Harry Kane - Para Dar Assistência",
+    "Jogador a Dar Assistência",
+    "Para Inglaterra se Qualificar",
+    "Para se Qualificar Perdeu",
+    "Para Argentina se Qualificar",
+    "Para se Qualificar",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Lionel Messi - Para Dar Assistência",
+    "Jogador a Dar Assistência Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

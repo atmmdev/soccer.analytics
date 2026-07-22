@@ -1,0 +1,302 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.351Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "07022026-113626hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/07022026-113626hs.pdf",
+  "bet365Ref": "EA7118733841I",
+  "placedAt": "2026-02-07T14:36:26.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 54.5017,
+  "potentialReturn": 545.02,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Arsenal v Sunderland",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Arsenal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Arsenal v Sunderland",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Arsenal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Arsenal v Sunderland",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Arsenal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Aston Villa",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Aston Villa",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Aston Villa",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Bournemouth",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Aston Villa",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Aston Villa",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Burnley v West Ham",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: West Ham",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Burnley v West Ham",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para West Ham",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Burnley v West Ham",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para West Ham",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Wolverhampton v Chelsea",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Chelsea",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Wolverhampton v Chelsea",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Wolverhampton v Chelsea",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Wolverhampton",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Wolverhampton v Chelsea",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Wolverhampton",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": null,
+      "matchLabel": "Fulham v Everton",
+      "matchDate": "07/02/2026",
+      "market": "Chance Dupla",
+      "selection": "Empate ou Everton",
+      "period": "90'+ Acréscimos",
+      "odd": 1.61,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "EA7118733841I 07/02/202611:36:26",
+    "Criar Aposta 1,61",
+    "Arsenal v Sunderland",
+    "Criar Aposta 3,10",
+    "Bournemouth v Aston Villa",
+    "Criar Aposta 2,60",
+    "Burnley v West Ham",
+    "Criar Aposta 4,20",
+    "Wolverhampton v Chelsea",
+    "Empate ou Everton 1,61",
+    "Fulham v Everton 07/02/2026",
+    "Chance Dupla Ganhou",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Arsenal",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Escanteios no 1º Tempo para Arsenal",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Arsenal",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Aston Villa",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Bournemouth",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Aston Villa",
+    "1º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Resultado Final: West Ham",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para West Ham",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para West Ham",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Chelsea",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Wolverhampton",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Wolverhampton",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

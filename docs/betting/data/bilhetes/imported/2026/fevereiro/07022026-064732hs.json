@@ -1,0 +1,266 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.285Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "07022026-064732hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/07022026-064732hs.pdf",
+  "bet365Ref": "GA9637896561W",
+  "placedAt": "2026-02-07T09:47:32.000Z",
+  "betType": "6 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 14.8838,
+  "potentialReturn": 148.84,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Barcelona v Maiorca",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 9 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Barcelona v Maiorca",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Genoa v Napoli",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Napoli",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Genoa v Napoli",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Napoli",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Fiorentina v Torino",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Fiorentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Fiorentina v Torino",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Fiorentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Flamengo v Sampaio Corrêa RJ",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Flamengo v Sampaio Corrêa RJ",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Flamengo v Sampaio Corrêa RJ",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 4,
+      "matchLabel": "Borussia M'gladbach v Bayer Leverkusen",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Bayer Leverkusen",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 4,
+      "matchLabel": "Borussia M'gladbach v Bayer Leverkusen",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Bayer Leverkusen",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": null,
+      "matchLabel": "Rayo Vallecano v Real Oviedo",
+      "matchDate": "07/02/2026",
+      "market": "Partida - Chutes ao Gol",
+      "selection": "Mais de 6.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.25,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "GA9637896561W 07/02/202606:47:32",
+    "Criar Aposta 1,90",
+    "Barcelona v Maiorca",
+    "Mais de 6.5 1,25",
+    "Rayo Vallecano v Real Oviedo 07/02/2026",
+    "Partida - Chutes ao Gol Anulado",
+    "Criar Aposta 1,70",
+    "Genoa v Napoli",
+    "Criar Aposta 2,00",
+    "Fiorentina v Torino",
+    "Criar Aposta 1,28",
+    "Flamengo v Sampaio Corrêa RJ",
+    "Criar Aposta 1,80",
+    "Borussia M'gladbach v Bayer Leverkusen",
+    "Tipo de Aposta: 6 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Mais de 9 Escanteios",
+    "Escanteios",
+    "Resultado Final: Barcelona",
+    "Resultado Final Ganhou",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Escanteios no 1º Tempo para Napoli",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Napoli",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Fiorentina",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Fiorentina",
+    "2º Tempo - Time 1 - Chutes ao Gol Ganhou",
+    "Resultado Final: Flamengo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Escanteios no 2º Tempo para Flamengo",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Flamengo",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Ganhou",
+    "Mais de 1 Escanteios no 1º Tempo para Bayer Leverkusen",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Bayer Leverkusen",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 5 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

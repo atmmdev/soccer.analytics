@@ -1,0 +1,341 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.225Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "21022026-185258hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/21022026-185258hs.pdf",
+  "bet365Ref": "TA5838882531F",
+  "placedAt": "2026-02-21T21:52:58.000Z",
+  "betType": "6 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 194.5519,
+  "potentialReturn": 1945.52,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Boavista v Botafogo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Boavista v Botafogo",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Boavista v Botafogo",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Palmeiras v Capivariano",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Palmeiras v Capivariano",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Palmeiras v Capivariano",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Banfield v Newell's",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Banfield",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Banfield v Newell's",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Banfield",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Banfield v Newell's",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Banfield",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Deportivo Riestra v Huracán",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Huracán",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Deportivo Riestra v Huracán",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Huracán",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Deportivo Riestra v Huracán",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Huracán",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 4,
+      "matchLabel": "Central Córdoba SdE v Tigre",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Tigre",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 4,
+      "matchLabel": "Central Córdoba SdE v Tigre",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Tigre",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 4,
+      "matchLabel": "Central Córdoba SdE v Tigre",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Tigre",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": null,
+      "matchLabel": "Bragantino v São Paulo",
+      "matchDate": "21/02/2026",
+      "market": "Resultado Final",
+      "selection": "Bragantino",
+      "period": "90'+ Acréscimos",
+      "odd": 2.87,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "TA5838882531F 21/02/202618:52:58",
+    "Criar Aposta 3,75",
+    "Boavista v Botafogo",
+    "Bragantino 2,87",
+    "Bragantino v São Paulo 21/02/2026",
+    "Resultado Final Perdeu",
+    "Criar Aposta 1,22",
+    "Palmeiras v Capivariano",
+    "Criar Aposta 2,70",
+    "Banfield v Newell's",
+    "Criar Aposta 4,50",
+    "Deportivo Riestra v Huracán",
+    "Criar Aposta 3,50",
+    "Central Córdoba SdE v Tigre",
+    "Tipo de Aposta: 6 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Botafogo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para Botafogo",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Botafogo",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Palmeiras",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para Palmeiras",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Palmeiras",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Banfield",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Banfield",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Banfield",
+    "2º Tempo - Time 1 - Chutes ao Gol Ganhou",
+    "Resultado Final: Huracán",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Huracán",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Huracán",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Tigre",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Tigre",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Tigre",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 5 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

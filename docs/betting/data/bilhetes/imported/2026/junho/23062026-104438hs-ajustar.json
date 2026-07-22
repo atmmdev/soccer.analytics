@@ -1,0 +1,306 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.319Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "23062026-104438hs-ajustar.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/23062026-104438hs-ajustar.pdf",
+  "bet365Ref": "PP6268424561I",
+  "placedAt": "2026-06-23T13:44:38.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Uzbequistão",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Uzbequistão",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Uzbequistão",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Cristiano Ronaldo: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v Uzbequistão",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Portugal - Mais de 6 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Gana",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Gana",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Gana",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Inglaterra - Mais de 6 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Gana",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Harry Kane: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Panamá v Croácia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Panamá v Croácia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Croácia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Panamá v Croácia",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 8 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Colômbia v RD Congo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Luis Diaz: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Colômbia v RD Congo",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 3,
+      "matchLabel": "Colômbia v RD Congo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "PP6268424561I 23/06/202610:44:38",
+    "Criar Aposta 1,00",
+    "Portugal v Uzbequistão",
+    "Criar Aposta 1,00",
+    "Inglaterra v Gana",
+    "Criar Aposta 1,00",
+    "Panamá v Croácia",
+    "Criar Aposta 1,00",
+    "Colômbia v RD Congo",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Portugal",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Cristiano Ronaldo: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Portugal - Mais de 6 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Inglaterra",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Inglaterra - Mais de 6 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Harry Kane: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Croácia",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 8 Escanteios",
+    "Escanteios Perdeu",
+    "Luis Diaz: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Colômbia",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

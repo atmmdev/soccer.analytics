@@ -1,0 +1,195 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.035Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "04072026-091917hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/04072026-091917hs.pdf",
+  "bet365Ref": "DY1612971801I",
+  "placedAt": "2026-07-04T12:19:17.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Canadá v Marrocos",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Canadá se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Canadá v Marrocos",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Jonathan David: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Canadá v Marrocos",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Cyle Larin: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 3 Escanteios no 1º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 3 Escanteios no 2º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 3.5 Chutes ao Gol no 1º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 3.5 Chutes ao Gol no 2º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Gols - 3 Opções",
+      "selection": "França - Mais de 3 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "DY1612971801I 04/07/202609:19:17",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Canadá v Marrocos",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Paraguai v França",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Canadá se Qualificar",
+    "Para se Qualificar",
+    "Jonathan David: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Cyle Larin: 1+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Mais de 3 Escanteios no 1º Tempo para França",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 3 Escanteios no 2º Tempo para França",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 3.5 Chutes ao Gol no 1º Tempo para França",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 3.5 Chutes ao Gol no 2º Tempo para França",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "França - Mais de 3 Gols",
+    "Time Visitante - Total de Gols - 3 Opções Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

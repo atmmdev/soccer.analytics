@@ -1,0 +1,227 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.089Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "20062026-124438hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/20062026-124438hs.pdf",
+  "bet365Ref": "XP7873791151I",
+  "placedAt": "2026-06-20T15:44:38.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 88,
+  "potentialReturn": 880,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Suécia",
+      "matchDate": null,
+      "market": "Jogador - Desarmes",
+      "selection": "Frenkie de Jong: 2+ Desarmes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Suécia",
+      "matchDate": null,
+      "market": "Jogador - Desarmes",
+      "selection": "Virgil van Dijk: 1+ Desarmes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - Impedimentos",
+      "selection": "Países Baixos - Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Tiro Livre - 2 Opções",
+      "selection": "Mais de 3.5 Tiros Livres no 1º Tempo para Países Baixos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Jamal Musiala",
+      "selection": "Deniz Undav: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Resultado Final: Alemanha",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Enner Valencia: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "XP7873791151I 20/06/202612:44:38",
+    "Criar Aposta 4,00",
+    "Países Baixos v Suécia",
+    "Criar Aposta 8,00",
+    "Alemanha v Costa do Marfim",
+    "Criar Aposta 2,75",
+    "Equador v Curaçao",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Frenkie de Jong: 2+ Desarmes",
+    "Jogador - Desarmes",
+    "Virgil van Dijk: 1+ Desarmes",
+    "Jogador - Desarmes",
+    "Países Baixos - Mais de 1.5 Impedimentos",
+    "Time da Casa - Impedimentos",
+    "Mais de 3.5 Tiros Livres no 1º Tempo para Países Baixos",
+    "Time da Casa - 1º Tempo - Tiro Livre - 2 Opções Perdeu",
+    "Deniz Undav: 2+ Chutes ao Gol",
+    "Jamal Musiala",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Alemanha",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Resultado Final: Equador",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Enner Valencia: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

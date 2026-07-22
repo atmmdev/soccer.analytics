@@ -1,0 +1,579 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.943Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "30062026-104214hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/30062026-104214hs.pdf",
+  "bet365Ref": "CP8779034341I",
+  "placedAt": "2026-06-30T13:42:14.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para México",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para México",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para México",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para México",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 0,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Partida - Impedimentos",
+      "selection": "Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 1,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Partida - Impedimentos",
+      "selection": "Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Suécia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Suécia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 23,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 24,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 25,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 2º Tempo para Suécia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 26,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Suécia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 27,
+      "builderGroup": 2,
+      "matchLabel": "França v Suécia",
+      "matchDate": null,
+      "market": "Partida - Impedimentos",
+      "selection": "Mais de 2.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "CP8779034341I 30/06/202610:42:14",
+    "Criar Aposta 1,00",
+    "México v Equador",
+    "Criar Aposta 1,00",
+    "Costa do Marfim v Noruega",
+    "Criar Aposta 1,00",
+    "França v Suécia",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para México",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para México",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para Equador",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para Equador",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para México",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para México",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Equador",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Equador",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Impedimentos",
+    "Partida - Impedimentos Perdeu",
+    "90'+ Acréscimos",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para Noruega",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para Noruega",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Noruega",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Noruega",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Costa do Marfim",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Costa do Marfim",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Impedimentos",
+    "Partida - Impedimentos Ganhou",
+    "90'+ Acréscimos",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para França",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para França",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 2º Tempo para Suécia",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios no 1º Tempo para Suécia",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para França",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para França",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 2º Tempo para Suécia",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Suécia",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 2.5 Impedimentos",
+    "Partida - Impedimentos Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

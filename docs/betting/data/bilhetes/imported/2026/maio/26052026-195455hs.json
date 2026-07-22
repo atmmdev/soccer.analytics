@@ -1,0 +1,327 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.336Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "26052026-195455hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/26052026-195455hs.pdf",
+  "bet365Ref": "HP4563317681I",
+  "placedAt": "2026-05-26T22:54:55.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 334.0656,
+  "potentialReturn": 3340.66,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lucas Paqueta: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Pedro Guilherme: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Santos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Santos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Estudiantes v Independiente Medellín",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Estudiantes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Estudiantes v Independiente Medellín",
+      "matchDate": null,
+      "market": "Edwuin Cetre",
+      "selection": "Joaquin Tobio Burgos: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Estudiantes v Independiente Medellín",
+      "matchDate": null,
+      "market": "Guido Carrillo: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Universitario de Deportes v Deportes Tolima",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Universitario de Deportes v Deportes Tolima",
+      "matchDate": null,
+      "market": "Alex Valera: 2+ Chutes ao Gol",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Universitario de Deportes v Deportes Tolima",
+      "matchDate": null,
+      "market": "Luis Sandoval: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 4,
+      "matchLabel": "Nacional de Football v Coquimbo Unido",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 4,
+      "matchLabel": "Nacional de Football v Coquimbo Unido",
+      "matchDate": null,
+      "market": "Maximiliano Silvera: 2+ Chutes ao Gol",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 4,
+      "matchLabel": "Nacional de Football v Coquimbo Unido",
+      "matchDate": null,
+      "market": "Luis Riveros: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "HP4563317681I 26/05/202619:54:55",
+    "Criar Aposta 2,87 1,11",
+    "Aposta Aumentada",
+    "Flamengo v Cusco FC",
+    "Criar Aposta 5,00 5,50",
+    "Aposta Aumentada",
+    "Santos v Deportivo Cuenca",
+    "Criar Aposta 7,00 8,00",
+    "Aposta Aumentada",
+    "Estudiantes v Independiente Medellín",
+    "Criar Aposta 12,00 3,60",
+    "Aposta Aumentada",
+    "Universitario de Deportes v Deportes Tolima",
+    "Criar Aposta 9,00 1,90",
+    "Aposta Aumentada",
+    "Nacional de Football v Coquimbo Unido",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Flamengo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Lucas Paqueta: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Pedro Guilherme: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Resultado Final: Santos",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Maior Número de Escanteios: Santos",
+    "Escanteios - Aposta Comparativa Perdeu",
+    "Resultado Final: Estudiantes",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Joaquin Tobio Burgos: 2+ Chutes ao Gol",
+    "Edwuin Cetre",
+    "Jogador - Chutes ao Gol",
+    "Guido Carrillo: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Alex Valera: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Luis Sandoval: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Maximiliano Silvera: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Luis Riveros: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 5 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

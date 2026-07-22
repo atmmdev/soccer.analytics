@@ -1,0 +1,196 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.112Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "30062026-132642hs - odd15noroega - odd11 mexico.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/30062026-132642hs - odd15noroega - odd11 mexico.pdf",
+  "bet365Ref": "DP9958575951I",
+  "placedAt": "2026-06-30T16:26:42.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 78.58,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Empate ou Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Costa do Marfim v Noruega",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes",
+      "selection": "Maior Número de Chutes: Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "México ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "México v Equador",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes",
+      "selection": "Maior Número de Chutes: Equador",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "DP9958575951I 30/06/202613:26:42",
+    "Criar Aposta 1,00",
+    "Costa do Marfim v Noruega",
+    "Criar Aposta 1,00",
+    "México v Equador",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$78,58",
+    "Empate ou Noruega",
+    "Chance Dupla",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Costa do Marfim",
+    "Escanteios - Aposta Comparativa",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes ao Gol: Costa do Marfim",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes: Costa do Marfim",
+    "Time - Para Conseguir Mais Chutes Ganhou",
+    "90'+ Acréscimos",
+    "México ou Empate",
+    "Chance Dupla",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Equador",
+    "Escanteios - Aposta Comparativa",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes ao Gol: Equador",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes: Equador",
+    "Time - Para Conseguir Mais Chutes Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

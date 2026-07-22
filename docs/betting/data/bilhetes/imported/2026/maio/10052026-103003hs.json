@@ -1,0 +1,248 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.305Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "10052026-103003hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/10052026-103003hs.pdf",
+  "bet365Ref": "JF8445513021I",
+  "placedAt": "2026-05-10T13:30:03.000Z",
+  "betType": "7 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 30,
+  "unitStake": 30,
+  "numBets": 1,
+  "combinedOdd": 114.1875,
+  "potentialReturn": 3425.63,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Remo v Palmeiras",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Santos v Bragantino",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Santos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Grêmio v Flamengo",
+      "matchDate": null,
+      "market": "Resultado Final: Flamengo",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 3,
+      "matchLabel": "Vasco da Gama v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Jose Flaco Lopez: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 3,
+      "matchLabel": "Vasco da Gama v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Neymar: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 3,
+      "matchLabel": "Vasco da Gama v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Pedro Guilherme",
+      "selection": "Bruno Henrique - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Vasco da Gama v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Claudio Spinelli: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Vasco da Gama v Athletico Paranaense",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": null,
+      "matchLabel": "Atlético Mineiro v Botafogo",
+      "matchDate": "10/05/2026",
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 1.75,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": null,
+      "matchLabel": "Corinthians v São Paulo",
+      "matchDate": "10/05/2026",
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 2.1,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": null,
+      "matchLabel": "Mirassol v Chapecoense",
+      "matchDate": "10/05/2026",
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mirassol - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.22,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "JF8445513021I 10/05/202610:30:03",
+    "Criar Aposta 3,50",
+    "Remo v Palmeiras",
+    "Sim 1,75",
+    "Atlético Mineiro v Botafogo 10/05/2026",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Criar Aposta 3,00",
+    "Santos v Bragantino",
+    "Sim 2,10",
+    "Corinthians v São Paulo 10/05/2026",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Mirassol - Mais de 1.5 1,22",
+    "Mirassol v Chapecoense 10/05/2026",
+    "1º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Criar Aposta 2,90",
+    "Grêmio v Flamengo",
+    "Criar Aposta 3,75",
+    "Vasco da Gama v Athletico Paranaense",
+    "Tipo de Aposta: 7 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$30,00",
+    "Total da Aposta R$30,00",
+    "Retorno R$0,00",
+    "Jose Flaco Lopez: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Palmeiras",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado",
+    "Resultado Final: Santos",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Neymar: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Bruno Henrique - Para Marcar",
+    "Pedro Guilherme",
+    "Para Marcar a Qualquer Momento",
+    "Resultado Final: Flamengo",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado",
+    "Claudio Spinelli: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.441Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "10022026-170755hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/10022026-170755hs.pdf",
+  "bet365Ref": "FA5270701961I",
+  "placedAt": "2026-02-10T20:07:55.000Z",
+  "betType": "Simples",
+  "betLabel": "Resultado Final",
+  "status": "WON",
+  "stake": 5,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 1.61,
+  "potentialReturn": 8.05,
+  "actualReturn": null,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": "10/02/2026",
+      "market": "Resultado Final",
+      "selection": "Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": 1.61,
+      "boostedOdd": null,
+      "status": "WON"
+    }
+  ],
+  "rawLines": [
+    "FA5270701961I 10/02/202617:07:55",
+    "Flamengo 1,61",
+    "Vitória v Flamengo 10/02/2026",
+    "Resultado Final Ganhou",
+    "Simples 1 x R$5,00",
+    "R$5,00 Créditos de Aposta",
+    "Total da Aposta R$5,00",
+    "R$5,00 Créditos de Aposta",
+    "Retorno Líquido R$3,08",
+    "R$8,08 Retorno - R$5,00 Valor de Aposta em Créditos de Aposta",
+    "Pagamento Antecipado",
+    "Data/Hora 10/02/2026 22:20:37",
+    "Aposta Utilizada R$5,00",
+    "Montante de Pagamento Antecipado R$3,08",
+    "São João de Meriti",
+    "07/02/2025)",
+    "Pagamento Antecipado Recebido"
+  ],
+  "warnings": []
+}

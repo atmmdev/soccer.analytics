@@ -1,0 +1,243 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.367Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14052026-172517hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/14052026-172517hs.pdf",
+  "bet365Ref": "CF7186239841I",
+  "placedAt": "2026-05-14T20:25:17.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 100,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 34,
+  "potentialReturn": 3400,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Pedro Guilherme - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Pedro Guilherme: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Bruno Henrique: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Vitória",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Vitória",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Vitória",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Vitória",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 0,
+      "matchLabel": "Vitória v Flamengo",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "CF7186239841I 14/05/202617:25:17",
+    "Criar Aposta 34,00",
+    "Vitória v Flamengo",
+    "Total da Aposta R$100,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Pedro Guilherme - Para Marcar Anulado",
+    "Para Marcar a Qualquer Momento",
+    "Pedro Guilherme: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Bruno Henrique: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Flamengo",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 1 Escanteios no 1º Tempo para Vitória",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Vitória",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Flamengo",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Flamengo",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Vitória",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Vitória",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Flamengo",
+    "1º Tempo - Time 2 - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

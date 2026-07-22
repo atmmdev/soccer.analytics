@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.937Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "18062026-155355hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/18062026-155355hs.pdf",
+  "bet365Ref": "EP7832024641I",
+  "placedAt": "2026-06-18T18:53:55.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 21,
+  "potentialReturn": 210,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Breel Embolo",
+      "selection": "Cedric Itten: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Jovo Lukic: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Ermedin Demirovic",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "EP7832024641I 18/06/202615:53:55",
+    "Criar Aposta 19,00 21,00",
+    "Aposta Aumentada",
+    "Suíça v Bósnia e Herzegovina",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Cedric Itten: 2+ Chutes ao Gol",
+    "Breel Embolo",
+    "Jogador - Chutes ao Gol",
+    "Jovo Lukic: 2+ Chutes ao Gol",
+    "Ermedin Demirovic",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

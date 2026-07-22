@@ -1,0 +1,214 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.064Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "04072026-103804hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/04072026-103804hs.pdf",
+  "bet365Ref": "BY5132804611I",
+  "placedAt": "2026-07-04T13:38:04.000Z",
+  "betType": "7 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 39.1687,
+  "potentialReturn": 391.69,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Paraguai v França",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: França",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Brasil v Noruega",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Vinicius Jr.: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Brasil v Noruega",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Brasil",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": null,
+      "matchLabel": "Canadá v Marrocos",
+      "matchDate": "04/07/2026",
+      "market": "Escanteios",
+      "selection": "Mais de 8.0",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": null,
+      "matchLabel": "México v Inglaterra",
+      "matchDate": "05/07/2026",
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": 1.72,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": null,
+      "matchLabel": "Portugal v Espanha",
+      "matchDate": "06/07/2026",
+      "market": "Ambos Marcam",
+      "selection": "Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 1.7,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": null,
+      "matchLabel": "Argentina v Egito",
+      "matchDate": "07/07/2026",
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Mais de 7.0",
+      "period": "90'+ Acréscimos",
+      "odd": 4,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": null,
+      "matchLabel": "Suíça v Colômbia",
+      "matchDate": "07/07/2026",
+      "market": "Escanteios",
+      "selection": "Mais de 8.0",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "BY5132804611I 04/07/202610:38:04",
+    "Mais de 8.0 1,83",
+    "Canadá v Marrocos 04/07/2026",
+    "Escanteios Ganhou",
+    "Criar Aposta 1,00",
+    "Paraguai v França",
+    "Inglaterra 1,72",
+    "México v Inglaterra 05/07/2026",
+    "Time - Para Conseguir Mais Chutes a Gol Perdeu",
+    "Criar Aposta 1,00",
+    "Brasil v Noruega",
+    "Sim 1,70",
+    "Portugal v Espanha 06/07/2026",
+    "Ambos Marcam Perdeu",
+    "Mais de 7.0 4,00",
+    "Argentina v Egito 07/07/2026",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "Mais de 8.0 1,83",
+    "Suíça v Colômbia 07/07/2026",
+    "Escanteios Perdeu",
+    "Tipo de Aposta: 7 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "90'+ Acréscimos",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Resultado Final: França",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado 90'+ Acréscimos",
+    "90'+ Acréscimos",
+    "Vinicius Jr.: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Brasil",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado 90'+ Acréscimos",
+    "90'+ Acréscimos",
+    "90'+ Acréscimos",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada parcial 5/9 pernas"
+  ]
+}

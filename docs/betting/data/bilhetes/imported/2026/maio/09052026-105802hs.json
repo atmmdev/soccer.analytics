@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.212Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "09052026-105802hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/09052026-105802hs.pdf",
+  "bet365Ref": "XL9016543791W",
+  "placedAt": "2026-05-09T13:58:02.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 8,
+  "potentialReturn": 400,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Sunderland v Man Utd",
+      "matchDate": null,
+      "market": "07/02/2025)",
+      "selection": "Rio de Janeiro",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Sunderland v Man Utd",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Man Utd",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Sunderland v Man Utd",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Matheus Cunha: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Sunderland v Man Utd",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Man Utd - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Sunderland v Man Utd",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes ao Gol",
+      "selection": "Man Utd - Mais de 5.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "XL9016543791W 09/05/202610:58:02",
+    "Criar Aposta 8,00",
+    "Sunderland v Man Utd",
+    "Ganhos Aumentados de 25%",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00",
+    "Rio de Janeiro",
+    "07/02/2025)",
+    "Resultado Final: Man Utd",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Matheus Cunha: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Man Utd - Mais de 3 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "Man Utd - Mais de 5.5 Chutes ao Gol",
+    "Time Visitante - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

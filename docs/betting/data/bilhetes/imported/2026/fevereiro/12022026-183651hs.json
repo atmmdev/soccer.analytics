@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.531Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "12022026-183651hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/12022026-183651hs.pdf",
+  "bet365Ref": "DA8355408711I",
+  "placedAt": "2026-02-12T21:36:51.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 105,
+  "potentialReturn": 1050,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Athletico Paranaense v Santos",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 4 Escanteios no 1º Tempo para Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Athletico Paranaense v Santos",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Santos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Athletico Paranaense v Santos",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Athletico Paranaense - Menos de 7.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Athletico Paranaense v Santos",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Santos - Mais de 5.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 4 Escanteios no 1º Tempo para Corinthians",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Bragantino",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Corinthians - Menos de 7.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Bragantino - Mais de 5.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 4 Escanteios no 1º Tempo para Internacional",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Internacional - Menos de 7.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Palmeiras - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "DA8355408711I 12/02/202618:36:51",
+    "Criar Aposta 5,00",
+    "Athletico Paranaense v Santos",
+    "Criar Aposta 5,00",
+    "Corinthians v Bragantino",
+    "Criar Aposta 4,20",
+    "Internacional v Palmeiras",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Menos de 4 Escanteios no 1º Tempo para Athletico Paranaense",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Santos",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Athletico Paranaense - Menos de 7.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Santos - Mais de 5.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu",
+    "Menos de 4 Escanteios no 1º Tempo para Corinthians",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Bragantino",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Corinthians - Menos de 7.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Bragantino - Mais de 5.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Ganhou",
+    "Menos de 4 Escanteios no 1º Tempo para Internacional",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Palmeiras",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Internacional - Menos de 7.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Palmeiras - Mais de 6.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

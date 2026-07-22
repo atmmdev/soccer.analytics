@@ -1,0 +1,187 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.073Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "03022026-1823hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/03022026-1823hs.pdf",
+  "bet365Ref": "AA2992022671I",
+  "placedAt": "2026-02-03T21:23:44.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 152,
+  "potentialReturn": 1520,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Instituto Córdoba v Lanús",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 3 Escanteios no 1º Tempo para Instituto Córdoba",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Instituto Córdoba v Lanús",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Lanús",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Instituto Córdoba v Lanús",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Instituto Córdoba - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Instituto Córdoba v Lanús",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Lanús - Mais de 5.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Independiente Rivadavia v Sarmiento",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Independiente Rivadavia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Independiente Rivadavia v Sarmiento",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Sarmiento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Independiente Rivadavia v Sarmiento",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Independiente Rivadavia - Mais de 3.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Independiente Rivadavia v Sarmiento",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Sarmiento - Mais de 2.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "AA2992022671I 03/02/202618:23:44",
+    "Criar Aposta 19,00",
+    "Instituto Córdoba v Lanús",
+    "Criar Aposta 8,00",
+    "Independiente Rivadavia v Sarmiento",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Mais de 3 Escanteios no 1º Tempo para Instituto Córdoba",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 2 Escanteios no 1º Tempo para Lanús",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Instituto Córdoba - Mais de 4.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Lanús - Mais de 5.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu",
+    "Mais de 2 Escanteios no 1º Tempo para Independiente Rivadavia",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 2 Escanteios no 1º Tempo para Sarmiento",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Independiente Rivadavia - Mais de 3.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Sarmiento - Mais de 2.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

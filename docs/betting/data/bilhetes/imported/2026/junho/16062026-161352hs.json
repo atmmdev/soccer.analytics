@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.642Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16062026-161352hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/16062026-161352hs.pdf",
+  "bet365Ref": "DP8552345601W",
+  "placedAt": "2026-06-16T19:13:52.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 520,
+  "potentialReturn": 5200,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "França v Senegal",
+      "matchDate": "16/06/2026",
+      "market": "Resultado Correto",
+      "selection": "França 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 8,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Iraque v Noruega",
+      "matchDate": "16/06/2026",
+      "market": "Resultado Correto",
+      "selection": "Noruega 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 10,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Argentina v Argélia",
+      "matchDate": "16/06/2026",
+      "market": "Resultado Correto",
+      "selection": "Argentina 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "DP8552345601W 16/06/202616:13:52",
+    "França 2-1 8,00",
+    "França v Senegal 16/06/2026",
+    "Resultado Correto Perdeu",
+    "Noruega 2-1 10,00",
+    "Iraque v Noruega 16/06/2026",
+    "Resultado Correto Perdeu",
+    "Argentina 2-0 6,50",
+    "Argentina v Argélia 16/06/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.564Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01072026-150302hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/01072026-150302hs.pdf",
+  "bet365Ref": "DP5926926441I",
+  "placedAt": "2026-07-01T18:03:02.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Folarin Balogun: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Ermedin Demirovic: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Kevin De Bruyne",
+      "selection": "Nicolas Raskin - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Nicolas Raskin - Para Dar Assistência",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Kevin De Bruyne",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "DP5926926441I 01/07/202615:03:02",
+    "Criar Aposta 1,00",
+    "EUA v Bósnia e Herzegovina",
+    "Criar Aposta 1,00",
+    "Bélgica v Senegal",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "Folarin Balogun: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Ermedin Demirovic: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "90'+ Acréscimos",
+    "Nicolas Raskin - Para Marcar",
+    "Kevin De Bruyne",
+    "Para Marcar a Qualquer Momento",
+    "Nicolas Raskin - Para Dar Assistência",
+    "Kevin De Bruyne",
+    "Jogador a Dar Assistência Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

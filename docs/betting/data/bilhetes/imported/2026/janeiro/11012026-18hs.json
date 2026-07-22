@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.596Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "11012026-18hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/11012026-18hs.pdf",
+  "bet365Ref": "XQ2147091331W",
+  "placedAt": "2026-01-11T21:02:19.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Final",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 19.5,
+  "potentialReturn": 195,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Inter de Milão v Napoli",
+      "matchDate": "11/01/2026",
+      "market": "Resultado Final",
+      "selection": "Napoli",
+      "period": "90'+ Acréscimos",
+      "odd": 6,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Portuguesa RJ",
+      "matchDate": "11/01/2026",
+      "market": "Resultado Final",
+      "selection": "Portuguesa RJ",
+      "period": "90'+ Acréscimos",
+      "odd": 3.25,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "XQ2147091331W 11/01/202618:02:19",
+    "Napoli 6,00",
+    "Inter de Milão v Napoli 11/01/2026",
+    "Resultado Final Perdeu",
+    "Portuguesa RJ 3,25",
+    "Flamengo v Portuguesa RJ 11/01/2026",
+    "Resultado Final Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

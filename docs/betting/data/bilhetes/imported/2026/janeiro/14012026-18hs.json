@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.685Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14012026-18hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/14012026-18hs.pdf",
+  "bet365Ref": "KQ2681170621F",
+  "placedAt": "2026-01-14T21:06:26.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Final",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 40.755,
+  "potentialReturn": 407.55,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Volta Redonda v Boavista",
+      "matchDate": "14/01/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3.25,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Fluminense v Madureira",
+      "matchDate": "14/01/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3.8,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Bangu v Flamengo",
+      "matchDate": "14/01/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3.3,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "KQ2681170621F 14/01/202618:06:26",
+    "Empate 3,25",
+    "Volta Redonda v Boavista 14/01/2026",
+    "Resultado Final Perdeu",
+    "Empate 3,80",
+    "Fluminense v Madureira 14/01/2026",
+    "Resultado Final Perdeu",
+    "Empate 3,30",
+    "Bangu v Flamengo 14/01/2026",
+    "Resultado Final Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

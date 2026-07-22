@@ -1,0 +1,198 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.494Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "27042026-091834hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/27042026-091834hs.pdf",
+  "bet365Ref": "CF8287083211I",
+  "placedAt": "2026-04-27T12:18:34.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 45,
+  "potentialReturn": 450,
+  "actualReturn": 1.98,
+  "cashOut": {
+    "at": null,
+    "value": null,
+    "usedStake": null,
+    "originalStake": null,
+    "total": null
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Cagliari v Atalanta",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Atalanta",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Cagliari v Atalanta",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 3.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Lazio v Udinese",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Lazio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Lazio v Udinese",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Man Utd",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": null,
+      "market": "Para Sofrer Falta",
+      "selection": "Casemiro: 1+ Faltas Sofridas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": null,
+      "matchLabel": "Espanhol v Levante",
+      "matchDate": "27/04/2026",
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 1.8,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "CF8287083211I 27/04/202609:18:34",
+    "Criar Aposta 5,00",
+    "Cagliari v Atalanta",
+    "Criar Aposta 3,60",
+    "Lazio v Udinese",
+    "Criar Aposta 2,50",
+    "Man Utd v Brentford",
+    "Sim 1,80",
+    "Espanhol v Levante 27/04/2026",
+    "Para Ambos os Times Marcarem Perdeu",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$1,98",
+    "Encerrar Aposta – Histórico",
+    "Resultado Final: Atalanta",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 3.5 Gols",
+    "Total de Gols Perdeu",
+    "Resultado Final: Lazio",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols Perdeu",
+    "Resultado Final: Man Utd",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Casemiro: 1+ Faltas Sofridas",
+    "Para Sofrer Falta",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

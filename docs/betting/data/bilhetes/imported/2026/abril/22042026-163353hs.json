@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:54.492Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22042026-163353hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/22042026-163353hs.pdf",
+  "bet365Ref": "GF8099282581I",
+  "placedAt": "2026-04-22T19:33:53.000Z",
+  "betType": "Simples",
+  "betLabel": "Super Aumentada 1º Tempo - Jogador - Chutes ao Gol",
+  "status": "WON",
+  "stake": 50,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 2.4,
+  "potentialReturn": 120,
+  "actualReturn": 120,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Santos v Coritiba",
+      "matchDate": "22/04/2026",
+      "market": "Super Aumentada 1º Tempo - Jogador - Chutes ao Gol",
+      "selection": "Neymar - Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": 2.4,
+      "status": "WON",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "GF8099282581I 22/04/202616:33:53",
+    "Neymar - Mais de 0.5 1,83 2,40",
+    "Santos v Coritiba 22/04/2026",
+    "Super Aumentada 1º Tempo - Jogador - Chutes ao Gol Ganhou",
+    "Simples 1 x R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$120,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

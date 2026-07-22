@@ -68,6 +68,20 @@
 
 ---
 
+## 4b. Motivação e sequência
+
+| # | Item | Crítico |
+|---|------|---------|
+| 4b.1 | Motivação: título, G4, rebaixamento, mata-mata | ✅ |
+| 4b.2 | Desmotivação: já classificado / eliminado | ✅ |
+| 4b.3 | Sequência de resultados (W-D-L últimos 5) | ⚠️ |
+| 4b.4 | Sequência Over/Under e BTTS (últimos 5–10) | ⚠️ |
+| 4b.5 | Descanso: dias desde o último jogo (≥ 4 ideal) | ⚠️ |
+| 4b.6 | Congestionamento (3 jogos em 7 dias) | ⚠️ |
+| 4b.7 | Prioridade de competição (liga vs copa vs continental) | ✅ |
+
+---
+
 ## 5. Árbitro e disciplina
 
 | # | Item | Crítico |

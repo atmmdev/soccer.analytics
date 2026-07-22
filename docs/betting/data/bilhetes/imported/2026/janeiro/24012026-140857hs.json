@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.873Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "24012026-140857hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/24012026-140857hs.pdf",
+  "bet365Ref": "CG8915228821W",
+  "placedAt": "2026-01-24T17:08:57.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 21,
+  "potentialReturn": 1050,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Liverpool",
+      "matchDate": null,
+      "market": "Safari v26.2 on Apple iPhone iOS v18.7",
+      "selection": "Rio de Janeiro",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Liverpool",
+      "matchDate": null,
+      "market": "Cody Gakpo",
+      "selection": "Rio Ngumoha: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Liverpool",
+      "matchDate": null,
+      "market": "Enes Unal: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Liverpool",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Evanilson",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Liverpool",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "CG8915228821W 24/01/202614:08:57",
+    "Criar Aposta 19,00 21,00",
+    "Aposta Aumentada",
+    "Bournemouth v Liverpool",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00",
+    "Rio de Janeiro",
+    "Safari v26.2 on Apple iPhone iOS v18.7",
+    "07/02/2025)",
+    "Rio Ngumoha: 2+ Chutes ao Gol",
+    "Cody Gakpo",
+    "Jogador - Chutes ao Gol",
+    "Enes Unal: 2+ Chutes ao Gol",
+    "Evanilson",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

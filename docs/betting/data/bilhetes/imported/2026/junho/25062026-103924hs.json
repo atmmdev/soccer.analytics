@@ -1,0 +1,530 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.520Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "25062026-103924hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/25062026-103924hs.pdf",
+  "bet365Ref": "HP5723751071I",
+  "placedAt": "2026-06-25T13:39:24.000Z",
+  "betType": "6 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Curaçao v Costa do Marfim",
+      "matchDate": null,
+      "market": "Ganhar Ambos os Tempos",
+      "selection": "Para Costa do Marfim Ganhar Ambos os Tempos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Curaçao v Costa do Marfim",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Curaçao v Costa do Marfim",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Curaçao v Costa do Marfim",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes",
+      "selection": "Maior Número de Chutes: Costa do Marfim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Alemanha",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Alemanha",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Equador - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Alemanha",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Alemanha - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Alemanha",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Equador - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Alemanha",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes ao Gol",
+      "selection": "Alemanha - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Japão ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Japão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Japão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Suécia - Mais de 1 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 3,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Países Baixos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 3,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Brian Brobbey",
+      "selection": "Memphis Depay: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 3,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Noa Lang: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 3,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Cody Gakpo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 4,
+      "matchLabel": "Paraguai v Austrália",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 4,
+      "matchLabel": "Paraguai v Austrália",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Paraguai ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 4,
+      "matchLabel": "Paraguai v Austrália",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Paraguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 4,
+      "matchLabel": "Paraguai v Austrália",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Paraguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 5,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: EUA",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 23,
+      "builderGroup": 5,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: EUA",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 24,
+      "builderGroup": 5,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: EUA",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 25,
+      "builderGroup": 5,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Time - Para Receber o Maior Número de Cartões",
+      "selection": "Maior Número de Cartões: Turquia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "HP5723751071I 25/06/202610:39:24",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Curaçao v Costa do Marfim",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Equador v Alemanha",
+    "Criar Aposta 1,00",
+    "Japão v Suécia",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Tunísia v Países Baixos",
+    "Criar Aposta 1,00",
+    "Paraguai v Austrália",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Turquia v EUA",
+    "Tipo de Aposta: 6 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Costa do Marfim Ganhar Ambos os Tempos",
+    "Ganhar Ambos os Tempos",
+    "Maior Número de Escanteios: Costa do Marfim",
+    "Escanteios - Aposta Comparativa",
+    "Maior Número de Chutes ao Gol: Costa do Marfim",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Chutes: Costa do Marfim",
+    "Time - Para Conseguir Mais Chutes Perdeu",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Equador - Mais de 3 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Alemanha - Mais de 3 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "Equador - Mais de 3.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol",
+    "Alemanha - Mais de 3.5 Chutes ao Gol",
+    "Time Visitante - Chutes ao Gol Perdeu",
+    "Japão ou Empate",
+    "Chance Dupla",
+    "Mais de 0 Escanteios no 1º Tempo para Japão",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Japão",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Suécia - Mais de 1 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols Ganhou",
+    "Resultado Final: Países Baixos",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Memphis Depay: 2+ Chutes ao Gol",
+    "Brian Brobbey",
+    "Jogador - Chutes ao Gol",
+    "Noa Lang: 2+ Chutes ao Gol",
+    "Cody Gakpo",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols",
+    "Paraguai ou Empate",
+    "Chance Dupla",
+    "Mais de 0 Escanteios no 1º Tempo para Paraguai",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Paraguai",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: EUA",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Maior Número de Escanteios: EUA",
+    "Escanteios - Aposta Comparativa",
+    "Maior Número de Chutes ao Gol: EUA",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Cartões: Turquia",
+    "Time - Para Receber o Maior Número de Cartões Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 6 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

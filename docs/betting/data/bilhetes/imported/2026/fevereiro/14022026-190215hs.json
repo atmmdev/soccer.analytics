@@ -1,0 +1,239 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.839Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14022026-190215hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/14022026-190215hs.pdf",
+  "bet365Ref": "RA1122078061I",
+  "placedAt": "2026-02-14T22:02:15.000Z",
+  "betType": "8 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 31.14,
+  "unitStake": 31.14,
+  "numBets": 1,
+  "combinedOdd": 4.2025,
+  "potentialReturn": 130.87,
+  "actualReturn": 55.82,
+  "cashOut": {
+    "at": "2026-02-15T02:24:54.000Z",
+    "value": 55.82,
+    "usedStake": 31.14,
+    "originalStake": 31.14,
+    "total": 55.82
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Huracán v Sarmiento",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Huracán",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Huracán v Sarmiento",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Huracán - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Talleres de Córdoba v Gimnasia Mendoza",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Talleres de Córdoba",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Talleres de Córdoba v Gimnasia Mendoza",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Talleres de Córdoba - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": null,
+      "matchLabel": "Atlético Tucumán v Estudiantes Río Cuarto",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Atlético Tucumán",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": null,
+      "matchLabel": "Vasco da Gama v Volta Redonda",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": 1.4,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": null,
+      "matchLabel": "Independiente Rivadavia v Belgrano",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Independiente Rivadavia",
+      "period": "90'+ Acréscimos",
+      "odd": 2.4,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": null,
+      "matchLabel": "Pachuca v Atlas",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Pachuca",
+      "period": "90'+ Acréscimos",
+      "odd": 1.71,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": null,
+      "matchLabel": "Monterrey v Club León",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Monterrey",
+      "period": "90'+ Acréscimos",
+      "odd": 1.53,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": null,
+      "matchLabel": "Atlético San Luís v Querétaro",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Atlético San Luís",
+      "period": "90'+ Acréscimos",
+      "odd": 1.91,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "RA1122078061I 14/02/202619:02:15",
+    "Atlético Tucumán 1,83",
+    "Atlético Tucumán v Estudiantes Río Cuarto 14/02/2026",
+    "Resultado Final Ganhou",
+    "Vasco da Gama 1,40",
+    "Vasco da Gama v Volta Redonda 14/02/2026",
+    "Resultado Final Perdeu",
+    "Criar Aposta 2,05",
+    "Huracán v Sarmiento",
+    "Criar Aposta 2,05",
+    "Talleres de Córdoba v Gimnasia Mendoza",
+    "Independiente Rivadavia 2,40",
+    "Independiente Rivadavia v Belgrano 14/02/2026",
+    "Resultado Final Perdeu",
+    "Pachuca 1,71",
+    "Pachuca v Atlas 14/02/2026",
+    "Resultado Final Ganhou",
+    "Monterrey 1,53",
+    "Monterrey v Club León 14/02/2026",
+    "Resultado Final Ganhou",
+    "Atlético San Luís 1,91",
+    "Atlético San Luís v Querétaro 14/02/2026",
+    "Resultado Final Ganhou",
+    "Tipo de Aposta: 8 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$31,14",
+    "Total da Aposta R$31,14",
+    "Retorno R$55,82",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 14/02/2026 23:24:54",
+    "Aposta Utilizada R$31,14",
+    "Encerrar Aposta - Valor R$55,82",
+    "Aposta Original R$31,14",
+    "Encerrar Aposta - Total R$55,82",
+    "Pagamento Antecipado Recebido",
+    "Resultado Final: Huracán",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Huracán - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Talleres de Córdoba",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Talleres de Córdoba - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Ganhou",
+    "Pagamento Antecipado Recebido",
+    "Pagamento Antecipado Recebido"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:04.268Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "21032026-150933hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/março/21032026-150933hs.pdf",
+  "bet365Ref": "YK4151190321W",
+  "placedAt": "2026-03-21T18:09:33.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Final",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 37.0215,
+  "potentialReturn": 185.11,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Everton v Chelsea",
+      "matchDate": "21/03/2026",
+      "market": "Resultado Final",
+      "selection": "Chelsea",
+      "period": "90'+ Acréscimos",
+      "odd": 4.33,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Borussia Dortmund v Hamburgo",
+      "matchDate": "21/03/2026",
+      "market": "Resultado Final",
+      "selection": "Borussia Dortmund",
+      "period": "90'+ Acréscimos",
+      "odd": 4.75,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "AC Milan v Torino",
+      "matchDate": "21/03/2026",
+      "market": "Resultado Final",
+      "selection": "AC Milan",
+      "period": "90'+ Acréscimos",
+      "odd": 1.8,
+      "boostedOdd": null,
+      "status": "WON"
+    }
+  ],
+  "rawLines": [
+    "YK4151190321W 21/03/202615:09:33",
+    "Chelsea 4,33",
+    "Everton v Chelsea 21/03/2026",
+    "Resultado Final Perdeu",
+    "Borussia Dortmund 4,75",
+    "Borussia Dortmund v Hamburgo 21/03/2026",
+    "Resultado Final Ganhou",
+    "AC Milan 1,80",
+    "AC Milan v Torino 21/03/2026",
+    "Resultado Final Ganhou",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "Rio de Janeiro",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

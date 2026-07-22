@@ -1,0 +1,246 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.907Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "18062026-152141hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/18062026-152141hs.pdf",
+  "bet365Ref": "RP1053109481I",
+  "placedAt": "2026-06-18T18:21:41.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 912,
+  "potentialReturn": 9120,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 2º Tempo para Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 2.5 Chutes ao Gol no 1º Tempo para Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 2.5 Chutes ao Gol no 2º Tempo para Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Canadá v Qatar",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Maxime Crepeau: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Canadá v Qatar",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Mahmud Abunada: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "México v Coreia do Sul",
+      "matchDate": null,
+      "market": "Julian Quiñones",
+      "selection": "Cesar Huerta: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "México v Coreia do Sul",
+      "matchDate": null,
+      "market": "Hyeon-Gyu Oh: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "México v Coreia do Sul",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Heung-Min Son",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "México v Coreia do Sul",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "RP1053109481I 18/06/202615:21:41",
+    "Criar Aposta 11,00 12,00",
+    "Aposta Aumentada",
+    "Suíça v Bósnia e Herzegovina",
+    "Criar Aposta 3,75 4,00",
+    "Aposta Aumentada",
+    "Canadá v Qatar",
+    "Criar Aposta 17,00 19,00",
+    "Aposta Aumentada",
+    "México v Coreia do Sul",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Suíça",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 2 Escanteios no 1º Tempo para Suíça",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 2 Escanteios no 2º Tempo para Suíça",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 2.5 Chutes ao Gol no 1º Tempo para Suíça",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 2.5 Chutes ao Gol no 2º Tempo para Suíça",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Maxime Crepeau: 3+ Defesas",
+    "Goleiro - Defesas - Alternativas",
+    "Mahmud Abunada: 3+ Defesas",
+    "Goleiro - Defesas - Alternativas Perdeu",
+    "Cesar Huerta: 2+ Chutes ao Gol",
+    "Julian Quiñones",
+    "Jogador - Chutes ao Gol",
+    "Hyeon-Gyu Oh: 2+ Chutes ao Gol",
+    "Heung-Min Son",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.090Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "04072026-200012hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/04072026-200012hs.pdf",
+  "bet365Ref": "HT5494405371W",
+  "placedAt": "2026-07-04T23:00:12.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 30,
+  "unitStake": 30,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Noruega",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Vinicius Jr.: 3+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Noruega",
+      "matchDate": null,
+      "market": "Para Sofrer Falta",
+      "selection": "Vinicius Jr.: 2+ Faltas Sofridas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Noruega",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas - Alternativas",
+      "selection": "Vinicius Jr.: 1+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "México v Inglaterra",
+      "matchDate": null,
+      "market": "Harry Kane",
+      "selection": "Morgan Rogers: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "México v Inglaterra",
+      "matchDate": null,
+      "market": "Guillermo Martinez: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "México v Inglaterra",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Julian Quiñones",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "México v Inglaterra",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "HT5494405371W 04/07/202620:00:12",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Brasil v Noruega",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "México v Inglaterra",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$30,00",
+    "Total da Aposta R$30,00",
+    "Retorno R$0,00",
+    "Vinicius Jr.: 3+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Vinicius Jr.: 2+ Faltas Sofridas",
+    "Para Sofrer Falta",
+    "Vinicius Jr.: 1+ Faltas Cometidas",
+    "Jogador - Faltas Cometidas - Alternativas Perdeu",
+    "Morgan Rogers: 2+ Chutes ao Gol",
+    "Harry Kane",
+    "Jogador - Chutes ao Gol",
+    "Guillermo Martinez: 2+ Chutes ao Gol",
+    "Julian Quiñones",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

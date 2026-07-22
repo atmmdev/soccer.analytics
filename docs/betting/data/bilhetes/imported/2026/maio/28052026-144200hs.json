@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.557Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "28052026-144200hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/28052026-144200hs.pdf",
+  "bet365Ref": "PP7783450451I",
+  "placedAt": "2026-05-28T17:42:00.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 45,
+  "potentialReturn": 450,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Palmeiras v Junior",
+      "matchDate": "28/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Palmeiras e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Boca Juniors v Universidad Católica",
+      "matchDate": "28/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Boca Juniors e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 4,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Cruzeiro v Barcelona SC",
+      "matchDate": "28/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Cruzeiro e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.75,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "PP7783450451I 28/05/202614:42:00",
+    "Palmeiras e Sim 3,00",
+    "Palmeiras v Junior 28/05/2026",
+    "Resultado/Ambos Marcam Ganhou",
+    "Boca Juniors e Sim 4,00",
+    "Boca Juniors v Universidad Católica 28/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Cruzeiro e Sim 3,75",
+    "Cruzeiro v Barcelona SC 28/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

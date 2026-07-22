@@ -1,0 +1,343 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.470Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "23022026-064813hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/23022026-064813hs.pdf",
+  "bet365Ref": "KA6949369881I",
+  "placedAt": "2026-02-23T09:48:13.000Z",
+  "betType": "8 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": 155.142,
+  "potentialReturn": 7757.1,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Club Brugge",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Atlético de Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Club Brugge",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Menos de 4 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Bayer Leverkusen v Olympiakos",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Bayer Leverkusen",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bayer Leverkusen v Olympiakos",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Atalanta v Borussia Dortmund",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Atalanta v Borussia Dortmund",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Juventus v Galatasaray SK",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Juventus",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Juventus v Galatasaray SK",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 4,
+      "matchLabel": "PSG v Monaco",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 4,
+      "matchLabel": "PSG v Monaco",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 5,
+      "matchLabel": "Real Madrid v Benfica",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Real Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 5,
+      "matchLabel": "Real Madrid v Benfica",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 5,
+      "matchLabel": "Real Madrid v Benfica",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Real Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 5,
+      "matchLabel": "Real Madrid v Benfica",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 0.5 Chutes ao Gol no 1º Tempo para Benfica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": null,
+      "matchLabel": "Inter de Milão v Bodo/Glimt",
+      "matchDate": "24/02/2026",
+      "market": "Resultado Final",
+      "selection": "Inter de Milão",
+      "period": "90'+ Acréscimos",
+      "odd": 1.22,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": null,
+      "matchLabel": "Newcastle v FK Qarabag",
+      "matchDate": "24/02/2026",
+      "market": "Resultado Final",
+      "selection": "Newcastle",
+      "period": "90'+ Acréscimos",
+      "odd": 1.11,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "KA6949369881I 23/02/202606:48:13",
+    "Criar Aposta 2,50",
+    "Atlético de Madrid v Club Brugge",
+    "Criar Aposta 3,40",
+    "Bayer Leverkusen v Olympiakos",
+    "Inter de Milão 1,22",
+    "Inter de Milão v Bodo/Glimt 24/02/2026",
+    "Resultado Final Perdeu",
+    "Newcastle 1,11",
+    "Newcastle v FK Qarabag 24/02/2026",
+    "Resultado Final Ganhou",
+    "Criar Aposta 1,95",
+    "Atalanta v Borussia Dortmund",
+    "Criar Aposta 2,60",
+    "Juventus v Galatasaray SK",
+    "Criar Aposta 1,80",
+    "PSG v Monaco",
+    "Criar Aposta 2,00",
+    "Real Madrid v Benfica",
+    "Tipo de Aposta: 8 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00",
+    "Resultado Final: Atlético de Madrid",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Menos de 4 Gols",
+    "Total de Gols - 3 Opções - Alternativas Perdeu",
+    "Resultado Final: Bayer Leverkusen",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou",
+    "Resultado Final: Juventus",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou",
+    "Resultado Final: Real Madrid",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Real Madrid",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 0.5 Chutes ao Gol no 1º Tempo para Benfica",
+    "1º Tempo - Time 2 - Chutes ao Gol Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 6 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

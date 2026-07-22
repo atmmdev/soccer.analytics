@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.140Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "31012026-1647hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/31012026-1647hs.pdf",
+  "bet365Ref": "GC8988259361W",
+  "placedAt": "2026-01-31T19:47:01.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 128.25,
+  "potentialReturn": 1282.5,
+  "actualReturn": 10,
+  "cashOut": {
+    "at": "2026-01-31T21:55:48.000Z",
+    "value": 10,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 10
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Club León v Tigres UANL",
+      "matchDate": null,
+      "market": "1º Tempo - Club León - Mais de 6.5 Chutes",
+      "selection": "Rio de Janeiro",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Club León v Tigres UANL",
+      "matchDate": null,
+      "market": "1º Tempo - Tigres UANL - Menos de 7.5 Chutes",
+      "selection": "1º Tempo - Time 1 - Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Club León v Tigres UANL",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Club León",
+      "selection": "1º Tempo - Time 2 - Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Club León v Tigres UANL",
+      "matchDate": null,
+      "market": "Menos de 4 Escanteios no 1º Tempo para Tigres UANL",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Atlético Tucumán v Huracán",
+      "matchDate": null,
+      "market": "1º Tempo - Atlético Tucumán - Mais de 6.5 Chutes",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Atlético Tucumán v Huracán",
+      "matchDate": null,
+      "market": "1º Tempo - Huracán - Menos de 7.5 Chutes",
+      "selection": "1º Tempo - Time 1 - Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Atlético Tucumán v Huracán",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Atlético Tucumán",
+      "selection": "1º Tempo - Time 2 - Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Atlético Tucumán v Huracán",
+      "matchDate": null,
+      "market": "Menos de 4 Escanteios no 1º Tempo para Huracán",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Talleres de Córdoba v Platense",
+      "matchDate": null,
+      "market": "1º Tempo - Talleres de Córdoba - Mais de 6.5 Chutes",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Talleres de Córdoba v Platense",
+      "matchDate": null,
+      "market": "1º Tempo - Platense - Menos de 6.5 Chutes",
+      "selection": "1º Tempo - Time 1 - Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Talleres de Córdoba v Platense",
+      "matchDate": null,
+      "market": "Mais de 2 Escanteios no 1º Tempo para Talleres de Córdoba",
+      "selection": "1º Tempo - Time 2 - Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Talleres de Córdoba v Platense",
+      "matchDate": null,
+      "market": "Menos de 4 Escanteios no 1º Tempo para Platense",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "GC8988259361W 31/01/202616:47:01",
+    "Criar Aposta 6,00",
+    "Club León v Tigres UANL",
+    "Criar Aposta 4,75",
+    "Atlético Tucumán v Huracán",
+    "Criar Aposta 4,50",
+    "Talleres de Córdoba v Platense",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$10,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 31/01/2026 18:55:48",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$10,00",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$10,00",
+    "Rio de Janeiro",
+    "1º Tempo - Club León - Mais de 6.5 Chutes Anulado",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Tigres UANL - Menos de 7.5 Chutes Anulado",
+    "1º Tempo - Time 2 - Chutes",
+    "Mais de 1 Escanteios no 1º Tempo para Club León Anulado",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Menos de 4 Escanteios no 1º Tempo para Tigres UANL Anulado",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções Anulado",
+    "1º Tempo - Atlético Tucumán - Mais de 6.5 Chutes Anulado",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Huracán - Menos de 7.5 Chutes Anulado",
+    "1º Tempo - Time 2 - Chutes",
+    "Mais de 1 Escanteios no 1º Tempo para Atlético Tucumán Anulado",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Menos de 4 Escanteios no 1º Tempo para Huracán Anulado",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções Anulado",
+    "1º Tempo - Talleres de Córdoba - Mais de 6.5 Chutes Anulado",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Platense - Menos de 6.5 Chutes Anulado",
+    "1º Tempo - Time 2 - Chutes",
+    "Mais de 2 Escanteios no 1º Tempo para Talleres de Córdoba Anulado",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Menos de 4 Escanteios no 1º Tempo para Platense Anulado",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

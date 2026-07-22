@@ -1,0 +1,134 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.973Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "29012026-1635hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/29012026-1635hs.pdf",
+  "bet365Ref": "TA8952553431I",
+  "placedAt": "2026-01-29T19:35:03.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 171,
+  "potentialReturn": 855,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Mirassol v Vasco da Gama",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Menos de 10 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Mirassol v Vasco da Gama",
+      "matchDate": null,
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Vasco da Gama e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Botafogo v Cruzeiro",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Botafogo v Cruzeiro",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Botafogo v Cruzeiro",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Menos de 10 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "TA8952553431I 29/01/202616:35:03",
+    "Criar Aposta 19,00",
+    "Mirassol v Vasco da Gama",
+    "Criar Aposta 9,00",
+    "Botafogo v Cruzeiro",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Menos de 10 Escanteios",
+    "Escanteios",
+    "Vasco da Gama e Sim",
+    "Resultado/Ambos Marcam Perdeu",
+    "Resultado Final: Botafogo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Menos de 10 Escanteios",
+    "Escanteios Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

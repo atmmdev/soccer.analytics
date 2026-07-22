@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.836Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "21012026-1910hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/21012026-1910hs.pdf",
+  "bet365Ref": "YQ9625881081I",
+  "placedAt": "2026-01-21T22:10:58.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 32.64,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 17,
+  "potentialReturn": 554.88,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Vasco da Gama",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Giorgian De Arrascaeta - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Vasco da Gama",
+      "matchDate": null,
+      "market": "Resultado Correto",
+      "selection": "Flamengo 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "YQ9625881081I 21/01/202619:10:58",
+    "Criar Aposta 17,00",
+    "Flamengo v Vasco da Gama",
+    "Total da Aposta R$32,64",
+    "Retorno R$0,00",
+    "Giorgian De Arrascaeta - Para Marcar Anulado",
+    "Para Marcar a Qualquer Momento",
+    "Flamengo 3-1",
+    "Resultado Correto Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

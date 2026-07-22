@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.493Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14072026-183440hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/14072026-183440hs.pdf",
+  "bet365Ref": "YY4869189651I",
+  "placedAt": "2026-07-14T21:34:40.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 18.68,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Intervalo/Final do Jogo",
+      "selection": "I: Inglaterra - F: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "YY4869189651I 14/07/202618:34:40",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Inglaterra v Argentina",
+    "Total da Aposta R$18,68",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "I: Inglaterra - F: Inglaterra",
+    "Intervalo/Final do Jogo",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Inglaterra",
+    "Escanteios - Aposta Comparativa",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes ao Gol: Inglaterra",
+    "Time - Para Conseguir Mais Chutes a Gol Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

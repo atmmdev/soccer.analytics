@@ -1,0 +1,154 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.898Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "03072026-173517hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/03072026-173517hs.pdf",
+  "bet365Ref": "AY5272925921I",
+  "placedAt": "2026-07-03T20:35:17.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Luis Diaz: 2+ Chutes ao Gol",
+      "selection": "l d",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Antoine Semenyo: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lionel Messi: 3+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Jogador - Para Sofrer Falta",
+      "selection": "Lionel Messi: 3+ Faltas Sofridas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "AY5272925921I 03/07/202617:35:17",
+    "Criar Aposta 1,00",
+    "Colômbia v Gana",
+    "Criar Aposta 1,00",
+    "Argentina v Cabo Verde",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "l d",
+    "Luis Diaz: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Antoine Semenyo: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam Perdeu",
+    "90'+ Acréscimos",
+    "Lionel Messi: 3+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Lionel Messi: 3+ Faltas Sofridas",
+    "Jogador - Para Sofrer Falta",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento Ganhou"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

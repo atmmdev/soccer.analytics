@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.693Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "02072026-110715hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/02072026-110715hs.pdf",
+  "bet365Ref": "FP9412055511I",
+  "placedAt": "2026-07-02T14:07:15.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos para Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos para Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos para Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "FP9412055511I 02/07/202611:07:15",
+    "Criar Aposta 1,00",
+    "Suíça v Argélia",
+    "Criar Aposta 1,00",
+    "Portugal v Croácia",
+    "Criar Aposta 1,00",
+    "Espanha v Áustria",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para Suíça",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Gols nos Primeiros 10 Minutos para Suíça",
+    "Time da Casa - 10 Minutos - Gols - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Mais de 0 Gols nos Primeiros 10 Minutos para Portugal",
+    "Time da Casa - 10 Minutos - Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para Portugal",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Mais de 0 Gols nos Primeiros 10 Minutos para Espanha",
+    "Time da Casa - 10 Minutos - Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para Espanha",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

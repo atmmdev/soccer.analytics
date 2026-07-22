@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:51.982Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "08042026-140608hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/08042026-140608hs.pdf",
+  "bet365Ref": "YA5970395731I",
+  "placedAt": "2026-04-08T17:06:08.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 3757,
+  "potentialReturn": 18785,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "PSG v Liverpool",
+      "matchDate": "08/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 2-2",
+      "period": "90'+ Acréscimos",
+      "odd": 13,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Barcelona v Atlético de Madrid",
+      "matchDate": "08/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Barcelona 3-2",
+      "period": "90'+ Acréscimos",
+      "odd": 17,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Cusco FC v Flamengo",
+      "matchDate": "08/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 17,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "YA5970395731I 08/04/202614:06:08",
+    "Empate 2-2 13,00",
+    "PSG v Liverpool 08/04/2026",
+    "Resultado Correto Perdeu",
+    "Barcelona 3-2 17,00",
+    "Barcelona v Atlético de Madrid 08/04/2026",
+    "Resultado Correto Perdeu",
+    "Flamengo 3-1 17,00",
+    "Cusco FC v Flamengo 08/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,181 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.938Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "28012026-2114hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/28012026-2114hs.pdf",
+  "bet365Ref": "JA5002082171W",
+  "placedAt": "2026-01-29T00:14:06.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 100,
+  "unitStake": 100,
+  "numBets": 1,
+  "combinedOdd": 9.5,
+  "potentialReturn": 950,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "São Paulo v Flamengo",
+      "matchDate": null,
+      "market": "Pedro Guilherme",
+      "selection": "Giorgian De Arrascaeta - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "São Paulo v Flamengo",
+      "matchDate": null,
+      "market": "Para Erick Pulgar Receber Cartão",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "São Paulo v Flamengo",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para o Jogador Receber Cartão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "São Paulo v Flamengo",
+      "matchDate": null,
+      "market": "Mais de 4 Escanteios",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": null,
+      "matchLabel": "Fluminense v Grêmio",
+      "matchDate": "28/01/2026",
+      "market": "Resultado Final",
+      "selection": "Fluminense",
+      "period": "90'+ Acréscimos",
+      "odd": 1.12,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": null,
+      "matchLabel": "Chapecoense v Santos",
+      "matchDate": "28/01/2026",
+      "market": "Resultado Final",
+      "selection": "Santos",
+      "period": "90'+ Acréscimos",
+      "odd": 2.37,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": null,
+      "matchLabel": "Corinthians v Bahia",
+      "matchDate": "28/01/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3.4,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": null,
+      "matchLabel": "Mirassol v Vasco da Gama",
+      "matchDate": "29/01/2026",
+      "market": "Resultado Final",
+      "selection": "Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": 4.5,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "JA5002082171W 28/01/202621:14:06",
+    "Criar Aposta 9,50",
+    "São Paulo v Flamengo",
+    "Fluminense 1,12",
+    "Fluminense v Grêmio 28/01/2026",
+    "Resultado Final Ganhou",
+    "Santos 2,37",
+    "Chapecoense v Santos 28/01/2026",
+    "Resultado Final Perdeu",
+    "Empate 3,40",
+    "Corinthians v Bahia 28/01/2026",
+    "Resultado Final Perdeu",
+    "Vasco da Gama 4,50",
+    "Mirassol v Vasco da Gama 29/01/2026",
+    "Resultado Final Perdeu",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$100,00",
+    "Total da Aposta R$100,00",
+    "Retorno R$0,00",
+    "Giorgian De Arrascaeta - Para Marcar",
+    "Pedro Guilherme",
+    "Para Marcar a Qualquer Momento",
+    "Para Erick Pulgar Receber Cartão",
+    "Para o Jogador Receber Cartão",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 4 Escanteios",
+    "Escanteios Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:54.438Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22042026-114515hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/22042026-114515hs.pdf",
+  "bet365Ref": "CF9449968571I",
+  "placedAt": "2026-04-22T14:45:15.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 765,
+  "potentialReturn": 7650,
+  "actualReturn": 4.03,
+  "cashOut": {
+    "at": "2026-04-23T00:13:20.000Z",
+    "value": 4.03,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 4.03
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Santos v Coritiba",
+      "matchDate": "22/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Santos 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 7.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Athletic Club MG v Internacional",
+      "matchDate": "22/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Internacional 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 8.5,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Vitória",
+      "matchDate": "22/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "CF9449968571I 22/04/202611:45:15",
+    "Santos 2-0 7,50",
+    "Santos v Coritiba 22/04/2026",
+    "Resultado Correto Perdeu",
+    "Internacional 2-1 8,50",
+    "Athletic Club MG v Internacional 22/04/2026",
+    "Resultado Correto Ganhou",
+    "Flamengo 3-1 12,00",
+    "Flamengo v Vitória 22/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$4,03",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 22/04/2026 21:13:20",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$4,03",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$4,03",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

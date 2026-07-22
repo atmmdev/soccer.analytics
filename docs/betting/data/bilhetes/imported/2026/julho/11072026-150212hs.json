@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.322Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "11072026-150212hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/11072026-150212hs.pdf",
+  "bet365Ref": "XY2565433771I",
+  "placedAt": "2026-07-11T18:02:12.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Correto",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 85.5,
+  "potentialReturn": 855,
+  "actualReturn": 11.95,
+  "cashOut": {
+    "at": "2026-07-11T22:49:24.000Z",
+    "value": 11.95,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 11.95
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": "11/07/2026",
+      "market": "Resultado Correto",
+      "selection": "Argentina 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 9.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": "11/07/2026",
+      "market": "Resultado Correto",
+      "selection": "Inglaterra 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 9,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "XY2565433771I 11/07/202615:02:12",
+    "Argentina 2-1 9,50",
+    "Argentina v Suíça 11/07/2026",
+    "Resultado Correto Perdeu",
+    "Inglaterra 2-1 9,00",
+    "Noruega v Inglaterra 11/07/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$11,95",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 11/07/2026 19:49:24",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$11,95",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$11,95",
+    "90'+ Acréscimos",
+    "90'+ Acréscimos"
+  ],
+  "warnings": []
+}

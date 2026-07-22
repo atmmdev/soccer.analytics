@@ -1,0 +1,125 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.147Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "07052026-213025hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/07052026-213025hs.pdf",
+  "bet365Ref": "YF9051315961W",
+  "placedAt": "2026-05-08T00:30:25.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "UNKNOWN",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 15,
+  "potentialReturn": 150,
+  "actualReturn": null,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Independiente Medellín v Flamengo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Independiente Medellín v Flamengo",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Bruno Henrique - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Independiente Medellín v Flamengo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Evertton Araujo: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Independiente Medellín v Flamengo",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Independiente Medellín v Flamengo",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "YF9051315961W 07/05/202621:30:25",
+    "Criar Aposta 15,00",
+    "Independiente Medellín v Flamengo",
+    "Total da Aposta R$10,00",
+    "R$10,00 Créditos de Aposta",
+    "Retorno Líquido R$10,00",
+    "07/02/2025)",
+    "Resultado Final: Flamengo Anulado",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Bruno Henrique - Para Marcar Anulado",
+    "Para Marcar a Qualquer Momento",
+    "Evertton Araujo: 1+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Flamengo Anulado",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Flamengo Anulado",
+    "2º Tempo - Time 2 - Chutes ao Gol Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

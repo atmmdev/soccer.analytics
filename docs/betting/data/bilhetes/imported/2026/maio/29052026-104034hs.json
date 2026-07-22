@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.870Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "29052026-104034hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/29052026-104034hs.pdf",
+  "bet365Ref": "SP4785983071I",
+  "placedAt": "2026-05-29T13:40:34.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 40,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 19,
+  "potentialReturn": 760,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "PSG v Arsenal",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Desire Doue: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "PSG v Arsenal",
+      "matchDate": null,
+      "market": "Kai Havertz",
+      "selection": "Eberechi Eze: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "PSG v Arsenal",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "SP4785983071I 29/05/202610:40:34",
+    "Criar Aposta 17,00 19,00",
+    "Aposta Aumentada",
+    "PSG v Arsenal",
+    "Total da Aposta R$40,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Desire Doue: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Eberechi Eze: 2+ Chutes ao Gol",
+    "Kai Havertz",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

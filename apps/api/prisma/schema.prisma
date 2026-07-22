@@ -33,6 +33,17 @@ enum TicketStatus {
   WON
   LOST
   VOID
+  CASHED_OUT
+}
+
+/// Status de bilhetes importados da Bet365 (estudo / histórico real)
+enum StudyTicketStatus {
+  WON
+  LOST
+  VOID
+  CASHED_OUT
+  PENDING
+  UNKNOWN
 }
 
 enum RecommendationType {
@@ -388,6 +399,71 @@ model AppState {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("app_state")
+}
+
+// ─── Study tickets (import Bet365 — sem vínculo a Match) ─
+
+model StudyTicket {
+  id               String            @id @default(cuid())
+  /// Caminho relativo do PDF de origem (único)
+  sourceFile       String            @unique @map("source_file")
+  /// Referência Bet365 (ex.: TP1216060041I)
+  bet365Ref        String?           @map("bet365_ref")
+  placedAt         DateTime          @map("placed_at")
+  /// Ex.: Triplas, Simples, 7 Múltiplas
+  betType          String?           @map("bet_type")
+  /// Ex.: Criar Aposta, Resultado Correto
+  betLabel         String?           @map("bet_label")
+  status           StudyTicketStatus @default(UNKNOWN)
+  stake            Float
+  unitStake        Float?            @map("unit_stake")
+  numBets          Int?              @map("num_bets")
+  /// Odd combinada (editável — PDFs às vezes trazem 1,00 incorreto)
+  combinedOdd      Float?            @map("combined_odd")
+  potentialReturn  Float?            @map("potential_return")
+  actualReturn     Float?            @map("actual_return")
+  cashOutAt        DateTime?         @map("cash_out_at")
+  cashOutValue     Float?            @map("cash_out_value")
+  hasOddsBoost     Boolean           @default(false) @map("has_odds_boost")
+  notes            String?
+  /// Dump completo do parse (para IA / reprocessamento)
+  rawExtract       Json?             @map("raw_extract")
+  createdAt        DateTime          @default(now()) @map("created_at")
+  updatedAt        DateTime          @updatedAt @map("updated_at")
+
+  legs StudyTicketLeg[]
+
+  @@index([placedAt])
+  @@index([status])
+  @@map("study_tickets")
+}
+
+model StudyTicketLeg {
+  id             String             @id @default(cuid())
+  ticketId       String             @map("ticket_id")
+  sortOrder      Int                @default(0) @map("sort_order")
+  /// Agrupa pernas de um mesmo Criar Aposta dentro de múltipla
+  builderGroup   Int?               @map("builder_group")
+  matchLabel     String             @map("match_label")
+  matchDate      String?            @map("match_date")
+  market         String
+  selection      String
+  period         String?
+  /// Odd original (antes do boost)
+  odd            Float?
+  /// Odd após Aposta Aumentada
+  boostedOdd     Float?             @map("boosted_odd")
+  status         StudyTicketStatus?
+  progressValue  Float?             @map("progress_value")
+  progressLine   Float?             @map("progress_line")
+  meta           Json?
+  createdAt      DateTime           @default(now()) @map("created_at")
+  updatedAt      DateTime           @updatedAt @map("updated_at")
+
+  ticket StudyTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@index([ticketId])
+  @@map("study_ticket_legs")
 }
 
 // ─── Bankroll ────────────────────────────────────────────

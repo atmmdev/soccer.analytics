@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.242Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "11062026-103527hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/11062026-103527hs.pdf",
+  "bet365Ref": "GP9782017011I",
+  "placedAt": "2026-06-11T13:35:27.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 114,
+  "potentialReturn": 1140,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "México v África do Sul",
+      "matchDate": "11/06/2026",
+      "market": "Resultado Correto",
+      "selection": "México 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 9.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Coreia do Sul v Tchéquia",
+      "matchDate": "11/06/2026",
+      "market": "Resultado Correto",
+      "selection": "Tchéquia 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "GP9782017011I 11/06/202610:35:27",
+    "México 2-1 9,50",
+    "México v África do Sul 11/06/2026",
+    "Resultado Correto Perdeu",
+    "Tchéquia 2-1 12,00",
+    "Coreia do Sul v Tchéquia 11/06/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

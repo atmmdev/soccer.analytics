@@ -15,6 +15,11 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "ts-node prisma/seed.ts",
+    "db:import-ticket": "ts-node prisma/import-study-ticket.ts",
+    "db:import-tickets-all": "ts-node prisma/import-all-study-tickets.ts",
+    "db:clean-study-tickets": "ts-node prisma/clean-study-tickets.ts",
+    "db:export-tickets": "ts-node prisma/export-all-study-tickets.ts",
+    "db:reimport-tickets": "ts-node prisma/clean-study-tickets.ts && ts-node prisma/export-all-study-tickets.ts --force && ts-node prisma/import-all-study-tickets.ts",
     "db:clean": "ts-node prisma/clean-demo-data.ts",
     "db:studio": "prisma studio"
   },

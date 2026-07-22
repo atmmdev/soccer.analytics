@@ -1,0 +1,338 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.712Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16062026-205315hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/16062026-205315hs.pdf",
+  "bet365Ref": "JP4372819861W",
+  "placedAt": "2026-06-16T23:53:15.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 910,
+  "potentialReturn": 9100,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Áustria v Jordânia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Menos de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Áustria v Jordânia",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Marcel Sabitzer: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Áustria v Jordânia",
+      "matchDate": null,
+      "market": "Jogador - Para Sofrer Falta",
+      "selection": "Marcel Sabitzer: 1+ Faltas Sofridas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Cristiano Ronaldo: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Bruno Fernandes: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Croácia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Croácia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Croácia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Croácia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": null,
+      "matchLabel": "Gana v Panamá",
+      "matchDate": "17/06/2026",
+      "market": "Resultado Final – Preços Ajustados",
+      "selection": "Gana",
+      "period": "90'+ Acréscimos",
+      "odd": 2.3,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": null,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": "17/06/2026",
+      "market": "Resultado Final",
+      "selection": "Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": 1.38,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "JP4372819861W 16/06/202620:53:15",
+    "Criar Aposta 4,50 5,00",
+    "Aposta Aumentada",
+    "Áustria v Jordânia",
+    "Criar Aposta 6,50 7,00",
+    "Aposta Aumentada",
+    "Portugal v RD Congo",
+    "Criar Aposta 23,00 26,00",
+    "Aposta Aumentada",
+    "Inglaterra v Croácia",
+    "Gana 2,30",
+    "Gana v Panamá 17/06/2026",
+    "Resultado Final – Preços Ajustados Ganhou",
+    "Colômbia 1,38",
+    "Uzbequistão v Colômbia 17/06/2026",
+    "Resultado Final Ganhou",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Partida - Menos de 2.5 Gols",
+    "Total de Gols",
+    "Marcel Sabitzer: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Marcel Sabitzer: 1+ Faltas Sofridas",
+    "Jogador - Para Sofrer Falta Perdeu",
+    "Resultado Final: Portugal",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Cristiano Ronaldo: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Bruno Fernandes: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Inglaterra",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Croácia",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Inglaterra",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Croácia",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Inglaterra",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Croácia",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Inglaterra",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Croácia",
+    "2º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "Preços Ajustados",
+    "Pagamento Antecipado Recebido"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

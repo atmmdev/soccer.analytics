@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.145Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "24052026-103652hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/24052026-103652hs.pdf",
+  "bet365Ref": "YP4884015781W",
+  "placedAt": "2026-05-24T13:36:52.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 2145,
+  "potentialReturn": 21450,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Tottenham v Everton",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes ao Gol",
+      "selection": "Everton - Mais de 5.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Liverpool v Brentford",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Liverpool",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Man City v Aston Villa",
+      "matchDate": null,
+      "market": "Resultado Final: Man City",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Resultado Final: Man Utd",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Antonin Kinsky: 5+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Mohamed Salah: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Andrew Robertson",
+      "selection": "Milos Kerkez: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Erling Haaland - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Antoine Semenyo",
+      "selection": "Rayan Cherki: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Bruno Fernandes: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Brighton v Man Utd",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Matheus Cunha: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "YP4884015781W 24/05/202610:36:52",
+    "Criar Aposta 12,00 13,00",
+    "Aposta Aumentada",
+    "Tottenham v Everton",
+    "Criar Aposta 5,50 6,00",
+    "Aposta Aumentada",
+    "Liverpool v Brentford",
+    "Criar Aposta 8,00 5,50",
+    "Aposta Aumentada",
+    "Man City v Aston Villa",
+    "Criar Aposta 7,50 5,00",
+    "Aposta Aumentada",
+    "Brighton v Man Utd",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Everton - Mais de 5.5 Chutes ao Gol",
+    "Time Visitante - Chutes ao Gol",
+    "Antonin Kinsky: 5+ Defesas",
+    "Goleiro - Defesas - Alternativas Perdeu",
+    "Resultado Final: Liverpool",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mohamed Salah: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Milos Kerkez: 1+ Chutes ao Gol",
+    "Andrew Robertson",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Resultado Final: Man City",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Erling Haaland - Para Marcar Anulado",
+    "Para Marcar a Qualquer Momento",
+    "Rayan Cherki: 2+ Chutes ao Gol",
+    "Antoine Semenyo",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Resultado Final: Man Utd",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Bruno Fernandes: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Matheus Cunha: 1+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

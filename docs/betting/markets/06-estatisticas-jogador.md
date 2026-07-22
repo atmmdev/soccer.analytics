@@ -32,6 +32,11 @@ Props por jogador — Player Engine + MatchPlayerPerformance.
 | 18 | Distância Percorrida | Player Engine |
 | 19 | xG do Jogador | Player Engine |
 | 20 | xA do Jogador | Player Engine |
+| 21 | Passes Decisivos (Key Passes) | Player Engine |
+| 22 | Cabeçadas | Player Engine |
+| 23 | Tiros de Meta do Goleiro | Player Engine |
+| 24 | Duelos | Player Engine |
+| 25 | Recuperações | Player Engine |
 
 ### Integração Soccer Analytics
 
@@ -2057,6 +2062,483 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 - Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
 
 ---
+
+# Passes Decisivos (Key Passes)
+
+## O que é
+
+Over/Under no número de **passes decisivos** (key passes) do jogador — passes que levam diretamente a uma finalização, independentemente de resultar em gol.
+
+> **Engine Soccer Analytics:** Player Engine
+
+## Como funciona
+
+- Projeção: `média key_passes/90 × minutos esperados`.
+- Correlaciona com xA, SCA (Shot-Creating Actions) e posição (meias ofensivos, laterais em times de posse).
+- Diferente de **assistência**: key pass não exige gol.
+
+## Como a Bet365 contabiliza
+
+| Situação | Liquidação |
+|----------|------------|
+| Stat Opta ≥ linha Over | **GREEN** |
+| Stat < linha Over | **RED** |
+| Jogador não titular | **VOID** (regra típica Bet365 props) |
+| Substituição aos 70' | Stat congelada no minuto de saída |
+| Linha asiática .0 com empate exato | **PUSH** (se oferecido) |
+
+## Exemplo GREEN
+
+**De Bruyne Over 2.5 key passes** · 4 key passes → **GREEN** @ 1,95
+
+## Exemplo RED
+
+**De Bruyne Over 2.5** · 1 key pass → **RED**
+
+## Exemplo VOID
+
+De Bruyne no banco; não inicia → **VOID**
+
+## Mercados relacionados
+
+- Assistências
+- xA do Jogador
+- Ações de Criação
+- Cruzamentos
+
+## Quando utilizar
+
+- Criador titular vs defesa que cede chances (xGA alto)
+- Time com alta posse e volume de entradas na área
+- EV > 5% no Player Engine com amostra ≥ 8 jogos
+
+## Quando evitar
+
+- Rotação / minutos < 60 esperados
+- Jogo de transição rápida (poucos passes de criação)
+- Adversário com PPDA baixo e bloqueio de linha de passe
+
+## Indicadores importantes
+
+| Indicador | Uso |
+|-----------|-----|
+| Key passes/90 (10j) | Base λ |
+| xA/90 | Qualidade das chances criadas |
+| Posse do time | Volume de oportunidades |
+| Toques na área adversária | Contexto ofensivo |
+| Minutos esperados | Risco VOID / under por saída cedo |
+
+## Perfil ideal
+
+Meia ofensivo titular em time dominante (Premier League, Bundesliga) com adversário médio-fraco.
+
+## Perfil ruim
+
+Volante defensivo; jogo de copa com rotação; chuva extrema (menos precisão).
+
+## Riscos
+
+- Definição Opta ≠ percepção visual
+- Cartão / lesão cedo reduz minutos
+- Correlação alta com assistências e Over gols no mesmo bilhete
+
+## Odds médias
+
+| Contexto | Faixa típica |
+|----------|--------------|
+| Linha baixa (1.5) criador | 1,55 – 1,85 |
+| Linha média (2.5) | 1,90 – 2,40 |
+| Linha alta (3.5+) | 2,50 – 4,00 |
+
+## Grau de dificuldade
+
+**Alto**
+
+## Checklist
+
+- [ ] Titular confirmado
+- [ ] Amostra ≥ 8 jogos com minutos
+- [ ] Comparar λ vs linha e fair odd
+- [ ] EV = P_real × odd − 1 > threshold
+- [ ] Não empilhar com assistência do mesmo jogador sem ajuste de correlação
+
+### Notas Soccer Analytics
+
+- Proxy interno: `MatchPlayerPerformance` + SCA quando disponível.
+- Correlação ++ com [Assistências](#assistências) e Over gols do time.
+
+---
+
+# Cabeçadas
+
+## O que é
+
+Over/Under no número de **cabeçadas** do jogador (disputas aéreas totais ou cabeçadas ao gol, conforme boletim da casa).
+
+> **Engine Soccer Analytics:** Player Engine
+
+## Como funciona
+
+- Distinguir boletim: **aerial duels** (disputas) vs **headed shots** (finalizações de cabeça).
+- Favorece zagueiros em bolas paradas e atacantes altos em cruzamentos.
+- Ajuste por estilo do time (cruzamentos/90) e altura relativa do adversário.
+
+## Como a Bet365 contabiliza
+
+Critério Opta de cabeçada / disputa aérea conforme mercado específico. Titularidade tipicamente obrigatória. Acréscimos contam.
+
+## Exemplo GREEN
+
+**Van Dijk Over 4.5 aerials** · 7 disputas aéreas → **GREEN** @ 1,80
+
+## Exemplo RED
+
+**Over 4.5** · 3 disputas → **RED**
+
+## Exemplo VOID
+
+Não titular → **VOID**
+
+## Mercados relacionados
+
+- Duelos
+- Cruzamentos (time)
+- Gol de Cabeça ([02-gols.md](./02-gols.md))
+- Escanteios
+
+## Quando utilizar
+
+- Zagueiro titular vs time que cruza muito
+- Atacante alvo em time com laterais ofensivos
+- Média aerials/90 consistentemente acima da linha
+
+## Quando evitar
+
+- Time de posse baixa (poucos cruzamentos adversários → menos duelos aéreos defensivos)
+- Confundir “cabeçadas ao gol” com “disputas aéreas”
+- Gramado / vento extremo alterando padrão de cruzamento
+
+## Indicadores importantes
+
+- Aerials won + contested /90
+- Cruzamentos do próprio time e do adversário
+- Escanteios médios (bolas paradas)
+- Altura / perfil físico (contexto qualitativo)
+
+## Perfil ideal
+
+Centrais e pivôs em ligas com volume alto de cruzamentos (Championship, algumas ligas sul-americanas).
+
+## Perfil ruim
+
+Meias de posse; times que jogam pelo chão (tiki-taka extremo).
+
+## Riscos
+
+- Variância alta em amostra pequena
+- Substituição em jogo decidido
+- Definição ambígua entre casas
+
+## Odds médias
+
+| Linha típica | Faixa |
+|--------------|-------|
+| Over 2.5 / 3.5 | 1,70 – 2,20 |
+| Over 5.5+ (zagueiro) | 1,85 – 2,50 |
+
+## Grau de dificuldade
+
+**Alto**
+
+## Checklist
+
+- [ ] Confirmar tipo de mercado (aerial vs headed shot)
+- [ ] Titular + minutos esperados
+- [ ] Cruzamentos/escanteios do confronto alinhados
+- [ ] EV positivo no modelo
+
+---
+
+# Tiros de Meta do Goleiro
+
+## O que é
+
+Over/Under no número de **tiros de meta** cobrados pelo goleiro (goal kicks) na partida.
+
+> **Engine Soccer Analytics:** Player Engine / Statistics Engine
+
+## Como funciona
+
+- Tiros de meta aumentam quando o time sofre pressão (adversário finaliza / força defesas e rebotes pela linha de fundo).
+- Correlação **positiva** com chutes do adversário, defesas e escanteios sofridos.
+- Correlação **negativa** com posse alta do próprio time.
+
+## Como a Bet365 contabiliza
+
+Contagem de goal kicks do goleiro/time. Acréscimos contam. Prorrogação não (salvo mercado explícito).
+
+## Exemplo GREEN
+
+**Alisson Over 6.5 tiros de meta** · adversário pressiona · 9 goal kicks → **GREEN** @ 1,90
+
+## Exemplo RED
+
+**Over 6.5** · Liverpool domina posse · 4 goal kicks → **RED**
+
+## Exemplo VOID
+
+Goleiro reserva não inicia → **VOID** (quando mercado é do jogador)
+
+## Mercados relacionados
+
+- Defesas do Goleiro
+- Total Tiros de Meta ([10-outros-mercados.md](./10-outros-mercados.md))
+- Escanteios
+- Chutes do adversário
+
+## Quando utilizar
+
+- Favorito visitante pressiona o mandante fraco → goleiro do favorito **não** é o ideal; preferir goleiro do time pressionado
+- Time com baixa posse esperada e xGA alto
+- λ de goal kicks histórico > linha + 1,0
+
+## Quando evitar
+
+- Time dominante em casa (posse alta → poucos tiros de meta)
+- Mudança tática de última hora (bloco baixo ↔ pressão)
+
+## Indicadores importantes
+
+| Indicador | Direção |
+|-----------|---------|
+| Posse adversária esperada | + tiros de meta |
+| Shots adversário | + |
+| xGA do time | + |
+| Defesas do goleiro | + (correlação) |
+
+## Perfil ideal
+
+Goleiro de time azarão / pressionado em casa por favorito ofensivo.
+
+## Perfil ruim
+
+Goleiro de time que controla 60%+ posse.
+
+## Riscos
+
+- Placar cedo inverte pressão
+- Critério de “goal kick” vs “save then kick” em edge cases
+
+## Odds médias
+
+| Linha | Faixa |
+|-------|-------|
+| Over 5.5 / 6.5 | 1,75 – 2,10 |
+| Over 8.5 | 2,20 – 3,00 |
+
+## Grau de dificuldade
+
+**Alto**
+
+## Checklist
+
+- [ ] Confirmar se mercado é do goleiro ou do time
+- [ ] Estimar posse e shots do adversário
+- [ ] Validar correlação com Defesas / Escanteios no bilhete
+
+---
+
+# Duelos
+
+## O que é
+
+Over/Under no total de **duelos** (aéros + terrestres) disputados pelo jogador.
+
+> **Engine Soccer Analytics:** Player Engine
+
+## Como funciona
+
+```
+λ_duelos ≈ (duelos/90) × (minutos_esperados / 90)
+```
+
+- Volantes box-to-box e zagueiros em jogos físicos tendem a linhas altas.
+- Derbies e mata-matas elevam intensidade de duelos.
+
+## Como a Bet365 contabiliza
+
+Soma Opta de duelos disputados (won + lost). Titularidade típica. Acréscimos contam.
+
+## Exemplo GREEN
+
+**Casemiro Over 12.5 duelos** · 16 disputados → **GREEN** @ 1,85
+
+## Exemplo RED
+
+**Over 12.5** · 9 disputados → **RED**
+
+## Exemplo VOID
+
+Não titular → **VOID**
+
+## Mercados relacionados
+
+- Desarmes
+- Interceptações
+- Cabeçadas
+- Faltas Cometidas
+- Recuperações
+
+## Quando utilizar
+
+- Meio/zagueiro em jogo de alta intensidade (derby, rebaixamento)
+- Adversário com muitos duelos cedidos historicamente
+- Média estável nos últimos 10 com minutos completos
+
+## Quando evitar
+
+- Time de posse extrema (menos disputas 1×1)
+- Risco de cartão cedo / expulsão
+- Linha inflada após outlier recente
+
+## Indicadores importantes
+
+- Duelos/90 e % vencidos
+- Faltas/90 (proxy de intensidade)
+- Estilo do adversário (direto vs posse)
+- Árbitro (jogos “parados” reduzem ritmo de duelos)
+
+## Perfil ideal
+
+Volante defensivo em liga física (Championship, Brasileirão clássicos).
+
+## Perfil ruim
+
+Meia de criação em monólogo de posse; amistosos.
+
+## Riscos
+
+- Substituição tática aos 60'
+- Definição Opta inclui/exclui certos contatos
+- Correlação ++ com faltas e cartões
+
+## Odds médias
+
+| Linha | Faixa |
+|-------|-------|
+| Over 8.5 – 10.5 | 1,70 – 2,00 |
+| Over 12.5 – 15.5 | 1,85 – 2,40 |
+
+## Grau de dificuldade
+
+**Alto**
+
+## Checklist
+
+- [ ] Titular confirmado
+- [ ] Intensidade do jogo (derby / stakes) avaliada
+- [ ] λ vs linha com amostra ≥ 8
+- [ ] Correlação com cartões/faltas no bilhete
+
+---
+
+# Recuperações
+
+## O que é
+
+Over/Under no número de **recuperações de bola** do jogador (ball recoveries).
+
+> **Engine Soccer Analytics:** Player Engine
+
+## Como funciona
+
+- Recuperação ≠ apenas desarme: inclui coleta de segundo bola, interceptação solta e recuperações em pressão.
+- Times de pressing alto (PPDA baixo) elevam recuperações de meias e atacantes de primeira linha.
+- Zagueiros recuperam mais quando o time defende em bloco médio/baixo com rebotes.
+
+## Como a Bet365 contabiliza
+
+Contagem Opta de ball recoveries. Verificar boletim (algumas casas usam “ball wins”). Titularidade típica.
+
+## Exemplo GREEN
+
+**Rodri Over 9.5 recuperações** · 12 → **GREEN** @ 1,88
+
+## Exemplo RED
+
+**Over 9.5** · 6 → **RED**
+
+## Exemplo VOID
+
+Reserva → **VOID**
+
+## Mercados relacionados
+
+- Desarmes
+- Interceptações
+- Duelos
+- PPDA do time ([indicadores.md](../ai/indicadores.md))
+
+## Quando utilizar
+
+- Volante em time de pressing estruturado
+- Adversário com muitos passes errados / pressão alta cedida
+- Média recoveries/90 acima da linha com minutos estáveis
+
+## Quando evitar
+
+- Jogo sem pressão (ambos administram)
+- Confundir com desarmes puros na leitura de odds
+- Amostra contaminada por jogos em que jogou de zagueiro
+
+## Indicadores importantes
+
+| Indicador | Relação |
+|-----------|---------|
+| PPDA do time | Menor PPDA → + recuperações ofensivas |
+| Passes errados adversário | + |
+| Desarmes + interceptações | Correlação + |
+| Posição tática | Volante > ponta tipicamente |
+
+## Perfil ideal
+
+“6” ou “8” titular em times de pressing (Liverpool, Brighton, etc. conforme época).
+
+## Perfil ruim
+
+Lateral ofensivo em monólogo; jogo de posse sem transição.
+
+## Riscos
+
+- Mudança de papel tático no jogo
+- Placar altera pressing (time ganhando baixa intensidade)
+- Variância de definição entre provedores
+
+## Odds médias
+
+| Linha | Faixa |
+|-------|-------|
+| Over 6.5 – 8.5 | 1,70 – 2,05 |
+| Over 10.5+ | 1,90 – 2,60 |
+
+## Grau de dificuldade
+
+**Alto**
+
+## Checklist
+
+- [ ] Confirmar definição no boletim (recovery vs tackle)
+- [ ] Titular + papel tático estável
+- [ ] PPDA / estilo de pressão alinhados
+- [ ] EV e correlação com desarmes/interceptações
+
+### Notas Soccer Analytics
+
+- Mercado indexável para agentes de IA em `markets/`.
+- Backtest de liquidação: usar exemplos GREEN/RED/VOID acima.
+- Correlações: consultar [correlacoes.md](../ai/correlacoes.md).
+
+---
 ---
 
 ## Referências
@@ -2066,3 +2548,4 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 - [07-marcadores.md](./07-marcadores.md) — gols e anytime scorer
 - [05-chutes.md](./05-chutes.md) — chutes e SOT
 - [04-cartoes-faltas.md](./04-cartoes-faltas.md) — cartões e faltas por jogador
+- [glossary.md](../glossary.md) — duelo, recuperação, key pass

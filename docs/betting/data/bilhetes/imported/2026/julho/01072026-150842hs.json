@@ -1,0 +1,192 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.597Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01072026-150842hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/01072026-150842hs.pdf",
+  "bet365Ref": "AP5175012571I",
+  "placedAt": "2026-07-01T18:08:42.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Kevin De Bruyne",
+      "selection": "Nicolas Raskin: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Ismaila Sarr: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas - Alternativas",
+      "selection": "Ermedin Demirovic: 2+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Sead Kolasinac",
+      "selection": "Haris Tabakovic: 2+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Ricardo Pepi: 2+ Faltas Cometidas",
+      "selection": "Jogador - Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Giovanni Reyna: 2+ Faltas Cometidas",
+      "selection": "Jogador - Faltas Cometidas - Alternativas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas",
+      "selection": "Weston McKennie",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "AP5175012571I 01/07/202615:08:42",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Bélgica v Senegal",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "EUA v Bósnia e Herzegovina",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "Nicolas Raskin: 2+ Chutes ao Gol",
+    "Kevin De Bruyne",
+    "Jogador - Chutes ao Gol",
+    "Ismaila Sarr: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "90'+ Acréscimos",
+    "Ermedin Demirovic: 2+ Faltas Cometidas",
+    "Jogador - Faltas Cometidas - Alternativas",
+    "Haris Tabakovic: 2+ Faltas Cometidas",
+    "Sead Kolasinac",
+    "Jogador - Faltas Cometidas",
+    "Ricardo Pepi: 2+ Faltas Cometidas Anulado",
+    "Jogador - Faltas Cometidas - Alternativas",
+    "Giovanni Reyna: 2+ Faltas Cometidas",
+    "Weston McKennie",
+    "Jogador - Faltas Cometidas Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

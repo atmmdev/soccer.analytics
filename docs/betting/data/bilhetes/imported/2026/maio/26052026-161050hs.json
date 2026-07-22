@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.267Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "26052026-161050hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/26052026-161050hs.pdf",
+  "bet365Ref": "AP1807303321I",
+  "placedAt": "2026-05-26T19:10:50.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Jogador - Chutes ao Gol",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 14.364,
+  "potentialReturn": 143.64,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Grêmio v Montevideo City Torque",
+      "matchDate": "26/05/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Martin Braithwaite - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 2.37,
+      "boostedOdd": 2.5,
+      "status": "LOST",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "São Paulo v Boston River",
+      "matchDate": "26/05/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Luciano Neves - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": 1.9,
+      "status": "VOID",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": "26/05/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Neymar - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 2,
+      "boostedOdd": 2.1,
+      "status": "VOID",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": "26/05/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Pedro Guilherme - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.4,
+      "boostedOdd": 1.44,
+      "status": "VOID",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "AP1807303321I 26/05/202616:10:50",
+    "Martin Braithwaite - Mais de 1.5 2,37 2,50",
+    "Grêmio v Montevideo City Torque 26/05/2026",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Aposta Aumentada",
+    "Luciano Neves - Mais de 1.5 1,83 1,90",
+    "São Paulo v Boston River 26/05/2026",
+    "Jogador - Chutes ao Gol Anulado",
+    "Aposta Aumentada",
+    "Neymar - Mais de 1.5 2,00 2,10",
+    "Santos v Deportivo Cuenca 26/05/2026",
+    "Jogador - Chutes ao Gol Anulado",
+    "Aposta Aumentada",
+    "Pedro Guilherme - Mais de 1.5 1,40 1,44",
+    "Flamengo v Cusco FC 26/05/2026",
+    "Jogador - Chutes ao Gol Anulado",
+    "Aposta Aumentada",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "T d t ã it fi li d dâ i T C di õ R"
+  ],
+  "warnings": []
+}

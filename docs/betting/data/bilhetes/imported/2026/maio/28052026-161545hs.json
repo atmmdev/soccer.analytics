@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.622Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "28052026-161545hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/28052026-161545hs.pdf",
+  "bet365Ref": "SP2152887311F",
+  "placedAt": "2026-05-28T19:15:45.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": null,
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [],
+  "rawLines": [
+    "SP2152887311F 28/05/202616:15:45",
+    "Luciano Darderi 1,80",
+    "Francisco Comesana vs Luciano Darderi 28/05/2026",
+    "Partida - Vencedor Perdeu",
+    "Brandon Nakashima 1,61",
+    "Luca Van Assche vs Brandon Nakashima 28/05/2026",
+    "Partida - Vencedor Ganhou",
+    "Matteo Arnaldi 1,25",
+    "Matteo Arnaldi vs Stefanos Tsitsipas 28/05/2026",
+    "Partida - Vencedor Ganhou",
+    "Raphael Collignon 1,16",
+    "Raphael Collignon vs Ben Shelton 28/05/2026",
+    "Partida - Vencedor Ganhou",
+    "Matteo Berrettini 1,36",
+    "Arthur Rinderknech vs Matteo Berrettini 28/05/2026",
+    "Partida - Vencedor Ganhou",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": [
+    "Odd combinada ausente ou 1.00 — precisa revisão manual",
+    "Nenhuma perna extraída"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:54.380Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22042026-114318hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/22042026-114318hs.pdf",
+  "bet365Ref": "JF7789378211I",
+  "placedAt": "2026-04-22T14:43:18.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 341.25,
+  "potentialReturn": 3412.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Santos v Coritiba",
+      "matchDate": "22/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 0-0",
+      "period": "90'+ Acréscimos",
+      "odd": 7.5,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Athletic Club MG v Internacional",
+      "matchDate": "22/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 1-1",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Vitória",
+      "matchDate": "22/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 1-0",
+      "period": "90'+ Acréscimos",
+      "odd": 7,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "JF7789378211I 22/04/202611:43:18",
+    "Empate 0-0 7,50",
+    "Santos v Coritiba 22/04/2026",
+    "Resultado Correto Ganhou",
+    "Empate 1-1 6,50",
+    "Athletic Club MG v Internacional 22/04/2026",
+    "Resultado Correto Perdeu",
+    "Flamengo 1-0 7,00",
+    "Flamengo v Vitória 22/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

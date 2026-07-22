@@ -1,0 +1,148 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.829Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "29062026-192711hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/29062026-192711hs.pdf",
+  "bet365Ref": "YP2468304761W",
+  "placedAt": "2026-06-29T22:27:11.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 6.67,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Brian Brobbey",
+      "selection": "Wout Weghorst - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Resultado Final: Países Baixos",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Países Baixos - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Marrocos - Mais de 1 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Partida - Impedimentos",
+      "selection": "Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "YP2468304761W 29/06/202619:27:11",
+    "Criar Aposta 1,00",
+    "Países Baixos v Marrocos",
+    "Ganhos Aumentados de 25%",
+    "Total da Aposta R$6,67",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Wout Weghorst - Para Marcar",
+    "Brian Brobbey",
+    "Para Marcar a Qualquer Momento",
+    "Resultado Final: Países Baixos",
+    "Resultado Final",
+    "Pagamento Antecipado 90'+ Acréscimos",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "90'+ Acréscimos",
+    "Países Baixos - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Marrocos - Mais de 1 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Impedimentos",
+    "Partida - Impedimentos Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

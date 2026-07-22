@@ -1,0 +1,172 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.613Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01062026-150126hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/01062026-150126hs.pdf",
+  "bet365Ref": "XP6406279811I",
+  "placedAt": "2026-06-01T18:01:26.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 11.79,
+  "unitStake": 11.79,
+  "numBets": 1,
+  "combinedOdd": 33.488,
+  "potentialReturn": 394.82,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Áustria v Tunísia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Áustria",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Áustria v Tunísia",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções",
+      "selection": "Mais de 3 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Áustria v Tunísia",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Áustria",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Colômbia v Costa Rica",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Colômbia v Costa Rica",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Canadá v Uzbequistão",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Canadá v Uzbequistão",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Canadá - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "XP6406279811I 01/06/202615:01:26",
+    "Criar Aposta 7,00 8,00",
+    "Aposta Aumentada",
+    "Áustria v Tunísia",
+    "Criar Aposta 1,61",
+    "Colômbia v Costa Rica",
+    "Criar Aposta 2,60",
+    "Canadá v Uzbequistão",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$11,79",
+    "Total da Aposta R$11,79",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Resultado Final: Áustria",
+    "Resultado Final",
+    "Mais de 3 Gols",
+    "Total de Gols - 3 Opções",
+    "Maior Número de Escanteios: Áustria",
+    "Escanteios - Aposta Comparativa Perdeu",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Colômbia",
+    "Resultado Final Ganhou",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Canadá - Mais de 3 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.001Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "03022026-0828hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/03022026-0828hs.pdf",
+  "bet365Ref": "EA8064420751I",
+  "placedAt": "2026-02-03T11:28:31.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 73.125,
+  "potentialReturn": 731.25,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bologna v AC Milan",
+      "matchDate": null,
+      "market": "Resultado Final: AC Milan",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Albacete Balompié v Barcelona",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Bayer Leverkusen v St Pauli",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Bayer Leverkusen",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 2,
+      "matchLabel": "Bayer Leverkusen v St Pauli",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "R V d F i N M ti 1480 C t",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Bayer Leverkusen v St Pauli",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Bayer Leverkusen v St Pauli",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Bayer Leverkusen v St Pauli",
+      "matchDate": null,
+      "market": "1º Tempo - Escanteios",
+      "selection": "Mais de 4 Escanteios no 1º Tempo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "EA8064420751I 03/02/202608:28:31",
+    "Criar Aposta 5,00",
+    "Bologna v AC Milan",
+    "Criar Aposta 2,25",
+    "Albacete Balompié v Barcelona",
+    "Criar Aposta 6,50",
+    "Bayer Leverkusen v St Pauli",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "R V d F i N M ti 1480 C t",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Resultado Final: AC Milan",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado Recebido",
+    "Resultado Final: Barcelona",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Resultado Final: Bayer Leverkusen",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 4 Escanteios no 1º Tempo",
+    "1º Tempo - Escanteios Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

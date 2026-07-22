@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.286Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01072026-102534hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/01072026-102534hs.pdf",
+  "bet365Ref": "JP1663350851I",
+  "placedAt": "2026-07-01T13:25:34.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 6.98,
+  "unitStake": 6.98,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos para Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Time Visitante - 10 Minutos - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos para Senegal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Time Visitante - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para Senegal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos para EUA",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para EUA",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "JP1663350851I 01/07/202610:25:34",
+    "Criar Aposta 1,00",
+    "Inglaterra v RD Congo",
+    "Criar Aposta 1,00",
+    "Bélgica v Senegal",
+    "Criar Aposta 1,00",
+    "EUA v Bósnia e Herzegovina",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$6,98",
+    "Total da Aposta R$6,98",
+    "Retorno R$0,00",
+    "Mais de 0 Gols nos Primeiros 10 Minutos para Inglaterra",
+    "Time da Casa - 10 Minutos - Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para Inglaterra",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Mais de 0 Gols nos Primeiros 10 Minutos para Senegal",
+    "Time Visitante - 10 Minutos - Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para Senegal",
+    "Time Visitante - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Mais de 0 Gols nos Primeiros 10 Minutos para EUA",
+    "Time da Casa - 10 Minutos - Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para EUA",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

@@ -1,0 +1,533 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.302Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "26052026-161957hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/26052026-161957hs.pdf",
+  "bet365Ref": "XP8629885421I",
+  "placedAt": "2026-05-26T19:19:57.000Z",
+  "betType": "9 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 552.5796,
+  "potentialReturn": 5525.8,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Mirassol",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Lanús",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Mirassol",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Mirassol",
+      "matchDate": null,
+      "market": "Partida - Chutes ao Gol",
+      "selection": "Mais de 4.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "São Paulo v Boston River",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: São Paulo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "São Paulo v Boston River",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "São Paulo v Boston River",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "São Paulo - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Flamengo v Cusco FC",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Flamengo - Mais de 4.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Santos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Santos v Deportivo Cuenca",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Santos - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Montevideo City Torque",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Grêmio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 4,
+      "matchLabel": "Grêmio v Montevideo City Torque",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 5,
+      "matchLabel": "LDU Quito v Always Ready",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: LDU Quito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 5,
+      "matchLabel": "LDU Quito v Always Ready",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 5,
+      "matchLabel": "LDU Quito v Always Ready",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "LDU Quito - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 6,
+      "matchLabel": "Estudiantes v Independiente Medellín",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Estudiantes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 6,
+      "matchLabel": "Estudiantes v Independiente Medellín",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 6,
+      "matchLabel": "Estudiantes v Independiente Medellín",
+      "matchDate": null,
+      "market": "Time da Casa - Chutes ao Gol",
+      "selection": "Estudiantes - Mais de 3.5 Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 7,
+      "matchLabel": "Universitario de Deportes v Deportes Tolima",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Universitario de Deportes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 7,
+      "matchLabel": "Universitario de Deportes v Deportes Tolima",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 7,
+      "matchLabel": "Universitario de Deportes v Deportes Tolima",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 23,
+      "builderGroup": 8,
+      "matchLabel": "Nacional de Football v Coquimbo Unido",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Nacional de Football",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 24,
+      "builderGroup": 8,
+      "matchLabel": "Nacional de Football v Coquimbo Unido",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 25,
+      "builderGroup": 8,
+      "matchLabel": "Nacional de Football v Coquimbo Unido",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "XP8629885421I 26/05/202616:19:57",
+    "Criar Aposta 2,60",
+    "Lanús v Mirassol",
+    "Criar Aposta 1,57",
+    "São Paulo v Boston River",
+    "Criar Aposta 1,28",
+    "Flamengo v Cusco FC",
+    "Criar Aposta 1,70",
+    "Santos v Deportivo Cuenca",
+    "Criar Aposta 2,00",
+    "Grêmio v Montevideo City Torque",
+    "Criar Aposta 1,61",
+    "LDU Quito v Always Ready",
+    "Criar Aposta 2,30",
+    "Estudiantes v Independiente Medellín",
+    "Criar Aposta 4,00",
+    "Universitario de Deportes v Deportes Tolima",
+    "Criar Aposta 2,10",
+    "Nacional de Football v Coquimbo Unido",
+    "Tipo de Aposta: 9 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Lanús",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 4.5 Chutes ao Gol",
+    "Partida - Chutes ao Gol Perdeu",
+    "Resultado Final: São Paulo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "São Paulo - Mais de 3.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol Ganhou",
+    "Resultado Final: Flamengo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Flamengo - Mais de 4.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol Ganhou",
+    "Resultado Final: Santos",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Santos - Mais de 3.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol Ganhou",
+    "Resultado Final: Grêmio",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols Perdeu",
+    "Resultado Final: LDU Quito",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "LDU Quito - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Estudiantes",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Estudiantes - Mais de 3.5 Chutes ao Gol",
+    "Time da Casa - Chutes ao Gol Perdeu",
+    "Resultado Final: Universitario de Deportes",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 4 Escanteios",
+    "Escanteios Perdeu",
+    "Resultado Final: Nacional de Football",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 4 Escanteios",
+    "Escanteios Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 9 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

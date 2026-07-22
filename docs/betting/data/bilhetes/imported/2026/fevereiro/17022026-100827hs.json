@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.987Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "17022026-100827hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/17022026-100827hs.pdf",
+  "bet365Ref": "QA4221601001I",
+  "placedAt": "2026-02-17T13:08:27.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": 104,
+  "potentialReturn": 5200,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Benfica v Real Madrid",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Benfica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Benfica v Real Madrid",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 4 Escanteios no 1º Tempo para Real Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Benfica v Real Madrid",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Benfica - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Benfica v Real Madrid",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Real Madrid - Menos de 7.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Monaco v PSG",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Monaco",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Monaco v PSG",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 5 Escanteios no 1º Tempo para PSG",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Monaco v PSG",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Monaco - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Monaco v PSG",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - PSG - Menos de 8.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "QA4221601001I 17/02/202610:08:27",
+    "Criar Aposta 8,00",
+    "Benfica v Real Madrid",
+    "Criar Aposta 13,00",
+    "Monaco v PSG",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00",
+    "Mais de 2 Escanteios no 1º Tempo para Benfica",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Menos de 4 Escanteios no 1º Tempo para Real Madrid",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Benfica - Mais de 6.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Real Madrid - Menos de 7.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu",
+    "Mais de 2 Escanteios no 1º Tempo para Monaco",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Menos de 5 Escanteios no 1º Tempo para PSG",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Monaco - Mais de 6.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - PSG - Menos de 8.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

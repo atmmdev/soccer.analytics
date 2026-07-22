@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.413Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14072026-113054hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/14072026-113054hs.pdf",
+  "bet365Ref": "JY6848970081I",
+  "placedAt": "2026-07-14T14:30:54.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "França v Espanha",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Kylian Mbappe - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "França v Espanha",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Kylian Mbappe: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "França v Espanha",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lamine Yamal: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Harry Kane: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lionel Messi: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "JY6848970081I 14/07/202611:30:54",
+    "Criar Aposta 1,00",
+    "França v Espanha",
+    "Criar Aposta 1,00",
+    "Inglaterra v Argentina",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00",
+    "Kylian Mbappe - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Kylian Mbappe: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Lamine Yamal: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Harry Kane: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Lionel Messi: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

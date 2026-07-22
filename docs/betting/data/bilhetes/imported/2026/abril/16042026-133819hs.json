@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.011Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16042026-133819hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/16042026-133819hs.pdf",
+  "bet365Ref": "HF5125573421I",
+  "placedAt": "2026-04-16T16:38:19.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 181.5,
+  "potentialReturn": 907.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Palmeiras v Sporting Cristal",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Palmeiras 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Atlético Mineiro v Juventud De Las Piedras",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Atlético Mineiro 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 6,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "HF5125573421I 16/04/202613:38:19",
+    "Palmeiras 2-0 5,50",
+    "Palmeiras v Sporting Cristal 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Flamengo 2-0 5,50",
+    "Flamengo v Independiente Medellín 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Atlético Mineiro 2-0 6,00",
+    "Atlético Mineiro v Juventud De Las Piedras 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,183 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.954Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "03072026-214900hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/03072026-214900hs.pdf",
+  "bet365Ref": "XY3415116811W",
+  "placedAt": "2026-07-04T00:49:00.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 8.71,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Gana",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Gana",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Gana",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Gana",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "XY3415116811W 03/07/202621:49:00",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Colômbia v Gana",
+    "Total da Aposta R$8,71",
+    "Retorno R$0,00",
+    "Mais de 1 Escanteios no 1º Tempo para Colômbia",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 1 Escanteios no 1º Tempo para Gana",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 1 Escanteios no 2º Tempo para Colômbia",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 1 Escanteios no 2º Tempo para Gana",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Colômbia",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Gana",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Colômbia",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "90'+ Acréscimos",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Gana",
+    "2º Tempo - Time 2 - Chutes ao Gol Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

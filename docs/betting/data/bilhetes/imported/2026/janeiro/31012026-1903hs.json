@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.228Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "31012026-1903hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/janeiro/31012026-1903hs.pdf",
+  "bet365Ref": "TA1316670581W",
+  "placedAt": "2026-01-31T22:03:27.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 63.75,
+  "potentialReturn": 637.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Independiente v Vélez Sarsfield",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Independiente - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Independiente v Vélez Sarsfield",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Independiente",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Atlético Tucumán v Huracán",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Atlético Tucumán - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Atlético Tucumán v Huracán",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Atlético Tucumán",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Talleres de Córdoba v Platense",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Talleres de Córdoba - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Talleres de Córdoba v Platense",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Talleres de Córdoba",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "TA1316670581W 31/01/202619:03:27",
+    "Criar Aposta 3,75",
+    "Independiente v Vélez Sarsfield",
+    "Criar Aposta 5,00",
+    "Atlético Tucumán v Huracán",
+    "Criar Aposta 3,40",
+    "Talleres de Córdoba v Platense",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "1º Tempo - Independiente - Mais de 6.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "Mais de 2 Escanteios no 1º Tempo para Independiente",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Perdeu",
+    "1º Tempo - Atlético Tucumán - Mais de 6.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "Mais de 2 Escanteios no 1º Tempo para Atlético Tucumán",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Perdeu",
+    "1º Tempo - Talleres de Córdoba - Mais de 6.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "Mais de 2 Escanteios no 1º Tempo para Talleres de Córdoba",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

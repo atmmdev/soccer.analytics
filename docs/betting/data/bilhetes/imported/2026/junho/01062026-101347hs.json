@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.559Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01062026-101347hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/01062026-101347hs.pdf",
+  "bet365Ref": "TP1216060041I",
+  "placedAt": "2026-06-01T13:13:47.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 46.4063,
+  "potentialReturn": 464.06,
+  "actualReturn": 11.79,
+  "cashOut": {
+    "at": "2026-06-01T17:48:08.000Z",
+    "value": 11.79,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 11.79
+  },
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Eslováquia v Malta",
+      "matchDate": "01/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Eslováquia e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.6,
+      "boostedOdd": 3.75,
+      "status": "WON",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Noruega v Suécia",
+      "matchDate": "01/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Noruega e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.5,
+      "boostedOdd": 3.75,
+      "status": "WON",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Turquia v Macedônia do Norte",
+      "matchDate": "01/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Turquia e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.1,
+      "boostedOdd": 3.3,
+      "status": "LOST",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "TP1216060041I 01/06/202610:13:47",
+    "Eslováquia e Sim 3,60 3,75",
+    "Eslováquia v Malta 01/06/2026",
+    "Resultado/Ambos Marcam Ganhou",
+    "Aposta Aumentada",
+    "Noruega e Sim 3,50 3,75",
+    "Noruega v Suécia 01/06/2026",
+    "Resultado/Ambos Marcam Ganhou",
+    "Aposta Aumentada",
+    "Turquia e Sim 3,10 3,30",
+    "Turquia v Macedônia do Norte 01/06/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Aposta Aumentada",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$11,79",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 01/06/2026 14:48:08",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$11,79",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$11,79"
+  ],
+  "warnings": []
+}

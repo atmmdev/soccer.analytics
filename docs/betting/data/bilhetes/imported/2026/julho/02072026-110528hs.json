@@ -1,0 +1,298 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.663Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "02072026-110528hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/02072026-110528hs.pdf",
+  "bet365Ref": "TP1027186251I",
+  "placedAt": "2026-07-02T14:05:28.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 12.43,
+  "cashOut": {
+    "at": null,
+    "value": null,
+    "usedStake": null,
+    "originalStake": null,
+    "total": null
+  },
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lamine Yamal: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Espanha - Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": null,
+      "market": "Para Ambos os Times Receberem um Cartão",
+      "selection": "Para Ambos os Times Receberem Um Cartão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Cristiano Ronaldo",
+      "selection": "Ruben Neves: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Cristiano Ronaldo - Para Marcar",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Partida - Mais de 1.5 Gols",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 7 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Suíça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Oussama Benbot: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Suíça - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "TP1027186251I 02/07/202611:05:28",
+    "Criar Aposta 1,00",
+    "Espanha v Áustria",
+    "Criar Aposta 1,00",
+    "Portugal v Croácia",
+    "Criar Aposta 1,00",
+    "Suíça v Argélia",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$12,43",
+    "Encerrar Aposta – Histórico",
+    "Lamine Yamal: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Espanha",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido 90'+ Acréscimos",
+    "Espanha - Mais de 5 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols Ganhou",
+    "90'+ Acréscimos",
+    "Para Ambos os Times Receberem Um Cartão",
+    "Para Ambos os Times Receberem um Cartão",
+    "90'+ Acréscimos",
+    "Ruben Neves: 2+ Chutes ao Gol",
+    "Cristiano Ronaldo",
+    "Jogador - Chutes ao Gol",
+    "Cristiano Ronaldo - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Mais de 7 Escanteios",
+    "Escanteios Perdeu",
+    "90'+ Acréscimos",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Resultado Final: Suíça",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido 90'+ Acréscimos",
+    "Oussama Benbot: 3+ Defesas Anulado",
+    "Goleiro - Defesas - Alternativas",
+    "Suíça - Mais de 3 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Ganhou",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

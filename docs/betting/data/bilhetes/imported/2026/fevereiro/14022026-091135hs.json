@@ -1,0 +1,181 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.659Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14022026-091135hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/14022026-091135hs.pdf",
+  "bet365Ref": "YA9280841001I",
+  "placedAt": "2026-02-14T12:11:35.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 4.715,
+  "potentialReturn": 47.15,
+  "actualReturn": 9.5,
+  "cashOut": {
+    "at": "2026-02-14T16:56:41.000Z",
+    "value": 9.5,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 9.5
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Lazio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Atalanta",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Atalanta",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Lazio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Giacomo Raspadori - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Sevilha v Alavés",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Sevilha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Sevilha v Alavés",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Sevilha - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "YA9280841001I 14/02/202609:11:35",
+    "Criar Aposta 2,05",
+    "Lazio v Atalanta",
+    "Criar Aposta 2,30",
+    "Sevilha v Alavés",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$9,50",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 14/02/2026 13:56:41",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$9,50",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$9,50",
+    "Mais de 0 Escanteios no 1º Tempo para Lazio",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 1º Tempo para Atalanta",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Atalanta",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Lazio",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Giacomo Raspadori - Para Marcar Anulado",
+    "Para Marcar a Qualquer Momento Ganhou",
+    "Resultado Final: Sevilha",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Sevilha - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.515Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "19052026-102907hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/19052026-102907hs.pdf",
+  "bet365Ref": "EF8962611041I",
+  "placedAt": "2026-05-19T13:29:07.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 76.208,
+  "potentialReturn": 762.08,
+  "actualReturn": 18.26,
+  "cashOut": {
+    "at": "2026-05-20T01:16:46.000Z",
+    "value": 18.26,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 18.26
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Fluminense v Bolívar",
+      "matchDate": "19/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Fluminense e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.2,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Boca Juniors v Cruzeiro",
+      "matchDate": "19/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Boca Juniors e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "São Paulo v Millonarios",
+      "matchDate": "19/05/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "São Paulo e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 4.33,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "EF8962611041I 19/05/202610:29:07",
+    "Fluminense e Sim 3,20",
+    "Fluminense v Bolívar 19/05/2026",
+    "Resultado/Ambos Marcam Ganhou",
+    "Boca Juniors e Sim 5,50",
+    "Boca Juniors v Cruzeiro 19/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "São Paulo e Sim 4,33",
+    "São Paulo v Millonarios 19/05/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$18,26",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 19/05/2026 22:16:46",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$18,26",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$18,26"
+  ],
+  "warnings": []
+}

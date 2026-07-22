@@ -1,0 +1,248 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.501Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "12022026-181859hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/12022026-181859hs.pdf",
+  "bet365Ref": "RA8040040311I",
+  "placedAt": "2026-02-12T21:18:59.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 214.13,
+  "potentialReturn": 2141.3,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Athletico Paranaense v Santos",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Athletico Paranaense",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Athletico Paranaense v Santos",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Internacional v Palmeiras",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Fluminense v Botafogo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Fluminense v Botafogo",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Fluminense v Botafogo",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Corinthians",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Corinthians",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Corinthians v Bragantino",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Corinthians",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "RA8040040311I 12/02/202618:18:59",
+    "Criar Aposta 4,75",
+    "Athletico Paranaense v Santos",
+    "Criar Aposta 2,80",
+    "Internacional v Palmeiras",
+    "Criar Aposta 7,00",
+    "Fluminense v Botafogo",
+    "Criar Aposta 2,30",
+    "Corinthians v Bragantino",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Athletico Paranaense",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Resultado Final: Palmeiras",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para Palmeiras",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Palmeiras",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Botafogo",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Botafogo",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Botafogo",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Corinthians",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para Corinthians",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Corinthians",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

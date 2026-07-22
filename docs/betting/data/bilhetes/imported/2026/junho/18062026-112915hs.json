@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.878Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "18062026-112915hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/18062026-112915hs.pdf",
+  "bet365Ref": "KP9459762631I",
+  "placedAt": "2026-06-18T14:29:15.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 50.661,
+  "potentialReturn": 506.61,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Tchéquia v África do Sul",
+      "matchDate": "18/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Tchéquia e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 4.33,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Suíça v Bósnia e Herzegovina",
+      "matchDate": "18/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Suíça e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.6,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Canadá v Qatar",
+      "matchDate": "18/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Canadá e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.25,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "KP9459762631I 18/06/202611:29:15",
+    "Tchéquia e Sim 4,33",
+    "Tchéquia v África do Sul 18/06/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Suíça e Sim 3,60",
+    "Suíça v Bósnia e Herzegovina 18/06/2026",
+    "Resultado/Ambos Marcam Ganhou",
+    "Canadá e Sim 3,25",
+    "Canadá v Qatar 18/06/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

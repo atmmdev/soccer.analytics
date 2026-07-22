@@ -1,0 +1,145 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.617Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "17042026-105245hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/17042026-105245hs.pdf",
+  "bet365Ref": "AF9099760251I",
+  "placedAt": "2026-04-17T13:52:45.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "CASHED_OUT",
+  "stake": 80,
+  "unitStake": 80,
+  "numBets": 1,
+  "combinedOdd": 9.46,
+  "potentialReturn": 756.8,
+  "actualReturn": 80,
+  "cashOut": {
+    "at": "2026-04-17T13:58:16.000Z",
+    "value": 80,
+    "usedStake": 80,
+    "originalStake": 80,
+    "total": 80
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "St Pauli v Köln",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções",
+      "selection": "Mais de 3 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "St Pauli v Köln",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 8 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "St Pauli v Köln",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Inter de Milão v Cagliari",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Inter de Milão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Inter de Milão v Cagliari",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "AF9099760251I 17/04/202610:52:45",
+    "Criar Aposta 5,50",
+    "St Pauli v Köln",
+    "Criar Aposta 1,72",
+    "Inter de Milão v Cagliari",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$80,00",
+    "Total da Aposta R$80,00",
+    "Retorno R$80,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 17/04/2026 10:58:16",
+    "Aposta Utilizada R$80,00",
+    "Encerrar Aposta - Valor R$80,00",
+    "Aposta Original R$80,00",
+    "Encerrar Aposta - Total R$80,00",
+    "Mais de 3 Gols Anulado",
+    "Total de Gols - 3 Opções",
+    "Mais de 8 Escanteios Anulado",
+    "Escanteios",
+    "Para Ambos os Times Marcarem Anulado",
+    "Para Ambos os Times Marcarem Anulado",
+    "Resultado Final: Inter de Milão Anulado",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 2 Gols Anulado",
+    "Total de Gols - 3 Opções - Alternativas Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

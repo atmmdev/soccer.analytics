@@ -215,21 +215,39 @@ Ajustar λ_casa, λ_fora manualmente ou via delta xG:
 
 ## Tabela mestra — mercado × indicador
 
-| Indicador | 1X2 | O/U | BTTS | Escanteios | Cartões | Scorer |
-|-----------|-----|-----|------|------------|---------|--------|
-| xG / xGA | ●●● | ●●● | ●● | ● | ○ | ●● |
-| SOT | ●● | ●● | ● | ●● | ○ | ●● |
-| Escanteios médios | ● | ● | ○ | ●●● | ○ | ○ |
-| Cartões médios | ○ | ○ | ○ | ○ | ●●● | ○ |
-| gols/90 | ○ | ○ | ○ | ○ | ○ | ●●● |
-| H2H | ● | ● | ● | ● | ●● | ○ |
-| Árbitro | ○ | ○ | ○ | ○ | ●●● | ○ |
+| Indicador | 1X2 | O/U | BTTS | Escanteios | Cartões | Scorer | Props jogador |
+|-----------|-----|-----|------|------------|---------|--------|---------------|
+| xG / xGA | ●●● | ●●● | ●● | ● | ○ | ●● | ● |
+| SOT | ●● | ●● | ● | ●● | ○ | ●● | ●● |
+| Escanteios médios | ● | ● | ○ | ●●● | ○ | ○ | ● (cabeçadas) |
+| Cartões médios | ○ | ○ | ○ | ○ | ●●● | ○ | ● (faltas) |
+| gols/90 | ○ | ○ | ○ | ○ | ○ | ●●● | ●● |
+| Key passes / xA | ○ | ● | ○ | ○ | ○ | ● | ●●● |
+| Duelos / recuperações | ○ | ○ | ○ | ○ | ● | ○ | ●●● |
+| PPDA | ● | ● | ● | ● | ● | ○ | ●● |
+| H2H | ● | ● | ● | ● | ●● | ○ | ○ |
+| Árbitro | ○ | ○ | ○ | ○ | ●●● | ○ | ● |
 
 ●●● = essencial · ●● = importante · ● = útil · ○ = secundário
+
+---
+
+### Indicadores de props (complemento)
+
+| Indicador | Definição resumida | Mercados |
+|-----------|-------------------|----------|
+| Key passes | Passes que geram finalização | Passes decisivos, xA, assistências |
+| Aerials / cabeçadas | Disputas aéreas ou headed shots | Cabeçadas, duelos |
+| Ball recoveries | Recuperações de posse | Recuperações, pressing |
+| Duelos totais | 1×1 aéreos + terrestres | Duelos, desarmes |
+| Goal kicks | Tiros de meta do goleiro | Tiros de meta, pressão sofrida |
+| SCA / GCA | Ações que criam chute / gol | Criação, xA |
 
 ---
 
 ## Referências
 
 - [checklist.md](./checklist.md)
+- [glossary.md](../glossary.md) — Yield, duelo, recuperação
 - Statistics Engine: `apps/api/src/engines/statistics-engine/`
+- Player props: [markets/06-estatisticas-jogador.md](../markets/06-estatisticas-jogador.md)

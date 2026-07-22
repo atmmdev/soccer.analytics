@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.881Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "15042026-175418hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/15042026-175418hs.pdf",
+  "bet365Ref": "XA3747736971F",
+  "placedAt": "2026-04-15T20:54:18.000Z",
+  "betType": "Simples",
+  "betLabel": "Resultado Final",
+  "status": "CASHED_OUT",
+  "stake": 5,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 15,
+  "potentialReturn": 75,
+  "actualReturn": 75,
+  "cashOut": {
+    "at": "2026-04-15T20:56:24.000Z",
+    "value": 75,
+    "usedStake": 5,
+    "originalStake": 5,
+    "total": 75
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Bayern de Munique v Real Madrid",
+      "matchDate": "15/04/2026",
+      "market": "Resultado Final",
+      "selection": "Bayern de Munique",
+      "period": "90'+ Acréscimos",
+      "odd": 15,
+      "boostedOdd": null,
+      "status": "WON"
+    }
+  ],
+  "rawLines": [
+    "XA3747736971F 15/04/202617:54:18",
+    "Bayern de Munique 15,00",
+    "Bayern de Munique v Real Madrid 15/04/2026",
+    "Resultado Final Ganhou",
+    "Simples 1 x R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$75,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 15/04/2026 17:56:24",
+    "Aposta Utilizada R$5,00",
+    "Encerrar Aposta - Valor R$75,00",
+    "Aposta Original R$5,00",
+    "Encerrar Aposta - Total R$75,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

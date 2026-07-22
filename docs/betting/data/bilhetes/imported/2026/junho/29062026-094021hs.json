@@ -1,0 +1,233 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.775Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "29062026-094021hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/29062026-094021hs.pdf",
+  "bet365Ref": "YP5002030061I",
+  "placedAt": "2026-06-29T12:40:21.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 36.67,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Japão",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Brasil se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Japão",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Vinicius Jr.: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Japão",
+      "matchDate": null,
+      "market": "Matheus Cunha",
+      "selection": "Gabriel Martinelli: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Brasil v Japão",
+      "matchDate": null,
+      "market": "Para Alemanha se Qualificar",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Alemanha v Paraguai",
+      "matchDate": null,
+      "market": "Kai Havertz: 2+ Chutes ao Gol",
+      "selection": "Para se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Alemanha v Paraguai",
+      "matchDate": null,
+      "market": "Nadiem Amiri: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Alemanha v Paraguai",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Florian Wirtz",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Intervalo/Final do Jogo",
+      "selection": "I: Países Baixos - F: Países Baixos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Países Baixos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Países Baixos v Marrocos",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Países Baixos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "YP5002030061I 29/06/202609:40:21",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Brasil v Japão",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Alemanha v Paraguai",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Países Baixos v Marrocos",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$36,67",
+    "Para Brasil se Qualificar",
+    "Para se Qualificar",
+    "Vinicius Jr.: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Gabriel Martinelli: 2+ Chutes ao Gol",
+    "Matheus Cunha",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Para Alemanha se Qualificar",
+    "Para se Qualificar",
+    "Kai Havertz: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Nadiem Amiri: 2+ Chutes ao Gol",
+    "Florian Wirtz",
+    "Jogador - Chutes ao Gol Perdeu",
+    "I: Países Baixos - F: Países Baixos",
+    "Intervalo/Final do Jogo",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes ao Gol: Países Baixos",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Países Baixos",
+    "Escanteios - Aposta Comparativa Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

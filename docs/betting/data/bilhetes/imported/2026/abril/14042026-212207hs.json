@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.777Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14042026-212207hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/14042026-212207hs.pdf",
+  "bet365Ref": "EA3396819691W",
+  "placedAt": "2026-04-15T00:22:07.000Z",
+  "betType": "Simples",
+  "betLabel": "Resultado Correto - Intervalo",
+  "status": "LOST",
+  "stake": 9.48,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 41,
+  "potentialReturn": 388.68,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Santos v Deportivo Recoleta",
+      "matchDate": "14/04/2026",
+      "market": "Resultado Correto - Intervalo",
+      "selection": "Santos 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 41,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "EA3396819691W 14/04/202621:22:07",
+    "Santos 3-1 41,00",
+    "Santos v Deportivo Recoleta 14/04/2026",
+    "Resultado Correto - Intervalo Perdeu",
+    "Simples 1 x R$9,48",
+    "Total da Aposta R$9,48",
+    "Retorno R$0,00"
+  ],
+  "warnings": []
+}

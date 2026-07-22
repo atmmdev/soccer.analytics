@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.564Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16062026-091313hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/16062026-091313hs.pdf",
+  "bet365Ref": "KP8107492181I",
+  "placedAt": "2026-06-16T12:13:13.000Z",
+  "betType": "Simples",
+  "betLabel": "Super Aumentada Jogador - Chutes ao Gol",
+  "status": "CASHED_OUT",
+  "stake": 40,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 2,
+  "potentialReturn": 80,
+  "actualReturn": 40,
+  "cashOut": {
+    "at": "2026-06-16T16:00:06.000Z",
+    "value": 40,
+    "usedStake": 40,
+    "originalStake": 40,
+    "total": 40
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "França v Senegal",
+      "matchDate": "16/06/2026",
+      "market": "Super Aumentada Jogador - Chutes ao Gol",
+      "selection": "Michael Olise - Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.53,
+      "boostedOdd": 2,
+      "status": "VOID",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "KP8107492181I 16/06/202609:13:13",
+    "Michael Olise - Mais de 0.5 1,53 2,00",
+    "França v Senegal 16/06/2026",
+    "Super Aumentada Jogador - Chutes ao Gol Anulado",
+    "Simples 1 x R$40,00",
+    "Total da Aposta R$40,00",
+    "Retorno R$40,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 16/06/2026 13:00:06",
+    "Aposta Utilizada R$40,00",
+    "Encerrar Aposta - Valor R$40,00",
+    "Aposta Original R$40,00",
+    "Encerrar Aposta - Total R$40,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

@@ -7,7 +7,7 @@
 
 ## Índice alfabético
 
-[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [L](#l) · [M](#m) · [O](#o) · [P](#p) · [R](#r) · [S](#s) · [T](#t) · [V](#v) · [X](#x) · [Z](#z)
+[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [L](#l) · [M](#m) · [O](#o) · [P](#p) · [R](#r) · [S](#s) · [T](#t) · [U](#u) · [V](#v) · [X](#x) · [Y](#y) · [Z](#z)
 
 ---
 
@@ -139,6 +139,10 @@ Aposta em vitória de um time; se **empatar**, aposta é **VOID** (stake devolvi
 ### Dupla Chance (Double Chance)
 
 Cobre **dois dos três** resultados do 1X2: 1X (casa ou empate), 12 (casa ou fora), X2 (empate ou fora).
+
+### Duelo / Duel
+
+Disputa 1×1 (aérea ou terrestre) entre jogadores. Contabilizada pelo provedor (Opta) quando há disputa efetiva pela bola. Mercados Over/Under de duelos exigem titularidade e minutos suficientes.
 
 ---
 
@@ -278,6 +282,10 @@ Mercado que combina resultado no **intervalo** e no **final** (ex.: Casa/Casa, E
 
 Ver [Margem da casa](#margem-da-casa--overround--vig).
 
+### Key Pass / Passe decisivo
+
+Passe que resulta diretamente em uma finalização (chute). Base de mercados de criação e de xA. Diferente de assistência (que exige gol).
+
 ---
 
 ## L
@@ -380,11 +388,17 @@ Devolução do stake por empate exato na linha (comum em handicap asiático inte
 
 Aposta **perdida**. Perda do stake (exceto half loss em asiáticos).
 
+### Recuperação de bola / Ball Recovery
+
+Evento em que o time (ou jogador) recupera a posse após perda adversária, sem necessariamente ser desarme ou interceptação classificada. Relevante para props de volume defensivo e ritmo de pressão.
+
 ### ROI (Return on Investment)
 
 Retorno sobre investimento total apostado.
 
 `ROI% = (Lucro_líquido / Total_apostado) × 100`
+
+ROI mede o retorno em relação ao **volume total apostado**. Diferente de [Yield](#yield), o ROI usa o stake acumulado no denominador.
 
 ### Rotação de elenco
 
@@ -467,6 +481,25 @@ Ver [Expected Goals](#expected-goals-xg).
 ### xGA
 
 Expected Goals Against — xG sofrido (qualidade das chances cedidas).
+
+---
+
+## Y
+
+### Yield
+
+Lucro líquido dividido pela **soma dos stakes** no período, expresso em percentual. Em muitos contextos operacionais Yield e ROI são usados de forma intercambiável; no Soccer Analytics:
+
+```
+Yield% = (Lucro_líquido / Σ Stakes) × 100
+```
+
+| Métrica | Denominador típico | Uso |
+|---------|--------------------|-----|
+| ROI | Capital investido / total apostado | Visão financeira |
+| Yield | Soma dos stakes do período | Visão tipster / tipsterboard |
+
+Exemplo: 100 apostas × 1u; lucro líquido +12u → Yield = **+12%**.
 
 ---
 

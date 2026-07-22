@@ -1,0 +1,345 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.781Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "03072026-103246hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/03072026-103246hs.pdf",
+  "bet365Ref": "GY5386909901I",
+  "placedAt": "2026-07-03T13:32:46.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Austrália v Egito",
+      "matchDate": null,
+      "market": "Omar Marmoush",
+      "selection": "Hamza Abdelkarim: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Austrália v Egito",
+      "matchDate": null,
+      "market": "Mohamed Salah: 1+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Austrália v Egito",
+      "matchDate": null,
+      "market": "Partida - Mais de 1.5 Gols",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Austrália v Egito",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Egito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Austrália v Egito",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Egito - Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lionel Messi: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Para Sofrer Falta",
+      "selection": "Lionel Messi: 1+ Faltas Sofridas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Josimar Vozinha: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Time da Casa - Impedimentos",
+      "selection": "Argentina - Mais de 1.5 Impedimentos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Argentina - Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 2,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Para Ambos os Times Receberem um Cartão",
+      "selection": "Para Ambos os Times Receberem Um Cartão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 2,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Luis Diaz: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 2,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "GY5386909901I 03/07/202610:32:46",
+    "Criar Aposta 1,00",
+    "Austrália v Egito",
+    "Criar Aposta 1,00",
+    "Argentina v Cabo Verde",
+    "Criar Aposta 1,00",
+    "Colômbia v Gana",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Hamza Abdelkarim: 1+ Chutes ao Gol",
+    "Omar Marmoush",
+    "Jogador - Chutes ao Gol",
+    "Mohamed Salah: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Resultado Final: Egito",
+    "Resultado Final",
+    "Pagamento Antecipado 90'+ Acréscimos",
+    "Egito - Mais de 4 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Lionel Messi: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Lionel Messi: 1+ Faltas Sofridas",
+    "Para Sofrer Falta",
+    "Josimar Vozinha: 3+ Defesas",
+    "Goleiro - Defesas - Alternativas",
+    "Argentina - Mais de 1.5 Impedimentos",
+    "Time da Casa - Impedimentos",
+    "90'+ Acréscimos",
+    "Argentina - Mais de 5 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Para Ambos os Times Receberem Um Cartão",
+    "Para Ambos os Times Receberem um Cartão",
+    "90'+ Acréscimos",
+    "Luis Diaz: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Mais de 4 Escanteios",
+    "Escanteios Ganhou",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

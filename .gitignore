@@ -40,3 +40,7 @@ apps/api/prisma/migrations/**/migration_lock.toml
 # Misc
 *.tsbuildinfo
 .turbo/
+
+# Personal files
+docs/betting/data/bilhetes/2025
+docs/betting/data/bilhetes/2026

@@ -1,0 +1,216 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.289Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "11072026-145741hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/11072026-145741hs.pdf",
+  "bet365Ref": "JY1238395471I",
+  "placedAt": "2026-07-11T17:57:41.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Inglaterra se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time - Para Receber o Maior Número de Cartões",
+      "selection": "Maior Número de Cartões: Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes",
+      "selection": "Maior Número de Chutes: Inglaterra",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "1º Tempo - Escanteios",
+      "selection": "Mais de 3 Escanteios no 1º Tempo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 3 Escanteios no 2º Tempo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "JY1238395471I 11/07/202614:57:41",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Noruega v Inglaterra",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Argentina v Suíça",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Inglaterra se Qualificar",
+    "Para se Qualificar",
+    "Maior Número de Cartões: Noruega",
+    "Time - Para Receber o Maior Número de Cartões",
+    "90'+ Acréscimos",
+    "Maior Número de Escanteios: Inglaterra",
+    "Escanteios - Aposta Comparativa",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes ao Gol: Inglaterra",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "90'+ Acréscimos",
+    "Maior Número de Chutes: Inglaterra",
+    "Time - Para Conseguir Mais Chutes Perdeu",
+    "90'+ Acréscimos",
+    "Mais de 3 Escanteios no 1º Tempo",
+    "1º Tempo - Escanteios",
+    "90'+ Acréscimos",
+    "Mais de 3 Escanteios no 2º Tempo",
+    "2º Tempo - Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam",
+    "90'+ Acréscimos",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

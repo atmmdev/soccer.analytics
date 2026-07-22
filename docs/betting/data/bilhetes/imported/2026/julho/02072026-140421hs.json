@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.722Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "02072026-140421hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/02072026-140421hs.pdf",
+  "bet365Ref": "PP8831002271I",
+  "placedAt": "2026-07-02T17:04:21.000Z",
+  "betType": "Triplas",
+  "betLabel": "Para se Qualificar",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 93.8438,
+  "potentialReturn": 469.22,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Espanha v Áustria",
+      "matchDate": "02/07/2026",
+      "market": "Para se Qualificar",
+      "selection": "Áustria",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Portugal v Croácia",
+      "matchDate": "02/07/2026",
+      "market": "Resultado Final",
+      "selection": "Croácia",
+      "period": "90'+ Acréscimos",
+      "odd": 5.25,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Suíça v Argélia",
+      "matchDate": "03/07/2026",
+      "market": "Para se Qualificar",
+      "selection": "Argélia",
+      "period": "90'+ Acréscimos",
+      "odd": 2.75,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "PP8831002271I 02/07/202614:04:21",
+    "Áustria 6,50",
+    "Espanha v Áustria 02/07/2026",
+    "Para se Qualificar Perdeu",
+    "Croácia 5,25",
+    "Portugal v Croácia 02/07/2026",
+    "Resultado Final Perdeu",
+    "Argélia 2,75",
+    "Suíça v Argélia 03/07/2026",
+    "Para se Qualificar Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "90'+ Acréscimos"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.806Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "29042026-095231hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/29042026-095231hs.pdf",
+  "bet365Ref": "AF9974227481I",
+  "placedAt": "2026-04-29T12:52:31.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 15,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 34,
+  "potentialReturn": 510,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": null,
+      "market": "1º Tempo - Ambos Marcam",
+      "selection": "1º Tempo - Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": null,
+      "market": "Viktor Gyokeres",
+      "selection": "Gabriel Jesus: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": null,
+      "market": "Bukayo Saka: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": null,
+      "market": "Arsenal - Mais de 3 Escanteios",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": null,
+      "market": "Mais de 1 Cartões",
+      "selection": "Time Visitante - Total de Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "AF9974227481I 29/04/202609:52:31",
+    "Criar Aposta 34,00",
+    "Atlético de Madrid v Arsenal",
+    "Total da Aposta R$15,00",
+    "R$15,00 Créditos de Aposta",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "1º Tempo - Para Ambos os Times Marcarem",
+    "1º Tempo - Ambos Marcam",
+    "Gabriel Jesus: 2+ Chutes ao Gol",
+    "Viktor Gyokeres",
+    "Jogador - Chutes ao Gol",
+    "Bukayo Saka: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Arsenal - Mais de 3 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "Mais de 1 Cartões",
+    "Total de Cartões - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

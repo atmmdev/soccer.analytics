@@ -1,0 +1,306 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.351Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22022026-093438hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/22022026-093438hs.pdf",
+  "bet365Ref": "EA8456799341I",
+  "placedAt": "2026-02-22T12:34:38.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 44.2984,
+  "potentialReturn": 442.98,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Getafe v Sevilha",
+      "matchDate": null,
+      "market": "Resultado Final: Getafe",
+      "selection": "G l Ch 145 0 0 0 Wi d D k 10 0",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Getafe v Sevilha",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Getafe",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Getafe v Sevilha",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Getafe",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Randers FC v FC Fredericia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Randers FC",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Randers FC v FC Fredericia",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Randers FC",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Randers FC v FC Fredericia",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Randers FC",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "FC Utrecht v PEC Zwolle",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: FC Utrecht",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "FC Utrecht v PEC Zwolle",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para FC Utrecht",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "FC Utrecht v PEC Zwolle",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para FC Utrecht",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Go Ahead Eagles v Heracles",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Go Ahead Eagles",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Go Ahead Eagles v Heracles",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Go Ahead Eagles",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Go Ahead Eagles v Heracles",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Go Ahead Eagles",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 4,
+      "matchLabel": "Gaziantep FK v Trabzonspor",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Trabzonspor",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 4,
+      "matchLabel": "Gaziantep FK v Trabzonspor",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Trabzonspor",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "EA8456799341I 22/02/202609:34:38",
+    "Criar Aposta 2,87",
+    "Getafe v Sevilha",
+    "Criar Aposta 1,75",
+    "Randers FC v FC Fredericia",
+    "Criar Aposta 1,75",
+    "FC Utrecht v PEC Zwolle",
+    "Criar Aposta 2,10",
+    "Go Ahead Eagles v Heracles",
+    "Criar Aposta 2,40",
+    "Gaziantep FK v Trabzonspor",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "G l Ch 145 0 0 0 Wi d D k 10 0",
+    "Resultado Final: Getafe",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Getafe",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Getafe",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Randers FC",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Randers FC",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Randers FC",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: FC Utrecht",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para FC Utrecht",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para FC Utrecht",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Go Ahead Eagles",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 0 Escanteios no 1º Tempo para Go Ahead Eagles",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Go Ahead Eagles",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Ganhou",
+    "Resultado Final: Trabzonspor",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 1 Escanteios no 1º Tempo para Trabzonspor",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 5 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

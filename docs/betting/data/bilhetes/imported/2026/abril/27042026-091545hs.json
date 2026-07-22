@@ -1,0 +1,171 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.452Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "27042026-091545hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/27042026-091545hs.pdf",
+  "bet365Ref": "LF7248370831I",
+  "placedAt": "2026-04-27T12:15:45.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 28.08,
+  "potentialReturn": 280.8,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Udinese",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Udinese",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Lazio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 10 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Espanhol v Levante",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Espanhol v Levante",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": null,
+      "matchLabel": "Cagliari v Atalanta",
+      "matchDate": "27/04/2026",
+      "market": "Handicap - Resultado",
+      "selection": "Atalanta (-1)",
+      "period": "90'+ Acréscimos",
+      "odd": 2.87,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "LF7248370831I 27/04/202609:15:45",
+    "Atalanta (-1) 2,87",
+    "Cagliari v Atalanta 27/04/2026",
+    "Handicap - Resultado Perdeu",
+    "Criar Aposta 3,60",
+    "Lazio v Udinese",
+    "Criar Aposta 3,25",
+    "Man Utd v Brentford",
+    "Criar Aposta 2,40",
+    "Espanhol v Levante",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Resultado Final: Lazio",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "Mais de 10 Escanteios",
+    "Escanteios Ganhou",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

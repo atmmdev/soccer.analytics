@@ -1,0 +1,103 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.564Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "13042026-145023hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/13042026-145023hs.pdf",
+  "bet365Ref": "XA8782578171I",
+  "placedAt": "2026-04-13T17:50:23.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 4,
+  "potentialReturn": 40,
+  "actualReturn": 10,
+  "cashOut": {
+    "at": "2026-04-13T18:44:00.000Z",
+    "value": 10,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 10
+  },
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Leeds",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Leeds",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Matheus Cunha: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Leeds",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lukas Nmecha: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "XA8782578171I 13/04/202614:50:23",
+    "Criar Aposta 11,00 4,00",
+    "Aposta Aumentada",
+    "Man Utd v Leeds",
+    "Total da Aposta R$10,00",
+    "Retorno R$10,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 13/04/2026 15:44:00",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$10,00",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$10,00",
+    "Para Ambos os Times Marcarem Anulado",
+    "Para Ambos os Times Marcarem",
+    "Matheus Cunha: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Lukas Nmecha: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

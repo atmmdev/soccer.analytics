@@ -1,0 +1,192 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.440Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14072026-113206hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/14072026-113206hs.pdf",
+  "bet365Ref": "EY2009699811I",
+  "placedAt": "2026-07-14T14:32:06.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 2.2,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "França v Espanha",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Kylian Mbappe - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "França v Espanha",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Kylian Mbappe - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "França v Espanha",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para França se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Inglaterra se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Harry Kane - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Jude Bellingham: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Gols - 3 Opções",
+      "selection": "Inglaterra - Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Inglaterra - Mais de 3 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "EY2009699811I 14/07/202611:32:06",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "França v Espanha",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Inglaterra v Argentina",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$2,20",
+    "Kylian Mbappe - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Kylian Mbappe - Para Dar Assistência",
+    "Jogador a Dar Assistência",
+    "Para França se Qualificar",
+    "Para se Qualificar Perdeu",
+    "Para Inglaterra se Qualificar",
+    "Para se Qualificar",
+    "Harry Kane - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Jude Bellingham: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Inglaterra - Mais de 1 Gols",
+    "Time da Casa - Total de Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Inglaterra - Mais de 3 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.418Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01072026-104423hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/01072026-104423hs.pdf",
+  "bet365Ref": "PP9743940381I",
+  "placedAt": "2026-07-01T13:44:23.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Folarin Balogun: 2+ Chutes ao Gol",
+      "selection": "Niló li",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Ermedin Demirovic: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "EUA v Bósnia e Herzegovina",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Kevin De Bruyne",
+      "selection": "Nicolas Raskin - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Nicolas Raskin - Para Dar Assistência",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Kevin De Bruyne",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Para se Qualificar",
+      "selection": "Para Inglaterra se Qualificar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Harry Kane - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Jude Bellingham - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "PP9743940381I 01/07/202610:44:23",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "EUA v Bósnia e Herzegovina",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Bélgica v Senegal",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Inglaterra v RD Congo",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Niló li",
+    "Folarin Balogun: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Ermedin Demirovic: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu",
+    "90'+ Acréscimos",
+    "Nicolas Raskin - Para Marcar",
+    "Kevin De Bruyne",
+    "Para Marcar a Qualquer Momento",
+    "Nicolas Raskin - Para Dar Assistência",
+    "Kevin De Bruyne",
+    "Jogador a Dar Assistência Perdeu",
+    "Para Inglaterra se Qualificar",
+    "Para se Qualificar",
+    "Harry Kane - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Jude Bellingham - Para Dar Assistência",
+    "Jogador a Dar Assistência Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

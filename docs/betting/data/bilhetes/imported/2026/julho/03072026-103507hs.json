@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.810Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "03072026-103507hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/03072026-103507hs.pdf",
+  "bet365Ref": "EY8864258781I",
+  "placedAt": "2026-07-03T13:35:07.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 12.43,
+  "unitStake": 12.43,
+  "numBets": 1,
+  "combinedOdd": 4.5064,
+  "potentialReturn": 56.01,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "10 Minutos - Total de Gols - 3 Opções",
+      "selection": "Mais de 0 Gols nos Primeiros 10 Minutos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Cabo Verde",
+      "matchDate": null,
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios nos Primeiros 10 Minutos para Argentina",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Austrália v Egito",
+      "matchDate": "03/07/2026",
+      "market": "Time Visitante - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0.0",
+      "period": "90'+ Acréscimos",
+      "odd": 2.62,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": null,
+      "matchLabel": "Colômbia v Gana",
+      "matchDate": "03/07/2026",
+      "market": "10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 0.0",
+      "period": "90'+ Acréscimos",
+      "odd": 1.72,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "EY8864258781I 03/07/202610:35:07",
+    "Mais de 0.0 2,62",
+    "Austrália v Egito 03/07/2026",
+    "Time Visitante - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "Criar Aposta 1,00",
+    "Argentina v Cabo Verde",
+    "Mais de 0.0 1,72",
+    "Colômbia v Gana 03/07/2026",
+    "10 Minutos - Escanteios - 3 Opções Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$12,43",
+    "Total da Aposta R$12,43",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "90'+ Acréscimos",
+    "Mais de 0 Gols nos Primeiros 10 Minutos",
+    "10 Minutos - Total de Gols - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Escanteios nos Primeiros 10 Minutos para Argentina",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "90'+ Acréscimos",
+    "90'+ Acréscimos"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada parcial 2/4 pernas"
+  ]
+}

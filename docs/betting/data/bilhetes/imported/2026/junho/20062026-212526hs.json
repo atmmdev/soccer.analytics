@@ -1,0 +1,303 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.146Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "20062026-212526hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/20062026-212526hs.pdf",
+  "bet365Ref": "BP8257008881W",
+  "placedAt": "2026-06-21T00:25:26.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 60.75,
+  "potentialReturn": 607.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Tunísia v Japão",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Japão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Espanha v Arábia Saudita",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Bélgica v Irã",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Bélgica",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 2,
+      "matchLabel": "Bélgica v Irã",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Gols - 3 Opções",
+      "selection": "Bélgica - Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Resultado Final: Uruguai",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Uruguai - Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Takefusa Kubo: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lamine Yamal: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Romelu Lukaku",
+      "selection": "Arthur Theate: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Darwin Nunez: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 3,
+      "matchLabel": "Uruguai v Cabo Verde",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "BP8257008881W 20/06/202621:25:26",
+    "Criar Aposta 1,80",
+    "Tunísia v Japão",
+    "Criar Aposta 3,00",
+    "Espanha v Arábia Saudita",
+    "Criar Aposta 3,00",
+    "Bélgica v Irã",
+    "Criar Aposta 3,75",
+    "Uruguai v Cabo Verde",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Japão",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Takefusa Kubo: 1+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Resultado Final: Espanha",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 5 Escanteios",
+    "Escanteios",
+    "Lamine Yamal: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols Ganhou",
+    "Resultado Final: Bélgica",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Bélgica - Mais de 1 Gols",
+    "Time da Casa - Total de Gols - 3 Opções",
+    "Arthur Theate: 2+ Chutes ao Gol",
+    "Romelu Lukaku",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Resultado Final: Uruguai",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Uruguai - Mais de 4 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Darwin Nunez: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

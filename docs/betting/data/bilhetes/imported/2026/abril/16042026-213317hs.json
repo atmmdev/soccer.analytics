@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.531Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16042026-213317hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/16042026-213317hs.pdf",
+  "bet365Ref": "TF2306881611W",
+  "placedAt": "2026-04-17T00:33:17.000Z",
+  "betType": "Simples",
+  "betLabel": "Resultado Correto",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 10,
+  "potentialReturn": 100,
+  "actualReturn": 22.23,
+  "cashOut": {
+    "at": "2026-04-17T01:11:06.000Z",
+    "value": 22.23,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 22.23
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 10,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "TF2306881611W 16/04/202621:33:17",
+    "Flamengo 2-1 10,00",
+    "Flamengo v Independiente Medellín 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Simples 1 x R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$22,23",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 16/04/2026 22:11:06",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$22,23",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$22,23",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

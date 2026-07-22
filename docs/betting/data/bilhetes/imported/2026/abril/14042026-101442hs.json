@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.695Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14042026-101442hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/14042026-101442hs.pdf",
+  "bet365Ref": "BA8608417051I",
+  "placedAt": "2026-04-14T13:14:42.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Jogador - Chutes ao Gol",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 32.9476,
+  "potentialReturn": 329.48,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Atlético de Madrid v Barcelona",
+      "matchDate": "14/04/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lamine Yamal - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.9,
+      "boostedOdd": 2,
+      "status": "WON",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Liverpool v PSG",
+      "matchDate": "14/04/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Mohamed Salah - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 2.75,
+      "boostedOdd": 2.87,
+      "status": "VOID",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Arsenal v Sporting",
+      "matchDate": "15/04/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Viktor Gyokeres - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 2.75,
+      "boostedOdd": 2.87,
+      "status": "LOST",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": null,
+      "matchLabel": "Bayern de Munique v Real Madrid",
+      "matchDate": "15/04/2026",
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Harry Kane - Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.9,
+      "boostedOdd": 2,
+      "status": "WON",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "BA8608417051I 14/04/202610:14:42",
+    "Lamine Yamal - Mais de 1.5 1,90 2,00",
+    "Atlético de Madrid v Barcelona 14/04/2026",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Aposta Aumentada",
+    "Mohamed Salah - Mais de 1.5 2,75 2,87",
+    "Liverpool v PSG 14/04/2026",
+    "Jogador - Chutes ao Gol Anulado",
+    "Aposta Aumentada",
+    "Viktor Gyokeres - Mais de 1.5 2,75 2,87",
+    "Arsenal v Sporting 15/04/2026",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Aposta Aumentada",
+    "Harry Kane - Mais de 1.5 1,90 2,00",
+    "Bayern de Munique v Real Madrid 15/04/2026",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Aposta Aumentada",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00"
+  ],
+  "warnings": []
+}

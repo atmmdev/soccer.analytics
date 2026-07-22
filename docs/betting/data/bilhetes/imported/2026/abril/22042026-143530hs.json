@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:54.465Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22042026-143530hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/22042026-143530hs.pdf",
+  "bet365Ref": "RF2166903441I",
+  "placedAt": "2026-04-22T17:35:30.000Z",
+  "betType": "Duplas",
+  "betLabel": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+  "status": "LOST",
+  "stake": 15.44,
+  "unitStake": 15.44,
+  "numBets": 1,
+  "combinedOdd": 27.5,
+  "potentialReturn": 424.6,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Vitória",
+      "matchDate": "22/04/2026",
+      "market": "Time da Casa - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 1.0",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Burnley v Man City",
+      "matchDate": "22/04/2026",
+      "market": "Time Visitante - 10 Minutos - Escanteios - 3 Opções",
+      "selection": "Mais de 1.0",
+      "period": "90'+ Acréscimos",
+      "odd": 5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "RF2166903441I 22/04/202614:35:30",
+    "Mais de 1.0 5,50",
+    "Flamengo v Vitória 22/04/2026",
+    "Time da Casa - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "Mais de 1.0 5,00",
+    "Burnley v Man City 22/04/2026",
+    "Time Visitante - 10 Minutos - Escanteios - 3 Opções Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$15,44",
+    "Total da Aposta R$15,44",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

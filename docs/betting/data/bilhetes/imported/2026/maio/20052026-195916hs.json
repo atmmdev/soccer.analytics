@@ -1,0 +1,314 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.740Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "20052026-195916hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/20052026-195916hs.pdf",
+  "bet365Ref": "BF5047536191W",
+  "placedAt": "2026-05-20T22:59:16.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 199.251,
+  "potentialReturn": 1992.51,
+  "actualReturn": 10,
+  "cashOut": {
+    "at": "2026-05-20T23:36:43.000Z",
+    "value": null,
+    "usedStake": 10,
+    "originalStake": null,
+    "total": null
+  },
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Estudiantes",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Flamengo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Palmeiras v Cerro Porteño",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Palmeiras",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Grêmio v Palestino",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Gols - 3 Opções",
+      "selection": "Grêmio - Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 2,
+      "matchLabel": "Grêmio v Palestino",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Grêmio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Grêmio v Palestino",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Grêmio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Grêmio v Palestino",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Grêmio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Grêmio v Palestino",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 2º Tempo para Grêmio",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Pedro Guilherme: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lucas Paqueta: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Jhon Arias: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Jose Flaco Lopez: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Arthur Cabral: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 3,
+      "matchLabel": "Independiente Petrolero v Botafogo",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Matheus Martins: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "BF5047536191W 20/05/202619:59:16",
+    "Criar Aposta 8,50 2,62",
+    "Aposta Aumentada",
+    "Flamengo v Estudiantes",
+    "Criar Aposta 5,50 6,00",
+    "Aposta Aumentada",
+    "Palmeiras v Cerro Porteño",
+    "Criar Aposta 6,00 6,50",
+    "Aposta Aumentada",
+    "Grêmio v Palestino",
+    "Criar Aposta 3,25 1,95",
+    "Aposta Aumentada",
+    "Independiente Petrolero v Botafogo",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$10,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 20/05/2026 20:36:43",
+    "Aposta Utilizada R$10,00",
+    "Resultado Final: Flamengo Anulado",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Pedro Guilherme: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Lucas Paqueta: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Anulado",
+    "Resultado Final: Palmeiras Anulado",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Jhon Arias: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Jose Flaco Lopez: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Anulado",
+    "Grêmio - Mais de 1 Gols Anulado",
+    "Time da Casa - Total de Gols - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Grêmio Anulado",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Grêmio Anulado",
+    "2º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 2 Escanteios no 1º Tempo para Grêmio Anulado",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 2 Escanteios no 2º Tempo para Grêmio Anulado",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Anulado",
+    "Resultado Final: Botafogo Anulado",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Arthur Cabral: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Matheus Martins: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

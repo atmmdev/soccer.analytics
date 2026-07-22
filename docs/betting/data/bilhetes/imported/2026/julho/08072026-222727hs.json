@@ -1,0 +1,212 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.202Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "08072026-222727hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/08072026-222727hs.pdf",
+  "bet365Ref": "FY9758456071I",
+  "placedAt": "2026-07-09T01:27:27.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 14.11,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Lionel Messi - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Suíça",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lionel Messi: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "França v Marrocos",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Kylian Mbappe - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "França v Marrocos",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Kylian Mbappe: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Mikel Oyarzabal",
+      "selection": "Nico Williams - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Lamine Yamal: 1+ Chutes ao Gol",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Espanha v Bélgica",
+      "matchDate": null,
+      "market": "Harry Kane - Para Marcar",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Jorgen Larsen - Para Marcar",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Noruega v Inglaterra",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Erling Haaland",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "FY9758456071I 08/07/202622:27:27",
+    "Criar Aposta 1,00",
+    "Argentina v Suíça",
+    "Criar Aposta 1,00",
+    "França v Marrocos",
+    "Criar Aposta 1,00",
+    "Espanha v Bélgica",
+    "Criar Aposta 1,00",
+    "Noruega v Inglaterra",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$14,11",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Lionel Messi: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Kylian Mbappe - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Kylian Mbappe: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Nico Williams - Para Marcar",
+    "Mikel Oyarzabal",
+    "Para Marcar a Qualquer Momento",
+    "Lamine Yamal: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Harry Kane - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Jorgen Larsen - Para Marcar",
+    "Erling Haaland",
+    "Para Marcar a Qualquer Momento Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

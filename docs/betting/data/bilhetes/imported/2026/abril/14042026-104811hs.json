@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.721Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14042026-104811hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/14042026-104811hs.pdf",
+  "bet365Ref": "LA9575163111I",
+  "placedAt": "2026-04-14T13:48:11.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "WON",
+  "stake": 115.1,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 4,
+  "potentialReturn": 460.4,
+  "actualReturn": 460.4,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Barcelona",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lamine Yamal: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Barcelona",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Gols - 3 Opções",
+      "selection": "Mais de 0 Gols no 1º Tempo para Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Atlético de Madrid v Barcelona",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 2 Escanteios no 1º Tempo para Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "LA9575163111I 14/04/202610:48:11",
+    "Criar Aposta 4,00",
+    "Atlético de Madrid v Barcelona",
+    "Total da Aposta R$115,10",
+    "Retorno R$460,40",
+    "Lamine Yamal: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Mais de 0 Gols no 1º Tempo para Barcelona",
+    "Time Visitante - 1º Tempo - Gols - 3 Opções",
+    "Mais de 2 Escanteios no 1º Tempo para Barcelona",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

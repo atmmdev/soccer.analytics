@@ -7,7 +7,7 @@ export type MarketType =
   | 'PLAYER'
   | 'HANDICAP';
 
-export type TicketStatus = 'DRAFT' | 'PLACED' | 'WON' | 'LOST' | 'VOID';
+export type TicketStatus = 'DRAFT' | 'PLACED' | 'WON' | 'LOST' | 'VOID' | 'CASHED_OUT';
 
 export interface DraftSelection {
   matchId: string;
@@ -72,4 +72,5 @@ export const TICKET_STATUS_LABELS: Record<TicketStatus, string> = {
   WON: 'Green',
   LOST: 'Red',
   VOID: 'Anulado',
+  CASHED_OUT: 'Cash Out',
 };

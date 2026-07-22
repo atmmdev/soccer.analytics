@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:51.193Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16122025-21hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2025/16122025-21hs.pdf",
+  "bet365Ref": "RQ2473145071I",
+  "placedAt": "2025-12-17T00:00:07.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 81,
+  "potentialReturn": 810,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "PSG v Flamengo",
+      "matchDate": null,
+      "market": "Resultado Correto",
+      "selection": "Flamengo 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "PSG v Flamengo",
+      "matchDate": null,
+      "market": "Para o Jogador Receber Cartão",
+      "selection": "Para Erick Pulgar Receber Cartão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "RQ2473145071I 16/12/202521:00:07",
+    "Criar Aposta 81,00",
+    "PSG v Flamengo",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Flamengo 3-1",
+    "Resultado Correto",
+    "Para Erick Pulgar Receber Cartão",
+    "Para o Jogador Receber Cartão Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.528Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "15072026-095643hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/15072026-095643hs.pdf",
+  "bet365Ref": "EY6285196811I",
+  "placedAt": "2026-07-15T12:56:43.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 100,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 2.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Harry Kane: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Jude Bellingham: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Lionel Messi: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Julian Alvarez: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Ambos Marcam",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Inglaterra - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Argentina - Mais de 2 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Total de Cartões - 3 Opções",
+      "selection": "Mais de 0 Cartões",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Defesas de Goleiro",
+      "selection": "Jordan Pickford: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 0,
+      "matchLabel": "Inglaterra v Argentina",
+      "matchDate": null,
+      "market": "Defesas de Goleiro",
+      "selection": "Emiliano Martinez: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "EY6285196811I 15/07/202609:56:43",
+    "Criar Aposta 1,00",
+    "Inglaterra v Argentina",
+    "Total da Aposta R$100,00",
+    "Retorno R$0,00",
+    "Partida - Mais de 2.5 Gols",
+    "Total de Gols",
+    "90'+ Acréscimos",
+    "Harry Kane: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Jude Bellingham: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Lionel Messi: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Julian Alvarez: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Ambos Marcam",
+    "90'+ Acréscimos",
+    "Inglaterra - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Argentina - Mais de 2 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "90'+ Acréscimos",
+    "Mais de 0 Cartões",
+    "Total de Cartões - 3 Opções",
+    "90'+ Acréscimos",
+    "Jordan Pickford: 3+ Defesas",
+    "Defesas de Goleiro",
+    "Emiliano Martinez: 3+ Defesas",
+    "Defesas de Goleiro Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.652Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "29052026-102103hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/29052026-102103hs.pdf",
+  "bet365Ref": "FP3408986311I",
+  "placedAt": "2026-05-29T13:21:03.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 104.5,
+  "potentialReturn": 1045,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "2º de Set - Total de Games",
+      "selection": "Mais de 9.5 Games no 2º Set",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "3º Set - Total de Games",
+      "selection": "Mais de 9.5 Games no 3º Set",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "Jogador - Marco de Aces",
+      "selection": "5+ Aces para Alex De Minaur",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "Para Ganhar a Partida",
+      "selection": "Para Alex De Minaur Ganhar a Partida",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "1º Set - Total de Games",
+      "selection": "Mais de 9.5 Games no 1º Set",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "Para Ganhar a Partida",
+      "selection": "Para Novak Djokovic Ganhar a Partida",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "1º Set - Total de Games",
+      "selection": "Mais de 9.5 Games no 1º Set",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "2º de Set - Total de Games",
+      "selection": "Mais de 9.5 Games no 2º Set",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "3º Set - Total de Games",
+      "selection": "Mais de 9.5 Games no 3º Set",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "—",
+      "matchDate": null,
+      "market": "Jogador - Marco de Aces",
+      "selection": "5+ Aces para Novak Djokovic",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "FP3408986311I 29/05/202610:21:03",
+    "Criar Aposta 8,50 9,50",
+    "Aposta Aumentada",
+    "Alex De Minaur vs Jakub Mensik",
+    "Criar Aposta 9,50 11,00",
+    "Aposta Aumentada",
+    "Joao Fonseca vs Novak Djokovic",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Mais de 9.5 Games no 2º Set",
+    "2º de Set - Total de Games",
+    "Mais de 9.5 Games no 3º Set",
+    "3º Set - Total de Games",
+    "5+ Aces para Alex De Minaur",
+    "Jogador - Marco de Aces",
+    "Para Alex De Minaur Ganhar a Partida",
+    "Para Ganhar a Partida",
+    "Mais de 9.5 Games no 1º Set",
+    "1º Set - Total de Games Perdeu",
+    "Para Novak Djokovic Ganhar a Partida",
+    "Para Ganhar a Partida",
+    "Mais de 9.5 Games no 1º Set",
+    "1º Set - Total de Games",
+    "Mais de 9.5 Games no 2º Set",
+    "2º de Set - Total de Games",
+    "Mais de 9.5 Games no 3º Set",
+    "3º Set - Total de Games",
+    "5+ Aces para Novak Djokovic",
+    "Jogador - Marco de Aces Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

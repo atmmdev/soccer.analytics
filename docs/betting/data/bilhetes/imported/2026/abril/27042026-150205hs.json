@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.748Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "27042026-150205hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/27042026-150205hs.pdf",
+  "bet365Ref": "RF9078420731I",
+  "placedAt": "2026-04-27T18:02:05.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "LOST",
+  "stake": 3.59,
+  "unitStake": 3.59,
+  "numBets": 1,
+  "combinedOdd": 84.15,
+  "potentialReturn": 302.1,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Lazio v Udinese",
+      "matchDate": "27/04/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Lazio e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": "27/04/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Man Utd e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 3.4,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Espanhol v Levante",
+      "matchDate": "27/04/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Espanhol e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 4.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "RF9078420731I 27/04/202615:02:05",
+    "Lazio e Sim 5,50",
+    "Lazio v Udinese 27/04/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Man Utd e Sim 3,40",
+    "Man Utd v Brentford 27/04/2026",
+    "Resultado/Ambos Marcam Ganhou",
+    "Espanhol e Sim 4,50",
+    "Espanhol v Levante 27/04/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$3,59",
+    "Total da Aposta R$3,59",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

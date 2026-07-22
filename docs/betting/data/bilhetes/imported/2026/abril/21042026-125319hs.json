@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:54.008Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "21042026-125319hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/21042026-125319hs.pdf",
+  "bet365Ref": "YF6662411401I",
+  "placedAt": "2026-04-21T15:53:19.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 672,
+  "potentialReturn": 6720,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Athletic Bilbao v Osasuna",
+      "matchDate": "21/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Athletic Bilbao 1-0",
+      "period": "90'+ Acréscimos",
+      "odd": 7,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Inter de Milão v Como",
+      "matchDate": "21/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Inter de Milão 1-0",
+      "period": "90'+ Acréscimos",
+      "odd": 8,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Real Madrid v Alavés",
+      "matchDate": "21/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 1-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "YF6662411401I 21/04/202612:53:19",
+    "Athletic Bilbao 1-0 7,00",
+    "Athletic Bilbao v Osasuna 21/04/2026",
+    "Resultado Correto Ganhou",
+    "Inter de Milão 1-0 8,00",
+    "Inter de Milão v Como 21/04/2026",
+    "Resultado Correto Perdeu",
+    "Empate 1-1 12,00",
+    "Real Madrid v Alavés 21/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

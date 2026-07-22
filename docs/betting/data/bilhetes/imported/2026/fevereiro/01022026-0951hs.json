@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.870Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01022026-0951hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/01022026-0951hs.pdf",
+  "bet365Ref": "TA1459865421I",
+  "placedAt": "2026-02-01T12:51:30.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 85.5,
+  "potentialReturn": 855,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Fulham",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Man Utd",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Fulham",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Fulham",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Fulham",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Man Utd - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Man Utd v Fulham",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Fulham - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Como v Atalanta",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Como",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Como v Atalanta",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Atalanta",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Como v Atalanta",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Como - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Como v Atalanta",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Atalanta - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "VfB Stuttgart v SC Freiburg",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para SC Freiburg",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "VfB Stuttgart v SC Freiburg",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para VfB Stuttgart",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "VfB Stuttgart v SC Freiburg",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - VfB Stuttgart - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "VfB Stuttgart v SC Freiburg",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - SC Freiburg - Mais de 4.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "TA1459865421I 01/02/202609:51:30",
+    "Criar Aposta 4,00",
+    "Man Utd v Fulham",
+    "Criar Aposta 4,75",
+    "Como v Atalanta",
+    "Criar Aposta 4,50",
+    "VfB Stuttgart v SC Freiburg",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Mais de 1 Escanteios no 1º Tempo para Man Utd",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Fulham",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Man Utd - Mais de 4.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Fulham - Mais de 4.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Ganhou",
+    "Mais de 1 Escanteios no 1º Tempo para Como",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Atalanta",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Como - Mais de 4.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Atalanta - Mais de 4.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para SC Freiburg",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para VfB Stuttgart",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - VfB Stuttgart - Mais de 4.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - SC Freiburg - Mais de 4.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

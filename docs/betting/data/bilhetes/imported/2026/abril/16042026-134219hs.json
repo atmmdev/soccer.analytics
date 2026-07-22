@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.155Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16042026-134219hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/16042026-134219hs.pdf",
+  "bet365Ref": "FF2545963501I",
+  "placedAt": "2026-04-16T16:42:19.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 1728,
+  "potentialReturn": 17280,
+  "actualReturn": 7.94,
+  "cashOut": {
+    "at": "2026-04-16T23:32:38.000Z",
+    "value": 7.94,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 7.94
+  },
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 1-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Palmeiras v Sporting Cristal",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Palmeiras 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Atlético Mineiro v Juventud De Las Piedras",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Atlético Mineiro 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "FF2545963501I 16/04/202613:42:19",
+    "Empate 1-1 12,00",
+    "Flamengo v Independiente Medellín 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Palmeiras 3-1 12,00",
+    "Palmeiras v Sporting Cristal 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Atlético Mineiro 3-1 12,00",
+    "Atlético Mineiro v Juventud De Las Piedras 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$7,94",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 16/04/2026 20:32:38",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$7,94",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$7,94",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

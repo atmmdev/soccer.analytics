@@ -1,0 +1,245 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.604Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "25062026-185726hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/25062026-185726hs.pdf",
+  "bet365Ref": "SP1771140601I",
+  "placedAt": "2026-06-25T21:57:26.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 1.22,
+  "potentialReturn": 12.2,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Arda Guler: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Folarin Balogun: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Turquia v EUA",
+      "matchDate": null,
+      "market": "Cody Gakpo",
+      "selection": "Noa Lang - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Brian Brobbey: 1+ Chutes ao Gol",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Partida - Mais de 1.5 Gols",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Koki Ogawa: 2+ Chutes ao Gol",
+      "selection": "Total de Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Tunísia v Países Baixos",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Ayase Ueda",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Chutes",
+      "selection": "Viktor Gyokeres: 1+ Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Japão v Suécia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": null,
+      "matchLabel": "Paraguai v Austrália",
+      "matchDate": "25/06/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.22,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "SP1771140601I 25/06/202618:57:26",
+    "Criar Aposta 1,00",
+    "Turquia v EUA",
+    "Criar Aposta 1,00",
+    "Tunísia v Países Baixos",
+    "Criar Aposta 1,00",
+    "Japão v Suécia",
+    "Mais de 0.5 1,22",
+    "Paraguai v Austrália 25/06/2026",
+    "Total de Gols Perdeu",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Arda Guler: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Folarin Balogun: 1+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols Ganhou",
+    "Noa Lang - Para Marcar",
+    "Cody Gakpo",
+    "Para Marcar a Qualquer Momento",
+    "Brian Brobbey: 1+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols Perdeu",
+    "Koki Ogawa: 2+ Chutes ao Gol",
+    "Ayase Ueda",
+    "Jogador - Chutes ao Gol",
+    "Viktor Gyokeres: 1+ Chutes",
+    "Chutes",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada parcial 1/11 pernas"
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.232Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22062026-162256hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/22062026-162256hs.pdf",
+  "bet365Ref": "LP3151726221I",
+  "placedAt": "2026-06-22T19:22:56.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 30.6,
+  "potentialReturn": 306,
+  "actualReturn": 10,
+  "cashOut": {
+    "at": "2026-06-22T20:29:30.000Z",
+    "value": 10,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 10
+  },
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "França v Iraque",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Desire Doue: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "França v Iraque",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Ousmane Dembele: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "França v Iraque",
+      "matchDate": null,
+      "market": "Marcar em Ambos os Tempos",
+      "selection": "Para França Marcar em Ambos os Tempos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Erling Haaland: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Nicolas Jackson: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "LP3151726221I 22/06/202616:22:56",
+    "Criar Aposta 8,00 3,40",
+    "Aposta Aumentada",
+    "França v Iraque",
+    "Criar Aposta 8,00 9,00",
+    "Aposta Aumentada",
+    "Noruega v Senegal",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$10,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 22/06/2026 17:29:30",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$10,00",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$10,00",
+    "Desire Doue: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Ousmane Dembele: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Para França Marcar em Ambos os Tempos Anulado",
+    "Marcar em Ambos os Tempos Anulado",
+    "Erling Haaland: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Nicolas Jackson: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem Anulado",
+    "Para Ambos os Times Marcarem Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

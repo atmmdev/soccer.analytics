@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:51.325Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "02042026-154325hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/02042026-154325hs.pdf",
+  "bet365Ref": "YA7807642721I",
+  "placedAt": "2026-04-02T18:43:25.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 40,
+  "unitStake": 40,
+  "numBets": 1,
+  "combinedOdd": 80.75,
+  "potentialReturn": 3230,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Palmeiras v Grêmio",
+      "matchDate": "02/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Palmeiras 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 8.5,
+      "boostedOdd": null,
+      "status": "WON"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Bragantino v Flamengo",
+      "matchDate": "02/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 9.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "YA7807642721I 02/04/202615:43:25",
+    "Palmeiras 2-1 8,50",
+    "Palmeiras v Grêmio 02/04/2026",
+    "Resultado Correto Ganhou",
+    "Flamengo 2-1 9,50",
+    "Bragantino v Flamengo 02/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$40,00",
+    "Total da Aposta R$40,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

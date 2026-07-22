@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.670Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14042026-101321hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/14042026-101321hs.pdf",
+  "bet365Ref": "SA9569294281I",
+  "placedAt": "2026-04-14T13:13:21.000Z",
+  "betType": "Simples",
+  "betLabel": "Super Aumentada Jogador - Chutes ao Gol",
+  "status": "LOST",
+  "stake": 50,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 2,
+  "potentialReturn": 100,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Liverpool v PSG",
+      "matchDate": "14/04/2026",
+      "market": "Super Aumentada Jogador - Chutes ao Gol",
+      "selection": "Dominik Szoboszlai - Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.57,
+      "boostedOdd": 2,
+      "status": "LOST",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "SA9569294281I 14/04/202610:13:21",
+    "Dominik Szoboszlai - Mais de 0.5 1,57 2,00",
+    "Liverpool v PSG 14/04/2026",
+    "Super Aumentada Jogador - Chutes ao Gol Perdeu",
+    "Simples 1 x R$50,00",
+    "Total da Aposta R$50,00",
+    "Retorno R$0,00"
+  ],
+  "warnings": []
+}

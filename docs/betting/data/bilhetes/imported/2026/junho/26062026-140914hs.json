@@ -1,0 +1,321 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.693Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "26062026-140914hs.pdf",
+    "curated": false,
+    "needsReview": true
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/26062026-140914hs.pdf",
+  "bet365Ref": "FP6915596161I",
+  "placedAt": "2026-06-26T17:09:14.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": null,
+  "potentialReturn": null,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": true,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Noruega v França",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas",
+      "selection": "Adrien Rabiot: 2+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Senegal",
+      "selection": "Jogador - Faltas Cometidas - Alternativas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 1º Tempo para Iraque",
+      "selection": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Iraque",
+      "selection": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1 Escanteios no 2º Tempo para Senegal",
+      "selection": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Senegal",
+      "selection": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Iraque",
+      "selection": "1º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Iraque",
+      "selection": "1º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Senegal v Iraque",
+      "matchDate": null,
+      "market": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Senegal",
+      "selection": "2º Tempo - Time 2 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Uruguai v Espanha",
+      "matchDate": null,
+      "market": "Jogador - Faltas Cometidas - Alternativas",
+      "selection": "Martin Odegaard: 2+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Uruguai v Espanha",
+      "matchDate": null,
+      "market": "Jules Kounde",
+      "selection": "Malo Gusto: 2+ Faltas Cometidas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 2,
+      "matchLabel": "Uruguai v Espanha",
+      "matchDate": null,
+      "market": "Ferran Torres: 2+ Chutes ao Gol",
+      "selection": "2º Tempo - Time 1 - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 2,
+      "matchLabel": "Uruguai v Espanha",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Mikel Oyarzabal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 2,
+      "matchLabel": "Uruguai v Espanha",
+      "matchDate": null,
+      "market": "Federico Valverde",
+      "selection": "Federico Vinas: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 2,
+      "matchLabel": "Uruguai v Espanha",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "FP6915596161I 26/06/202614:09:14",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Noruega v França",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Senegal v Iraque",
+    "Criar Aposta 1,00 1,00",
+    "Aposta Aumentada",
+    "Uruguai v Espanha",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Adrien Rabiot: 2+ Faltas Cometidas Anulado",
+    "Jogador - Faltas Cometidas",
+    "Martin Odegaard: 2+ Faltas Cometidas Anulado",
+    "Jogador - Faltas Cometidas - Alternativas",
+    "Malo Gusto: 2+ Faltas Cometidas",
+    "Jules Kounde",
+    "Jogador - Faltas Cometidas - Alternativas Perdeu",
+    "Mais de 1 Escanteios no 1º Tempo para Senegal",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 1º Tempo para Iraque",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Iraque",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Senegal",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Senegal",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Iraque",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Iraque",
+    "2º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Senegal",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Ferran Torres: 2+ Chutes ao Gol",
+    "Mikel Oyarzabal",
+    "Jogador - Chutes ao Gol",
+    "Federico Vinas: 2+ Chutes ao Gol",
+    "Federico Valverde",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Perdeu"
+  ],
+  "warnings": [
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Criar Aposta com odd 1 no PDF (provavelmente incorreta — editar)",
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada ausente ou 1.00 — precisa revisão manual"
+  ]
+}

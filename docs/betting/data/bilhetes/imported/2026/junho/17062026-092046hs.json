@@ -1,0 +1,462 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.748Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "17062026-092046hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/17062026-092046hs.pdf",
+  "bet365Ref": "LP8628492711I",
+  "placedAt": "2026-06-17T12:20:46.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 213.75,
+  "potentialReturn": 2137.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 2.5 Chutes ao Gol no 1º Tempo para Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Portugal v RD Congo",
+      "matchDate": null,
+      "market": "2º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 2.5 Chutes ao Gol no 2º Tempo para Portugal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Inglaterra v Croácia",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Inglaterra ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Gana v Panamá",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Gana ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 2º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 1º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "2º Tempo - Time 2 - Chutes ao Gol",
+      "selection": "Mais de 1.5 Chutes ao Gol no 2º Tempo para Colômbia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Cristiano Ronaldo - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Cristiano Ronaldo: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Harry Kane - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Harry Kane: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Jogador a Marcar ou Dar Assistência",
+      "selection": "Para Inaki Williams Marcar ou Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Inaki Williams: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 3,
+      "matchLabel": "Uzbequistão v Colômbia",
+      "matchDate": null,
+      "market": "Total de Cartões - 3 Opções",
+      "selection": "Mais de 0 Cartões",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "LP8628492711I 17/06/202609:20:46",
+    "Criar Aposta 6,00",
+    "Portugal v RD Congo",
+    "Criar Aposta 5,00",
+    "Inglaterra v Croácia",
+    "Criar Aposta 1,90",
+    "Gana v Panamá",
+    "Criar Aposta 3,75",
+    "Uzbequistão v Colômbia",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Cristiano Ronaldo - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Cristiano Ronaldo: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Resultado Final: Portugal",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Mais de 1 Escanteios no 1º Tempo para Portugal",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Portugal",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 2.5 Chutes ao Gol no 1º Tempo para Portugal",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 2.5 Chutes ao Gol no 2º Tempo para Portugal",
+    "2º Tempo - Time 1 - Chutes ao Gol Perdeu",
+    "Harry Kane - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Harry Kane: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Inglaterra ou Empate",
+    "Chance Dupla",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Para Inaki Williams Marcar ou Dar Assistência Anulado",
+    "Jogador a Marcar ou Dar Assistência",
+    "Inaki Williams: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Gana ou Empate",
+    "Chance Dupla Perdeu",
+    "Resultado Final: Colômbia",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Mais de 1 Escanteios no 1º Tempo para Colômbia",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 1 Escanteios no 2º Tempo para Colômbia",
+    "Time Visitante - 2º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Cartões",
+    "Total de Cartões - 3 Opções",
+    "Mais de 1.5 Chutes ao Gol no 1º Tempo para Colômbia",
+    "1º Tempo - Time 2 - Chutes ao Gol",
+    "Mais de 1.5 Chutes ao Gol no 2º Tempo para Colômbia",
+    "2º Tempo - Time 2 - Chutes ao Gol Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

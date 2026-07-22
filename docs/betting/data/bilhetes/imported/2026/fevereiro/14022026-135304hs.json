@@ -1,0 +1,172 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.800Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14022026-135304hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/14022026-135304hs.pdf",
+  "bet365Ref": "PA9805372951W",
+  "placedAt": "2026-02-14T16:53:04.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 20,
+  "unitStake": 20,
+  "numBets": 1,
+  "combinedOdd": 16.956,
+  "potentialReturn": 339.12,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Lazio v Atalanta",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 0 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "VfB Stuttgart v Köln",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: VfB Stuttgart",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "VfB Stuttgart v Köln",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Aston Villa v Newcastle",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Aston Villa",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Aston Villa v Newcastle",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": null,
+      "matchLabel": "Sevilha v Alavés",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 3,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "PA9805372951W 14/02/202613:53:04",
+    "Criar Aposta 4,00",
+    "Lazio v Atalanta",
+    "Empate 3,00",
+    "Sevilha v Alavés 14/02/2026",
+    "Resultado Final Ganhou",
+    "Criar Aposta 1,57",
+    "VfB Stuttgart v Köln",
+    "Criar Aposta 2,70",
+    "Aston Villa v Newcastle",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$20,00",
+    "Total da Aposta R$20,00",
+    "Retorno R$0,00",
+    "Resultado Final: Empate",
+    "Resultado Final",
+    "Mais de 0 Gols",
+    "Total de Gols - 3 Opções - Alternativas Perdeu",
+    "Resultado Final: VfB Stuttgart",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou",
+    "Resultado Final: Aston Villa",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

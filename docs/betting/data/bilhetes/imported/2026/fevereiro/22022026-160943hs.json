@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.405Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22022026-160943hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/22022026-160943hs.pdf",
+  "bet365Ref": "PA1594646481W",
+  "placedAt": "2026-02-22T19:09:43.000Z",
+  "betType": "Simples",
+  "betLabel": "Resultado Final",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 17,
+  "potentialReturn": 170,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Madureira",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Madureira",
+      "period": "90'+ Acréscimos",
+      "odd": 17,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "PA1594646481W 22/02/202616:09:43",
+    "Madureira 17,00",
+    "Flamengo v Madureira 22/02/2026",
+    "Resultado Final Perdeu",
+    "Simples 1 x R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

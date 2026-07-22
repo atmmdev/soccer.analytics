@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.138Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "19022026-210926hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/19022026-210926hs.pdf",
+  "bet365Ref": "BA7960523241W",
+  "placedAt": "2026-02-20T00:09:26.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 226,
+  "potentialReturn": 2260,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "07/02/2025)",
+      "selection": "Safari v26.2 on Apple iPhone iOS v18.7",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "Giorgian De Arrascaeta",
+      "selection": "Pedro Guilherme - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "1º Tempo: Flamengo",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "Menos de 5 Escanteios",
+      "selection": "Intervalo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Lanús v Flamengo",
+      "matchDate": null,
+      "market": "1º Tempo - Menos de 3.5 Chutes a Gol",
+      "selection": "Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "BA7960523241W 19/02/202621:09:26",
+    "Criar Aposta 226,00",
+    "Lanús v Flamengo",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Safari v26.2 on Apple iPhone iOS v18.7",
+    "07/02/2025)",
+    "Pedro Guilherme - Para Marcar",
+    "Giorgian De Arrascaeta",
+    "Para Marcar a Qualquer Momento",
+    "1º Tempo: Flamengo",
+    "Intervalo",
+    "Menos de 5 Escanteios",
+    "Escanteios",
+    "1º Tempo - Menos de 3.5 Chutes a Gol",
+    "1º Tempo - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

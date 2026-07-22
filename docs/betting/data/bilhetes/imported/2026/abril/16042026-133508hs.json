@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.980Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16042026-133508hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/16042026-133508hs.pdf",
+  "bet365Ref": "JF7652874611I",
+  "placedAt": "2026-04-16T16:35:08.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "CASHED_OUT",
+  "stake": 10,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 2.37,
+  "potentialReturn": 23.7,
+  "actualReturn": 10,
+  "cashOut": {
+    "at": "2026-04-17T00:24:36.000Z",
+    "value": 10,
+    "usedStake": 10,
+    "originalStake": 10,
+    "total": 10
+  },
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Pedro Guilherme: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Enzo Larrosa: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "JF7652874611I 16/04/202613:35:08",
+    "Criar Aposta 34,00 2,37",
+    "Aposta Aumentada",
+    "Flamengo v Independiente Medellín",
+    "Total da Aposta R$10,00",
+    "Retorno R$10,00",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 16/04/2026 21:24:36",
+    "Aposta Utilizada R$10,00",
+    "Encerrar Aposta - Valor R$10,00",
+    "Aposta Original R$10,00",
+    "Encerrar Aposta - Total R$10,00",
+    "07/02/2025)",
+    "Para Ambos os Times Marcarem Anulado",
+    "Para Ambos os Times Marcarem",
+    "Pedro Guilherme: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Enzo Larrosa: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Anulado"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

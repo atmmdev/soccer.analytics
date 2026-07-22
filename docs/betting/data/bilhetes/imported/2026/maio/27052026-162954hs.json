@@ -1,0 +1,566 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.427Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "27052026-162954hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/27052026-162954hs.pdf",
+  "bet365Ref": "JP1854380841I",
+  "placedAt": "2026-05-27T19:29:54.000Z",
+  "betType": "13 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 434.5446,
+  "potentialReturn": 4345.45,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Atlético Mineiro v Academia Puerto Cabello",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Atlético Mineiro",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Atlético Mineiro v Academia Puerto Cabello",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Gols - 3 Opções",
+      "selection": "Atlético Mineiro - Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Atlético Mineiro v Academia Puerto Cabello",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Atlético Mineiro - Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Caracas v Botafogo",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Botafogo",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Caracas v Botafogo",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Gols - 3 Opções",
+      "selection": "Botafogo - Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Caracas v Botafogo",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Vasco da Gama v Barracas Central",
+      "matchDate": null,
+      "market": "Claudio Spinelli",
+      "selection": "Brenner: 1+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Vasco da Gama v Barracas Central",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Vasco da Gama v Barracas Central",
+      "matchDate": null,
+      "market": "Mais de 0 Gols no 1º Tempo para Vasco da Gama",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Vasco da Gama v Barracas Central",
+      "matchDate": null,
+      "market": "Vasco da Gama - Mais de 2 Escanteios",
+      "selection": "Time da Casa - 1º Tempo - Gols - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 2,
+      "matchLabel": "Vasco da Gama v Barracas Central",
+      "matchDate": null,
+      "market": "Partida - Mais de 0.5 Gols",
+      "selection": "Time da Casa - Total de Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Independiente del Valle v Rosario Central",
+      "matchDate": null,
+      "market": "Mais de 4 Escanteios",
+      "selection": "Total de Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Independiente del Valle v Rosario Central",
+      "matchDate": null,
+      "market": "Resultado Final: Racing Club",
+      "selection": "Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 13,
+      "builderGroup": 4,
+      "matchLabel": "Racing Club v Independiente Petrolero",
+      "matchDate": null,
+      "market": "Total de Gols",
+      "selection": "Partida - Mais de 1.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 14,
+      "builderGroup": 4,
+      "matchLabel": "Racing Club v Independiente Petrolero",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 4 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 15,
+      "builderGroup": 5,
+      "matchLabel": "Club Olimpia v Audax Italiano",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Club Olimpia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 16,
+      "builderGroup": 5,
+      "matchLabel": "Club Olimpia v Audax Italiano",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 17,
+      "builderGroup": 5,
+      "matchLabel": "Club Olimpia v Audax Italiano",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Club Olimpia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 18,
+      "builderGroup": 6,
+      "matchLabel": "River Plate v Blooming",
+      "matchDate": null,
+      "market": "Total de Gols - 1º Tempo",
+      "selection": "1º Tempo - Mais de 0.5 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 19,
+      "builderGroup": 6,
+      "matchLabel": "River Plate v Blooming",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: River Plate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 20,
+      "builderGroup": 6,
+      "matchLabel": "River Plate v Blooming",
+      "matchDate": null,
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Braulio Uraezana: 3+ Defesas",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 21,
+      "builderGroup": 7,
+      "matchLabel": "Bolívar v Independiente Rivadavia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Independiente Rivadavia",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 22,
+      "builderGroup": 7,
+      "matchLabel": "Bolívar v Independiente Rivadavia",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 23,
+      "builderGroup": null,
+      "matchLabel": "Fluminense v Deportivo La Guaira",
+      "matchDate": "27/05/2026",
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 2.25,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 24,
+      "builderGroup": null,
+      "matchLabel": "Corinthians v Platense",
+      "matchDate": "27/05/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.11,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 25,
+      "builderGroup": null,
+      "matchLabel": "Bragantino v Carabobo",
+      "matchDate": "27/05/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.05,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 26,
+      "builderGroup": null,
+      "matchLabel": "Club Libertad v UCV",
+      "matchDate": "27/05/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.03,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 27,
+      "builderGroup": null,
+      "matchLabel": "Cienciano v Juventud De Las Piedras",
+      "matchDate": "27/05/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.05,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "JP1854380841I 27/05/202616:29:54",
+    "Criar Aposta 2,30",
+    "Atlético Mineiro v Academia Puerto Cabello",
+    "Criar Aposta 2,75",
+    "Caracas v Botafogo",
+    "Criar Aposta 3,20",
+    "Vasco da Gama v Barracas Central",
+    "Sim 2,25",
+    "Fluminense v Deportivo La Guaira 27/05/2026",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Mais de 0.5 1,11",
+    "Corinthians v Platense 27/05/2026",
+    "Total de Gols Ganhou",
+    "Mais de 0.5 1,05",
+    "Bragantino v Carabobo 27/05/2026",
+    "Total de Gols Ganhou",
+    "Criar Aposta 1,12",
+    "Independiente del Valle v Rosario Central",
+    "Mais de 0.5 1,03",
+    "Club Libertad v UCV 27/05/2026",
+    "Total de Gols Ganhou",
+    "Criar Aposta 1,28",
+    "Racing Club v Independiente Petrolero",
+    "Mais de 0.5 1,05",
+    "Cienciano v Juventud De Las Piedras 27/05/2026",
+    "Total de Gols Ganhou",
+    "Criar Aposta 3,40 3,60",
+    "Aposta Aumentada",
+    "Club Olimpia v Audax Italiano",
+    "Criar Aposta 1,28",
+    "River Plate v Blooming",
+    "Criar Aposta 3,25",
+    "Bolívar v Independiente Rivadavia",
+    "Tipo de Aposta: 13 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Atlético Mineiro",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Atlético Mineiro - Mais de 1 Gols",
+    "Time da Casa - Total de Gols - 3 Opções",
+    "Atlético Mineiro - Mais de 4 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Botafogo",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Botafogo - Mais de 1 Gols",
+    "Time Visitante - Total de Gols - 3 Opções",
+    "Mais de 4 Escanteios",
+    "Escanteios Ganhou",
+    "Brenner: 1+ Chutes ao Gol",
+    "Claudio Spinelli",
+    "Jogador - Chutes ao Gol",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 0 Gols no 1º Tempo para Vasco da Gama",
+    "Time da Casa - 1º Tempo - Gols - 3 Opções",
+    "Vasco da Gama - Mais de 2 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções Perdeu",
+    "Partida - Mais de 0.5 Gols",
+    "Total de Gols",
+    "Mais de 4 Escanteios",
+    "Escanteios Ganhou",
+    "Resultado Final: Racing Club",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Partida - Mais de 1.5 Gols",
+    "Total de Gols",
+    "Mais de 4 Escanteios",
+    "Escanteios Ganhou",
+    "Resultado Final: Club Olimpia",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Maior Número de Escanteios: Club Olimpia",
+    "Escanteios - Aposta Comparativa Ganhou",
+    "1º Tempo - Mais de 0.5 Gols",
+    "Total de Gols - 1º Tempo",
+    "Resultado Final: River Plate",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Braulio Uraezana: 3+ Defesas Anulado",
+    "Goleiro - Defesas - Alternativas Perdeu",
+    "Resultado Final: Independiente Rivadavia",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Ganhou"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 8 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

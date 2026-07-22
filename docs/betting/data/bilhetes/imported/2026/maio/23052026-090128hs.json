@@ -1,0 +1,288 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:03.048Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "23052026-090128hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/23052026-090128hs.pdf",
+  "bet365Ref": "BF9398248401I",
+  "placedAt": "2026-05-23T12:01:28.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 125.172,
+  "potentialReturn": 1251.72,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bayern de Munique v VfB Stuttgart",
+      "matchDate": null,
+      "market": "Para Levantar a Taça",
+      "selection": "Para Bayern de Munique Levantar a Taça",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "Valência v Barcelona",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Valência v Barcelona",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Valência v Barcelona",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Barcelona",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Real Madrid v Athletic Bilbao",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Real Madrid",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Inter de Milão",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Michael Olise",
+      "selection": "Raphael Guerreiro - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Raphael Guerreiro - Para Dar Assistência",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Michael Olise",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Vinicius Jr.: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Kylian Mbappe: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Lautaro Martinez",
+      "selection": "Ange Bonny: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Bologna v Inter de Milão",
+      "matchDate": null,
+      "market": "Marcus Thuram: 2+ Chutes ao Gol",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "BF9398248401I 23/05/202609:01:28",
+    "Criar Aposta 4,20 4,75",
+    "Aposta Aumentada",
+    "Bayern de Munique v VfB Stuttgart",
+    "Criar Aposta 3,75 4,00",
+    "Aposta Aumentada",
+    "Valência v Barcelona",
+    "Criar Aposta 3,60 1,83",
+    "Aposta Aumentada",
+    "Real Madrid v Athletic Bilbao",
+    "Criar Aposta 8,00 3,60",
+    "Aposta Aumentada",
+    "Bologna v Inter de Milão",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Bayern de Munique Levantar a Taça",
+    "Para Levantar a Taça",
+    "Raphael Guerreiro - Para Marcar",
+    "Michael Olise",
+    "Para Marcar a Qualquer Momento",
+    "Raphael Guerreiro - Para Dar Assistência",
+    "Michael Olise",
+    "Jogador a Dar Assistência Perdeu",
+    "Resultado Final: Barcelona",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Maior Número de Chutes ao Gol: Barcelona",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Escanteios: Barcelona",
+    "Escanteios - Aposta Comparativa Perdeu",
+    "Resultado Final: Real Madrid",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Vinicius Jr.: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Kylian Mbappe: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Ganhou",
+    "Resultado Final: Inter de Milão",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Ange Bonny: 2+ Chutes ao Gol",
+    "Lautaro Martinez",
+    "Jogador - Chutes ao Gol",
+    "Marcus Thuram: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

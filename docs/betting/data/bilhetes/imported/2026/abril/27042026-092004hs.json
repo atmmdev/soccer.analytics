@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.538Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "27042026-092004hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/27042026-092004hs.pdf",
+  "bet365Ref": "QF9960301021I",
+  "placedAt": "2026-04-27T12:20:04.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 726.75,
+  "potentialReturn": 7267.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Cagliari v Atalanta",
+      "matchDate": "27/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Atalanta 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 8.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Lazio v Udinese",
+      "matchDate": "27/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Lazio 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 9,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Man Utd v Brentford",
+      "matchDate": "27/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Man Utd 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 9.5,
+      "boostedOdd": null,
+      "status": "WON"
+    }
+  ],
+  "rawLines": [
+    "QF9960301021I 27/04/202609:20:04",
+    "Atalanta 2-1 8,50",
+    "Cagliari v Atalanta 27/04/2026",
+    "Resultado Correto Perdeu",
+    "Lazio 2-0 9,00",
+    "Lazio v Udinese 27/04/2026",
+    "Resultado Correto Perdeu",
+    "Man Utd 2-1 9,50",
+    "Man Utd v Brentford 27/04/2026",
+    "Resultado Correto Ganhou",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

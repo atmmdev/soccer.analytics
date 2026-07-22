@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.561Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "13022026-143644hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/13022026-143644hs.pdf",
+  "bet365Ref": "EA2789046801I",
+  "placedAt": "2026-02-13T17:36:44.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 40,
+  "unitStake": 40,
+  "numBets": 1,
+  "combinedOdd": 99,
+  "potentialReturn": 3960,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Hull v Chelsea",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Hull",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Hull v Chelsea",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 5 Escanteios no 1º Tempo para Chelsea",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Hull v Chelsea",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Hull - Mais de 5.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Hull v Chelsea",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - Chelsea - Menos de 9.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Pisa v AC Milan",
+      "matchDate": null,
+      "market": "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Menos de 4 Escanteios no 1º Tempo para AC Milan",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Pisa v AC Milan",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes",
+      "selection": "1º Tempo - Pisa - Mais de 6.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Pisa v AC Milan",
+      "matchDate": null,
+      "market": "1º Tempo - Time 2 - Chutes",
+      "selection": "1º Tempo - AC Milan - Menos de 7.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Pisa v AC Milan",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 1 Escanteios no 1º Tempo para Pisa",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "EA2789046801I 13/02/202614:36:44",
+    "Criar Aposta 11,00",
+    "Hull v Chelsea",
+    "Criar Aposta 9,00",
+    "Pisa v AC Milan",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$40,00",
+    "Total da Aposta R$40,00",
+    "Retorno R$0,00",
+    "Mais de 1 Escanteios no 1º Tempo para Hull",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Menos de 5 Escanteios no 1º Tempo para Chelsea",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Hull - Mais de 5.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - Chelsea - Menos de 9.5 Chutes",
+    "1º Tempo - Time 2 - Chutes Perdeu",
+    "Menos de 4 Escanteios no 1º Tempo para AC Milan",
+    "Time Visitante - 1º Tempo - Escanteios - 3 Opções",
+    "1º Tempo - Pisa - Mais de 6.5 Chutes",
+    "1º Tempo - Time 1 - Chutes",
+    "1º Tempo - AC Milan - Menos de 7.5 Chutes",
+    "1º Tempo - Time 2 - Chutes",
+    "Mais de 1 Escanteios no 1º Tempo para Pisa",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

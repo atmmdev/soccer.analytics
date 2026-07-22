@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.021Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "08042026-140852hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/08042026-140852hs.pdf",
+  "bet365Ref": "FA2634789651I",
+  "placedAt": "2026-04-08T17:08:52.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 312,
+  "potentialReturn": 1560,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Blooming v River Plate",
+      "matchDate": "08/04/2026",
+      "market": "Resultado Correto",
+      "selection": "River Plate 2-0",
+      "period": "90'+ Acréscimos",
+      "odd": 8,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Deportivo Cuenca v Santos",
+      "matchDate": "08/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 1-1",
+      "period": "90'+ Acréscimos",
+      "odd": 6,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Junior v Palmeiras",
+      "matchDate": "08/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Empate 1-1",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "WON"
+    }
+  ],
+  "rawLines": [
+    "FA2634789651I 08/04/202614:08:52",
+    "River Plate 2-0 8,00",
+    "Blooming v River Plate 08/04/2026",
+    "Resultado Correto Perdeu",
+    "Empate 1-1 6,00",
+    "Deportivo Cuenca v Santos 08/04/2026",
+    "Resultado Correto Perdeu",
+    "Empate 1-1 6,50",
+    "Junior v Palmeiras 08/04/2026",
+    "Resultado Correto Ganhou",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

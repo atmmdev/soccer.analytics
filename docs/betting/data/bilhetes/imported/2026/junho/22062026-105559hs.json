@@ -1,0 +1,230 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.202Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22062026-105559hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/22062026-105559hs.pdf",
+  "bet365Ref": "AP6648867841I",
+  "placedAt": "2026-06-22T13:55:59.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 444.125,
+  "potentialReturn": 4441.25,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Argentina v Áustria",
+      "matchDate": null,
+      "market": "Resultado Final: Argentina",
+      "selection": "Jogador a Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 1,
+      "matchLabel": "França v Iraque",
+      "matchDate": null,
+      "market": "Ganhar Ambos os Tempos",
+      "selection": "Para França Ganhar Ambos os Tempos",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Time - Para Receber o Maior Número de Cartões",
+      "selection": "Maior Número de Cartões: Senegal",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Noruega",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Lionel Messi - Para Marcar",
+      "selection": "Niló li",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Lionel Messi - Para Dar Assistência",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Kylian Mbappe - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Noruega v Senegal",
+      "matchDate": null,
+      "market": "Jogador a Dar Assistência",
+      "selection": "Ousmane Dembele - Para Dar Assistência",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team+fallback"
+      }
+    }
+  ],
+  "rawLines": [
+    "AP6648867841I 22/06/202610:55:59",
+    "Criar Aposta 7,50 8,50",
+    "Aposta Aumentada",
+    "Argentina v Áustria",
+    "Criar Aposta 4,33 4,75",
+    "Aposta Aumentada",
+    "França v Iraque",
+    "Criar Aposta 9,50 11,00",
+    "Aposta Aumentada",
+    "Noruega v Senegal",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Niló li",
+    "Lionel Messi - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Lionel Messi - Para Dar Assistência",
+    "Jogador a Dar Assistência",
+    "Resultado Final: Argentina",
+    "Resultado Final Perdeu",
+    "Pagamento Antecipado Recebido",
+    "Kylian Mbappe - Para Marcar",
+    "Para Marcar a Qualquer Momento",
+    "Ousmane Dembele - Para Dar Assistência",
+    "Jogador a Dar Assistência",
+    "Para França Ganhar Ambos os Tempos",
+    "Ganhar Ambos os Tempos Ganhou",
+    "Resultado Final: Noruega",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Maior Número de Cartões: Senegal",
+    "Time - Para Receber o Maior Número de Cartões",
+    "Maior Número de Escanteios: Noruega",
+    "Escanteios - Aposta Comparativa",
+    "Maior Número de Chutes ao Gol: Noruega",
+    "Time - Para Conseguir Mais Chutes a Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

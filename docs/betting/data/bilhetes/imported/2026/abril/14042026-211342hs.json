@@ -1,0 +1,103 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:52.746Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14042026-211342hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/14042026-211342hs.pdf",
+  "bet365Ref": "CA3538995501W",
+  "placedAt": "2026-04-15T00:13:42.000Z",
+  "betType": "Criar Aposta",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "CASHED_OUT",
+  "stake": 10.4,
+  "unitStake": null,
+  "numBets": null,
+  "combinedOdd": 51,
+  "potentialReturn": 530.4,
+  "actualReturn": 9.48,
+  "cashOut": {
+    "at": "2026-04-15T00:19:13.000Z",
+    "value": 9.48,
+    "usedStake": 10.4,
+    "originalStake": 10.4,
+    "total": 9.48
+  },
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Santos v Deportivo Recoleta",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Empate ou Deportivo Recoleta",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Santos v Deportivo Recoleta",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Santos v Deportivo Recoleta",
+      "matchDate": null,
+      "market": "Para Marcar a Qualquer Momento",
+      "selection": "Allan Wik - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    }
+  ],
+  "rawLines": [
+    "Apostas Esportivas",
+    "Resolvidas",
+    "CA3538995501W 14/04/202621:13:42",
+    "Criar Aposta 91,00 51,00",
+    "Aposta Aumentada",
+    "Santos v Deportivo Recoleta",
+    "Total da Aposta R$10,40",
+    "Retorno R$9,48",
+    "Encerrar Aposta – Histórico",
+    "Data/Hora 14/04/2026 21:19:13",
+    "Aposta Utilizada R$10,40",
+    "Encerrar Aposta - Valor R$9,48",
+    "Aposta Original R$10,40",
+    "Encerrar Aposta - Total R$9,48",
+    "Empate ou Deportivo Recoleta",
+    "Chance Dupla",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Allan Wik - Para Marcar Anulado",
+    "Para Marcar a Qualquer Momento Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

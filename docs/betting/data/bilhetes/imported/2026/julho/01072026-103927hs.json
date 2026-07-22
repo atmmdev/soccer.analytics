@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:58.337Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01072026-103927hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/julho/01072026-103927hs.pdf",
+  "bet365Ref": "FP4202943101I",
+  "placedAt": "2026-07-01T13:39:27.000Z",
+  "betType": "Duplas",
+  "betLabel": "Marcar de Fora da Área",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 93.5,
+  "potentialReturn": 935,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Inglaterra v RD Congo",
+      "matchDate": "01/07/2026",
+      "market": "Marcar de Fora da Área",
+      "selection": "Harry Kane",
+      "period": "90'+ Acréscimos",
+      "odd": 11,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Bélgica v Senegal",
+      "matchDate": "01/07/2026",
+      "market": "Marcar de Cabeça",
+      "selection": "Romelu Lukaku",
+      "period": "90'+ Acréscimos",
+      "odd": 8.5,
+      "boostedOdd": null,
+      "status": "VOID"
+    }
+  ],
+  "rawLines": [
+    "FP4202943101I 01/07/202610:39:27",
+    "Harry Kane 11,00",
+    "Inglaterra v RD Congo 01/07/2026",
+    "Marcar de Fora da Área Perdeu",
+    "Romelu Lukaku 8,50",
+    "Bélgica v Senegal 01/07/2026",
+    "Marcar de Cabeça Anulado",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

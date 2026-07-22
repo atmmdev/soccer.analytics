@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:51.626Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "07042026-132323hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/07042026-132323hs.pdf",
+  "bet365Ref": "JA9339759741I",
+  "placedAt": "2026-04-07T16:23:23.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 93.5,
+  "potentialReturn": 935,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Real Madrid v Bayern de Munique",
+      "matchDate": "07/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Real Madrid 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 11,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Sporting v Arsenal",
+      "matchDate": "07/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Arsenal 2-1",
+      "period": "90'+ Acréscimos",
+      "odd": 8.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "JA9339759741I 07/04/202613:23:23",
+    "Real Madrid 2-1 11,00",
+    "Real Madrid v Bayern de Munique 07/04/2026",
+    "Resultado Correto Perdeu",
+    "Arsenal 2-1 8,50",
+    "Sporting v Arsenal 07/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,156 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.544Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "19052026-103109hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/19052026-103109hs.pdf",
+  "bet365Ref": "EF1803531101I",
+  "placedAt": "2026-05-19T13:31:09.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 77,
+  "potentialReturn": 770,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Man City",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Erling Haaland: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Antoine Semenyo",
+      "selection": "Savinho: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Resultado Final: Chelsea",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Chelsea v Tottenham",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Joao Pedro: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Chelsea v Tottenham",
+      "matchDate": null,
+      "market": "Cole Palmer",
+      "selection": "Dario Essugo: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "EF1803531101I 19/05/202610:31:09",
+    "Criar Aposta 10,00 11,00",
+    "Aposta Aumentada",
+    "Bournemouth v Man City",
+    "Criar Aposta 19,00 7,00",
+    "Aposta Aumentada",
+    "Chelsea v Tottenham",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Man City",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Erling Haaland: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Savinho: 2+ Chutes ao Gol",
+    "Antoine Semenyo",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Resultado Final: Chelsea",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Joao Pedro: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Dario Essugo: 2+ Chutes ao Gol",
+    "Cole Palmer",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

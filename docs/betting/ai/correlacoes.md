@@ -104,6 +104,55 @@ Critérios de elegibilidade por perna: [marcado-de-atuacao.md](./marcado-de-atua
 
 ---
 
+### Cadeias adicionais (34–60)
+
+#### Pressão do favorito (cadeia canônica)
+
+34. **Favorito atacando** → **+Escanteios** → **+Chutes** → **+Defesas do goleiro adversário** → **+Tiros de meta adversário** → **−Posse adversária**
+35. **Favorito −1.5** → implica margem ≥ 2 gols → **+Over 1.5** quase certo → **+Casa marca**
+36. **Casa marca cedo** → visitante abre bloco → **+BTTS 2º tempo** → **+Over cartões** (pressão + faltas)
+
+#### Props de jogador
+
+37. **Over passes do volante** → **+Posse do time** → **−Tiros de meta do próprio goleiro**
+38. **Over key passes** → **+xA** → **+Assistência** (correlação ++ se mesma partida)
+39. **Anytime scorer + Over 2.5** → correlação **+** (gol do jogador conta no total)
+40. **Hat-trick + Casa vence** → correlação **++**
+41. **Over desarmes + Over faltas cometidas** → correlação **+** (mesmo perfil físico)
+42. **Over duelos + Over recuperações** → correlação **+** (pressing)
+43. **Over cabeçadas zagueiro + Over escanteios adversário** → correlação **+**
+
+#### Live / estado do placar
+
+44. **0-0 aos 60'** → **+Under pré-jogo fica mais favorável** · **Over live encarece**
+45. **Favorito perdendo** → **+substituições ofensivas** → **+Escanteios 2º tempo** → **+Cartões**
+46. **Expulsão** → **+Over gols** (em muitos perfis) → **+Handicap do time em vantagem numérica**
+47. **Pênalti marcado** → **+Gol** → afeta BTTS, Over e marcador na mesma jogada
+
+#### Clima, árbitro e contexto
+
+48. **Árbitro cartão-fácil + derby** → **+Over cartões** → **+Acréscimos** → **−Ritmo ofensivo fluido**
+49. **Chuva + vento** → **−Precisão de passe** → **−Over passes** → **+Erros** → **±Gols** (ambíguo)
+50. **Calor extremo** → **−Duelos 2º tempo** → **−Over 2º tempo gols**
+51. **Rotação pós-UCL** → **−xG** → **−Confiança 1X2 favorito** → **+Empate / DNB visitante**
+52. **Time já classificado** → **−Motivação** → **+Under** → **−Escanteios**
+
+#### Handicaps e totais mistos
+
+53. **Asian −0.25 Casa + Under 2.5** → correlação **−** (vitória apertada vs poucos gols — parcial)
+54. **Europeu −1 Casa + Over 2.5** → correlação **+** (precisa marcar e cobrir)
+55. **BTTS Não + Under 2.5** → correlação **++**
+56. **BTTS Sim + Under 1.5** → **impossível / inconsistente** — rejeitar bilhete
+57. **Over escanteios time A + Under escanteios time B** → correlação **+** (mesmo jogo, lados opostos)
+
+#### Estatísticas de equipe
+
+58. **Over posse Casa** → **+Passes Casa** → **+Escanteios Casa** → **−Chutes perigosos se posse estéril**
+59. **Over impedimentos** → linha alta defensiva → **−Over gols** (em alguns perfis) ou **+contra-ataques**
+60. **Over acréscimos** → jogo truncado / VAR / cartões → **+Cartões** correlaciona **+**
+
+---
+
 ### Combinações perigosas (evitar na mesma múltipla)
 
 | Perna A | Perna B | Correlação |

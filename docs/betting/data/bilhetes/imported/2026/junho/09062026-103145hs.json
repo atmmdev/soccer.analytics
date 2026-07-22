@@ -1,0 +1,182 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.128Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "09062026-103145hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/09062026-103145hs.pdf",
+  "bet365Ref": "SP4215980811I",
+  "placedAt": "2026-06-09T13:31:45.000Z",
+  "betType": "6 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 6.5,
+  "potentialReturn": 65,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Arábia Saudita v Senegal",
+      "matchDate": null,
+      "market": "Chance Dupla",
+      "selection": "Arábia Saudita ou Empate",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Arábia Saudita v Senegal",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Arábia Saudita v Senegal",
+      "matchDate": null,
+      "market": "Escanteios",
+      "selection": "Mais de 7 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": null,
+      "matchLabel": "Argentina v Islândia",
+      "matchDate": "09/06/2026",
+      "market": "Escanteios",
+      "selection": "Mais de 9.0",
+      "period": "90'+ Acréscimos",
+      "odd": 2.25,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": null,
+      "matchLabel": "Estônia v Lituânia",
+      "matchDate": "09/06/2026",
+      "market": "Escanteios",
+      "selection": "Mais de 9.0",
+      "period": "90'+ Acréscimos",
+      "odd": 2.5,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": null,
+      "matchLabel": "RD Congo v Chile",
+      "matchDate": "09/06/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.44,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": null,
+      "matchLabel": "Hungria v Cazaquistão",
+      "matchDate": "09/06/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 1.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.18,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": null,
+      "matchLabel": "Iraque v Venezuela",
+      "matchDate": "09/06/2026",
+      "market": "Total de Gols - 1º Tempo",
+      "selection": "Mais de 0.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.5,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "SP4215980811I 09/06/202610:31:45",
+    "Mais de 9.0 2,25",
+    "Argentina v Islândia 09/06/2026",
+    "Escanteios Perdeu",
+    "Mais de 9.0 2,50",
+    "Estônia v Lituânia 09/06/2026",
+    "Escanteios Perdeu",
+    "Criar Aposta 6,00 6,50",
+    "Aposta Aumentada",
+    "Arábia Saudita v Senegal",
+    "Mais de 1.5 1,44",
+    "RD Congo v Chile 09/06/2026",
+    "Total de Gols Ganhou",
+    "Mais de 1.5 1,18",
+    "Hungria v Cazaquistão 09/06/2026",
+    "Total de Gols Ganhou",
+    "Mais de 0.5 1,50",
+    "Iraque v Venezuela 09/06/2026",
+    "Total de Gols - 1º Tempo Ganhou",
+    "Tipo de Aposta: 6 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Arábia Saudita ou Empate",
+    "Chance Dupla",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Mais de 7 Escanteios",
+    "Escanteios Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 1 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

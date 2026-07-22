@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.776Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "28042026-154510hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/28042026-154510hs.pdf",
+  "bet365Ref": "BF7408863101I",
+  "placedAt": "2026-04-28T18:45:10.000Z",
+  "betType": "Triplas",
+  "betLabel": "Goleiro - Defesas - Alternativas",
+  "status": "LOST",
+  "stake": 100,
+  "unitStake": 100,
+  "numBets": 1,
+  "combinedOdd": 160.875,
+  "potentialReturn": 16087.5,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Atlético de Madrid v Arsenal",
+      "matchDate": "29/04/2026",
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "David Raya - Mais de 4.5",
+      "period": "90'+ Acréscimos",
+      "odd": 4.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Nottm Forest v Aston Villa",
+      "matchDate": "30/04/2026",
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Emiliano Martinez - Mais de 5.5",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "PSG v Bayern de Munique",
+      "matchDate": "28/04/2026",
+      "market": "Goleiro - Defesas - Alternativas",
+      "selection": "Manuel Neuer - Mais de 6.5",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "BF7408863101I 28/04/202615:45:10",
+    "David Raya - Mais de 4.5 4,50",
+    "Atlético de Madrid v Arsenal 29/04/2026",
+    "Goleiro - Defesas - Alternativas Perdeu",
+    "Emiliano Martinez - Mais de 5.5 6,50",
+    "Nottm Forest v Aston Villa 30/04/2026",
+    "Goleiro - Defesas - Alternativas Perdeu",
+    "Manuel Neuer - Mais de 6.5 5,50",
+    "PSG v Bayern de Munique 28/04/2026",
+    "Goleiro - Defesas - Alternativas Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$100,00",
+    "Total da Aposta R$100,00",
+    "Retorno R$0,00"
+  ],
+  "warnings": []
+}

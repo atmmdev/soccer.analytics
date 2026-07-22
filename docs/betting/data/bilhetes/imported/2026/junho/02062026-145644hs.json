@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:59.746Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "02062026-145644hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/02062026-145644hs.pdf",
+  "bet365Ref": "EP2128088161I",
+  "placedAt": "2026-06-02T17:56:44.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado/Ambos Marcam",
+  "status": "LOST",
+  "stake": 5.31,
+  "unitStake": 5.31,
+  "numBets": 1,
+  "combinedOdd": 33,
+  "potentialReturn": 175.23,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "País de Gales v Gana",
+      "matchDate": "02/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "País de Gales e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 5,
+      "boostedOdd": 5.5,
+      "status": "LOST",
+      "meta": {
+        "oddsBoost": true
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Haiti v Nova Zelândia",
+      "matchDate": "02/06/2026",
+      "market": "Resultado/Ambos Marcam",
+      "selection": "Nova Zelândia e Sim",
+      "period": "90'+ Acréscimos",
+      "odd": 5.5,
+      "boostedOdd": 6,
+      "status": "LOST",
+      "meta": {
+        "oddsBoost": true
+      }
+    }
+  ],
+  "rawLines": [
+    "EP2128088161I 02/06/202614:56:44",
+    "País de Gales e Sim 5,00 5,50",
+    "País de Gales v Gana 02/06/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Aposta Aumentada",
+    "Nova Zelândia e Sim 5,50 6,00",
+    "Haiti v Nova Zelândia 02/06/2026",
+    "Resultado/Ambos Marcam Perdeu",
+    "Aposta Aumentada",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,31",
+    "Total da Aposta R$5,31",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:55.898Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "01022026-0958hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/01022026-0958hs.pdf",
+  "bet365Ref": "YA8883315411I",
+  "placedAt": "2026-02-01T12:58:20.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 90.93,
+  "potentialReturn": 909.3,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Cremonese v Inter de Milão",
+      "matchDate": null,
+      "market": "Escanteios do Time",
+      "selection": "Inter de Milão - Mais de 6.5",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Cremonese v Inter de Milão",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes",
+      "selection": "Inter de Milão - Mais de 20.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Parma v Juventus",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "Juventus - Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Parma v Juventus",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes",
+      "selection": "Juventus - Mais de 17.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 2,
+      "matchLabel": "Strasbourg v PSG",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Escanteios - 3 Opções",
+      "selection": "PSG - Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Strasbourg v PSG",
+      "matchDate": null,
+      "market": "Time Visitante - Chutes",
+      "selection": "PSG - Mais de 17.5 Chutes",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "team"
+      }
+    }
+  ],
+  "rawLines": [
+    "YA8883315411I 01/02/202609:58:20",
+    "Criar Aposta 4,20",
+    "Cremonese v Inter de Milão",
+    "Criar Aposta 4,33",
+    "Parma v Juventus",
+    "Criar Aposta 5,00",
+    "Strasbourg v PSG",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "07/02/2025)",
+    "Inter de Milão - Mais de 6.5",
+    "Escanteios do Time",
+    "Inter de Milão - Mais de 20.5 Chutes",
+    "Time Visitante - Chutes Perdeu",
+    "Juventus - Mais de 5 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "Juventus - Mais de 17.5 Chutes",
+    "Time Visitante - Chutes Perdeu",
+    "PSG - Mais de 5 Escanteios",
+    "Time Visitante - Total de Escanteios - 3 Opções",
+    "PSG - Mais de 17.5 Chutes",
+    "Time Visitante - Chutes Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

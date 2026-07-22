@@ -1,0 +1,213 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:02.397Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "18052026-143000hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/maio/18052026-143000hs.pdf",
+  "bet365Ref": "LF1490540341I",
+  "placedAt": "2026-05-18T17:30:00.000Z",
+  "betType": "Triplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 2233,
+  "potentialReturn": 22330,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Arsenal v Burnley",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Arsenal v Burnley",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Bukayo Saka: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Arsenal v Burnley",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Zian Flemming: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Man City",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Erling Haaland: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Antoine Semenyo",
+      "selection": "Savinho: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Bournemouth v Man City",
+      "matchDate": null,
+      "market": "Resultado Final: Chelsea",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Chelsea v Tottenham",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Joao Pedro: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "VOID",
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Chelsea v Tottenham",
+      "matchDate": null,
+      "market": "Cole Palmer",
+      "selection": "Dario Essugo: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "split"
+      }
+    }
+  ],
+  "rawLines": [
+    "LF1490540341I 18/05/202614:30:00",
+    "Criar Aposta 26,00 29,00",
+    "Aposta Aumentada",
+    "Arsenal v Burnley",
+    "Criar Aposta 10,00 11,00",
+    "Aposta Aumentada",
+    "Bournemouth v Man City",
+    "Criar Aposta 17,00 7,00",
+    "Aposta Aumentada",
+    "Chelsea v Tottenham",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Bukayo Saka: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Zian Flemming: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Resultado Final: Man City",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Erling Haaland: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Savinho: 2+ Chutes ao Gol",
+    "Antoine Semenyo",
+    "Jogador - Chutes ao Gol Perdeu",
+    "Resultado Final: Chelsea",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Joao Pedro: 2+ Chutes ao Gol Anulado",
+    "Jogador - Chutes ao Gol",
+    "Dario Essugo: 2+ Chutes ao Gol",
+    "Cole Palmer",
+    "Jogador - Chutes ao Gol Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

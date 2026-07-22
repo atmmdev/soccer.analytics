@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:53.037Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "16042026-133900hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/abril/16042026-133900hs.pdf",
+  "bet365Ref": "YF6859428081I",
+  "placedAt": "2026-04-16T16:39:00.000Z",
+  "betType": "Triplas",
+  "betLabel": "Resultado Correto",
+  "status": "LOST",
+  "stake": 5,
+  "unitStake": 5,
+  "numBets": 1,
+  "combinedOdd": 585,
+  "potentialReturn": 2925,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Atlético Mineiro v Juventud De Las Piedras",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Atlético Mineiro 3-0",
+      "period": "90'+ Acréscimos",
+      "odd": 7.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Independiente Medellín",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Flamengo 3-1",
+      "period": "90'+ Acréscimos",
+      "odd": 12,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchLabel": "Palmeiras v Sporting Cristal",
+      "matchDate": "16/04/2026",
+      "market": "Resultado Correto",
+      "selection": "Palmeiras 3-0",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "YF6859428081I 16/04/202613:39:00",
+    "Atlético Mineiro 3-0 7,50",
+    "Atlético Mineiro v Juventud De Las Piedras 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Flamengo 3-1 12,00",
+    "Flamengo v Independiente Medellín 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Palmeiras 3-0 6,50",
+    "Palmeiras v Sporting Cristal 16/04/2026",
+    "Resultado Correto Perdeu",
+    "Tipo de Aposta: Triplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$5,00",
+    "Total da Aposta R$5,00",
+    "Retorno R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}

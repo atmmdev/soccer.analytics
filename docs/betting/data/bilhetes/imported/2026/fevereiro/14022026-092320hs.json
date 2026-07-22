@@ -1,0 +1,209 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:56.753Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "14022026-092320hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/14022026-092320hs.pdf",
+  "bet365Ref": "FA8998503261I",
+  "placedAt": "2026-02-14T12:23:20.000Z",
+  "betType": "5 Múltiplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 8.0262,
+  "potentialReturn": 80.26,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "VfB Stuttgart v Köln",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: VfB Stuttgart",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "VfB Stuttgart v Köln",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "WON",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 1,
+      "matchLabel": "Burnley v Mansfield",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Burnley",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Burnley v Mansfield",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 1º Tempo para Burnley",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Burnley v Mansfield",
+      "matchDate": null,
+      "market": "Time da Casa - 2º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 0 Escanteios no 2º Tempo para Burnley",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 2,
+      "matchLabel": "Marselha v Strasbourg",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Marselha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 2,
+      "matchLabel": "Marselha v Strasbourg",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 1 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": null,
+      "matchLabel": "Man City v Salford City",
+      "matchDate": "14/02/2026",
+      "market": "Total de Gols",
+      "selection": "Mais de 4.5",
+      "period": "90'+ Acréscimos",
+      "odd": 1.83,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": null,
+      "matchLabel": "Aston Villa v Newcastle",
+      "matchDate": "14/02/2026",
+      "market": "Resultado Final",
+      "selection": "Aston Villa",
+      "period": "90'+ Acréscimos",
+      "odd": 2.35,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "classic": true
+      }
+    }
+  ],
+  "rawLines": [
+    "FA8998503261I 14/02/202609:23:20",
+    "Criar Aposta 2,60",
+    "VfB Stuttgart v Köln",
+    "Mais de 4.5 1,83",
+    "Man City v Salford City 14/02/2026",
+    "Total de Gols Perdeu",
+    "Criar Aposta 1,47",
+    "Burnley v Mansfield",
+    "Aston Villa 2,35",
+    "Aston Villa v Newcastle 14/02/2026",
+    "Resultado Final Perdeu",
+    "Criar Aposta 2,10",
+    "Marselha v Strasbourg",
+    "Tipo de Aposta: 5 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: VfB Stuttgart",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem Ganhou",
+    "Resultado Final: Burnley",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 0 Escanteios no 1º Tempo para Burnley",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+    "Mais de 0 Escanteios no 2º Tempo para Burnley",
+    "Time da Casa - 2º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Marselha",
+    "Resultado Final",
+    "Pagamento Antecipado Recebido",
+    "Mais de 1 Gols",
+    "Total de Gols - 3 Opções - Alternativas Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 3 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

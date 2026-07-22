@@ -1,6 +1,6 @@
 # Betting — Documentação Oficial
 
-> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.2  
+> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.3  
 > **Público-alvo:** analistas humanos, operadores de banca, engenheiros de produto e agentes de IA  
 > **Idioma:** Português (Brasil)
 
@@ -55,6 +55,8 @@ docs/betting/
 | IA — Probabilidades | [ai/probabilidades.md](./ai/probabilidades.md) | Odds justas e margem |
 | IA — Ligas | [ai/ligas.md](./ai/ligas.md) | Mercados por competição |
 | IA — Marcado de Atuação | [ai/marcado-de-atuacao.md](./ai/marcado-de-atuacao.md) | Gate 4/7 e odds operacionais |
+| IA — Apostila Camillo | [ai/apostila-camilojoga10.md](./ai/apostila-camilojoga10.md) | Base de conhecimento (guia Camillo Joga 10) |
+| Dados — Bilhetes reais | [data/bilhetes/](./data/bilhetes/) | PDFs Bet365 + JSON curados em `imported/` |
 | Estratégias Live | [strategies/live.md](./strategies/live.md) | Métodos in-play (Over HT, cantos) |
 | Exemplos | [examples/](./examples/) | Bilhetes conservador a agressivo — ver [examples/README.md](./examples/README.md) |
 
@@ -273,6 +275,7 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 | Versão | Data | Alterações |
 |--------|------|------------|
+| **1.3** | jul/2026 | Completar lacunas: props (passes decisivos, cabeçadas, tiros de meta goleiro, duelos, recuperações); glossário Yield/Duelo/Recuperação; cadeias 34–60 em correlações; checklist motivação/sequência; remoção de `bilhete-medio.md` vazio |
 | **1.2** | jul/2026 | Integração playbook sports-trading: `ai/ligas.md`, `ai/marcado-de-atuacao.md`, `strategies/live.md`, exemplo Brasileirão 6 perfis, gate 4/7 no checklist |
 | **1.1** | jul/2026 | Revisão fina: exemplos concretos em 01/02/06, seções Bet365 por mercado (06), referências cruzadas em todos os arquivos `markets/`, correção de mercados genéricos em 02 (gol cabeça, fora da área, próximo gol) |
 | **1.0** | jul/2026 | Estrutura inicial: 10 categorias, glossário, ai/, examples/ |
@@ -296,4 +299,4 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 ---
 
-*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.2*
+*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.3*

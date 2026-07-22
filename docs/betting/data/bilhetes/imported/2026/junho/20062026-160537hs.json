@@ -1,0 +1,225 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:01.117Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "20062026-160537hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/20062026-160537hs.pdf",
+  "bet365Ref": "EP5560680111I",
+  "placedAt": "2026-06-20T19:05:37.000Z",
+  "betType": "Duplas",
+  "betLabel": "Criar Aposta",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 90,
+  "potentialReturn": 900,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Alemanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Para Ambos os Times Marcarem",
+      "selection": "Para Ambos os Times Marcarem",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Jamal Musiala",
+      "selection": "Deniz Undav: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 0,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Alemanha - Mais de 5 Escanteios",
+      "selection": "Jogador - Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 0,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Costa do Marfim - Mais de 0 Cartões",
+      "selection": "Time da Casa - Total de Escanteios - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 0,
+      "matchLabel": "Alemanha v Costa do Marfim",
+      "matchDate": null,
+      "market": "Resultado Final: Equador",
+      "selection": "Time Visitante - Total de Cartões - 3 Opções",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções - Alternativas",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Jogador - Chutes ao Gol",
+      "selection": "Enner Valencia: 2+ Chutes ao Gol",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Time da Casa - Total de Escanteios - 3 Opções",
+      "selection": "Equador - Mais de 5 Escanteios",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 1,
+      "matchLabel": "Equador v Curaçao",
+      "matchDate": null,
+      "market": "Time Visitante - Total de Cartões - 3 Opções",
+      "selection": "Curaçao - Mais de 1 Cartões",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "EP5560680111I 20/06/202616:05:37",
+    "Criar Aposta 15,00",
+    "Alemanha v Costa do Marfim",
+    "Criar Aposta 6,00",
+    "Equador v Curaçao",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "Resultado Final: Alemanha",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Para Ambos os Times Marcarem",
+    "Para Ambos os Times Marcarem",
+    "Deniz Undav: 2+ Chutes ao Gol",
+    "Jamal Musiala",
+    "Jogador - Chutes ao Gol",
+    "Alemanha - Mais de 5 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Costa do Marfim - Mais de 0 Cartões",
+    "Time Visitante - Total de Cartões - 3 Opções Perdeu",
+    "Resultado Final: Equador",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções - Alternativas",
+    "Enner Valencia: 2+ Chutes ao Gol",
+    "Jogador - Chutes ao Gol",
+    "Equador - Mais de 5 Escanteios",
+    "Time da Casa - Total de Escanteios - 3 Opções",
+    "Curaçao - Mais de 1 Cartões",
+    "Time Visitante - Total de Cartões - 3 Opções Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 2 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

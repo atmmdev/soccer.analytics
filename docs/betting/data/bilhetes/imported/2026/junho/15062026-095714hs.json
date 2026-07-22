@@ -1,0 +1,288 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:34:00.418Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "15062026-095714hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/junho/15062026-095714hs.pdf",
+  "bet365Ref": "SP3439952981I",
+  "placedAt": "2026-06-15T12:57:14.000Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "Criar Aposta + Aposta Aumentada",
+  "status": "LOST",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 1465.6125,
+  "potentialReturn": 14656.13,
+  "actualReturn": 0,
+  "cashOut": null,
+  "hasOddsBoost": true,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Cabo Verde",
+      "matchDate": null,
+      "market": "Intervalo",
+      "selection": "1º Tempo: Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Cabo Verde",
+      "matchDate": null,
+      "market": "1º Tempo - Time 1 - Chutes ao Gol",
+      "selection": "Mais de 3.5 Chutes ao Gol no 1º Tempo para Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": 0,
+      "matchLabel": "Espanha v Cabo Verde",
+      "matchDate": null,
+      "market": "Time da Casa - 1º Tempo - Escanteios - 3 Opções",
+      "selection": "Mais de 3 Escanteios no 1º Tempo para Espanha",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Egito",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 4,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Total de Gols - 3 Opções",
+      "selection": "Mais de 2 Gols",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 5,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Mohamed Salah",
+      "selection": "Hamza Abdelkarim - Para Marcar",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 6,
+      "builderGroup": 1,
+      "matchLabel": "Bélgica v Egito",
+      "matchDate": null,
+      "market": "Resultado Final: Uruguai",
+      "selection": "Para Marcar a Qualquer Momento",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 7,
+      "builderGroup": 2,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Uruguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 8,
+      "builderGroup": 2,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Uruguai",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 9,
+      "builderGroup": 2,
+      "matchLabel": "Arábia Saudita v Uruguai",
+      "matchDate": null,
+      "market": "Time - Para Receber o Maior Número de Cartões",
+      "selection": "Maior Número de Cartões: Arábia Saudita",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 10,
+      "builderGroup": 3,
+      "matchLabel": "Irã v Nova Zelândia",
+      "matchDate": null,
+      "market": "Resultado Final",
+      "selection": "Resultado Final: Irã",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 11,
+      "builderGroup": 3,
+      "matchLabel": "Irã v Nova Zelândia",
+      "matchDate": null,
+      "market": "Time - Para Conseguir Mais Chutes a Gol",
+      "selection": "Maior Número de Chutes ao Gol: Irã",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": null,
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    },
+    {
+      "sortOrder": 12,
+      "builderGroup": 3,
+      "matchLabel": "Irã v Nova Zelândia",
+      "matchDate": null,
+      "market": "Escanteios - Aposta Comparativa",
+      "selection": "Maior Número de Escanteios: Irã",
+      "period": "90'+ Acréscimos",
+      "odd": null,
+      "boostedOdd": null,
+      "status": "LOST",
+      "meta": {
+        "builder": true,
+        "assign": "status-split"
+      }
+    }
+  ],
+  "rawLines": [
+    "SP3439952981I 15/06/202609:57:14",
+    "Criar Aposta 3,10 3,30",
+    "Aposta Aumentada",
+    "Espanha v Cabo Verde",
+    "Criar Aposta 17,00 19,00",
+    "Aposta Aumentada",
+    "Bélgica v Egito",
+    "Criar Aposta 4,75 5,50",
+    "Aposta Aumentada",
+    "Arábia Saudita v Uruguai",
+    "Criar Aposta 4,00 4,25",
+    "Aposta Aumentada",
+    "Irã v Nova Zelândia",
+    "Tipo de Aposta: 4 Múltiplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$10,00",
+    "Total da Aposta R$10,00",
+    "Retorno R$0,00",
+    "1º Tempo: Espanha",
+    "Intervalo",
+    "Mais de 3.5 Chutes ao Gol no 1º Tempo para Espanha",
+    "1º Tempo - Time 1 - Chutes ao Gol",
+    "Mais de 3 Escanteios no 1º Tempo para Espanha",
+    "Time da Casa - 1º Tempo - Escanteios - 3 Opções Perdeu",
+    "Resultado Final: Egito",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Mais de 2 Gols",
+    "Total de Gols - 3 Opções",
+    "Hamza Abdelkarim - Para Marcar",
+    "Mohamed Salah",
+    "Para Marcar a Qualquer Momento Perdeu",
+    "Resultado Final: Uruguai",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Maior Número de Chutes ao Gol: Uruguai",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Escanteios: Uruguai",
+    "Escanteios - Aposta Comparativa",
+    "Maior Número de Cartões: Arábia Saudita",
+    "Time - Para Receber o Maior Número de Cartões Perdeu",
+    "Resultado Final: Irã",
+    "Resultado Final",
+    "Pagamento Antecipado",
+    "Maior Número de Chutes ao Gol: Irã",
+    "Time - Para Conseguir Mais Chutes a Gol",
+    "Maior Número de Escanteios: Irã",
+    "Escanteios - Aposta Comparativa Perdeu"
+  ],
+  "warnings": [
+    "Pernas após rodapé atribuídas a 4 Criar Aposta (por time/status)",
+    "Odd combinada = produto dos headers Criar Aposta"
+  ]
+}

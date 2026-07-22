@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-22T00:33:57.432Z",
+    "parser": "bet365-pdf.parser@2",
+    "sourcePdf": "22022026-161021hs.pdf",
+    "curated": false,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/2026/fevereiro/22022026-161021hs.pdf",
+  "bet365Ref": "QA4849255651W",
+  "placedAt": "2026-02-22T19:10:21.000Z",
+  "betType": "Duplas",
+  "betLabel": "Resultado Final",
+  "status": "LOST",
+  "stake": 15.34,
+  "unitStake": 15.34,
+  "numBets": 1,
+  "combinedOdd": 22.1,
+  "potentialReturn": 339.01,
+  "actualReturn": null,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchLabel": "Vasco da Gama v Fluminense",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Vasco da Gama",
+      "period": "90'+ Acréscimos",
+      "odd": 3.4,
+      "boostedOdd": null,
+      "status": "LOST"
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchLabel": "Flamengo v Madureira",
+      "matchDate": "22/02/2026",
+      "market": "Resultado Final",
+      "selection": "Empate",
+      "period": "90'+ Acréscimos",
+      "odd": 6.5,
+      "boostedOdd": null,
+      "status": "LOST"
+    }
+  ],
+  "rawLines": [
+    "QA4849255651W 22/02/202616:10:21",
+    "Vasco da Gama 3,40",
+    "Vasco da Gama v Fluminense 22/02/2026",
+    "Resultado Final Perdeu",
+    "Empate 6,50",
+    "Flamengo v Madureira 22/02/2026",
+    "Resultado Final Perdeu",
+    "Tipo de Aposta: Duplas",
+    "Nº de Apostas 1",
+    "Aposta Unitária R$15,34",
+    "Total da Aposta R$15,34",
+    "(R$15,00 Créditos de Aposta + R$0,34 )",
+    "Retorno Líquido R$0,00",
+    "07/02/2025)"
+  ],
+  "warnings": []
+}
