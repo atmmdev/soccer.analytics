@@ -25,6 +25,8 @@ export interface MarketAnalysisResult {
   confidence: number;
   recommendation: Recommendation;
   playerModel?: boolean;
+  /** false = mercado sem modelo; engine força SKIP (não usa 0.5 silencioso) */
+  modelSupported?: boolean;
 }
 
 export interface PlayerMarketContext {
@@ -209,9 +211,9 @@ function resolveProbability(
   cornerLambda: number,
   cardLambda: number,
   playerContext?: Record<string, PlayerMarketContext>,
-): number {
+): { probability: number; modeled: boolean } {
   if (goalMap[odd.selection] !== undefined) {
-    return goalMap[odd.selection];
+    return { probability: goalMap[odd.selection], modeled: true };
   }
 
   const type = odd.marketType.toUpperCase();
@@ -219,33 +221,44 @@ function resolveProbability(
   if (type === 'HANDICAP') {
     const parsed = parseHandicapSelection(odd.selection);
     if (parsed) {
-      return probabilityHandicapCover(matrix, parsed.side, parsed.line);
+      return {
+        probability: probabilityHandicapCover(matrix, parsed.side, parsed.line),
+        modeled: true,
+      };
     }
-    return 0.5;
+    return { probability: 0, modeled: false };
   }
 
   if (type === 'PLAYER') {
     const ctx = playerContext?.[odd.selection];
-    if (ctx?.hasModel) return ctx.probability;
-    return Math.min(0.95, Math.max(0.02, 1 / odd.bookmakerOdd));
+    if (ctx?.hasModel) {
+      return { probability: ctx.probability, modeled: true };
+    }
+    // Odd implícita só para exibição; recomendação permanece SKIP
+    return {
+      probability: Math.min(0.95, Math.max(0.02, 1 / odd.bookmakerOdd)),
+      modeled: false,
+    };
   }
 
   const line = parseLineFromSelection(odd.selection);
-  if (line === null) return 0.5;
+  if (line === null) {
+    return { probability: 0, modeled: false };
+  }
 
   const isOver = isOverSelection(odd.selection);
 
   if (type === 'CORNERS') {
     const pOver = probabilityOverLine(cornerLambda, line);
-    return isOver ? pOver : 1 - pOver;
+    return { probability: isOver ? pOver : 1 - pOver, modeled: true };
   }
 
   if (type === 'CARDS') {
     const pOver = probabilityOverLine(cardLambda, line);
-    return isOver ? pOver : 1 - pOver;
+    return { probability: isOver ? pOver : 1 - pOver, modeled: true };
   }
 
-  return 0.5;
+  return { probability: 0, modeled: false };
 }
 
 function marketConfidence(
@@ -324,7 +337,7 @@ export function runAnalysis(
   };
 
   const markets: MarketAnalysisResult[] = odds.map((odd) => {
-    const probability = resolveProbability(
+    const resolved = resolveProbability(
       odd,
       probabilityMap,
       matrix,
@@ -332,6 +345,25 @@ export function runAnalysis(
       cardLambda,
       playerContext,
     );
+
+    if (!resolved.modeled) {
+      return {
+        marketType: odd.marketType,
+        selection: odd.selection,
+        probability: round(resolved.probability),
+        fairOdd: 99,
+        bookmakerOdd: odd.bookmakerOdd,
+        ev: round(resolved.probability * odd.bookmakerOdd - 1),
+        confidence: 0,
+        recommendation: 'SKIP' as Recommendation,
+        modelSupported: false,
+        ...(odd.marketType.toUpperCase() === 'PLAYER'
+          ? { playerModel: false }
+          : {}),
+      };
+    }
+
+    const probability = resolved.probability;
     const fairOdd = probability > 0 ? 1 / probability : 99;
     const ev = probability * odd.bookmakerOdd - 1;
     const confidence = marketConfidence(
@@ -361,6 +393,7 @@ export function runAnalysis(
         playerContext,
         odd.selection,
       ),
+      modelSupported: true,
       ...(hasPlayerModel ? { playerModel: true } : {}),
     };
   });

@@ -98,29 +98,21 @@ docs/
 
 ### Fase 2 — Separar liquidação × análise (contínuo)
 
-- [ ] Para cada mercado em `markets/`: seções “Como analisar” longas → extrair para `analysis/<mercado>.md` e deixar link.
-- [ ] Cada playbook em `analysis/` segue `_template.md`:
-  - link canônico para `markets/`
-  - dados necessários (delta vs pipeline universal)
-  - indicadores
-  - ideal / evitar
-  - combinações (com link a `ai/correlacoes.md`)
-  - score mínimo recomendado
-  - ação BET / WATCH / SKIP
-- [ ] Ordem sugerida de preenchimento:
-  1. Resultados + Gols (já modelados)
-  2. Escanteios + Cartões
-  3. Chutes / SOT + Defesas GK
-  4. Jogador / Marcadores
-  5. HT/2T, Asiáticos, Especiais
+- [x] Lote core: 1X2, O/U gols, BTTS, cantos, cartões, SOT, defesas, anytime, AH gols
+- [ ] HT/2T, props jogador restantes, especiais / Bet Builder
+- [x] Template + links SSOT markets ↔ analysis
+- [ ] Ordem sugerida restante:
+  5. HT/2T, Asiáticos (outras linhas), Especiais
 
 **Critério:** nenhum playbook repete tabela Green/Red que já está em `markets/`.
 
 ### Fase 3 — Prompts e agentes (quando for implementar IA de mercado)
 
-- [ ] `docs/prompts/analyzer.md`, `ticket-builder.md`, `odds-evaluator.md`, `predictor.md`
-- [ ] Cada prompt **referencia** `analysis/` + `ai/score.md`; não embute regras de liquidação.
-- [ ] Versionar prompts (data + “compatível com score.md vX”).
+- [x] `docs/prompts/analyzer.md`, `ticket-builder.md`, `odds-evaluator.md`, `predictor.md`
+- [x] Cada prompt **referencia** `analysis/` + `ai/score.md`; não embute regras de liquidação.
+- [x] Versionar prompts (data + “compatível com score.md vX”).
+- [x] AI Engine injeta `analyzer.md` no system prompt (OpenAI)
+- [ ] Ticket Builder / Odds Evaluator consumirem prompts no runtime
 
 ### Fase 4 — Mercados em pastas (opcional, sob demanda)
 
@@ -176,8 +168,9 @@ Infrastructure     → Prisma, API-Football, OpenAI
 
 **Fase E2 — Backend / engines fantasma**
 
-- [ ] Cruzar `AGENTS.md` / `engines.module.ts` com código real.
-- [ ] Remover ou implementar: engines citados e inexistentes (MarketEngine, EvEngine, etc. como módulos vazios).
+- [x] Cruzar `AGENTS.md` / `engines.module.ts` com código real.
+- [x] Remover doc de engines inexistentes (MarketEngine, EvEngine, etc.).
+- [x] Probabilidade `0.5` silenciosa → `modelSupported: false` + SKIP.
 - [ ] Apagar scripts one-off já absorvidos (ou marcar `deprecated` com data).
 
 **Fase E3 — Duplicação de parse/format**
@@ -250,8 +243,6 @@ flowchart LR
 
 ## 8. Próxima ação imediata
 
-1. ~~Aprovar este plano.~~  
-2. ~~Executar **Fase 0 + Fase 1** (esqueleto KB + links).~~  
-3. ~~Em paralelo: **E1** (sidebar) + dedupe `bet365Ref` no import.~~  
-4. ~~Abrir o primeiro playbook completo: **Chutes no Gol**.~~ (+ O/U gols + defesas)  
-5. **Próximo:** Fase 2 — extrair playbooks restantes; E2 engines fantasma / DRY.
+1. ~~Fase 0–1 + E1 + dedupe + playbooks iniciais.~~  
+2. ~~Fase 2 lote core + E2 engines/doc + prompt analyzer no AI Engine.~~  
+3. **Próximo:** playbooks HT/2T + props; unificar Score IA no engine; research synthetic off por default.

@@ -277,6 +277,8 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 # Ambas Marcam (BTTS)
 
+> **Playbook de análise:** [analysis/btts.md](../analysis/btts.md)
+
 ## O que é
 
 Sim: ambos ≥1 gol. Não: algum zera.

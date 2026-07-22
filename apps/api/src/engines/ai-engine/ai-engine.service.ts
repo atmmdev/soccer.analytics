@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { loadPromptMarkdown } from './prompt-loader';
 
 export interface MarketExplainInput {
   selection: string;
@@ -184,6 +185,19 @@ Retorne JSON válido:
   "risks": ["risco 1", "risco 2"]
 }`;
 
+    const analyzerDoc = loadPromptMarkdown('analyzer');
+    const systemParts = [
+      'Responda apenas JSON válido em português do Brasil.',
+      'Nunca invente estatísticas, odds ou previsões — use só os números fornecidos.',
+      'Mantenha BET/WATCH/SKIP exatamente como indicados.',
+    ];
+    if (analyzerDoc) {
+      systemParts.push(
+        '--- Prompt canônico (docs/prompts/analyzer.md) ---\n' +
+          analyzerDoc.slice(0, 4000),
+      );
+    }
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -197,7 +211,7 @@ Retorne JSON válido:
         messages: [
           {
             role: 'system',
-            content: 'Responda apenas JSON válido em português do Brasil.',
+            content: systemParts.join('\n\n'),
           },
           { role: 'user', content: prompt },
         ],

@@ -8,23 +8,15 @@ import { AiEngineModule } from './ai-engine/ai-engine.module';
 import { PlayerEngineModule } from './player-engine/player-engine.module';
 
 /**
- * Engines Module — aggregates all intelligence engines.
- * Each engine will be added as a sub-module in future phases.
+ * Engines Module — intelligence engines reais do monorepo.
  *
- * Planned engines:
- * - DataEngine: imports external data
- * - MatchEngine: analyzes matches
- * - TeamEngine: analyzes teams
- * - PlayerEngine: analyzes players
- * - StatisticsEngine: calculates statistics
- * - AnalysisEngine: orchestrates analysis (confidence, probability, EV)
- * - MarketEngine: transforms stats into markets
- * - TicketEngine: builds tickets
- * - SimulationEngine: tests strategies with history
- * - ResearchEngine: hypothesis laboratory
- * - EvEngine: calculates Expected Value
- * - RecommendationEngine: suggests markets
- * - AiEngine: explains recommendations
+ * Implementados:
+ * - DataEngine, StatisticsEngine, AnalysisEngine, PlayerEngine
+ * - TicketEngine, SimulationEngine, AiEngine
+ *
+ * EV, recomendações BET/WATCH/SKIP e mercados vivem no AnalysisEngine
+ * (não há MarketEngine / EvEngine / RecommendationEngine separados).
+ * Research Lab usa SimulationEngine + módulo `research/` (HTTP), não ResearchEngine.
  */
 @Module({
   imports: [AnalysisEngineModule, TicketEngineModule, SimulationEngineModule, StatisticsEngineModule, DataEngineModule, AiEngineModule, PlayerEngineModule],

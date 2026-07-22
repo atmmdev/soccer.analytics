@@ -17,6 +17,18 @@ O **Score IA** quantifica a **confiança analítica** de uma sugestão de aposta
 | 70–84 | Forte | BET (se EV > 0) |
 | 85–100 | Muito forte | BET prioritário |
 
+### Ponte com o Analysis Engine (`confidence`)
+
+No código, o campo **`confidence`** (0–100) do Analysis Engine é a escala operacional atual (amostra + qualidade + tipo de mercado).
+
+| Doc (Score IA) | Código (`confidence`) |
+|----------------|------------------------|
+| Decisão BET/WATCH/SKIP | `getRecommendation` / `getMarketRecommendation` |
+| Sem modelo | `modelSupported: false` → **SKIP**, `confidence: 0` |
+| Playbook limiar (ex. ≥ 85) | Alvo de produto; engine hoje usa ≥ 70 + EV > 5% para BET |
+
+Até unificar pesos `W_*` no código, use Score IA nos playbooks/`docs/prompts` e trate `confidence` como proxy. Não invente uma segunda escala na UI.
+
 ---
 
 ## Fórmula geral

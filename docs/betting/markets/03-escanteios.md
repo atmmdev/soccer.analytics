@@ -39,6 +39,8 @@ Importado via `MatchStatistics.homeCorners` / `awayCorners`.
 
 # Total Escanteios
 
+> **Playbook de análise:** [analysis/total-corners.md](../analysis/total-corners.md)
+
 ## O que é
 
 Over/Under no **número total de escanteios** dos dois times no tempo regulamentar. Linha principal típica: **9.5**, **10.5**, **11.5** (varia por liga).

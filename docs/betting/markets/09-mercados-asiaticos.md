@@ -41,6 +41,8 @@ Handicap gols implementado em `probabilityHandicapCover(matrix, side, line)`.
 
 # Handicap Asiático Gols
 
+> **Playbook de análise:** [analysis/asian-handicap-goals.md](../analysis/asian-handicap-goals.md)
+
 ## O que é
 
 Handicap aplicado ao **placar de gols** — linhas: **0**, **±0.25**, **±0.5**, **±0.75**, **±1**, etc.

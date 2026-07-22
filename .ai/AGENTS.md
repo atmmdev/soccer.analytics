@@ -31,23 +31,21 @@ soccer.analytics/
 
 ### Engines
 
-Cada engine é um módulo NestJS independente:
+Cada engine é um módulo NestJS independente. **Só listar o que existe no código:**
 
 | Engine | Responsabilidade |
 |--------|------------------|
-| data-engine | Importa dados de APIs externas |
-| match-engine | Analisa partidas |
-| team-engine | Analisa equipes |
-| player-engine | Analisa jogadores |
-| statistics-engine | Calcula estatísticas |
-| analysis-engine | Cérebro — confidence, probability, EV |
-| market-engine | Transforma stats em mercados |
-| ticket-engine | Monta bilhetes |
-| simulation-engine | Testa estratégias com histórico |
-| research-engine | Laboratório de hipóteses |
-| ev-engine | Calcula Expected Value |
-| recommendation-engine | Sugere mercados |
-| ai-engine | Explica recomendações |
+| data-engine | Importa dados de APIs externas (API-Football) |
+| statistics-engine | Estatísticas de times / forma / H2H |
+| analysis-engine | Probabilidade, odd justa, EV, confidence, BET/WATCH/SKIP |
+| player-engine | Props / marcadores (quando há modelo) |
+| ticket-engine | Monta bilhetes + correlação |
+| simulation-engine | Simulações / research |
+| ai-engine | Explica recomendações (template + LLM opcional) |
+
+**Não existem** como módulos separados: MatchEngine, TeamEngine, MarketEngine, EvEngine, RecommendationEngine, ResearchEngine — a lógica está nos engines acima + serviços HTTP (`analysis`, `research`, `matches`).
+
+KB de apostas / playbooks: `docs/betting/` · Prompts: `docs/prompts/` · Plano: `09-development/PLAN-kb-betting-clean-architecture.md`.
 
 ### Convenções
 

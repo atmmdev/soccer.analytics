@@ -49,12 +49,14 @@
 Ver [PLAN-kb-betting-clean-architecture.md](./PLAN-kb-betting-clean-architecture.md):
 
 - [x] Fase 0–1: esqueleto KB (`knowledge/`, `analysis/`, `strategy/`, prompts, integrations)
-- [x] Playbooks iniciais: O/U gols, SOT, defesas GK
+- [x] Playbooks iniciais + lote Fase 2 (1X2, BTTS, cantos, cartões, SOT, GK, anytime, AH, O/U)
 - [x] E1: sidebar sem UI morta
 - [x] Dedupe import por `bet365Ref`
-- [ ] Fase 2: extrair playbooks restantes dos `markets/`
-- [ ] E2: engines fantasma / DRY shared
-- [ ] Fase 3: prompts conectados aos agentes no código
+- [x] E2 parcial: engines doc alinhada + `modelSupported` (sem prob 0.5 silenciosa)
+- [x] Fase 3 leve: AI Engine carrega `docs/prompts/analyzer.md`
+- [ ] Fase 2 restante: HT/2T, props jogador, especiais
+- [ ] E2 restante: DRY shared / research synthetic default off
+- [ ] Unificar Score IA `W_*` no Analysis Engine
 
 ```bash
 pnpm start

@@ -36,6 +36,8 @@ Ajuste manual: árbitro +15–25% λ se média cartões/jogo > 5.
 
 # Total Cartões
 
+> **Playbook de análise:** [analysis/total-cards.md](../analysis/total-cards.md)
+
 ## O que é
 
 Over/Under no **número total de cartões** (amarelos + vermelhos) de ambos os times.

@@ -234,6 +234,8 @@ Jogador não entra → **VOID**
 
 # Anytime Marcador (Qualquer Momento)
 
+> **Playbook de análise:** [analysis/anytime-scorer.md](../analysis/anytime-scorer.md)
+
 ## O que é
 
 Aposta em jogador que marca **pelo menos um gol** em qualquer minuto do tempo regulamentar. Mercado mais líquido em props de jogador.

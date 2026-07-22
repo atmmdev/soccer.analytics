@@ -49,6 +49,8 @@ Player Engine → P(jogador marca / stat ≥ linha)
 
 # Resultado Final
 
+> **Playbook de análise:** [analysis/match-result-1x2.md](../analysis/match-result-1x2.md)
+
 ## O que é
 
 Aposta no resultado ao fim do TR: **1** (casa), **X** (empate), **2** (fora).
