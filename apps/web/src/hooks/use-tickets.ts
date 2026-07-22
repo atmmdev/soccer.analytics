@@ -42,7 +42,9 @@ export function useSaveTicket() {
       stake: number;
       selections: DraftSelection[];
     }) => {
-      const { data } = await apiClient.post<Ticket>('/tickets', {
+      const { data } = await apiClient.post<
+        Ticket & { studyJson?: unknown; studyJsonPath?: string }
+      >('/tickets', {
         name: payload.name,
         stake: payload.stake,
         selections: payload.selections.map(({ matchLabel: _, ...rest }) => rest),

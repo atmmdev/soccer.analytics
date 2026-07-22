@@ -7,6 +7,11 @@ interface TicketDraftState {
   stake: number;
   addSelection: (selection: DraftSelection) => boolean;
   removeSelection: (matchId: string, selection: string) => void;
+  updateSelectionOdd: (
+    matchId: string,
+    selection: string,
+    odd: number,
+  ) => void;
   setStake: (stake: number) => void;
   clear: () => void;
 }
@@ -35,6 +40,16 @@ export const useTicketDraftStore = create<TicketDraftState>()(
         set((state) => ({
           selections: state.selections.filter(
             (s) => !(s.matchId === matchId && s.selection === selection),
+          ),
+        }));
+      },
+
+      updateSelectionOdd: (matchId, selection, odd) => {
+        set((state) => ({
+          selections: state.selections.map((s) =>
+            s.matchId === matchId && s.selection === selection
+              ? { ...s, odd }
+              : s,
           ),
         }));
       },

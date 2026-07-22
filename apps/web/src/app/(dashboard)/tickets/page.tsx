@@ -11,13 +11,11 @@ import { StudyTicketsPanel } from '@/components/tickets/study-tickets-panel';
 export default function TicketsPage() {
   return (
     <div className="flex min-h-full flex-col">
-      <AppHeader
-        title="Bilhetes"
-        subtitle="Monte bilhetes com EV · Estude apostas reais importadas da Bet365"
-      />
+      <AppHeader title="Bilhetes" subtitle="Monte bilhetes com EV · Estude apostas reais importadas da Bet365" />
 
       <div className="flex-1 space-y-6 p-6">
-        <Card className="border-border/60 bg-card/80">
+        <div className="flex gap-3">
+        <Card className="border-border/60 bg-card/80 w-1/1">
           <CardHeader>
             <CardTitle className="text-base">
               Histórico Bet365 (estudo)
@@ -33,6 +31,7 @@ export default function TicketsPage() {
         </Card>
 
         <TicketBuilder />
+        </div>
 
         <Card className="border-border/60 bg-card/80">
           <CardHeader>
