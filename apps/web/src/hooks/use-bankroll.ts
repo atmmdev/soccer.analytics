@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '@/lib/api/client';
 import type {
+  BankrollCorrelatedTickets,
   BankrollEntry,
   BankrollPeriod,
   BankrollPoint,
@@ -61,6 +62,7 @@ export function useCreateBankrollPeriod() {
       name: string;
       initialAmount: number;
       startsAt?: string;
+      endsAt?: string;
       notes?: string;
     }) => {
       const { data } = await apiClient.post<BankrollPeriod>(
@@ -71,6 +73,106 @@ export function useCreateBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
+
+export function useUpdateBankrollPeriod() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      periodId,
+      ...payload
+    }: {
+      periodId: string;
+      name?: string;
+      initialAmount?: number;
+      startsAt?: string;
+      endsAt?: string | null;
+      notes?: string | null;
+    }) => {
+      const { data } = await apiClient.patch<BankrollPeriod>(
+        `/bankroll/periods/${periodId}`,
+        payload,
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
+
+export function useBankrollCorrelatedTickets(periodId?: string | null) {
+  return useQuery({
+    queryKey: ['bankroll', 'correlated', periodId ?? null],
+    queryFn: async () => {
+      const { data } = await apiClient.get<BankrollCorrelatedTickets>(
+        `/bankroll/periods/${periodId}/correlated-tickets`,
+      );
+      return data;
+    },
+    enabled: !!periodId,
+  });
+}
+
+export function useLinkBankrollTickets() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      periodId,
+      studyTicketIds,
+      ticketIds,
+    }: {
+      periodId: string;
+      studyTicketIds?: string[];
+      ticketIds?: string[];
+    }) => {
+      const { data } = await apiClient.post<BankrollCorrelatedTickets>(
+        `/bankroll/periods/${periodId}/link-tickets`,
+        { studyTicketIds, ticketIds },
+      );
+      return data;
+    },
+    onSuccess: (_data, vars) => {
+      queryClient.invalidateQueries({
+        queryKey: ['bankroll', 'correlated', vars.periodId],
+      });
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
+    },
+  });
+}
+
+export function useUnlinkBankrollTickets() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      periodId,
+      studyTicketIds,
+      ticketIds,
+    }: {
+      periodId: string;
+      studyTicketIds?: string[];
+      ticketIds?: string[];
+    }) => {
+      const { data } = await apiClient.post<BankrollCorrelatedTickets>(
+        `/bankroll/periods/${periodId}/unlink-tickets`,
+        { studyTicketIds, ticketIds },
+      );
+      return data;
+    },
+    onSuccess: (_data, vars) => {
+      queryClient.invalidateQueries({
+        queryKey: ['bankroll', 'correlated', vars.periodId],
+      });
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
   });
 }
@@ -111,6 +213,46 @@ export function useCreateBankrollEntry() {
       const { data } = await apiClient.post<BankrollEntry>(
         '/bankroll/entries',
         payload,
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
+
+export function useUpdateBankrollEntry() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      entryId,
+      ...payload
+    }: {
+      entryId: string;
+      amount?: number;
+      description?: string | null;
+    }) => {
+      const { data } = await apiClient.patch<BankrollEntry>(
+        `/bankroll/entries/${entryId}`,
+        payload,
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
+
+export function useDeleteBankrollEntry() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (entryId: string) => {
+      const { data } = await apiClient.delete<{ ok: boolean; id: string }>(
+        `/bankroll/entries/${entryId}`,
       );
       return data;
     },

@@ -65,7 +65,7 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="h-9 gap-2 px-2">
                 <div className="hidden text-right sm:block">
-                  <p className="text-sm font-medium leading-none">Admin</p>
+                  <p className="text-sm font-medium leading-none">Anderson Martins</p>
                   <p className="text-xs text-primary">Nível Pro</p>
                 </div>
                 <Avatar className="h-7 w-7">

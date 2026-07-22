@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -14,7 +16,10 @@ import {
   CloseBankrollPeriodDto,
   CreateBankrollEntryDto,
   CreateBankrollPeriodDto,
+  LinkBankrollTicketsDto,
   SettleTicketDto,
+  UpdateBankrollEntryDto,
+  UpdateBankrollPeriodDto,
 } from './dto/bankroll.dto';
 
 @ApiTags('bankroll')
@@ -36,10 +41,36 @@ export class BankrollController {
     return this.bankrollService.createPeriod(dto);
   }
 
+  @Patch('periods/:id')
+  @ApiOperation({ summary: 'Update bankroll period details' })
+  updatePeriod(@Param('id') id: string, @Body() dto: UpdateBankrollPeriodDto) {
+    return this.bankrollService.updatePeriod(id, dto);
+  }
+
   @Post('periods/:id/close')
   @ApiOperation({ summary: 'Close a bankroll period' })
   closePeriod(@Param('id') id: string, @Body() dto: CloseBankrollPeriodDto) {
     return this.bankrollService.closePeriod(id, dto);
+  }
+
+  @Get('periods/:id/correlated-tickets')
+  @ApiOperation({
+    summary: 'Linked + candidate study/system tickets for a bankroll period',
+  })
+  correlatedTickets(@Param('id') id: string) {
+    return this.bankrollService.getCorrelatedTickets(id);
+  }
+
+  @Post('periods/:id/link-tickets')
+  @ApiOperation({ summary: 'Link study/system tickets to an open bankroll' })
+  linkTickets(@Param('id') id: string, @Body() dto: LinkBankrollTicketsDto) {
+    return this.bankrollService.linkTickets(id, dto);
+  }
+
+  @Post('periods/:id/unlink-tickets')
+  @ApiOperation({ summary: 'Unlink tickets from a bankroll period' })
+  unlinkTickets(@Param('id') id: string, @Body() dto: LinkBankrollTicketsDto) {
+    return this.bankrollService.unlinkTickets(id, dto);
   }
 
   @Get('summary')
@@ -67,6 +98,18 @@ export class BankrollController {
   @ApiOperation({ summary: 'Manual deposit or withdrawal' })
   createEntry(@Body() dto: CreateBankrollEntryDto) {
     return this.bankrollService.createEntry(dto);
+  }
+
+  @Patch('entries/:id')
+  @ApiOperation({ summary: 'Update a manual deposit or withdrawal' })
+  updateEntry(@Param('id') id: string, @Body() dto: UpdateBankrollEntryDto) {
+    return this.bankrollService.updateEntry(id, dto);
+  }
+
+  @Delete('entries/:id')
+  @ApiOperation({ summary: 'Remove a manual deposit or withdrawal' })
+  deleteEntry(@Param('id') id: string) {
+    return this.bankrollService.deleteEntry(id);
   }
 
   @Post('tickets/:id/place')

@@ -337,11 +337,14 @@ model Ticket {
   potentialReturn Float?     @map("potential_return")
   actualReturn  Float?       @map("actual_return")
   overallEV     Float?       @map("overall_ev")
+  bankrollPeriodId String?   @map("bankroll_period_id")
   createdAt     DateTime     @default(now()) @map("created_at")
   updatedAt     DateTime     @updatedAt @map("updated_at")
 
-  selections TicketSelection[]
+  selections     TicketSelection[]
+  bankrollPeriod BankrollPeriod? @relation(fields: [bankrollPeriodId], references: [id], onDelete: SetNull)
 
+  @@index([bankrollPeriodId])
   @@map("tickets")
 }
 
@@ -428,14 +431,18 @@ model StudyTicket {
   notes            String?
   /// Dump completo do parse (para IA / reprocessamento)
   rawExtract       Json?             @map("raw_extract")
+  /// Banca à qual este bilhete de estudo está vinculado
+  bankrollPeriodId String?           @map("bankroll_period_id")
   createdAt        DateTime          @default(now()) @map("created_at")
   updatedAt        DateTime          @updatedAt @map("updated_at")
 
-  legs StudyTicketLeg[]
+  legs             StudyTicketLeg[]
+  bankrollPeriod   BankrollPeriod?   @relation(fields: [bankrollPeriodId], references: [id], onDelete: SetNull)
 
   @@index([placedAt])
   @@index([status])
   @@index([bet365Ref])
+  @@index([bankrollPeriodId])
   @@map("study_tickets")
 }
 
@@ -486,7 +493,9 @@ model BankrollPeriod {
   createdAt      DateTime             @default(now()) @map("created_at")
   updatedAt      DateTime             @updatedAt @map("updated_at")
 
-  entries BankrollEntry[]
+  entries      BankrollEntry[]
+  studyTickets StudyTicket[]
+  tickets      Ticket[]
 
   @@index([status])
   @@map("bankroll_periods")

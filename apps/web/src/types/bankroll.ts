@@ -14,6 +14,64 @@ export interface BankrollPeriod {
   _count?: { entries: number };
 }
 
+export interface BankrollCorrelatedTickets {
+  period: {
+    id: string;
+    name: string;
+    status?: BankrollPeriodStatus;
+    startsAt: string;
+    endsAt: string | null;
+  };
+  range: { from: string; to: string };
+  study: BankrollTicketGroup;
+  system: BankrollSystemTicketGroup;
+  candidates: {
+    study: BankrollTicketGroup;
+    system: BankrollSystemTicketGroup;
+  };
+}
+
+export interface BankrollTicketGroup {
+  count: number;
+  stake: number;
+  actualReturn: number;
+  profit: number;
+  won: number;
+  lost: number;
+  pending: number;
+  tickets: Array<{
+    id: string;
+    sourceFile: string;
+    placedAt: string;
+    betType: string | null;
+    betLabel: string | null;
+    status: string;
+    stake: number;
+    combinedOdd: number | null;
+    actualReturn: number | null;
+    legsPreview: string[];
+    linked?: boolean;
+  }>;
+}
+
+export interface BankrollSystemTicketGroup {
+  count: number;
+  stake: number;
+  won: number;
+  lost: number;
+  tickets: Array<{
+    id: string;
+    name: string | null;
+    status: string;
+    createdAt: string;
+    stake: number | null;
+    combinedOdd: number | null;
+    actualReturn: number | null;
+    selections: number;
+    linked?: boolean;
+  }>;
+}
+
 export interface BankrollSummary {
   period?: BankrollPeriod;
   balance: number;

@@ -1,10 +1,13 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import {
   Loader2,
   Lock,
+  Pencil,
   Plus,
+  Trash2,
   TrendingDown,
   TrendingUp,
   Wallet,
@@ -32,6 +35,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {
+  useBankrollCorrelatedTickets,
   useBankrollEntries,
   useBankrollHistory,
   useBankrollPeriods,
@@ -39,6 +43,11 @@ import {
   useCloseBankrollPeriod,
   useCreateBankrollEntry,
   useCreateBankrollPeriod,
+  useDeleteBankrollEntry,
+  useLinkBankrollTickets,
+  useUnlinkBankrollTickets,
+  useUpdateBankrollEntry,
+  useUpdateBankrollPeriod,
 } from '@/hooks/use-bankroll';
 import { ENTRY_TYPE_LABELS, PERIOD_STATUS_LABELS } from '@/types/bankroll';
 import { toast } from 'sonner';
@@ -49,6 +58,14 @@ function formatCurrency(value: number) {
 
 function formatDate(value: string) {
   return new Date(value).toLocaleDateString('pt-BR');
+}
+
+function toInputDate(value: string | null | undefined) {
+  if (!value) return '';
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return '';
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
 function KpiCard({
@@ -104,10 +121,7 @@ export default function BankrollPage() {
 
   useEffect(() => {
     if (!periods?.length) return;
-    if (
-      selectedPeriodId &&
-      periods.some((p) => p.id === selectedPeriodId)
-    ) {
+    if (selectedPeriodId && periods.some((p) => p.id === selectedPeriodId)) {
       return;
     }
     setSelectedPeriodId(openPeriod?.id ?? periods[0].id);
@@ -121,17 +135,112 @@ export default function BankrollPage() {
   const { data: summary, isLoading } = useBankrollSummary(periodId);
   const { data: history } = useBankrollHistory(periodId);
   const { data: entries } = useBankrollEntries(periodId);
+  const { data: correlated, isLoading: loadingCorrelated } =
+    useBankrollCorrelatedTickets(periodId);
+
   const createEntry = useCreateBankrollEntry();
+  const updateEntry = useUpdateBankrollEntry();
+  const deleteEntry = useDeleteBankrollEntry();
   const createPeriod = useCreateBankrollPeriod();
+  const updatePeriod = useUpdateBankrollPeriod();
   const closePeriod = useCloseBankrollPeriod();
+  const linkTickets = useLinkBankrollTickets();
+  const unlinkTickets = useUnlinkBankrollTickets();
 
   const [depositAmount, setDepositAmount] = useState('100');
-  const [showCreate, setShowCreate] = useState(false);
-  const [newName, setNewName] = useState('');
-  const [newAmount, setNewAmount] = useState('1000');
-  const [newStartsAt, setNewStartsAt] = useState(
-    () => new Date().toISOString().slice(0, 10),
+  const [panel, setPanel] = useState<'none' | 'create' | 'edit'>('none');
+  const [selectedStudyIds, setSelectedStudyIds] = useState<string[]>([]);
+  const [selectedSystemIds, setSelectedSystemIds] = useState<string[]>([]);
+  const [editingEntryId, setEditingEntryId] = useState<string | null>(null);
+  const [editingEntryAmount, setEditingEntryAmount] = useState('');
+
+  const [formName, setFormName] = useState('');
+  const [formAmount, setFormAmount] = useState('1000');
+  const [formStartsAt, setFormStartsAt] = useState(() =>
+    new Date().toISOString().slice(0, 10),
   );
+  const [formEndsAt, setFormEndsAt] = useState('');
+  const [formNotes, setFormNotes] = useState('');
+
+  const openCreate = () => {
+    setFormName('');
+    setFormAmount('1000');
+    setFormStartsAt(new Date().toISOString().slice(0, 10));
+    setFormEndsAt('');
+    setFormNotes('');
+    setPanel('create');
+  };
+
+  const openEdit = () => {
+    if (!selectedPeriod) return;
+    setFormName(selectedPeriod.name);
+    setFormAmount(String(selectedPeriod.initialAmount));
+    setFormStartsAt(toInputDate(selectedPeriod.startsAt));
+    setFormEndsAt(toInputDate(selectedPeriod.endsAt));
+    setFormNotes(selectedPeriod.notes ?? '');
+    setPanel('edit');
+  };
+
+  useEffect(() => {
+    setSelectedStudyIds([]);
+    setSelectedSystemIds([]);
+  }, [periodId]);
+
+  const toggleId = (
+    id: string,
+    list: string[],
+    setList: (next: string[]) => void,
+  ) => {
+    setList(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
+  };
+
+  const handleLinkSelected = () => {
+    if (!periodId || !isOpen) return;
+    if (!selectedStudyIds.length && !selectedSystemIds.length) {
+      toast.error('Selecione ao menos um bilhete');
+      return;
+    }
+    linkTickets.mutate(
+      {
+        periodId,
+        studyTicketIds: selectedStudyIds,
+        ticketIds: selectedSystemIds,
+      },
+      {
+        onSuccess: () => {
+          toast.success('Bilhetes vinculados à banca');
+          setSelectedStudyIds([]);
+          setSelectedSystemIds([]);
+        },
+        onError: (error) =>
+          toast.error(errorMessage(error, 'Falha ao vincular bilhetes')),
+      },
+    );
+  };
+
+  const handleUnlinkStudy = (id: string) => {
+    if (!periodId) return;
+    unlinkTickets.mutate(
+      { periodId, studyTicketIds: [id] },
+      {
+        onSuccess: () => toast.success('Bilhete desvinculado'),
+        onError: (error) =>
+          toast.error(errorMessage(error, 'Falha ao desvincular')),
+      },
+    );
+  };
+
+  const handleUnlinkSystem = (id: string) => {
+    if (!periodId) return;
+    unlinkTickets.mutate(
+      { periodId, ticketIds: [id] },
+      {
+        onSuccess: () => toast.success('Bilhete desvinculado'),
+        onError: (error) =>
+          toast.error(errorMessage(error, 'Falha ao desvincular')),
+      },
+    );
+  };
 
   const handleDeposit = () => {
     if (!periodId || !isOpen) {
@@ -159,8 +268,8 @@ export default function BankrollPage() {
   };
 
   const handleCreatePeriod = () => {
-    const amount = parseFloat(newAmount);
-    if (!newName.trim()) {
+    const amount = parseFloat(formAmount);
+    if (!formName.trim()) {
       toast.error('Informe o nome da banca');
       return;
     }
@@ -168,23 +277,71 @@ export default function BankrollPage() {
       toast.error('Informe o valor inicial');
       return;
     }
+    if (!formStartsAt) {
+      toast.error('Informe o início do período');
+      return;
+    }
+    if (formEndsAt && formEndsAt < formStartsAt) {
+      toast.error('A data final deve ser posterior à inicial');
+      return;
+    }
 
     createPeriod.mutate(
       {
-        name: newName.trim(),
+        name: formName.trim(),
         initialAmount: amount,
-        startsAt: new Date(`${newStartsAt}T12:00:00`).toISOString(),
+        startsAt: formStartsAt,
+        endsAt: formEndsAt || undefined,
+        notes: formNotes.trim() || undefined,
       },
       {
         onSuccess: (period) => {
           toast.success(`Banca "${period.name}" criada`);
           setSelectedPeriodId(period.id);
-          setShowCreate(false);
-          setNewName('');
-          setNewAmount('1000');
+          setPanel('none');
         },
         onError: (error) =>
           toast.error(errorMessage(error, 'Falha ao criar banca')),
+      },
+    );
+  };
+
+  const handleUpdatePeriod = () => {
+    if (!selectedPeriod) return;
+    const amount = parseFloat(formAmount);
+    if (!formName.trim()) {
+      toast.error('Informe o nome da banca');
+      return;
+    }
+    if (Number.isNaN(amount) || amount < 0) {
+      toast.error('Informe o valor inicial (0 ou mais)');
+      return;
+    }
+    if (!formStartsAt) {
+      toast.error('Informe o início do período');
+      return;
+    }
+    if (formEndsAt && formEndsAt < formStartsAt) {
+      toast.error('A data final deve ser posterior à inicial');
+      return;
+    }
+
+    updatePeriod.mutate(
+      {
+        periodId: selectedPeriod.id,
+        name: formName.trim(),
+        initialAmount: amount,
+        startsAt: formStartsAt,
+        endsAt: formEndsAt || null,
+        notes: formNotes.trim() || null,
+      },
+      {
+        onSuccess: (period) => {
+          toast.success(`Banca "${period.name}" atualizada`);
+          setPanel('none');
+        },
+        onError: (error) =>
+          toast.error(errorMessage(error, 'Falha ao atualizar banca')),
       },
     );
   };
@@ -210,11 +367,53 @@ export default function BankrollPage() {
     );
   };
 
+  const isManualCashEntry = (type: string) =>
+    type === 'DEPOSIT' || type === 'WITHDRAWAL';
+
+  const startEditEntry = (entryId: string, amount: number) => {
+    setEditingEntryId(entryId);
+    setEditingEntryAmount(String(Math.abs(amount)));
+  };
+
+  const cancelEditEntry = () => {
+    setEditingEntryId(null);
+    setEditingEntryAmount('');
+  };
+
+  const handleSaveEntry = (entryId: string) => {
+    const amount = parseFloat(editingEntryAmount);
+    if (!amount || amount <= 0) {
+      toast.error('Informe um valor válido');
+      return;
+    }
+    updateEntry.mutate(
+      { entryId, amount },
+      {
+        onSuccess: () => {
+          toast.success('Lançamento atualizado');
+          cancelEditEntry();
+        },
+        onError: (error) =>
+          toast.error(errorMessage(error, 'Falha ao atualizar lançamento')),
+      },
+    );
+  };
+
+  const handleDeleteEntry = (entryId: string, label: string) => {
+    const ok = window.confirm(`Remover este ${label.toLowerCase()}? O saldo será recalculado.`);
+    if (!ok) return;
+    deleteEntry.mutate(entryId, {
+      onSuccess: () => toast.success('Lançamento removido'),
+      onError: (error) =>
+        toast.error(errorMessage(error, 'Falha ao remover lançamento')),
+    });
+  };
+
   return (
     <div className="flex min-h-full flex-col">
       <AppHeader
         title="Banca"
-        subtitle="Administre bancas por período — abra, opere e feche"
+        subtitle="Períodos reais (Bet365) · correlacione com bilhetes de estudo e do sistema"
       />
 
       <div className="flex-1 space-y-6 p-6">
@@ -224,7 +423,10 @@ export default function BankrollPage() {
               <label className="text-xs text-muted-foreground">Banca</label>
               <Select
                 value={periodId ?? undefined}
-                onValueChange={setSelectedPeriodId}
+                onValueChange={(id) => {
+                  setSelectedPeriodId(id);
+                  setPanel('none');
+                }}
                 disabled={loadingPeriods || !periods?.length}
               >
                 <SelectTrigger className="bg-secondary/30">
@@ -265,6 +467,12 @@ export default function BankrollPage() {
             )}
 
             <div className="ml-auto flex flex-wrap gap-2">
+              {selectedPeriod && (
+                <Button variant="outline" onClick={openEdit}>
+                  <Pencil className="mr-2 h-4 w-4" />
+                  Editar
+                </Button>
+              )}
               {isOpen && (
                 <Button
                   variant="outline"
@@ -272,41 +480,51 @@ export default function BankrollPage() {
                   disabled={closePeriod.isPending}
                 >
                   <Lock className="mr-2 h-4 w-4" />
-                  Fechar banca
+                  Fechar
                 </Button>
               )}
-              <Button onClick={() => setShowCreate((v) => !v)}>
+              <Button onClick={openCreate}>
                 <Plus className="mr-2 h-4 w-4" />
-                Nova banca
+                Nova
               </Button>
             </div>
           </CardContent>
 
-          {showCreate && (
+          {panel !== 'none' && (
             <CardContent className="border-t border-border/40 pt-4">
-              {openPeriod ? (
+              {panel === 'create' && openPeriod ? (
                 <p className="text-sm text-muted-foreground">
                   Já existe a banca aberta <strong>{openPeriod.name}</strong>.
-                  Feche-a antes de abrir um novo período.
+                  Feche-a antes de abrir um novo período — ou edite a atual.
                 </p>
               ) : (
-                <div className="grid gap-3 sm:grid-cols-4">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   <div className="space-y-1 sm:col-span-2">
                     <label className="text-xs text-muted-foreground">Nome</label>
                     <Input
-                      value={newName}
-                      onChange={(e) => setNewName(e.target.value)}
-                      placeholder="Ex: Julho/2026"
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      placeholder="Ex: Bet365 — Julho/2026"
                     />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs text-muted-foreground">
-                      Início
+                      Início do período
                     </label>
                     <Input
                       type="date"
-                      value={newStartsAt}
-                      onChange={(e) => setNewStartsAt(e.target.value)}
+                      value={formStartsAt}
+                      onChange={(e) => setFormStartsAt(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground">
+                      Fim do período
+                    </label>
+                    <Input
+                      type="date"
+                      value={formEndsAt}
+                      onChange={(e) => setFormEndsAt(e.target.value)}
                     />
                   </div>
                   <div className="space-y-1">
@@ -315,25 +533,38 @@ export default function BankrollPage() {
                     </label>
                     <Input
                       type="number"
-                      min={1}
-                      value={newAmount}
-                      onChange={(e) => setNewAmount(e.target.value)}
+                      min={panel === 'edit' ? 0 : 1}
+                      value={formAmount}
+                      onChange={(e) => setFormAmount(e.target.value)}
                     />
                   </div>
-                  <div className="flex items-end gap-2 sm:col-span-4">
+                  <div className="space-y-1 sm:col-span-2 lg:col-span-3">
+                    <label className="text-xs text-muted-foreground">
+                      Notas (opcional)
+                    </label>
+                    <Input
+                      value={formNotes}
+                      onChange={(e) => setFormNotes(e.target.value)}
+                      placeholder="Ex: banca alinhada ao histórico Bet365 de julho"
+                    />
+                  </div>
+                  <div className="flex items-end gap-2 sm:col-span-2 lg:col-span-4">
                     <Button
-                      onClick={handleCreatePeriod}
-                      disabled={createPeriod.isPending}
+                      onClick={
+                        panel === 'create'
+                          ? handleCreatePeriod
+                          : handleUpdatePeriod
+                      }
+                      disabled={
+                        createPeriod.isPending || updatePeriod.isPending
+                      }
                     >
-                      {createPeriod.isPending ? (
+                      {(createPeriod.isPending || updatePeriod.isPending) && (
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      ) : null}
-                      Criar banca
+                      )}
+                      {panel === 'create' ? 'Criar banca' : 'Salvar alterações'}
                     </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowCreate(false)}
-                    >
+                    <Button variant="outline" onClick={() => setPanel('none')}>
                       Cancelar
                     </Button>
                   </div>
@@ -439,6 +670,245 @@ export default function BankrollPage() {
             </div>
 
             <Card className="border-border/60 bg-card/80">
+              <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 space-y-0">
+                <div>
+                  <CardTitle className="text-base">
+                    Bilhetes da banca
+                  </CardTitle>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Vincule bilhetes Bet365 (estudo) ou do sistema a esta banca.
+                    Candidatos vêm do intervalo de datas — ajuste em{' '}
+                    <strong>Editar banca</strong>.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {isOpen && (
+                    <Button
+                      size="sm"
+                      disabled={
+                        linkTickets.isPending ||
+                        (!selectedStudyIds.length &&
+                          !selectedSystemIds.length)
+                      }
+                      onClick={handleLinkSelected}
+                    >
+                      {linkTickets.isPending ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : null}
+                      Vincular selecionados (
+                      {selectedStudyIds.length + selectedSystemIds.length})
+                    </Button>
+                  )}
+                  <Button asChild variant="outline" size="sm">
+                    <Link href="/tickets">Abrir bilhetes</Link>
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {loadingCorrelated ? (
+                  <div className="flex justify-center py-8">
+                    <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                  </div>
+                ) : !correlated ? (
+                  <p className="text-sm text-muted-foreground">
+                    Sem dados de bilhetes.
+                  </p>
+                ) : (
+                  <>
+                    <div className="grid gap-4 lg:grid-cols-2">
+                      <div className="rounded-lg border border-border/40 bg-secondary/15 p-3">
+                        <div className="mb-2 flex items-center justify-between gap-2">
+                          <p className="text-sm font-medium">
+                            Vinculados · Bet365
+                          </p>
+                          <Badge variant="outline">
+                            {correlated.study.count}
+                          </Badge>
+                        </div>
+                        {!correlated.study.tickets.length ? (
+                          <p className="text-xs text-muted-foreground">
+                            Nenhum bilhete de estudo vinculado.
+                          </p>
+                        ) : (
+                          <ul className="max-h-40 space-y-2 overflow-y-auto text-xs">
+                            {correlated.study.tickets.map((t) => (
+                              <li
+                                key={t.id}
+                                className="flex items-start justify-between gap-2 border-b border-border/30 pb-2 last:border-0"
+                              >
+                                <div className="min-w-0">
+                                  <p className="truncate font-medium">
+                                    {t.betLabel ?? t.betType ?? 'Bilhete'}
+                                  </p>
+                                  <p className="text-muted-foreground">
+                                    {formatDate(t.placedAt)} ·{' '}
+                                    {formatCurrency(t.stake)}
+                                  </p>
+                                </div>
+                                {isOpen && (
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className="h-7 px-2 text-xs"
+                                    disabled={unlinkTickets.isPending}
+                                    onClick={() => handleUnlinkStudy(t.id)}
+                                  >
+                                    Remover
+                                  </Button>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+
+                      <div className="rounded-lg border border-border/40 bg-secondary/15 p-3">
+                        <div className="mb-2 flex items-center justify-between gap-2">
+                          <p className="text-sm font-medium">
+                            Vinculados · Sistema
+                          </p>
+                          <Badge variant="outline">
+                            {correlated.system.count}
+                          </Badge>
+                        </div>
+                        {!correlated.system.tickets.length ? (
+                          <p className="text-xs text-muted-foreground">
+                            Nenhum bilhete do sistema vinculado.
+                          </p>
+                        ) : (
+                          <ul className="max-h-40 space-y-2 overflow-y-auto text-xs">
+                            {correlated.system.tickets.map((t) => (
+                              <li
+                                key={t.id}
+                                className="flex items-start justify-between gap-2 border-b border-border/30 pb-2 last:border-0"
+                              >
+                                <div className="min-w-0">
+                                  <p className="truncate font-medium">
+                                    {t.name ?? 'Bilhete'}
+                                  </p>
+                                  <p className="text-muted-foreground">
+                                    {formatDate(t.createdAt)} ·{' '}
+                                    {t.stake != null
+                                      ? formatCurrency(t.stake)
+                                      : '—'}
+                                  </p>
+                                </div>
+                                {isOpen && (
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className="h-7 px-2 text-xs"
+                                    disabled={unlinkTickets.isPending}
+                                    onClick={() => handleUnlinkSystem(t.id)}
+                                  >
+                                    Remover
+                                  </Button>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+
+                    {isOpen && (
+                      <div className="grid gap-4 lg:grid-cols-2">
+                        <div className="rounded-lg border border-dashed border-border/50 p-3">
+                          <p className="mb-2 text-sm font-medium">
+                            Selecionar · Bet365 (candidatos)
+                          </p>
+                          {!correlated.candidates?.study.tickets.length ? (
+                            <p className="text-xs text-muted-foreground">
+                              Nenhum candidato no intervalo da banca.
+                            </p>
+                          ) : (
+                            <ul className="max-h-52 space-y-2 overflow-y-auto text-xs">
+                              {correlated.candidates.study.tickets.map((t) => (
+                                <li key={t.id}>
+                                  <label className="flex cursor-pointer items-start gap-2 rounded-md px-1 py-1 hover:bg-secondary/30">
+                                    <input
+                                      type="checkbox"
+                                      className="mt-1"
+                                      checked={selectedStudyIds.includes(t.id)}
+                                      onChange={() =>
+                                        toggleId(
+                                          t.id,
+                                          selectedStudyIds,
+                                          setSelectedStudyIds,
+                                        )
+                                      }
+                                    />
+                                    <span className="min-w-0 flex-1">
+                                      <span className="block truncate font-medium">
+                                        {t.betLabel ?? t.betType ?? 'Bilhete'}
+                                      </span>
+                                      <span className="text-muted-foreground">
+                                        {formatDate(t.placedAt)} ·{' '}
+                                        {formatCurrency(t.stake)} · {t.status}
+                                      </span>
+                                    </span>
+                                  </label>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+
+                        <div className="rounded-lg border border-dashed border-border/50 p-3">
+                          <p className="mb-2 text-sm font-medium">
+                            Selecionar · Sistema (candidatos)
+                          </p>
+                          {!correlated.candidates?.system.tickets.length ? (
+                            <p className="text-xs text-muted-foreground">
+                              Nenhum candidato no intervalo da banca.
+                            </p>
+                          ) : (
+                            <ul className="max-h-52 space-y-2 overflow-y-auto text-xs">
+                              {correlated.candidates.system.tickets.map(
+                                (t) => (
+                                  <li key={t.id}>
+                                    <label className="flex cursor-pointer items-start gap-2 rounded-md px-1 py-1 hover:bg-secondary/30">
+                                      <input
+                                        type="checkbox"
+                                        className="mt-1"
+                                        checked={selectedSystemIds.includes(
+                                          t.id,
+                                        )}
+                                        onChange={() =>
+                                          toggleId(
+                                            t.id,
+                                            selectedSystemIds,
+                                            setSelectedSystemIds,
+                                          )
+                                        }
+                                      />
+                                      <span className="min-w-0 flex-1">
+                                        <span className="block truncate font-medium">
+                                          {t.name ?? 'Bilhete'}
+                                        </span>
+                                        <span className="text-muted-foreground">
+                                          {formatDate(t.createdAt)} ·{' '}
+                                          {t.stake != null
+                                            ? formatCurrency(t.stake)
+                                            : '—'}{' '}
+                                          · {t.status}
+                                        </span>
+                                      </span>
+                                    </label>
+                                  </li>
+                                ),
+                              )}
+                            </ul>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/60 bg-card/80">
               <CardHeader>
                 <CardTitle className="text-base">Movimentações</CardTitle>
               </CardHeader>
@@ -455,32 +925,107 @@ export default function BankrollPage() {
                         <TableHead>Tipo</TableHead>
                         <TableHead>Descrição</TableHead>
                         <TableHead className="text-right">Valor</TableHead>
+                        {isOpen && <TableHead className="w-[120px]" />}
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {entries.map((entry) => (
-                        <TableRow key={entry.id}>
-                          <TableCell className="text-muted-foreground">
-                            {new Date(entry.createdAt).toLocaleString('pt-BR')}
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant="outline">
-                              {ENTRY_TYPE_LABELS[entry.type] ?? entry.type}
-                            </Badge>
-                          </TableCell>
-                          <TableCell>{entry.description ?? '—'}</TableCell>
-                          <TableCell
-                            className={`text-right font-mono font-semibold ${
-                              entry.amount >= 0
-                                ? 'text-emerald-400'
-                                : 'text-red-400'
-                            }`}
-                          >
-                            {entry.amount >= 0 ? '+' : ''}
-                            {formatCurrency(entry.amount)}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                      {entries.map((entry) => {
+                        const canEdit = isOpen && isManualCashEntry(entry.type);
+                        const isEditing = editingEntryId === entry.id;
+                        const typeLabel =
+                          ENTRY_TYPE_LABELS[entry.type] ?? entry.type;
+
+                        return (
+                          <TableRow key={entry.id}>
+                            <TableCell className="text-muted-foreground">
+                              {new Date(entry.createdAt).toLocaleString('pt-BR')}
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant="outline">{typeLabel}</Badge>
+                            </TableCell>
+                            <TableCell>{entry.description ?? '—'}</TableCell>
+                            <TableCell
+                              className={`text-right font-mono font-semibold ${
+                                entry.amount >= 0
+                                  ? 'text-emerald-400'
+                                  : 'text-red-400'
+                              }`}
+                            >
+                              {isEditing ? (
+                                <Input
+                                  type="number"
+                                  min={0.01}
+                                  step="0.01"
+                                  className="ml-auto h-8 w-28 text-right"
+                                  value={editingEntryAmount}
+                                  onChange={(e) =>
+                                    setEditingEntryAmount(e.target.value)
+                                  }
+                                  autoFocus
+                                />
+                              ) : (
+                                <>
+                                  {entry.amount >= 0 ? '+' : ''}
+                                  {formatCurrency(entry.amount)}
+                                </>
+                              )}
+                            </TableCell>
+                            {isOpen && (
+                              <TableCell className="text-right">
+                                {canEdit ? (
+                                  isEditing ? (
+                                    <div className="flex justify-end gap-1">
+                                      <Button
+                                        size="sm"
+                                        variant="default"
+                                        className="h-8 px-2"
+                                        disabled={updateEntry.isPending}
+                                        onClick={() => handleSaveEntry(entry.id)}
+                                      >
+                                        Salvar
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        className="h-8 px-2"
+                                        onClick={cancelEditEntry}
+                                      >
+                                        Cancelar
+                                      </Button>
+                                    </div>
+                                  ) : (
+                                    <div className="flex justify-end gap-1">
+                                      <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        className="h-8 w-8"
+                                        title="Editar"
+                                        onClick={() =>
+                                          startEditEntry(entry.id, entry.amount)
+                                        }
+                                      >
+                                        <Pencil className="h-3.5 w-3.5" />
+                                      </Button>
+                                      <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        className="h-8 w-8 text-red-400 hover:text-red-300"
+                                        title="Remover"
+                                        disabled={deleteEntry.isPending}
+                                        onClick={() =>
+                                          handleDeleteEntry(entry.id, typeLabel)
+                                        }
+                                      >
+                                        <Trash2 className="h-3.5 w-3.5" />
+                                      </Button>
+                                    </div>
+                                  )
+                                ) : null}
+                              </TableCell>
+                            )}
+                          </TableRow>
+                        );
+                      })}
                     </TableBody>
                   </Table>
                 )}
