@@ -6,12 +6,19 @@ export interface BankrollPeriod {
   status: BankrollPeriodStatus;
   startsAt: string;
   endsAt: string | null;
+  autoClose: boolean;
   initialAmount: number;
   closingBalance: number | null;
   notes: string | null;
   createdAt: string;
   updatedAt: string;
   _count?: { entries: number };
+}
+
+export interface BankrollAvailableTickets {
+  range: { from: string | null; to: string | null };
+  study: BankrollTicketGroup;
+  system: BankrollSystemTicketGroup;
 }
 
 export interface BankrollCorrelatedTickets {

@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsBoolean,
   IsDateString,
   IsEnum,
   IsIn,
@@ -61,14 +62,29 @@ export class CreateBankrollPeriodDto {
   @IsDateString()
   startsAt?: string;
 
-  /** Fim do período de atuação (ex.: mês Bet365). Não fecha a banca sozinho. */
+  /** Fim do período de atuação (ex.: mês Bet365). */
   @IsOptional()
   @IsDateString()
   endsAt?: string;
 
+  /** Fecha sozinha quando endsAt passar. Sem endsAt, só fecha manual. */
+  @IsOptional()
+  @IsBoolean()
+  autoClose?: boolean;
+
   @IsOptional()
   @IsString()
   notes?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  studyTicketIds?: string[];
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  ticketIds?: string[];
 }
 
 export class UpdateBankrollPeriodDto {
@@ -90,6 +106,10 @@ export class UpdateBankrollPeriodDto {
   @ValidateIf((_, v) => v != null && v !== '')
   @IsDateString()
   endsAt?: string | null;
+
+  @IsOptional()
+  @IsBoolean()
+  autoClose?: boolean;
 
   @IsOptional()
   @IsString()

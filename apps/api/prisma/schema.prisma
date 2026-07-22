@@ -487,6 +487,8 @@ model BankrollPeriod {
   status         BankrollPeriodStatus @default(OPEN)
   startsAt       DateTime             @map("starts_at")
   endsAt         DateTime?            @map("ends_at")
+  /** Se true e endsAt passou, a banca fecha sozinha. */
+  autoClose      Boolean              @default(true) @map("auto_close")
   initialAmount  Float                @map("initial_amount")
   closingBalance Float?               @map("closing_balance")
   notes          String?
@@ -502,16 +504,19 @@ model BankrollPeriod {
 }
 
 model BankrollEntry {
-  id          String   @id @default(cuid())
-  amount      Float
-  type        String
-  description String?
-  ticketId    String?  @map("ticket_id")
-  periodId    String?  @map("period_id")
-  createdAt   DateTime @default(now()) @map("created_at")
+  id            String   @id @default(cuid())
+  amount        Float
+  type          String
+  description   String?
+  ticketId      String?  @map("ticket_id")
+  studyTicketId String?  @map("study_ticket_id")
+  periodId      String?  @map("period_id")
+  createdAt     DateTime @default(now()) @map("created_at")
 
   period BankrollPeriod? @relation(fields: [periodId], references: [id], onDelete: Cascade)
 
   @@index([periodId])
+  @@index([ticketId])
+  @@index([studyTicketId])
   @@map("bankroll_entries")
 }

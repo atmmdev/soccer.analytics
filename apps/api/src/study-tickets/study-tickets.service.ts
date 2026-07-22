@@ -2,12 +2,23 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  Inject,
+  forwardRef,
 } from '@nestjs/common';
 import { StudyTicketStatus, Prisma } from '@prisma/client';
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
-import { basename, isAbsolute, join, normalize, relative, resolve } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  basename,
+  dirname,
+  isAbsolute,
+  join,
+  normalize,
+  relative,
+  resolve,
+} from 'node:path';
 import { PrismaService } from '../prisma/prisma.service';
+import { BankrollService } from '../bankroll/bankroll.service';
 import {
   parseBet365PdfText,
   type ParsedStudyTicket,
@@ -18,10 +29,15 @@ const BILHETES_ROOT = resolve(
   process.cwd(),
   '../../docs/betting/data/bilhetes',
 );
+const REPO_ROOT = resolve(process.cwd(), '../..');
 
 @Injectable()
 export class StudyTicketsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject(forwardRef(() => BankrollService))
+    private bankroll: BankrollService,
+  ) {}
 
   async findAll(params?: { year?: number; month?: number; status?: StudyTicketStatus }) {
     const where: Prisma.StudyTicketWhereInput = {};
@@ -115,7 +131,110 @@ export class StudyTicketsService {
       }
     });
 
+    const ticket = await this.findOne(id);
+    await this.persistTicketJson(ticket);
+    await this.bankroll.resyncStudyTicketLedger(id);
     return this.findOne(id);
+  }
+
+  /** Caminho do JSON curado espelhado em bilhetes/imported/... */
+  private resolveTicketJsonAbs(sourceFile: string): string {
+    if (sourceFile.toLowerCase().endsWith('.json')) {
+      return resolve(REPO_ROOT, sourceFile);
+    }
+
+    const underRoot = sourceFile.replace(
+      /^docs\/betting\/data\/bilhetes\/?/,
+      '',
+    );
+    const jsonName = basename(underRoot).replace(/\.pdf$/i, '.json');
+    const dir = dirname(underRoot);
+    const importedAbs = resolve(
+      BILHETES_ROOT,
+      'imported',
+      dir === '.' ? jsonName : join(dir, jsonName),
+    );
+    if (existsSync(importedAbs)) return importedAbs;
+
+    const besidePdf = resolve(REPO_ROOT, sourceFile.replace(/\.pdf$/i, '.json'));
+    if (existsSync(besidePdf)) return besidePdf;
+
+    return importedAbs;
+  }
+
+  private buildTicketJsonPayload(
+    ticket: Awaited<ReturnType<StudyTicketsService['findOne']>>,
+  ) {
+    const prev =
+      ticket.rawExtract && typeof ticket.rawExtract === 'object'
+        ? (ticket.rawExtract as Record<string, unknown>)
+        : {};
+    const prevMeta =
+      prev._meta && typeof prev._meta === 'object'
+        ? (prev._meta as Record<string, unknown>)
+        : {};
+
+    return {
+      ...prev,
+      _meta: {
+        ...prevMeta,
+        updatedAt: new Date().toISOString(),
+        curated: true,
+        source: 'study-ticket-update',
+      },
+      sourceFile: ticket.sourceFile,
+      bet365Ref: ticket.bet365Ref,
+      placedAt: ticket.placedAt.toISOString(),
+      betType: ticket.betType,
+      betLabel: ticket.betLabel,
+      status: ticket.status,
+      stake: ticket.stake,
+      unitStake: ticket.unitStake,
+      numBets: ticket.numBets,
+      combinedOdd: ticket.combinedOdd,
+      potentialReturn: ticket.potentialReturn,
+      actualReturn: ticket.actualReturn,
+      cashOut:
+        ticket.cashOutAt || ticket.cashOutValue != null
+          ? {
+              at: ticket.cashOutAt?.toISOString() ?? null,
+              total: ticket.cashOutValue,
+              value: ticket.cashOutValue,
+            }
+          : ((prev.cashOut as unknown) ?? null),
+      hasOddsBoost: ticket.hasOddsBoost,
+      bankrollPeriodId: ticket.bankrollPeriodId,
+      notes: ticket.notes,
+      legs: ticket.legs.map((leg) => ({
+        sortOrder: leg.sortOrder,
+        builderGroup: leg.builderGroup,
+        matchLabel: leg.matchLabel,
+        matchDate: leg.matchDate,
+        market: leg.market,
+        selection: leg.selection,
+        period: leg.period,
+        odd: leg.odd,
+        boostedOdd: leg.boostedOdd,
+        status: leg.status,
+        progressValue: leg.progressValue,
+        progressLine: leg.progressLine,
+        meta: leg.meta ?? undefined,
+      })),
+    };
+  }
+
+  private async persistTicketJson(
+    ticket: Awaited<ReturnType<StudyTicketsService['findOne']>>,
+  ) {
+    const payload = this.buildTicketJsonPayload(ticket);
+    const abs = this.resolveTicketJsonAbs(ticket.sourceFile);
+    mkdirSync(dirname(abs), { recursive: true });
+    writeFileSync(abs, JSON.stringify(payload, null, 2), 'utf8');
+
+    await this.prisma.studyTicket.update({
+      where: { id: ticket.id },
+      data: { rawExtract: payload as unknown as Prisma.InputJsonValue },
+    });
   }
 
   async remove(id: string) {

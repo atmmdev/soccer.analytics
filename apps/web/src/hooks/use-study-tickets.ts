@@ -27,6 +27,7 @@ export function useUpdateStudyTicket() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['study-tickets'] });
+      qc.invalidateQueries({ queryKey: ['bankroll'] });
     },
   });
 }
@@ -39,6 +40,7 @@ export function useDeleteStudyTicket() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['study-tickets'] });
+      qc.invalidateQueries({ queryKey: ['bankroll'] });
     },
   });
 }

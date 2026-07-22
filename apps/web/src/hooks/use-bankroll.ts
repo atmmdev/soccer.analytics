@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '@/lib/api/client';
 import type {
+  BankrollAvailableTickets,
   BankrollCorrelatedTickets,
   BankrollEntry,
   BankrollPeriod,
@@ -54,6 +55,19 @@ export function useBankrollEntries(periodId?: string | null) {
   });
 }
 
+export function useBankrollAvailableTickets(enabled = true) {
+  return useQuery({
+    queryKey: ['bankroll', 'available-tickets'],
+    queryFn: async () => {
+      const { data } = await apiClient.get<BankrollAvailableTickets>(
+        '/bankroll/available-tickets',
+      );
+      return data;
+    },
+    enabled,
+  });
+}
+
 export function useCreateBankrollPeriod() {
   const queryClient = useQueryClient();
 
@@ -63,7 +77,10 @@ export function useCreateBankrollPeriod() {
       initialAmount: number;
       startsAt?: string;
       endsAt?: string;
+      autoClose?: boolean;
       notes?: string;
+      studyTicketIds?: string[];
+      ticketIds?: string[];
     }) => {
       const { data } = await apiClient.post<BankrollPeriod>(
         '/bankroll/periods',
@@ -73,6 +90,8 @@ export function useCreateBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
   });
 }
@@ -90,6 +109,7 @@ export function useUpdateBankrollPeriod() {
       initialAmount?: number;
       startsAt?: string;
       endsAt?: string | null;
+      autoClose?: boolean;
       notes?: string | null;
     }) => {
       const { data } = await apiClient.patch<BankrollPeriod>(
@@ -196,6 +216,42 @@ export function useCloseBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
+
+export function useReopenBankrollPeriod() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (periodId: string) => {
+      const { data } = await apiClient.post<BankrollPeriod>(
+        `/bankroll/periods/${periodId}/reopen`,
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
+
+export function useDeleteBankrollPeriod() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (periodId: string) => {
+      const { data } = await apiClient.delete<{
+        ok: boolean;
+        id: string;
+        name: string;
+      }>(`/bankroll/periods/${periodId}`);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
   });
 }

@@ -53,6 +53,31 @@ export class BankrollController {
     return this.bankrollService.closePeriod(id, dto);
   }
 
+  @Post('periods/:id/reopen')
+  @ApiOperation({ summary: 'Reopen a closed bankroll period' })
+  reopenPeriod(@Param('id') id: string) {
+    return this.bankrollService.reopenPeriod(id);
+  }
+
+  @Delete('periods/:id')
+  @ApiOperation({ summary: 'Delete a bankroll period and its entries' })
+  deletePeriod(@Param('id') id: string) {
+    return this.bankrollService.deletePeriod(id);
+  }
+
+  @Get('available-tickets')
+  @ApiOperation({
+    summary: 'Unlinked study/system tickets in a date range (for create/link)',
+  })
+  @ApiQuery({ name: 'startsAt', required: false })
+  @ApiQuery({ name: 'endsAt', required: false })
+  availableTickets(
+    @Query('startsAt') startsAt?: string,
+    @Query('endsAt') endsAt?: string,
+  ) {
+    return this.bankrollService.getAvailableTickets(startsAt, endsAt);
+  }
+
   @Get('periods/:id/correlated-tickets')
   @ApiOperation({
     summary: 'Linked + candidate study/system tickets for a bankroll period',

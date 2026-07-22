@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { BankrollPeriodStatus, TicketStatus } from '@prisma/client';
+import { BankrollPeriodStatus, StudyTicketStatus, TicketStatus } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import {
   BankrollEntryType,
@@ -18,53 +18,46 @@ import {
 export class BankrollService {
   constructor(private prisma: PrismaService) {}
 
-  /** Garante ao menos uma banca aberta e migra entries órfãs. */
-  async ensureActivePeriod() {
-    let open = await this.prisma.bankrollPeriod.findFirst({
-      where: { status: BankrollPeriodStatus.OPEN },
-      orderBy: { startsAt: 'desc' },
+  /**
+   * Fecha bancas abertas cujo período já acabou e autoClose está ativo.
+   * Migrates orphan entries to the most recent open period when one exists.
+   */
+  async closeExpiredPeriods() {
+    const now = new Date();
+    const expired = await this.prisma.bankrollPeriod.findMany({
+      where: {
+        status: BankrollPeriodStatus.OPEN,
+        autoClose: true,
+        endsAt: { not: null, lte: now },
+      },
     });
 
-    if (!open) {
-      const orphanSum = await this.prisma.bankrollEntry.aggregate({
-        where: { periodId: null },
+    for (const period of expired) {
+      const agg = await this.prisma.bankrollEntry.aggregate({
+        where: { periodId: period.id },
         _sum: { amount: true },
       });
-      const orphanBalance = orphanSum._sum.amount ?? 0;
-      const initialAmount = orphanBalance > 0 ? orphanBalance : 1000;
-
-      open = await this.prisma.bankrollPeriod.create({
+      await this.prisma.bankrollPeriod.update({
+        where: { id: period.id },
         data: {
-          name: `Banca ${new Date().toLocaleDateString('pt-BR', {
-            month: 'long',
-            year: 'numeric',
-          })}`,
-          status: BankrollPeriodStatus.OPEN,
-          startsAt: new Date(),
-          initialAmount,
+          status: BankrollPeriodStatus.CLOSED,
+          closingBalance: round(agg._sum.amount ?? 0),
         },
       });
+    }
 
-      const orphanCount = await this.prisma.bankrollEntry.count({
-        where: { periodId: null },
-      });
+    return expired.length;
+  }
 
-      if (orphanCount > 0) {
-        await this.prisma.bankrollEntry.updateMany({
-          where: { periodId: null },
-          data: { periodId: open.id },
-        });
-      } else {
-        await this.prisma.bankrollEntry.create({
-          data: {
-            periodId: open.id,
-            amount: initialAmount,
-            type: BankrollEntryType.DEPOSIT,
-            description: 'Depósito inicial da banca',
-          },
-        });
-      }
-    } else {
+  /** Preferência: banca aberta mais recente (não cria automaticamente). */
+  async findPreferredOpenPeriod() {
+    await this.closeExpiredPeriods();
+    const open = await this.prisma.bankrollPeriod.findFirst({
+      where: { status: BankrollPeriodStatus.OPEN },
+      orderBy: [{ startsAt: 'desc' }, { createdAt: 'desc' }],
+    });
+
+    if (open) {
       await this.prisma.bankrollEntry.updateMany({
         where: { periodId: null },
         data: { periodId: open.id },
@@ -74,10 +67,22 @@ export class BankrollService {
     return open;
   }
 
+  /** Exige uma banca aberta (para apostas sem periodId explícito). */
+  async ensureActivePeriod() {
+    const open = await this.findPreferredOpenPeriod();
+    if (!open) {
+      throw new BadRequestException(
+        'Nenhuma banca aberta. Crie ou reabra um período para continuar.',
+      );
+    }
+    return open;
+  }
+
   async listPeriods() {
-    await this.ensureActivePeriod();
+    await this.closeExpiredPeriods();
+    await this.findPreferredOpenPeriod();
     return this.prisma.bankrollPeriod.findMany({
-      orderBy: [{ startsAt: 'desc' }],
+      orderBy: [{ startsAt: 'desc' }, { createdAt: 'desc' }],
       include: {
         _count: { select: { entries: true } },
       },
@@ -94,21 +99,19 @@ export class BankrollService {
   }
 
   async createPeriod(dto: CreateBankrollPeriodDto) {
-    const existingOpen = await this.prisma.bankrollPeriod.findFirst({
-      where: { status: BankrollPeriodStatus.OPEN },
-    });
-    if (existingOpen) {
-      throw new BadRequestException(
-        'Já existe uma banca aberta. Feche-a antes de criar outra.',
-      );
-    }
-
     const startsAt = dto.startsAt ? startOfLocalDay(dto.startsAt) : new Date();
     const endsAt = dto.endsAt ? endOfLocalDay(dto.endsAt) : null;
+    const autoClose = dto.autoClose ?? true;
 
     if (endsAt && endsAt < startsAt) {
       throw new BadRequestException(
         'A data final do período deve ser posterior à inicial',
+      );
+    }
+
+    if (autoClose && !endsAt) {
+      throw new BadRequestException(
+        'Informe o fim do período para fechamento automático, ou desative o fechamento automático',
       );
     }
 
@@ -118,6 +121,7 @@ export class BankrollService {
         status: BankrollPeriodStatus.OPEN,
         startsAt,
         endsAt,
+        autoClose,
         initialAmount: dto.initialAmount,
         notes: dto.notes?.trim() || null,
         ...(dto.initialAmount > 0
@@ -135,7 +139,13 @@ export class BankrollService {
       include: { _count: { select: { entries: true } } },
     });
 
-    return period;
+    const studyTicketIds = [...new Set(dto.studyTicketIds ?? [])];
+    const ticketIds = [...new Set(dto.ticketIds ?? [])];
+    if (studyTicketIds.length || ticketIds.length) {
+      await this.assignExclusiveTickets(period.id, studyTicketIds, ticketIds);
+    }
+
+    return this.getPeriod(period.id);
   }
 
   async updatePeriod(periodId: string, dto: UpdateBankrollPeriodDto) {
@@ -150,10 +160,18 @@ export class BankrollService {
         : dto.endsAt === null || dto.endsAt === ''
           ? null
           : endOfLocalDay(dto.endsAt);
+    const autoClose =
+      dto.autoClose !== undefined ? dto.autoClose : period.autoClose;
 
     if (endsAt && endsAt < startsAt) {
       throw new BadRequestException(
         'A data final do período deve ser posterior à inicial',
+      );
+    }
+
+    if (autoClose && !endsAt) {
+      throw new BadRequestException(
+        'Informe o fim do período para fechamento automático, ou desative o fechamento automático',
       );
     }
 
@@ -168,6 +186,7 @@ export class BankrollService {
           : {}),
         ...(dto.startsAt != null ? { startsAt } : {}),
         ...(dto.endsAt !== undefined ? { endsAt } : {}),
+        ...(dto.autoClose !== undefined ? { autoClose: dto.autoClose } : {}),
         ...(dto.notes !== undefined
           ? { notes: dto.notes?.trim() ? dto.notes.trim() : null }
           : {}),
@@ -247,11 +266,7 @@ export class BankrollService {
 
     const balance = await this.getBalance(periodId);
     const now = new Date();
-    // Mantém o fim planejado se já estiver no passado; senão fecha agora.
-    const endsAt =
-      period.endsAt && period.endsAt.getTime() <= now.getTime()
-        ? period.endsAt
-        : now;
+    const endsAt = period.endsAt ?? now;
 
     return this.prisma.bankrollPeriod.update({
       where: { id: periodId },
@@ -265,6 +280,86 @@ export class BankrollService {
       },
       include: { _count: { select: { entries: true } } },
     });
+  }
+
+  async reopenPeriod(periodId: string) {
+    const period = await this.getPeriod(periodId);
+    if (period.status !== BankrollPeriodStatus.CLOSED) {
+      throw new BadRequestException('Esta banca já está aberta');
+    }
+
+    // Desativa autoClose: se endsAt já passou, closeExpiredPeriods fecharia de novo.
+    return this.prisma.bankrollPeriod.update({
+      where: { id: periodId },
+      data: {
+        status: BankrollPeriodStatus.OPEN,
+        closingBalance: null,
+        autoClose: false,
+      },
+      include: { _count: { select: { entries: true } } },
+    });
+  }
+
+  async deletePeriod(periodId: string) {
+    const period = await this.getPeriod(periodId);
+    await this.prisma.bankrollPeriod.delete({ where: { id: periodId } });
+    return { ok: true, id: periodId, name: period.name };
+  }
+
+  /** Bilhetes livres (sem banca) — todos do sistema, opcionalmente no intervalo. */
+  async getAvailableTickets(startsAt?: string, endsAt?: string) {
+    const from = startsAt ? startOfLocalDay(startsAt) : null;
+    const to = endsAt
+      ? endOfLocalDay(endsAt)
+      : startsAt
+        ? endOfLocalDay(startsAt)
+        : null;
+
+    if (from && to && to < from) {
+      throw new BadRequestException(
+        'A data final do período deve ser posterior à inicial',
+      );
+    }
+
+    const studyDate =
+      from && to ? { placedAt: { gte: from, lte: to } } : {};
+    const systemDate =
+      from && to ? { createdAt: { gte: from, lte: to } } : {};
+
+    const [candidateStudy, candidateSystem] = await Promise.all([
+      this.prisma.studyTicket.findMany({
+        where: {
+          bankrollPeriodId: null,
+          ...studyDate,
+        },
+        orderBy: { placedAt: 'desc' },
+        include: { legs: { orderBy: { sortOrder: 'asc' }, take: 3 } },
+      }),
+      this.prisma.ticket.findMany({
+        where: {
+          bankrollPeriodId: null,
+          status: { not: TicketStatus.DRAFT },
+          ...systemDate,
+        },
+        orderBy: { createdAt: 'desc' },
+        include: {
+          selections: {
+            include: {
+              match: { include: { homeTeam: true, awayTeam: true } },
+            },
+          },
+        },
+      }),
+    ]);
+
+    return {
+      range: {
+        from: from ?? null,
+        to: to ?? null,
+      },
+      study: this.mapStudyTickets(candidateStudy, false),
+      system: this.mapSystemTickets(candidateSystem, false),
+    };
   }
 
   /** Bilhetes vinculados + candidatos (estudo / sistema) no intervalo da banca. */
@@ -321,43 +416,82 @@ export class BankrollService {
         }),
       ]);
 
-    const mapStudy = (
-      tickets: typeof linkedStudy,
-      linked: boolean,
-    ) => {
-      const stake = tickets.reduce((s, t) => s + (t.stake ?? 0), 0);
-      const actualReturn = tickets.reduce(
-        (s, t) => s + (t.actualReturn ?? 0),
-        0,
-      );
-      return {
-        count: tickets.length,
-        stake: round(stake),
-        actualReturn: round(actualReturn),
-        profit: round(actualReturn - stake),
-        won: tickets.filter((t) => t.status === 'WON').length,
-        lost: tickets.filter((t) => t.status === 'LOST').length,
-        pending: tickets.filter((t) => t.status === 'PENDING').length,
-        tickets: tickets.map((t) => ({
-          id: t.id,
-          sourceFile: t.sourceFile,
-          placedAt: t.placedAt,
-          betType: t.betType,
-          betLabel: t.betLabel,
-          status: t.status,
-          stake: t.stake,
-          combinedOdd: t.combinedOdd,
-          actualReturn: t.actualReturn,
-          legsPreview: t.legs.map((l) => l.matchLabel).slice(0, 2),
-          linked,
-        })),
-      };
+    return {
+      period: {
+        id: period.id,
+        name: period.name,
+        status: period.status,
+        startsAt: period.startsAt,
+        endsAt: period.endsAt,
+      },
+      range: { from, to },
+      study: this.mapStudyTickets(linkedStudy, true),
+      system: this.mapSystemTickets(linkedSystem, true),
+      candidates: {
+        study: this.mapStudyTickets(candidateStudy, false),
+        system: this.mapSystemTickets(candidateSystem, false),
+      },
     };
+  }
 
-    const mapSystem = (
-      tickets: typeof linkedSystem,
-      linked: boolean,
-    ) => ({
+  private mapStudyTickets(
+    tickets: Array<{
+      id: string;
+      sourceFile: string;
+      placedAt: Date;
+      betType: string | null;
+      betLabel: string | null;
+      status: string;
+      stake: number;
+      combinedOdd: number | null;
+      actualReturn: number | null;
+      legs: Array<{ matchLabel: string }>;
+    }>,
+    linked: boolean,
+  ) {
+    const stake = tickets.reduce((s, t) => s + (t.stake ?? 0), 0);
+    const actualReturn = tickets.reduce(
+      (s, t) => s + (t.actualReturn ?? 0),
+      0,
+    );
+    return {
+      count: tickets.length,
+      stake: round(stake),
+      actualReturn: round(actualReturn),
+      profit: round(actualReturn - stake),
+      won: tickets.filter((t) => t.status === 'WON').length,
+      lost: tickets.filter((t) => t.status === 'LOST').length,
+      pending: tickets.filter((t) => t.status === 'PENDING').length,
+      tickets: tickets.map((t) => ({
+        id: t.id,
+        sourceFile: t.sourceFile,
+        placedAt: t.placedAt,
+        betType: t.betType,
+        betLabel: t.betLabel,
+        status: t.status,
+        stake: t.stake,
+        combinedOdd: t.combinedOdd,
+        actualReturn: t.actualReturn,
+        legsPreview: t.legs.map((l) => l.matchLabel).slice(0, 2),
+        linked,
+      })),
+    };
+  }
+
+  private mapSystemTickets(
+    tickets: Array<{
+      id: string;
+      name: string | null;
+      status: TicketStatus;
+      createdAt: Date;
+      stake: number | null;
+      combinedOdd: number | null;
+      actualReturn: number | null;
+      selections: unknown[];
+    }>,
+    linked: boolean,
+  ) {
+    return {
       count: tickets.length,
       stake: round(tickets.reduce((s, t) => s + (t.stake ?? 0), 0)),
       won: tickets.filter((t) => t.status === TicketStatus.WON).length,
@@ -373,24 +507,337 @@ export class BankrollService {
         selections: t.selections.length,
         linked,
       })),
-    });
-
-    return {
-      period: {
-        id: period.id,
-        name: period.name,
-        status: period.status,
-        startsAt: period.startsAt,
-        endsAt: period.endsAt,
-      },
-      range: { from, to },
-      study: mapStudy(linkedStudy, true),
-      system: mapSystem(linkedSystem, true),
-      candidates: {
-        study: mapStudy(candidateStudy, false),
-        system: mapSystem(candidateSystem, false),
-      },
     };
+  }
+
+  /**
+   * Vincula bilhetes exclusivamente a uma banca.
+   * Só aceita bilhetes sem vínculo; para transferir, remova da banca atual antes.
+   */
+  private async assignExclusiveTickets(
+    periodId: string,
+    studyTicketIds: string[],
+    ticketIds: string[],
+  ) {
+    if (studyTicketIds.length) {
+      const study = await this.prisma.studyTicket.findMany({
+        where: { id: { in: studyTicketIds } },
+        select: {
+          id: true,
+          bankrollPeriodId: true,
+          betLabel: true,
+          bankrollPeriod: { select: { name: true } },
+        },
+      });
+      const missing = studyTicketIds.filter(
+        (id) => !study.some((t) => t.id === id),
+      );
+      if (missing.length) {
+        throw new BadRequestException(
+          `Bilhete(s) de estudo não encontrado(s): ${missing.join(', ')}`,
+        );
+      }
+      const busy = study.filter(
+        (t) => t.bankrollPeriodId != null && t.bankrollPeriodId !== periodId,
+      );
+      if (busy.length) {
+        throw new BadRequestException(
+          `Bilhete(s) Bet365 já vinculados a outra banca (${busy
+            .map((t) => t.bankrollPeriod?.name ?? t.bankrollPeriodId)
+            .join(', ')}). Remova o vínculo antes de transferir.`,
+        );
+      }
+    }
+
+    if (ticketIds.length) {
+      const system = await this.prisma.ticket.findMany({
+        where: { id: { in: ticketIds } },
+        select: {
+          id: true,
+          name: true,
+          status: true,
+          bankrollPeriodId: true,
+          bankrollPeriod: { select: { name: true } },
+        },
+      });
+      const missing = ticketIds.filter(
+        (id) => !system.some((t) => t.id === id),
+      );
+      if (missing.length) {
+        throw new BadRequestException(
+          `Bilhete(s) do sistema não encontrado(s): ${missing.join(', ')}`,
+        );
+      }
+      const drafts = system.filter((t) => t.status === TicketStatus.DRAFT);
+      if (drafts.length) {
+        throw new BadRequestException(
+          'Não é possível vincular bilhetes em rascunho',
+        );
+      }
+      const busy = system.filter(
+        (t) => t.bankrollPeriodId != null && t.bankrollPeriodId !== periodId,
+      );
+      if (busy.length) {
+        throw new BadRequestException(
+          `Bilhete(s) do sistema já vinculados a outra banca (${busy
+            .map((t) => t.bankrollPeriod?.name ?? t.bankrollPeriodId)
+            .join(', ')}). Remova o vínculo antes de transferir.`,
+        );
+      }
+    }
+
+    await this.prisma.$transaction([
+      ...(studyTicketIds.length
+        ? [
+            this.prisma.studyTicket.updateMany({
+              where: {
+                id: { in: studyTicketIds },
+                OR: [
+                  { bankrollPeriodId: null },
+                  { bankrollPeriodId: periodId },
+                ],
+              },
+              data: { bankrollPeriodId: periodId },
+            }),
+          ]
+        : []),
+      ...(ticketIds.length
+        ? [
+            this.prisma.ticket.updateMany({
+              where: {
+                id: { in: ticketIds },
+                status: { not: TicketStatus.DRAFT },
+                OR: [
+                  { bankrollPeriodId: null },
+                  { bankrollPeriodId: periodId },
+                ],
+              },
+              data: { bankrollPeriodId: periodId },
+            }),
+          ]
+        : []),
+    ]);
+
+    await this.syncLinkedTicketsToLedger(periodId, studyTicketIds, ticketIds);
+  }
+
+  /**
+   * Cria lançamentos STAKE/WIN/LOSS/REFUND a partir dos bilhetes vinculados,
+   * para saldo, ROI e win rate refletirem as apostas.
+   */
+  private async syncLinkedTicketsToLedger(
+    periodId: string,
+    studyTicketIds: string[],
+    ticketIds: string[],
+  ) {
+    if (studyTicketIds.length) {
+      const studyTickets = await this.prisma.studyTicket.findMany({
+        where: { id: { in: studyTicketIds }, bankrollPeriodId: periodId },
+      });
+      for (const ticket of studyTickets) {
+        const existing = await this.prisma.bankrollEntry.count({
+          where: { periodId, studyTicketId: ticket.id },
+        });
+        if (existing > 0) continue;
+
+        const label =
+          ticket.betLabel ?? ticket.betType ?? ticket.bet365Ref ?? ticket.id;
+        const stake = Math.abs(ticket.stake);
+        const at = ticket.placedAt;
+
+        await this.prisma.bankrollEntry.create({
+          data: {
+            periodId,
+            amount: -stake,
+            type: BankrollEntryType.STAKE,
+            description: `Aposta: ${label}`,
+            studyTicketId: ticket.id,
+            createdAt: at,
+          },
+        });
+
+        if (ticket.status === StudyTicketStatus.WON) {
+          const winAmount =
+            ticket.actualReturn ??
+            ticket.potentialReturn ??
+            (ticket.combinedOdd != null ? stake * ticket.combinedOdd : stake);
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: winAmount,
+              type: BankrollEntryType.WIN,
+              description: `Green: ${label}`,
+              studyTicketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        } else if (ticket.status === StudyTicketStatus.LOST) {
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: 0,
+              type: BankrollEntryType.LOSS,
+              description: `Red: ${label}`,
+              studyTicketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        } else if (ticket.status === StudyTicketStatus.VOID) {
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: stake,
+              type: BankrollEntryType.REFUND,
+              description: `Anulado: ${label}`,
+              studyTicketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        } else if (ticket.status === StudyTicketStatus.CASHED_OUT) {
+          const cash =
+            ticket.cashOutValue ?? ticket.actualReturn ?? stake;
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: cash,
+              type: BankrollEntryType.WIN,
+              description: `Cash out: ${label}`,
+              studyTicketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        }
+      }
+    }
+
+    if (ticketIds.length) {
+      const systemTickets = await this.prisma.ticket.findMany({
+        where: { id: { in: ticketIds }, bankrollPeriodId: periodId },
+      });
+      for (const ticket of systemTickets) {
+        const existing = await this.prisma.bankrollEntry.count({
+          where: { periodId, ticketId: ticket.id },
+        });
+        if (existing > 0) continue;
+
+        const stake = Math.abs(ticket.stake ?? 0);
+        if (stake <= 0) continue;
+        const label = ticket.name ?? ticket.id;
+        const at = ticket.createdAt;
+
+        await this.prisma.bankrollEntry.create({
+          data: {
+            periodId,
+            amount: -stake,
+            type: BankrollEntryType.STAKE,
+            description: `Aposta: ${label}`,
+            ticketId: ticket.id,
+            createdAt: at,
+          },
+        });
+
+        if (ticket.status === TicketStatus.WON) {
+          const winAmount =
+            ticket.actualReturn ??
+            ticket.potentialReturn ??
+            (ticket.combinedOdd != null ? stake * ticket.combinedOdd : stake);
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: winAmount,
+              type: BankrollEntryType.WIN,
+              description: `Green: ${label}`,
+              ticketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        } else if (ticket.status === TicketStatus.LOST) {
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: 0,
+              type: BankrollEntryType.LOSS,
+              description: `Red: ${label}`,
+              ticketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        } else if (ticket.status === TicketStatus.VOID) {
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: stake,
+              type: BankrollEntryType.REFUND,
+              description: `Anulado: ${label}`,
+              ticketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        } else if (ticket.status === TicketStatus.CASHED_OUT) {
+          const cash = ticket.actualReturn ?? stake;
+          await this.prisma.bankrollEntry.create({
+            data: {
+              periodId,
+              amount: cash,
+              type: BankrollEntryType.WIN,
+              description: `Cash out: ${label}`,
+              ticketId: ticket.id,
+              createdAt: new Date(at.getTime() + 1000),
+            },
+          });
+        }
+      }
+    }
+  }
+
+  private async removeLinkedTicketsFromLedger(
+    periodId: string,
+    studyTicketIds: string[],
+    ticketIds: string[],
+  ) {
+    if (studyTicketIds.length) {
+      await this.prisma.bankrollEntry.deleteMany({
+        where: { periodId, studyTicketId: { in: studyTicketIds } },
+      });
+    }
+    if (ticketIds.length) {
+      await this.prisma.bankrollEntry.deleteMany({
+        where: { periodId, ticketId: { in: ticketIds } },
+      });
+    }
+  }
+
+  /**
+   * Recria lançamentos de um bilhete de estudo após edição (status/stake/retorno).
+   * Sem efeito se o bilhete não estiver vinculado a uma banca.
+   */
+  async resyncStudyTicketLedger(studyTicketId: string) {
+    const ticket = await this.prisma.studyTicket.findUnique({
+      where: { id: studyTicketId },
+      select: { id: true, bankrollPeriodId: true },
+    });
+    if (!ticket?.bankrollPeriodId) return null;
+
+    const periodId = ticket.bankrollPeriodId;
+    await this.removeLinkedTicketsFromLedger(periodId, [studyTicketId], []);
+    await this.syncLinkedTicketsToLedger(periodId, [studyTicketId], []);
+    return this.getSummary(periodId);
+  }
+
+  /**
+   * Recria lançamentos de um bilhete do sistema após liquidação/edição.
+   */
+  async resyncSystemTicketLedger(ticketId: string) {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: { id: ticketId },
+      select: { id: true, bankrollPeriodId: true },
+    });
+    if (!ticket?.bankrollPeriodId) return null;
+
+    const periodId = ticket.bankrollPeriodId;
+    await this.removeLinkedTicketsFromLedger(periodId, [], [ticketId]);
+    await this.syncLinkedTicketsToLedger(periodId, [], [ticketId]);
+    return this.getSummary(periodId);
   }
 
   async linkTickets(periodId: string, dto: LinkBankrollTicketsDto) {
@@ -408,28 +855,7 @@ export class BankrollService {
       throw new BadRequestException('Selecione ao menos um bilhete');
     }
 
-    await this.prisma.$transaction([
-      ...(studyTicketIds.length
-        ? [
-            this.prisma.studyTicket.updateMany({
-              where: { id: { in: studyTicketIds } },
-              data: { bankrollPeriodId: periodId },
-            }),
-          ]
-        : []),
-      ...(ticketIds.length
-        ? [
-            this.prisma.ticket.updateMany({
-              where: {
-                id: { in: ticketIds },
-                status: { not: TicketStatus.DRAFT },
-              },
-              data: { bankrollPeriodId: periodId },
-            }),
-          ]
-        : []),
-    ]);
-
+    await this.assignExclusiveTickets(periodId, studyTicketIds, ticketIds);
     return this.getCorrelatedTickets(periodId);
   }
 
@@ -442,6 +868,12 @@ export class BankrollService {
     if (!studyTicketIds.length && !ticketIds.length) {
       throw new BadRequestException('Selecione ao menos um bilhete');
     }
+
+    await this.removeLinkedTicketsFromLedger(
+      periodId,
+      studyTicketIds,
+      ticketIds,
+    );
 
     await this.prisma.$transaction([
       ...(studyTicketIds.length
@@ -472,11 +904,17 @@ export class BankrollService {
   }
 
   private async resolvePeriodId(periodId?: string) {
+    await this.closeExpiredPeriods();
     if (periodId) {
       await this.getPeriod(periodId);
       return periodId;
     }
-    const open = await this.ensureActivePeriod();
+    const open = await this.findPreferredOpenPeriod();
+    if (!open) {
+      throw new BadRequestException(
+        'Nenhuma banca aberta. Crie ou reabra um período para continuar.',
+      );
+    }
     return open.id;
   }
 
@@ -492,6 +930,23 @@ export class BankrollService {
   async getSummary(periodId?: string) {
     const id = await this.resolvePeriodId(periodId);
     const period = await this.getPeriod(id);
+
+    // Garante lançamentos para bilhetes já vinculados (ex.: vínculo antigo).
+    const [linkedStudy, linkedSystem] = await Promise.all([
+      this.prisma.studyTicket.findMany({
+        where: { bankrollPeriodId: id },
+        select: { id: true },
+      }),
+      this.prisma.ticket.findMany({
+        where: { bankrollPeriodId: id },
+        select: { id: true },
+      }),
+    ]);
+    await this.syncLinkedTicketsToLedger(
+      id,
+      linkedStudy.map((t) => t.id),
+      linkedSystem.map((t) => t.id),
+    );
 
     const entries = await this.prisma.bankrollEntry.findMany({
       where: { periodId: id },
@@ -525,14 +980,32 @@ export class BankrollService {
         entries.map((e) => e.ticketId).filter((tid): tid is string => !!tid),
       ),
     ];
-    const tickets = ticketIds.length
+    const studyTicketIds = [
+      ...new Set(
+        entries
+          .map((e) => e.studyTicketId)
+          .filter((tid): tid is string => !!tid),
+      ),
+    ];
+    const systemTickets = ticketIds.length
       ? await this.prisma.ticket.findMany({
           where: {
             id: { in: ticketIds },
             status: {
-              in: [TicketStatus.PLACED, TicketStatus.WON, TicketStatus.LOST],
+              in: [
+                TicketStatus.PLACED,
+                TicketStatus.WON,
+                TicketStatus.LOST,
+                TicketStatus.VOID,
+                TicketStatus.CASHED_OUT,
+              ],
             },
           },
+        })
+      : [];
+    const studyTickets = studyTicketIds.length
+      ? await this.prisma.studyTicket.findMany({
+          where: { id: { in: studyTicketIds } },
         })
       : [];
 
@@ -546,7 +1019,7 @@ export class BankrollService {
       winRate,
       maxDrawdown,
       totalStaked: round(totalStaked),
-      ticketsPlaced: tickets.length,
+      ticketsPlaced: systemTickets.length + studyTickets.length,
       ticketsWon: wins.length,
       ticketsLost: losses.length,
     };
@@ -725,11 +1198,6 @@ export class BankrollService {
   }
 
   async placeTicket(ticketId: string) {
-    const period = await this.ensureActivePeriod();
-    if (period.status !== BankrollPeriodStatus.OPEN) {
-      throw new BadRequestException('Nenhuma banca aberta para apostar');
-    }
-
     const ticket = await this.prisma.ticket.findUnique({
       where: { id: ticketId },
     });
@@ -739,6 +1207,17 @@ export class BankrollService {
     }
     if (!ticket.stake || ticket.stake <= 0) {
       throw new BadRequestException('Stake inválida');
+    }
+
+    const period =
+      ticket.bankrollPeriodId != null
+        ? await this.getPeriod(ticket.bankrollPeriodId)
+        : await this.ensureActivePeriod();
+
+    if (period.status !== BankrollPeriodStatus.OPEN) {
+      throw new BadRequestException(
+        'A banca vinculada está fechada. Reabra-a ou vincule outra banca aberta.',
+      );
     }
 
     const balance = await this.getBalance(period.id);
@@ -758,7 +1237,10 @@ export class BankrollService {
       }),
       this.prisma.ticket.update({
         where: { id: ticketId },
-        data: { status: TicketStatus.PLACED },
+        data: {
+          status: TicketStatus.PLACED,
+          bankrollPeriodId: period.id,
+        },
       }),
     ]);
 
