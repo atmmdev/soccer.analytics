@@ -42,7 +42,7 @@ export class DashboardService {
     ]);
 
     const featuredMatch =
-      todayMatchesRaw.find((m) => m.day === 'today' && m.status !== 'finished') ??
+      todayMatchesRaw.find((m) => m.day === 'today') ??
       todayMatchesRaw[0];
 
     const matchAnalysis = featuredMatch

@@ -4,7 +4,11 @@
  */
 
 import type { EvPlusMarket } from '@/types/analysis';
-import { formatMarketLabel, getMarketCategoryLabel } from '@/lib/market-labels';
+import {
+  describeMarket,
+  formatMarketLabel,
+  getMarketCategoryLabel,
+} from '@/lib/market-labels';
 
 export type TicketProfileId =
   | 'conservador'
@@ -23,6 +27,11 @@ export interface TicketProfileMeta {
 
 export interface SuggestedLeg extends EvPlusMarket {
   why: string;
+  category: string;
+  selectionLabel: string;
+  summary: string;
+  liquidatesWhen: string;
+  fairOddLabel: string;
 }
 
 export interface SuggestedTicket {
@@ -78,11 +87,16 @@ function typeOf(m: EvPlusMarket): string {
 function isEligible(m: EvPlusMarket): boolean {
   return (
     m.recommendation === 'BET' ||
-    (m.recommendation === 'WATCH' && m.ev > 0.05)
+    (m.recommendation === 'WATCH' && m.ev > 0.03)
   );
 }
 
 function byEv(a: EvPlusMarket, b: EvPlusMarket) {
+  return b.ev - a.ev;
+}
+
+function byLowOddThenEv(a: EvPlusMarket, b: EvPlusMarket) {
+  if (a.bookmakerOdd !== b.bookmakerOdd) return a.bookmakerOdd - b.bookmakerOdd;
   return b.ev - a.ev;
 }
 
@@ -99,26 +113,38 @@ function selectionOf(m: EvPlusMarket) {
 }
 
 function whyFor(profile: TicketProfileId, m: EvPlusMarket): string {
-  const label = formatMarketLabel(m.marketType, m.market);
-  const ev = `${m.ev >= 0 ? '+' : ''}${(m.ev * 100).toFixed(1)}%`;
-  const base = `${label} · EV ${ev} · conf. ${m.confidence}% · ${m.recommendation}`;
+  const action =
+    m.recommendation === 'BET'
+      ? 'O motor recomenda Apostar'
+      : m.recommendation === 'WATCH'
+        ? 'O motor recomenda Observar (edge presente, confiança moderada)'
+        : 'Seleção disponível, mas o motor sugere Ignorar';
 
   switch (profile) {
     case 'conservador':
-      return `${base}. Perfil conservador prioriza odd baixa e barreira fácil (ex.: Over 1.5 / Under 3.5), como em bilhete-conservador.md.`;
+      return `${action}. Encaixa no perfil conservador por odd relativamente baixa (${m.bookmakerOdd.toFixed(2)}) e barreira mais fácil de acertar — padrão de bilhete-conservador.md (Over 1.5 / Under alto / favorito).`;
     case 'moderado':
-      return `${base}. Perfil moderado segue o padrão Over 2.5 / BTTS / 1X2 de bilhete-moderado.md.`;
+      return `${action}. Encaixa no perfil moderado (Over 2.5 / BTTS / 1X2) de bilhete-moderado.md, com EV ${(m.ev * 100).toFixed(1)}% e confiança ${m.confidence}%.`;
     case 'agressivo':
-      return `${base}. Perfil agressivo busca odd alta ou linha agressiva (Over 3.5, visitante, props), como em bilhete-agressivo.md.`;
+      return `${action}. Perfil agressivo: odd/linha mais arriscada para maior retorno — ver bilhete-agressivo.md. Stake máximo sugerido 0,5%.`;
     case 'jogadores':
-      return `${base}. Prop de marcador — modelo ${m.playerModel ? 'disponível' : 'implícito'}; ver bilhete-jogadores.md.`;
+      return `${action}. Prop anytime do jogador${m.playerModel ? ' com modelo Poisson de gols' : ' (probabilidade implícita da odd, sem modelo completo)'}. Ver bilhete-jogadores.md.`;
     default:
-      return base;
+      return action;
   }
 }
 
 function toLeg(profile: TicketProfileId, m: EvPlusMarket): SuggestedLeg {
-  return { ...m, why: whyFor(profile, m) };
+  const desc = describeMarket(m.marketType, m.market);
+  return {
+    ...m,
+    why: whyFor(profile, m),
+    category: desc.category,
+    selectionLabel: desc.selectionLabel,
+    summary: desc.summary,
+    liquidatesWhen: desc.liquidatesWhen,
+    fairOddLabel: m.fairOdd.toFixed(2),
+  };
 }
 
 function finish(
@@ -145,8 +171,7 @@ function finish(
   const combinedOdd = Number(
     legs.reduce((acc, l) => acc * l.bookmakerOdd, 1).toFixed(2),
   );
-  const avgEv =
-    legs.reduce((acc, l) => acc + l.ev, 0) / legs.length;
+  const avgEv = legs.reduce((acc, l) => acc + l.ev, 0) / legs.length;
   const avgConfidence =
     legs.reduce((acc, l) => acc + l.confidence, 0) / legs.length;
 
@@ -161,77 +186,101 @@ function finish(
   };
 }
 
-/** Conservador: Over 1.5, Under 3.5, favorito curto — odd por perna ≤ ~1.55 */
+function pushUnique(
+  picks: EvPlusMarket[],
+  candidate: EvPlusMarket | null,
+  max = 2,
+): void {
+  if (!candidate || picks.length >= max) return;
+  if (picks.some((p) => p.market === candidate.market)) return;
+  // Evitar Over + Under no mesmo bilhete
+  if (
+    typeOf(candidate) === 'OVER_UNDER' &&
+    picks.some(
+      (p) =>
+        typeOf(p) === 'OVER_UNDER' &&
+        /over/i.test(p.market) !== /over/i.test(candidate.market),
+    )
+  ) {
+    return;
+  }
+  picks.push(candidate);
+}
+
+/** Conservador: odd baixa — Over 1.5, Under 2.5/3.5, favorito, BTTS Não */
 function buildConservador(markets: EvPlusMarket[]): SuggestedTicket {
   const profile = PROFILES[0];
-  const over15 = findBest(
-    markets,
-    (m) =>
-      typeOf(m) === 'OVER_UNDER' &&
-      /over\s*1\.5/i.test(m.market) &&
-      m.bookmakerOdd <= 1.55,
-  );
-  const under35 = findBest(
-    markets,
-    (m) =>
-      typeOf(m) === 'OVER_UNDER' &&
-      /under\s*3\.5/i.test(m.market) &&
-      m.bookmakerOdd <= 1.55,
-  );
-  const safeHome = findBest(
-    markets,
-    (m) =>
-      typeOf(m) === 'MATCH_RESULT' &&
-      selectionOf(m) === 'casa' &&
-      m.probability >= 0.55 &&
-      m.bookmakerOdd <= 1.7,
-  );
-  const safeBttsNo = findBest(
-    markets,
-    (m) =>
-      typeOf(m) === 'BTTS' &&
-      /não|nao|no/i.test(m.market) &&
-      m.bookmakerOdd <= 1.7,
-  );
-
-  // Preferir 1–2 pernas de odd baixa (doc: Over 1.5 / Under 3.5)
   const picks: EvPlusMarket[] = [];
-  for (const c of [over15, under35, safeHome, safeBttsNo]) {
-    if (!c) continue;
-    if (picks.some((p) => p.market === c.market)) continue;
-    // Evitar Over + Under conflitantes
-    if (
-      picks.some(
-        (p) =>
-          typeOf(p) === 'OVER_UNDER' &&
-          typeOf(c) === 'OVER_UNDER' &&
-          /over/i.test(p.market) !== /over/i.test(c.market),
-      )
-    ) {
-      continue;
-    }
-    picks.push(c);
-    if (picks.length >= 2) break;
-  }
 
-  // Fallback: menor odd BET disponível
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) => typeOf(m) === 'OVER_UNDER' && /over\s*1\.5/i.test(m.market),
+    ),
+  );
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) =>
+        typeOf(m) === 'OVER_UNDER' &&
+        /under\s*(2\.5|3\.5)/i.test(m.market) &&
+        m.bookmakerOdd <= 2.1,
+    ),
+  );
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) =>
+        typeOf(m) === 'MATCH_RESULT' &&
+        (selectionOf(m) === 'casa' || selectionOf(m) === 'fora') &&
+        m.probability >= 0.45 &&
+        m.bookmakerOdd <= 2.0,
+    ),
+  );
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) =>
+        typeOf(m) === 'BTTS' &&
+        /não|nao|no/i.test(m.market) &&
+        m.bookmakerOdd <= 2.0,
+    ),
+  );
+
+  // Fallback amplo: menores odds com EV>0 / BET / WATCH
   if (picks.length === 0) {
     const safest = [...markets]
-      .filter((m) => isEligible(m) && m.bookmakerOdd <= 1.8 && m.ev > 0)
-      .sort((a, b) => a.bookmakerOdd - b.bookmakerOdd)[0];
-    if (safest) picks.push(safest);
+      .filter((m) => isEligible(m) && m.ev > 0 && m.bookmakerOdd <= 2.2)
+      .sort(byLowOddThenEv)
+      .slice(0, 2);
+    for (const s of safest) pushUnique(picks, s);
+  }
+
+  // Último recurso: qualquer BET com menor odd
+  if (picks.length === 0) {
+    const any = [...markets]
+      .filter((m) => m.recommendation === 'BET' && m.ev > 0)
+      .sort(byLowOddThenEv)[0];
+    pushUnique(picks, any ?? null);
   }
 
   return finish(
     profile,
     picks.map((m) => toLeg('conservador', m)),
     picks.length > 1
-      ? 'Mesmo jogo: correlação possível — stake baixo (1–2%). Preferível simples se EV marginal.'
-      : 'Uma perna conservadora (simples) — menor risco de correlação.',
+      ? 'Mesmo jogo: correlação possível — stake 1–2%. Doc: bilhete-conservador.md.'
+      : 'Uma perna conservadora (simples) — menor risco.',
+    picks.length === 0
+      ? 'Sem mercados de odd baixa com EV positivo neste jogo. Tente outra partida ou aguarde novas odds.'
+      : undefined,
   );
 }
 
-/** Moderado: Over 2.5, BTTS Sim, 1X2 — padrão bilhete-moderado.md */
+/** Moderado: Over 2.5, BTTS Sim, 1X2 */
 function buildModerado(markets: EvPlusMarket[]): SuggestedTicket {
   const profile = PROFILES[1];
   const over25 = findBest(
@@ -246,8 +295,8 @@ function buildModerado(markets: EvPlusMarket[]): SuggestedTicket {
     markets,
     (m) =>
       typeOf(m) === 'MATCH_RESULT' &&
-      m.bookmakerOdd >= 1.55 &&
-      m.bookmakerOdd <= 2.4,
+      m.bookmakerOdd >= 1.45 &&
+      m.bookmakerOdd <= 2.6,
   );
   const corners = findBest(
     markets,
@@ -255,112 +304,125 @@ function buildModerado(markets: EvPlusMarket[]): SuggestedTicket {
   );
 
   const picks: EvPlusMarket[] = [];
-  // Doc: Over 2.5 + BTTS no MESMO jogo = correlação + → no máx. 1 dos dois + resultado OU escanteios
   const primary = [over25, bttsYes].filter(Boolean).sort((a, b) => byEv(a!, b!))[0];
-  if (primary) picks.push(primary);
+  pushUnique(picks, primary ?? null);
+  pushUnique(picks, result);
+  pushUnique(picks, corners);
 
-  for (const c of [result, corners]) {
-    if (!c) continue;
-    if (picks.some((p) => typeOf(p) === typeOf(c) || p.market === c.market)) continue;
-    picks.push(c);
-    if (picks.length >= 2) break;
-  }
-
-  if (picks.length === 0 && result) picks.push(result);
   if (picks.length === 0) {
     const mid = [...markets]
-      .filter(
-        (m) =>
-          isEligible(m) &&
-          m.bookmakerOdd >= 1.5 &&
-          m.bookmakerOdd <= 2.5 &&
-          m.ev > 0.04,
-      )
-      .sort(byEv)[0];
-    if (mid) picks.push(mid);
+      .filter((m) => isEligible(m) && m.ev > 0.03)
+      .sort(byEv)
+      .slice(0, 2);
+    for (const m of mid) pushUnique(picks, m);
   }
 
   const hasOverAndBtts =
-    picks.some((p) => typeOf(p) === 'OVER_UNDER') &&
+    picks.some((p) => typeOf(p) === 'OVER_UNDER' && /over/i.test(p.market)) &&
     picks.some((p) => typeOf(p) === 'BTTS');
 
   return finish(
     profile,
     picks.map((m) => toLeg('moderado', m)),
     hasOverAndBtts
-      ? 'Aviso (correlacoes.md): Over gols + BTTS no mesmo jogo = correlação +. Máx. 2 pernas correlacionadas.'
+      ? 'Aviso (correlacoes.md): Over gols + BTTS no mesmo jogo = correlação +.'
       : picks.length > 1
         ? 'Pernas de tipos diferentes — correlação moderada no mesmo jogo.'
         : 'Uma perna moderada (simples).',
   );
 }
 
-/** Agressivo: Fora zebra, Over 3.5, handicap, props caras */
+/** Agressivo: Fora zebra, Over 3.5, handicap, props */
 function buildAgressivo(markets: EvPlusMarket[]): SuggestedTicket {
   const profile = PROFILES[2];
-  const away = findBest(
-    markets,
-    (m) =>
-      typeOf(m) === 'MATCH_RESULT' &&
-      selectionOf(m) === 'fora' &&
-      m.bookmakerOdd >= 2.5,
-  );
-  const over35 = findBest(
-    markets,
-    (m) =>
-      typeOf(m) === 'OVER_UNDER' &&
-      /over\s*3\.5/i.test(m.market),
-  );
-  const handicap = findBest(
-    markets,
-    (m) => typeOf(m) === 'HANDICAP' && m.bookmakerOdd >= 1.8,
-  );
-  const player = findBest(
-    markets,
-    (m) => typeOf(m) === 'PLAYER' && m.bookmakerOdd >= 2.2,
-  );
-  const highEv = [...markets]
-    .filter((m) => isEligible(m) && m.ev >= 0.1 && m.bookmakerOdd >= 2)
-    .sort(byEv)[0];
-
   const picks: EvPlusMarket[] = [];
-  for (const c of [away, over35, handicap, player, highEv]) {
-    if (!c) continue;
-    if (picks.some((p) => p.market === c.market || typeOf(p) === typeOf(c))) continue;
-    picks.push(c);
-    if (picks.length >= 2) break;
+
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) =>
+        typeOf(m) === 'MATCH_RESULT' &&
+        selectionOf(m) === 'fora' &&
+        m.bookmakerOdd >= 2.2,
+    ),
+  );
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) => typeOf(m) === 'OVER_UNDER' && /over\s*3\.5/i.test(m.market),
+    ),
+  );
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) => typeOf(m) === 'HANDICAP' && m.bookmakerOdd >= 1.7,
+    ),
+  );
+  pushUnique(
+    picks,
+    findBest(
+      markets,
+      (m) => typeOf(m) === 'PLAYER' && m.bookmakerOdd >= 2.0,
+    ),
+  );
+
+  if (picks.length === 0) {
+    const highEv = [...markets]
+      .filter((m) => isEligible(m) && m.ev >= 0.08 && m.bookmakerOdd >= 1.9)
+      .sort(byEv)
+      .slice(0, 2);
+    for (const m of highEv) pushUnique(picks, m);
   }
 
   return finish(
     profile,
     picks.map((m) => toLeg('agressivo', m)),
     picks.length > 1
-      ? 'Perfil agressivo (bilhete-agressivo.md): variância alta · stake máx. 0,5%. Correlação no mesmo jogo concentrada.'
-      : 'Uma perna agressiva — preferível como simples (doc recomenda WATCH na combinada se edge fino).',
+      ? 'Perfil agressivo: variância alta · stake máx. 0,5% (bilhete-agressivo.md).'
+      : 'Uma perna agressiva — preferível como simples se o edge for fino.',
     picks.length === 0
       ? 'Sem odd alta / zebra / Over 3.5 / props elegíveis neste jogo.'
       : undefined,
   );
 }
 
-/** Jogadores: top anytime scorers */
+/** Jogadores: anytime — inclui BET/WATCH e, se preciso, melhores PLAYER disponíveis */
 function buildJogadores(markets: EvPlusMarket[]): SuggestedTicket {
   const profile = PROFILES[3];
-  const players = markets
-    .filter((m) => typeOf(m) === 'PLAYER' && isEligible(m) && m.ev > 0)
+  let players = markets
+    .filter((m) => typeOf(m) === 'PLAYER' && isEligible(m))
     .sort(byEv)
     .slice(0, 2);
+
+  // Fallback: qualquer PLAYER com EV > 0 mesmo SKIP
+  if (players.length === 0) {
+    players = markets
+      .filter((m) => typeOf(m) === 'PLAYER' && m.ev > 0)
+      .sort(byEv)
+      .slice(0, 2);
+  }
+
+  // Fallback: top PLAYER por probabilidade
+  if (players.length === 0) {
+    players = markets
+      .filter((m) => typeOf(m) === 'PLAYER')
+      .sort((a, b) => b.probability - a.probability)
+      .slice(0, 2);
+  }
 
   return finish(
     profile,
     players.map((m) => toLeg('jogadores', m)),
     players.length > 1
-      ? 'Dois marcadores no mesmo jogo = correlação alta com Over gols. Preferir 1 prop ou jogos diferentes (bilhete-jogadores.md).'
+      ? 'Dois marcadores no mesmo jogo correlacionam com Over gols. Preferir 1 prop (bilhete-jogadores.md).'
       : players.length === 1
         ? 'Uma prop de marcador (simples).'
-        : 'Sem odds de marcador (PLAYER) analisadas neste jogo.',
+        : 'Sem odds de marcador neste jogo.',
     players.length === 0
-      ? 'Nenhuma odd de jogador/anytime importada ou elegível (BET/WATCH) neste jogo.'
+      ? 'Nenhuma odd de jogador (anytime) foi importada para este jogo. A sync de odds precisa trazer o mercado de marcadores.'
       : undefined,
   );
 }
@@ -380,4 +442,8 @@ export function stakeExampleReturn(combinedOdd: number, stake = 20): number {
   return Number((combinedOdd * stake).toFixed(2));
 }
 
-export { getMarketCategoryLabel };
+export function pernaLabel(count: number): string {
+  return count === 1 ? '1 perna' : `${count} pernas`;
+}
+
+export { getMarketCategoryLabel, formatMarketLabel };

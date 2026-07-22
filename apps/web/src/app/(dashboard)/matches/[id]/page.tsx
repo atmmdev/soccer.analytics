@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { AnalysisPanel } from '@/components/analysis/analysis-panel';
+import { TeamLogo } from '@/components/teams/team-logo';
 import { STATUS_LABELS, STATUS_VARIANT } from '@/types/match';
 import { use } from 'react';
 
@@ -91,7 +92,13 @@ export default function MatchDetailPage({
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-center gap-8 py-8">
-              <div className="text-center">
+              <div className="flex flex-col items-center gap-2 text-center">
+                <TeamLogo
+                  src={match.homeTeam.logoUrl}
+                  name={match.homeTeam.name}
+                  size={64}
+                  rounded="md"
+                />
                 <p className="text-lg font-semibold">{match.homeTeam.name}</p>
                 <p className="text-xs text-muted-foreground">{match.homeTeam.country}</p>
               </div>
@@ -104,7 +111,13 @@ export default function MatchDetailPage({
                   <p className="text-3xl font-bold text-muted-foreground">vs</p>
                 )}
               </div>
-              <div className="text-center">
+              <div className="flex flex-col items-center gap-2 text-center">
+                <TeamLogo
+                  src={match.awayTeam.logoUrl}
+                  name={match.awayTeam.name}
+                  size={64}
+                  rounded="md"
+                />
                 <p className="text-lg font-semibold">{match.awayTeam.name}</p>
                 <p className="text-xs text-muted-foreground">{match.awayTeam.country}</p>
               </div>
