@@ -155,7 +155,9 @@ export class SyncService implements OnModuleInit {
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'odds', result });
       const oddsDates = [syncDate, this.offsetDate(syncDate, 1)];
-      for (const date of oddsDates) {
+      for (let i = 0; i < oddsDates.length; i++) {
+        const date = oddsDates[i];
+        if (i > 0) await this.sleep(6500);
         try {
           const odds = await this.dataEngine.importOdds(date);
           (result.odds as unknown[]).push(odds);

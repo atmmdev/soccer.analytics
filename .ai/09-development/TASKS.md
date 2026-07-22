@@ -27,6 +27,7 @@
 - [x] Widget Match Analysis — botão Analisar Jogo + snapshot Poisson no dashboard
 - [x] Página Relatórios — performance banca, bilhetes, precisão análises + export JSON
 - [x] Sincronização automática diária (jogos, odds, stats, análises Poisson)
+- [x] Sync odds resiliente ao plano free (page≤3 + fallback por fixture + rate limit)
 - [x] Remoção de seed demo e mocks do dashboard
 - [x] Busca global no header (jogos, times, mercados EV+)
 - [x] LLM opcional no AI Engine (OpenAI — fallback template)

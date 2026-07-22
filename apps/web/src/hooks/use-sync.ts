@@ -12,6 +12,15 @@ export interface SyncStatus {
   result: Record<string, unknown> | null;
 }
 
+export interface SyncResultSummary {
+  fixturesUpdated: number;
+  oddsCreated: number;
+  matchesWithOdds: number;
+  analysesRun: number;
+  remainingWithoutOdds: number;
+  errors: string[];
+}
+
 export const SYNC_STEP_LABELS: Record<string, string> = {
   starting: 'Iniciando',
   fixtures: 'Importando jogos',
@@ -21,6 +30,59 @@ export const SYNC_STEP_LABELS: Record<string, string> = {
   players: 'Importando stats de jogadores',
   analysis: 'Rodando análises Poisson',
 };
+
+function asArray(value: unknown): unknown[] {
+  return Array.isArray(value) ? value : [];
+}
+
+function asRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === 'object' && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+
+export function summarizeSyncResult(
+  result: Record<string, unknown> | null | undefined,
+): SyncResultSummary | null {
+  if (!result) return null;
+
+  const fixtures = asArray(result.fixtures);
+  const odds = asArray(result.odds);
+  const fixtureErrors = asArray(result.fixtureErrors).map(String);
+  const oddsErrors = asArray(result.oddsErrors).map(String);
+
+  let fixturesUpdated = 0;
+  for (const item of fixtures) {
+    const row = asRecord(item);
+    if (!row) continue;
+    fixturesUpdated += Number(row.fixturesUpdated ?? 0) + Number(row.fixturesCreated ?? 0);
+  }
+
+  let oddsCreated = 0;
+  let matchesWithOdds = 0;
+  let remainingWithoutOdds = 0;
+  const oddsItemErrors: string[] = [];
+
+  for (const item of odds) {
+    const row = asRecord(item);
+    if (!row) continue;
+    oddsCreated += Number(row.oddsCreated ?? 0);
+    matchesWithOdds += Number(row.matchesProcessed ?? 0);
+    remainingWithoutOdds += Number(row.remainingWithoutOdds ?? 0);
+    for (const err of asArray(row.errors)) {
+      oddsItemErrors.push(String(err));
+    }
+  }
+
+  return {
+    fixturesUpdated,
+    oddsCreated,
+    matchesWithOdds,
+    analysesRun: Number(result.analysesRun ?? 0),
+    remainingWithoutOdds,
+    errors: [...fixtureErrors, ...oddsErrors, ...oddsItemErrors].slice(0, 5),
+  };
+}
 
 export function useSyncStatus() {
   return useQuery({

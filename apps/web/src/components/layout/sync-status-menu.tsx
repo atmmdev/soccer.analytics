@@ -13,7 +13,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { apiClient } from '@/lib/api/client';
-import { SYNC_STEP_LABELS, useSyncStatus, type SyncStatus } from '@/hooks/use-sync';
+import {
+  SYNC_STEP_LABELS,
+  summarizeSyncResult,
+  useSyncStatus,
+  type SyncStatus,
+} from '@/hooks/use-sync';
 import { cn } from '@/lib/utils';
 
 function statusLabel(status: SyncStatus['status']) {
@@ -67,6 +72,7 @@ export function SyncStatusMenu() {
 
   const status = sync?.status ?? 'idle';
   const isRunning = status === 'running' || forceSync.isPending;
+  const summary = summarizeSyncResult(sync?.result);
   const showAlert =
     status === 'failed' || status === 'skipped' || (status === 'running' && !isLoading);
 
@@ -124,6 +130,14 @@ export function SyncStatusMenu() {
               <p className="flex items-center gap-1.5 text-primary">
                 <Loader2 className="h-3 w-3 animate-spin" />
                 {SYNC_STEP_LABELS[sync.currentStep] ?? sync.currentStep}
+              </p>
+            )}
+            {summary && sync.status === 'completed' && (
+              <p>
+                {summary.matchesWithOdds} jogos com odds · {summary.analysesRun} análises
+                {summary.remainingWithoutOdds > 0
+                  ? ` · ${summary.remainingWithoutOdds} pendentes`
+                  : ''}
               </p>
             )}
           </div>

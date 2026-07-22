@@ -25,6 +25,8 @@ export interface ImportOddsResult {
   matchesProcessed: number;
   oddsCreated: number;
   skippedNoOdds: number;
+  remainingWithoutOdds: number;
+  rateLimited: boolean;
   errors: string[];
 }
 
@@ -52,11 +54,15 @@ export interface ImportPlayerStatsResult {
   errors: string[];
 }
 
-/** Plano free: 10 req/min — 5 jogos com pausa de 6,5s entre cada */
+/** Plano free: 10 req/min — pausa de 6,5s entre requests extras */
 const STATS_BATCH_LIMIT = 5;
 const PLAYERS_BATCH_LIMIT = 5;
-const ODDS_FIXTURE_BATCH_LIMIT = 8;
+const ODDS_FIXTURE_BATCH_LIMIT = 5;
 const STATS_REQUEST_DELAY_MS = 6500;
+
+function isRateLimitError(message: string): boolean {
+  return /rate limit|too many requests|limite de requisi/i.test(message);
+}
 
 @Injectable()
 export class DataEngineService {
@@ -124,20 +130,27 @@ export class DataEngineService {
       matchesProcessed: 0,
       oddsCreated: 0,
       skippedNoOdds: 0,
+      remainingWithoutOdds: 0,
+      rateLimited: false,
       errors: [],
     };
 
     const oddsByFixture = new Map<string, ImportedOdd[]>();
+    let bulkAttempted = false;
 
     try {
       const byDate = await provider.fetchOddsByDate(date);
+      bulkAttempted = true;
       for (const [fixtureId, odds] of byDate) {
         oddsByFixture.set(fixtureId, odds);
       }
     } catch (err) {
-      result.errors.push(
-        `Bulk por data: ${err instanceof Error ? err.message : 'Falha ao buscar odds'}`,
-      );
+      bulkAttempted = true;
+      const message = err instanceof Error ? err.message : 'Falha ao buscar odds';
+      result.errors.push(`Bulk por data: ${message}`);
+      if (isRateLimitError(message)) {
+        result.rateLimited = true;
+      }
     }
 
     const matches = await this.prisma.match.findMany({
@@ -146,30 +159,37 @@ export class DataEngineService {
         status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
         matchDate: { gte: start, lte: end },
       },
+      include: { _count: { select: { odds: true } } },
+      orderBy: { matchDate: 'asc' },
     });
 
-    const missing = matches.filter(
-      (m) => m.externalId && !oddsByFixture.has(m.externalId),
-    );
+    // Prioriza jogos sem odds no DB e sem cobertura no bulk
+    const missing = matches
+      .filter((m) => m.externalId && !oddsByFixture.has(m.externalId))
+      .sort((a, b) => a._count.odds - b._count.odds);
 
-    // Plano free: /odds?date= só entrega até 3 páginas — completa por fixture
-    for (let i = 0; i < missing.length && i < ODDS_FIXTURE_BATCH_LIMIT; i++) {
-      const match = missing[i];
-      if (!match.externalId) continue;
-      try {
-        if (i > 0) await this.sleep(STATS_REQUEST_DELAY_MS);
-        const odds = await provider.fetchOdds(match.externalId);
-        if (odds.length > 0) {
-          oddsByFixture.set(match.externalId, odds);
-        }
-      } catch (err) {
-        result.errors.push(
-          `Fixture ${match.externalId}: ${
-            err instanceof Error ? err.message : 'erro desconhecido'
-          }`,
-        );
-        if (err instanceof Error && /limite de requisições/i.test(err.message)) {
-          break;
+    if (!result.rateLimited && missing.length > 0) {
+      // Bulk já consumiu até 3 requests — espera antes do fallback por fixture
+      if (bulkAttempted) {
+        await this.sleep(STATS_REQUEST_DELAY_MS);
+      }
+
+      for (let i = 0; i < missing.length && i < ODDS_FIXTURE_BATCH_LIMIT; i++) {
+        const match = missing[i];
+        if (!match.externalId) continue;
+        try {
+          if (i > 0) await this.sleep(STATS_REQUEST_DELAY_MS);
+          const odds = await provider.fetchOdds(match.externalId);
+          if (odds.length > 0) {
+            oddsByFixture.set(match.externalId, odds);
+          }
+        } catch (err) {
+          const message = err instanceof Error ? err.message : 'erro desconhecido';
+          result.errors.push(`Fixture ${match.externalId}: ${message}`);
+          if (isRateLimitError(message)) {
+            result.rateLimited = true;
+            break;
+          }
         }
       }
     }
@@ -187,6 +207,7 @@ export class DataEngineService {
       result.errors.push(
         'Nenhuma odd retornada para esta data. Odds costumam aparecer 1–14 dias antes do jogo; tente outra data ou liga.',
       );
+      result.remainingWithoutOdds = matches.length;
       return result;
     }
 
@@ -211,6 +232,10 @@ export class DataEngineService {
         );
       }
     }
+
+    result.remainingWithoutOdds = matches.filter(
+      (m) => m.externalId && !oddsByFixture.has(m.externalId),
+    ).length;
 
     return result;
   }
