@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
-  ChevronLeft,
-  ChevronRight,
   Loader2,
   Play,
   Plus,
@@ -17,6 +15,10 @@ import { AppHeader } from "@/components/layout/app-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  ListPagination,
+  type PageSize,
+} from "@/components/ui/list-pagination";
 import {
   Select,
   SelectContent,
@@ -57,8 +59,6 @@ import { TeamLogo } from "@/components/teams/team-logo";
 type MarketFilter = "all" | "ev-plus" | "bet";
 
 const ALL_COMPETITIONS = "__all__";
-const PAGE_SIZE_OPTIONS = [15, 30, 50, 100] as const;
-type PageSize = (typeof PAGE_SIZE_OPTIONS)[number];
 
 interface MatchGroup {
   matchId: string;
@@ -692,55 +692,15 @@ export default function MarketsPage() {
                     </TableBody>
                   </Table>
 
-                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <p className="text-xs text-muted-foreground">
-                        Página {page} de {totalPages} · {tableTotal} mercados
-                      </p>
-                      <Select
-                        value={String(pageSize)}
-                        onValueChange={(v) =>
-                          setPageSize(Number(v) as PageSize)
-                        }
-                      >
-                        <SelectTrigger className="h-8 w-[60px] bg-secondary/30 text-xs">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {PAGE_SIZE_OPTIONS.map((size) => (
-                            <SelectItem
-                              key={size}
-                              value={String(size)}
-                              className="text-xs"
-                            >
-                              {size}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                        <span className="text-xs text-muted-foreground">
-                          Itens por página
-                        </span>
-                      </Select>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        disabled={page <= 1}
-                        onClick={() => setPage((p) => p - 1)}
-                      >
-                        <ChevronLeft className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        disabled={page >= totalPages}
-                        onClick={() => setPage((p) => p + 1)}
-                      >
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
+                  <ListPagination
+                    page={page}
+                    pageSize={pageSize}
+                    total={tableTotal}
+                    onPageChange={setPage}
+                    onPageSizeChange={setPageSize}
+                    itemLabel="mercados"
+                    className="mt-4"
+                  />
                 </>
               )}
             </CardContent>

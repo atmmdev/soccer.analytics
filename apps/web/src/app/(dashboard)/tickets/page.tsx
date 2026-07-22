@@ -14,23 +14,25 @@ export default function TicketsPage() {
       <AppHeader title="Bilhetes" subtitle="Monte bilhetes com EV · Estude apostas reais importadas da Bet365" />
 
       <div className="flex-1 space-y-6 p-6">
-        <div className="flex gap-3">
-        <Card className="border-border/60 bg-card/80 w-1/1">
-          <CardHeader>
-            <CardTitle className="text-base">
-              Histórico Bet365 (estudo)
-            </CardTitle>
-            <p className="text-xs text-muted-foreground">
-              Selecione ano ou intervalo de datas para carregar. Cada bilhete é
-              colapsável.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <StudyTicketsPanel />
-          </CardContent>
-        </Card>
+        <div className="flex w-full gap-4">
+          <Card className="min-w-0 w-[60%] border-border/60 bg-card/80">
+            <CardHeader>
+              <CardTitle className="text-base">
+                Histórico Bet365 (estudo)
+              </CardTitle>
+              <p className="text-xs text-muted-foreground">
+                Selecione ano ou intervalo de datas para carregar. Cada bilhete
+                é colapsável.
+              </p>
+            </CardHeader>
+            <CardContent>
+              <StudyTicketsPanel />
+            </CardContent>
+          </Card>
 
-        <TicketBuilder />
+          <div className="min-w-0 w-[40%]">
+            <TicketBuilder />
+          </div>
         </div>
 
         <Card className="border-border/60 bg-card/80">

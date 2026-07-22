@@ -91,7 +91,7 @@ export function TicketBuilder() {
   };
 
   return (
-    <Card className="border-border/60 bg-card/80">
+    <Card className="h-full w-full border-border/60 bg-card/80">
       <CardHeader>
         <CardTitle className="flex items-center justify-between gap-2 text-base">
           <div className="flex items-center gap-2">

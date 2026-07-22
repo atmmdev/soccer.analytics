@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Check,
   ChevronDown,
@@ -13,6 +13,10 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  ListPagination,
+  type PageSize,
+} from '@/components/ui/list-pagination';
 import {
   Select,
   SelectContent,
@@ -558,6 +562,8 @@ export function StudyTicketsPanel() {
   const [dateTo, setDateTo] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [expandAllTickets, setExpandAllTickets] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState<PageSize>(15);
 
   const availableYears = useMemo(() => {
     const set = new Set<number>();
@@ -598,6 +604,21 @@ export function StudyTicketsPanel() {
     [filtered],
   );
 
+  const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
+
+  useEffect(() => {
+    setPage(1);
+  }, [year, month, dateFrom, dateTo, statusFilter, pageSize, filtersReady]);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  const paged = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return sorted.slice(start, start + pageSize);
+  }, [sorted, page, pageSize]);
+
   const clearFilters = () => {
     setYear('');
     setMonth('all');
@@ -605,6 +626,7 @@ export function StudyTicketsPanel() {
     setDateTo('');
     setStatusFilter('all');
     setExpandAllTickets(false);
+    setPage(1);
   };
 
   if (isLoading) {
@@ -755,15 +777,25 @@ export function StudyTicketsPanel() {
           Nenhum bilhete neste filtro.
         </p>
       ) : (
-        <div className="space-y-2">
-          {sorted.map((ticket) => (
-            <StudyTicketCard
-              key={`${ticket.id}-${expandAllTickets ? 'open' : 'closed'}`}
-              ticket={ticket}
-              onEdit={setEditing}
-              defaultOpen={expandAllTickets}
-            />
-          ))}
+        <div className="space-y-3">
+          <div className="space-y-2">
+            {paged.map((ticket) => (
+              <StudyTicketCard
+                key={`${ticket.id}-${expandAllTickets ? 'open' : 'closed'}`}
+                ticket={ticket}
+                onEdit={setEditing}
+                defaultOpen={expandAllTickets}
+              />
+            ))}
+          </div>
+          <ListPagination
+            page={page}
+            pageSize={pageSize}
+            total={sorted.length}
+            onPageChange={setPage}
+            onPageSizeChange={setPageSize}
+            itemLabel="bilhetes"
+          />
         </div>
       )}
 
