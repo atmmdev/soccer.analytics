@@ -964,6 +964,8 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 # Chutes do Jogador
 
+> **Playbook de análise:** [analysis/player-shots.md](../analysis/player-shots.md)
+
 ## O que é
 
 Over/Under (ou Sim/Não) em **Chutes do Jogador** do jogador.

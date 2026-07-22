@@ -55,6 +55,7 @@ export interface ImportPlayerStatsResult {
 /** Plano free: 10 req/min — 5 jogos com pausa de 6,5s entre cada */
 const STATS_BATCH_LIMIT = 5;
 const PLAYERS_BATCH_LIMIT = 5;
+const ODDS_FIXTURE_BATCH_LIMIT = 8;
 const STATS_REQUEST_DELAY_MS = 6500;
 
 @Injectable()
@@ -114,6 +115,7 @@ export class DataEngineService {
   async importOdds(date: string): Promise<ImportOddsResult> {
     this.assertDate(date);
     const provider = this.getActiveProvider();
+    const { start, end } = this.getLocalDateRange(date);
 
     const result: ImportOddsResult = {
       provider: provider.name,
@@ -125,14 +127,60 @@ export class DataEngineService {
       errors: [],
     };
 
-    let oddsByFixture: Map<string, ImportedOdd[]>;
+    const oddsByFixture = new Map<string, ImportedOdd[]>();
+
     try {
-      oddsByFixture = await provider.fetchOddsByDate(date);
-      result.fixturesWithOdds = oddsByFixture.size;
+      const byDate = await provider.fetchOddsByDate(date);
+      for (const [fixtureId, odds] of byDate) {
+        oddsByFixture.set(fixtureId, odds);
+      }
     } catch (err) {
-      throw new BadRequestException(
-        err instanceof Error ? err.message : 'Falha ao buscar odds',
+      result.errors.push(
+        `Bulk por data: ${err instanceof Error ? err.message : 'Falha ao buscar odds'}`,
       );
+    }
+
+    const matches = await this.prisma.match.findMany({
+      where: {
+        externalId: { not: null },
+        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        matchDate: { gte: start, lte: end },
+      },
+    });
+
+    const missing = matches.filter(
+      (m) => m.externalId && !oddsByFixture.has(m.externalId),
+    );
+
+    // Plano free: /odds?date= só entrega até 3 páginas — completa por fixture
+    for (let i = 0; i < missing.length && i < ODDS_FIXTURE_BATCH_LIMIT; i++) {
+      const match = missing[i];
+      if (!match.externalId) continue;
+      try {
+        if (i > 0) await this.sleep(STATS_REQUEST_DELAY_MS);
+        const odds = await provider.fetchOdds(match.externalId);
+        if (odds.length > 0) {
+          oddsByFixture.set(match.externalId, odds);
+        }
+      } catch (err) {
+        result.errors.push(
+          `Fixture ${match.externalId}: ${
+            err instanceof Error ? err.message : 'erro desconhecido'
+          }`,
+        );
+        if (err instanceof Error && /limite de requisições/i.test(err.message)) {
+          break;
+        }
+      }
+    }
+
+    result.fixturesWithOdds = oddsByFixture.size;
+
+    if (oddsByFixture.size === 0 && matches.length === 0) {
+      result.errors.push(
+        'Nenhum jogo agendado nesta data e nenhuma odd retornada.',
+      );
+      return result;
     }
 
     if (oddsByFixture.size === 0) {
@@ -141,14 +189,6 @@ export class DataEngineService {
       );
       return result;
     }
-
-    const externalIds = [...oddsByFixture.keys()];
-    const matches = await this.prisma.match.findMany({
-      where: {
-        externalId: { in: externalIds },
-        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
-      },
-    });
 
     for (const match of matches) {
       if (!match.externalId) continue;

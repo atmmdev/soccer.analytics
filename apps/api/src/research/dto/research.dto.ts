@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsEnum,
   IsNumber,
   IsOptional,
@@ -48,6 +49,10 @@ export class StrategyFiltersDto {
   @IsNumber()
   @Min(1)
   flatStake: number;
+
+  @IsOptional()
+  @IsBoolean()
+  allowSynthetic?: boolean;
 }
 
 export class CreateStrategyDto {

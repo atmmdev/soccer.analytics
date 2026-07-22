@@ -40,6 +40,8 @@ Matriz Poisson reduzida → 1X2 intervalo
 
 # Resultado 1º Tempo
 
+> **Playbook de análise:** [analysis/ht-result.md](../analysis/ht-result.md)
+
 ## O que é
 
 Aposta **1X2** considerando **apenas o placar ao intervalo** (fim do 1º tempo + acréscimos do 1T).
@@ -207,6 +209,8 @@ Abandono no 2T → regras
 ---
 
 # Gols 1º Tempo Over/Under
+
+> **Playbook de análise:** [analysis/ht-over-under-goals.md](../analysis/ht-over-under-goals.md)
 
 ## O que é
 

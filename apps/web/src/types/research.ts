@@ -15,6 +15,7 @@ export interface StrategyFilters {
   maxOdd?: number;
   sampleSize: number;
   flatStake: number;
+  allowSynthetic?: boolean;
 }
 
 export interface SimulationResult {

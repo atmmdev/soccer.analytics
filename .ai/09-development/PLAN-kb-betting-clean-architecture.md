@@ -243,6 +243,5 @@ flowchart LR
 
 ## 8. Próxima ação imediata
 
-1. ~~Fase 0–1 + E1 + dedupe + playbooks iniciais.~~  
-2. ~~Fase 2 lote core + E2 engines/doc + prompt analyzer no AI Engine.~~  
-3. **Próximo:** playbooks HT/2T + props; unificar Score IA no engine; research synthetic off por default.
+1. ~~Fase 0–3 leve + Score IA + research sem sintético default.~~  
+2. **Próximo:** playbooks 2T / props avançadas / especiais; limiar BET por mercado no engine; prompt ticket-builder no runtime.

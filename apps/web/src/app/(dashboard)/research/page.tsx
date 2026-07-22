@@ -52,6 +52,7 @@ const DEFAULT_FILTERS: StrategyFilters = {
   competition: '',
   sampleSize: 100,
   flatStake: 10,
+  allowSynthetic: false,
 };
 
 function formatCurrency(value: number) {
@@ -66,6 +67,11 @@ function ResultsPanel({ result }: { result: SimulationResult }) {
           {result.dataSource === 'history' ? 'Histórico real' : 'Fallback sintético'}
         </Badge>
         <Badge variant="outline">{result.totalBets} apostas simuladas</Badge>
+        {result.dataSource === 'history' && result.totalBets < 10 && (
+          <Badge variant="outline" className="text-amber-400">
+            Amostra pequena — sincronize mais jogos ou ative sintético
+          </Badge>
+        )}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -220,7 +226,7 @@ export default function ResearchPage() {
     <div className="flex min-h-full flex-col">
       <AppHeader
         title="Research Lab"
-        subtitle="Valide hipóteses com jogos finalizados do banco (fallback sintético se pouco histórico)"
+        subtitle="Valide hipóteses com jogos finalizados do banco (sintético só se você permitir)"
       />
 
       <div className="flex-1 space-y-6 p-6">
@@ -301,6 +307,17 @@ export default function ResearchPage() {
                 />
               </div>
             </div>
+            <label className="flex items-center gap-2 text-xs text-muted-foreground">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded border-border"
+                checked={Boolean(filters.allowSynthetic)}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, allowSynthetic: e.target.checked }))
+                }
+              />
+              Permitir fallback sintético se histórico &lt; 10 apostas
+            </label>
             <Input
               value={description}
               onChange={(e) => setDescription(e.target.value)}

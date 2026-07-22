@@ -32,6 +32,8 @@ Sem histórico em `MatchPlayerPerformance` → **SKIP** (sem modelo).
 
 # Primeiro Marcador
 
+> **Playbook de análise:** [analysis/first-scorer.md](../analysis/first-scorer.md)
+
 ## O que é
 
 Aposta em qual jogador marca o **primeiro gol** da partida (tempo regulamentar). Se ninguém marca → geralmente **VOID** ou opção "Sem gol" dependendo da casa.

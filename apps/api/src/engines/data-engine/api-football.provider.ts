@@ -64,8 +64,10 @@ export class ApiFootballProvider implements DataProvider {
     const map = new Map<string, ImportedOdd[]>();
     let page = 1;
     let totalPages = 1;
+    // Plano free da API-Football: page máximo = 3
+    const maxPage = 3;
 
-    while (page <= totalPages) {
+    while (page <= totalPages && page <= maxPage) {
       const data = await this.request<{
         response: ApiOddsEntry[];
         paging?: { current: number; total: number };

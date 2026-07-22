@@ -572,6 +572,8 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 
 # Chance Dupla
 
+> **Playbook de análise:** [analysis/double-chance.md](../analysis/double-chance.md)
+
 ## O que é
 
 **1X**, **12** ou **X2** — duas de três vias cobertas.
@@ -673,6 +675,8 @@ Comparar com fair odd: `Fair = 1 / P_real` ([probabilidades.md](../ai/probabilid
 ---
 
 # Intervalo/Final
+
+> **Playbook de análise:** [analysis/ht-ft.md](../analysis/ht-ft.md)
 
 ## O que é
 

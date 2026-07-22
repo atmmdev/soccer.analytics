@@ -43,7 +43,18 @@ export default function SettingsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <RefreshCw className="h-5 w-5 text-primary" />
-              Sincronização automática
+              Sincronização automática 
+              <Button
+              onClick={() => forceSync.mutate()}
+              disabled={!isConfigured || forceSync.isPending || sync?.status === 'running'}
+            >
+              {forceSync.isPending || sync?.status === 'running' ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="mr-2 h-4 w-4" />
+              )}
+              Forçar sincronização agora
+            </Button>
             </CardTitle>
             <CardDescription>
               Ao abrir o sistema, jogos, odds, estatísticas e análises Poisson são atualizados
@@ -90,8 +101,7 @@ export default function SettingsPage() {
                 {sync.completedAt && (
                   <p className="text-xs text-muted-foreground">
                     Última sync:{' '}
-                    {new Date(sync.completedAt).toLocaleString('pt-BR')}
-                    {sync.syncDate ? ` · dia ${sync.syncDate}` : ''}
+                    {new Date(sync.completedAt).toLocaleString('pt-BR')}.
                   </p>
                 )}
                 {sync.message && (
@@ -100,17 +110,7 @@ export default function SettingsPage() {
               </div>
             ) : null}
 
-            <Button
-              onClick={() => forceSync.mutate()}
-              disabled={!isConfigured || forceSync.isPending || sync?.status === 'running'}
-            >
-              {forceSync.isPending || sync?.status === 'running' ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <RefreshCw className="mr-2 h-4 w-4" />
-              )}
-              Forçar sincronização agora
-            </Button>
+            
 
             <p className="text-xs text-muted-foreground">
               A sync roda ao iniciar a API e a cada acesso autenticado (máx. a cada 4h).

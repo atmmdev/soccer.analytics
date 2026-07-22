@@ -19,6 +19,8 @@ export interface StrategyFilters {
   maxOdd?: number;
   sampleSize: number;
   flatStake: number;
+  /** Se true, permite fallback sintético quando histórico < 10 apostas. Default: false */
+  allowSynthetic?: boolean;
 }
 
 export interface SimulatedBet {
@@ -229,7 +231,11 @@ export class SimulationEngineService {
     if (history.totalBets >= 10) {
       return history;
     }
-    return runSyntheticSimulation(filters);
+    if (filters.allowSynthetic === true) {
+      return runSyntheticSimulation(filters);
+    }
+    // Sem sintético por default: devolve o que houver do histórico real
+    return history;
   }
 
   private async simulateFromHistory(filters: StrategyFilters): Promise<SimulationResult> {

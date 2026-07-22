@@ -8,7 +8,8 @@ import { AnalysisService } from '../analysis/analysis.service';
 const SYNC_STATE_KEY = 'daily_sync';
 const RESYNC_INTERVAL_MS = 4 * 60 * 60 * 1000;
 const STATS_MAX_BATCHES_PER_DATE = 3;
-const FIXTURE_LOOKBACK_DAYS = 1;
+// Plano free API-Football: janela ~hoje..hoje+2 — lookback costuma falhar
+const FIXTURE_LOOKBACK_DAYS = 0;
 const FIXTURE_LOOKAHEAD_DAYS = 1;
 
 export type SyncStatusValue = 'idle' | 'running' | 'completed' | 'failed' | 'skipped';

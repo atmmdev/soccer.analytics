@@ -23,6 +23,8 @@ export interface MarketAnalysisResult {
   bookmakerOdd: number;
   ev: number;
   confidence: number;
+  /** Score IA 0–100 (docs/betting/ai/score.md) — usado na recomendação */
+  scoreIa: number;
   recommendation: Recommendation;
   playerModel?: boolean;
   /** false = mercado sem modelo; engine força SKIP (não usa 0.5 silencioso) */
@@ -144,17 +146,62 @@ export function calculateConfidence(
   dataCompleteness: number,
   consistency: number,
 ): number {
-  const sampleScore = Math.min(100, (sampleSize / 20) * 100);
-  const score =
-    sampleScore * 0.35 +
-    dataCompleteness * 0.35 +
-    consistency * 0.3;
-  return Math.round(Math.min(95, Math.max(40, score)));
+  // Compat: delega ao Score IA com pesos de docs/betting/ai/score.md
+  return calculateScoreIa({
+    sampleSize,
+    statsQuality: dataCompleteness,
+    modelSupported: true,
+    marketType: '1X2',
+    contextScore: consistency,
+  });
 }
 
-export function getRecommendation(ev: number, confidence: number): Recommendation {
-  if (ev > 0.05 && confidence >= 70) return 'BET';
-  if (ev >= 0 && confidence >= 50) return 'WATCH';
+/** Score IA 0–100 — SSOT de pesos em docs/betting/ai/score.md */
+export function calculateScoreIa(input: {
+  sampleSize: number;
+  statsQuality: number;
+  modelSupported: boolean;
+  marketType: string;
+  hasPlayerModel?: boolean;
+  contextScore?: number;
+}): number {
+  const W_dados = 0.25;
+  const W_amostra = 0.2;
+  const W_modelo = 0.25;
+  const W_mercado = 0.15;
+  const W_contexto = 0.15;
+
+  const S_dados = Math.min(100, Math.max(0, input.statsQuality));
+  const S_amostra = Math.min(100, (input.sampleSize / 20) * 100);
+
+  let S_modelo = 0;
+  if (input.modelSupported) {
+    const t = input.marketType.toUpperCase();
+    if (t === 'PLAYER') {
+      S_modelo = input.hasPlayerModel ? 85 : 25;
+    } else if (t === 'CORNERS' || t === 'CARDS' || t === 'HANDICAP') {
+      S_modelo = 78;
+    } else {
+      S_modelo = 90;
+    }
+  }
+
+  const S_mercado = 70;
+  const S_contexto = Math.min(100, Math.max(0, input.contextScore ?? 70));
+
+  const score =
+    W_dados * S_dados +
+    W_amostra * S_amostra +
+    W_modelo * S_modelo +
+    W_mercado * S_mercado +
+    W_contexto * S_contexto;
+
+  return Math.round(Math.min(100, Math.max(0, score)));
+}
+
+export function getRecommendation(ev: number, scoreIa: number): Recommendation {
+  if (ev > 0.05 && scoreIa >= 70) return 'BET';
+  if (ev >= 0 && scoreIa >= 55) return 'WATCH';
   return 'SKIP';
 }
 
@@ -261,34 +308,31 @@ function resolveProbability(
   return { probability: 0, modeled: false };
 }
 
-function marketConfidence(
-  baseConfidence: number,
-  probability: number,
-  marketType: string,
+function marketScoreIa(
+  period: number,
   statsQuality: number,
+  marketType: string,
+  modeled: boolean,
   playerContext?: Record<string, PlayerMarketContext>,
   selection?: string,
 ): number {
-  const edgeBoost = probability > 0.55 || probability < 0.45 ? 1.05 : 0.92;
-  const type = marketType.toUpperCase();
+  const hasPlayerModel =
+    marketType.toUpperCase() === 'PLAYER' &&
+    Boolean(selection && playerContext?.[selection]?.hasModel);
 
-  if (type === 'PLAYER') {
-    const hasModel = selection ? playerContext?.[selection]?.hasModel : false;
-    if (hasModel) return Math.round(baseConfidence * 0.72);
-    return Math.min(50, Math.round(baseConfidence * 0.55));
-  }
-
-  const advancedPenalty =
-    type === 'CORNERS' || type === 'CARDS' || type === 'HANDICAP'
-      ? statsQuality / 100
-      : 1;
-
-  return Math.round(baseConfidence * edgeBoost * advancedPenalty);
+  return calculateScoreIa({
+    sampleSize: period,
+    statsQuality,
+    modelSupported: modeled,
+    marketType,
+    hasPlayerModel,
+    contextScore: 70,
+  });
 }
 
 function getMarketRecommendation(
   ev: number,
-  confidence: number,
+  scoreIa: number,
   marketType: string,
   playerContext?: Record<string, PlayerMarketContext>,
   selection?: string,
@@ -297,7 +341,7 @@ function getMarketRecommendation(
     const hasModel = selection ? playerContext?.[selection]?.hasModel : false;
     if (!hasModel) return 'SKIP';
   }
-  return getRecommendation(ev, confidence);
+  return getRecommendation(ev, scoreIa);
 }
 
 export function runAnalysis(
@@ -324,7 +368,13 @@ export function runAnalysis(
   const btts = probabilityBtts(matrix);
   const predictedScore = mostLikelyScore(matrix);
 
-  const baseConfidence = calculateConfidence(period, statsQuality, 75);
+  const baseConfidence = calculateScoreIa({
+    sampleSize: period,
+    statsQuality,
+    modelSupported: true,
+    marketType: '1X2',
+    contextScore: 75,
+  });
 
   const probabilityMap: Record<string, number> = {
     Casa: result1x2.home,
@@ -355,6 +405,7 @@ export function runAnalysis(
         bookmakerOdd: odd.bookmakerOdd,
         ev: round(resolved.probability * odd.bookmakerOdd - 1),
         confidence: 0,
+        scoreIa: 0,
         recommendation: 'SKIP' as Recommendation,
         modelSupported: false,
         ...(odd.marketType.toUpperCase() === 'PLAYER'
@@ -366,11 +417,11 @@ export function runAnalysis(
     const probability = resolved.probability;
     const fairOdd = probability > 0 ? 1 / probability : 99;
     const ev = probability * odd.bookmakerOdd - 1;
-    const confidence = marketConfidence(
-      baseConfidence,
-      probability,
-      odd.marketType,
+    const scoreIa = marketScoreIa(
+      period,
       statsQuality,
+      odd.marketType,
+      true,
       playerContext,
       odd.selection,
     );
@@ -385,10 +436,11 @@ export function runAnalysis(
       fairOdd: round(fairOdd),
       bookmakerOdd: odd.bookmakerOdd,
       ev: round(ev),
-      confidence,
+      confidence: scoreIa,
+      scoreIa,
       recommendation: getMarketRecommendation(
         ev,
-        confidence,
+        scoreIa,
         odd.marketType,
         playerContext,
         odd.selection,
