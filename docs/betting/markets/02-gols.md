@@ -51,6 +51,8 @@ Player Engine → P(jogador marca / stat ≥ linha)
 
 # Over/Under Gols
 
+> **Playbook de análise:** [analysis/over-under-goals.md](../analysis/over-under-goals.md)
+
 ## O que é
 
 Total gols Over/Under linha principal (2.5).

@@ -16,10 +16,6 @@ import {
   History,
   Settings,
   LogOut,
-  HelpCircle,
-  Sun,
-  Moon,
-  Monitor,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth.store';
@@ -27,7 +23,6 @@ import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/brand/logo';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { Progress } from '@/components/ui/progress';
 import { useTicketDraftStore } from '@/stores/ticket-draft.store';
 
 const navigation = [
@@ -99,36 +94,11 @@ export function Sidebar() {
 
       <div className="space-y-3 p-4">
         <Separator />
-        <div className="rounded-lg border border-border bg-card p-3">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-medium text-foreground">Plano Pro</span>
-            <span className="text-muted-foreground">Admin</span>
-          </div>
-          <Progress value={100} className="mt-2 h-1.5" />
-          <p className="mt-1.5 truncate text-[10px] text-muted-foreground">
-            Acesso exclusivo · {user?.email}
+        <div className="px-1">
+          <p className="truncate text-xs text-muted-foreground">
+            {user?.email ?? 'Admin'}
           </p>
         </div>
-
-        <div className="flex items-center justify-center gap-1">
-          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
-            <Sun className="h-3.5 w-3.5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8 bg-secondary text-foreground">
-            <Moon className="h-3.5 w-3.5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
-            <Monitor className="h-3.5 w-3.5" />
-          </Button>
-        </div>
-
-        <Button
-          variant="ghost"
-          className="w-full justify-start gap-2 text-xs text-muted-foreground"
-        >
-          <HelpCircle className="h-3.5 w-3.5" />
-          Central de Ajuda
-        </Button>
 
         <Button
           variant="ghost"

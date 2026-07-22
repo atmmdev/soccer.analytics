@@ -145,6 +145,8 @@ Jogo cancelado antes dos 90 min → **VOID**
 
 # Chutes no Gol (SOT — Shots on Target)
 
+> **Playbook de análise:** [analysis/shots-on-target.md](../analysis/shots-on-target.md)
+
 ## O que é
 
 Over/Under no total de **finalizações no alvo** (forçariam gol se não fossem defendidas/bloqueadas na linha).

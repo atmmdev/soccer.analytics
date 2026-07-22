@@ -95,7 +95,7 @@ type JsonTicket = {
   rawLines?: string[];
 };
 
-async function persist(raw: JsonTicket) {
+async function persist(raw: JsonTicket): Promise<'ok' | 'skipped_duplicate_ref'> {
   if (!raw.sourceFile || !raw.placedAt) {
     throw new Error('JSON inválido: falta sourceFile ou placedAt');
   }
@@ -114,20 +114,37 @@ async function persist(raw: JsonTicket) {
     raw.cashOutValue ??
     null;
 
-  const existing = await prisma.studyTicket.findUnique({
+  const ref = raw.bet365Ref?.trim() || null;
+
+  const existingBySource = await prisma.studyTicket.findUnique({
     where: { sourceFile: raw.sourceFile },
   });
-  if (existing) {
-    await prisma.studyTicketLeg.deleteMany({ where: { ticketId: existing.id } });
-    await prisma.studyTicket.delete({ where: { id: existing.id } });
+
+  if (ref) {
+    const existingByRef = await prisma.studyTicket.findFirst({
+      where: { bet365Ref: ref },
+    });
+    if (
+      existingByRef &&
+      existingByRef.sourceFile !== raw.sourceFile &&
+      existingBySource?.id !== existingByRef.id
+    ) {
+      // Mesma aposta em outro path (ex.: cópia em outro mês) — não duplicar
+      return 'skipped_duplicate_ref';
+    }
+  }
+
+  if (existingBySource) {
+    await prisma.studyTicketLeg.deleteMany({ where: { ticketId: existingBySource.id } });
+    await prisma.studyTicket.delete({ where: { id: existingBySource.id } });
   }
 
   const legs = raw.legs ?? [];
 
-  return prisma.studyTicket.create({
+  await prisma.studyTicket.create({
     data: {
       sourceFile: raw.sourceFile,
-      bet365Ref: raw.bet365Ref ?? null,
+      bet365Ref: ref,
       placedAt: new Date(raw.placedAt),
       betType: raw.betType ?? null,
       betLabel: raw.betLabel ?? null,
@@ -164,6 +181,8 @@ async function persist(raw: JsonTicket) {
       },
     },
   });
+
+  return 'ok';
 }
 
 async function main() {
@@ -171,6 +190,7 @@ async function main() {
   console.log(`Importando ${files.length} JSONs → study_tickets`);
 
   let ok = 0;
+  let skippedDuplicateRef = 0;
   let failed = 0;
   const failures: { file: string; error: string }[] = [];
 
@@ -178,9 +198,14 @@ async function main() {
     const rel = relative(IMPORTED, file).replace(/\\/g, '/');
     try {
       const raw = JSON.parse(readFileSync(file, 'utf8')) as JsonTicket;
-      await persist(raw);
-      ok++;
-      if (ok % 50 === 0) console.log(`… ${ok}/${files.length}`);
+      const result = await persist(raw);
+      if (result === 'skipped_duplicate_ref') {
+        skippedDuplicateRef++;
+        console.log(`SKIP duplicate bet365Ref: ${rel}`);
+      } else {
+        ok++;
+        if (ok % 50 === 0) console.log(`… ${ok}/${files.length}`);
+      }
     } catch (e) {
       failed++;
       const msg = e instanceof Error ? e.message : String(e);
@@ -194,6 +219,7 @@ async function main() {
     importedAt: new Date().toISOString(),
     files: files.length,
     ok,
+    skippedDuplicateRef,
     failed,
     dbCount: total,
     failures,

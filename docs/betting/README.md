@@ -1,6 +1,6 @@
 # Betting — Documentação Oficial
 
-> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.3  
+> **Módulo:** Soccer Analytics · **Versão da documentação:** 1.4  
 > **Público-alvo:** analistas humanos, operadores de banca, engenheiros de produto e agentes de IA  
 > **Idioma:** Português (Brasil)
 
@@ -20,23 +20,44 @@ Esta não é documentação promocional de casa de apostas. O Soccer Analytics �
 
 ---
 
-## Organização da documentação
+## Organização da documentação (SSOT)
 
 ```
 docs/betting/
-├── README.md                 ← Você está aqui
-├── glossary.md               ← Termos e definições
-├── markets/                  ← Mercados por categoria (01–10)
-├── ai/                       ← Regras e métodos para agentes de IA
-├── strategies/               ← Playbooks operacionais (live, etc.)
-└── examples/                 ← Bilhetes modelo com justificativa analítica
+├── README.md
+├── knowledge/     ← glossário, regras gerais
+├── markets/       ← liquidação Green/Red/Void (SSOT)
+├── analysis/      ← playbooks de decisão BET/WATCH/SKIP (todos os mercados)
+├── ai/            ← score, EV, correlações, checklist
+├── strategy/      ← live, banca (futuro)
+├── examples/
+└── data/          ← bilhetes reais importados
+
+docs/prompts/          ← prompts de agentes
+docs/integrations/     ← API-Football, etc.
+.ai/                   ← arquitetura/engines (NÃO duplicar em docs/)
 ```
+
+| Camada | Fonte canônica | Não duplicar em |
+|--------|----------------|-----------------|
+| Arquitetura do produto | `.ai/` | `docs/architecture/` |
+| Glossário / regras gerais | `knowledge/` | `markets/` |
+| Liquidação por mercado | `markets/` | `analysis/`, `ai/` |
+| Como analisar / decidir | `analysis/` | `markets/` |
+| Score, EV, correlação | `ai/` | `analysis/` (só limiar/delta) |
+| Live / banca | `strategy/` | `ai/checklist` |
+| Prompts de agentes | `docs/prompts/` | misturados em markets |
+| APIs externas | `docs/integrations/` | catálogos manuais |
+
+Plano: [PLAN-kb-betting-clean-architecture.md](../../.ai/09-development/PLAN-kb-betting-clean-architecture.md)
 
 ### Mapa de navegação
 
 | Seção | Caminho | Conteúdo |
 |-------|---------|----------|
-| Glossário | [glossary.md](./glossary.md) | Definições de odd, stake, EV, xG, handicap, etc. |
+| Glossário | [knowledge/glossary.md](./knowledge/glossary.md) | Definições de odd, stake, EV, xG, handicap, etc. |
+| Regras gerais | [knowledge/rules.md](./knowledge/rules.md) | Princípios transversais de liquidação |
+| **Análise (playbooks)** | [analysis/](./analysis/) | Pipeline + template + SOT, defesas, O/U gols, … |
 | Resultados | [markets/01-resultados.md](./markets/01-resultados.md) | 1X2, dupla chance, handicap europeu, intervalo/final |
 | Gols | [markets/02-gols.md](./markets/02-gols.md) | Over/Under, BTTS, placar exato, primeiro gol |
 | Escanteios | [markets/03-escanteios.md](./markets/03-escanteios.md) | Totais, por time, asiáticos, intervalo |
@@ -57,8 +78,10 @@ docs/betting/
 | IA — Marcado de Atuação | [ai/marcado-de-atuacao.md](./ai/marcado-de-atuacao.md) | Gate 4/7 e odds operacionais |
 | IA — Apostila Camillo | [ai/apostila-camilojoga10.md](./ai/apostila-camilojoga10.md) | Base de conhecimento (guia Camillo Joga 10) |
 | Dados — Bilhetes reais | [data/bilhetes/](./data/bilhetes/) | PDFs Bet365 + JSON curados em `imported/` |
-| Estratégias Live | [strategies/live.md](./strategies/live.md) | Métodos in-play (Over HT, cantos) |
+| Estratégias Live | [strategy/live.md](./strategy/live.md) | Métodos in-play (Over HT, cantos) |
 | Exemplos | [examples/](./examples/) | Bilhetes conservador a agressivo — ver [examples/README.md](./examples/README.md) |
+| Prompts | [../prompts/](../prompts/) | Analyzer, ticket-builder, odds-evaluator, predictor |
+| Integrações | [../integrations/api-football.md](../integrations/api-football.md) | Contrato API-Football |
 
 ---
 
@@ -95,23 +118,26 @@ Os mercados de futebol são agrupados em **dez categorias funcionais**. Cada cat
 
 ### Para analistas humanos
 
-1. Leia o [glossário](./glossary.md) antes de operar mercados desconhecidos.
-2. Abra o arquivo da categoria desejada em `markets/`.
-3. Localize o mercado pelo título (`# Nome do Mercado`).
-4. Siga a seção **Checklist** antes de incluir a seleção em um bilhete.
-5. Consulte [ai/value-bet.md](./ai/value-bet.md) para validar se há valor esperado positivo.
-6. Use [examples/](./examples/) como referência de montagem e correlação.
+1. Leia o [glossário](./knowledge/glossary.md) antes de operar mercados desconhecidos.
+2. Abra o arquivo da categoria desejada em `markets/` (liquidação).
+3. Consulte o playbook em [`analysis/`](./analysis/) quando existir (decisão).
+4. Localize o mercado pelo título (`# Nome do Mercado`).
+5. Siga a seção **Checklist** antes de incluir a seleção em um bilhete.
+6. Use [ai/value-bet.md](./ai/value-bet.md) para validar se há valor esperado positivo.
+7. Use [examples/](./examples/) como referência de montagem e correlação.
 
 ### Para agentes de IA
 
 1. **Ingestão:** indexar todos os arquivos `.md` como knowledge base.
 2. **Pré-análise:** executar [ai/checklist.md](./ai/checklist.md) e [ai/marcado-de-atuacao.md](./ai/marcado-de-atuacao.md) (gate 4/7).
-3. **Contexto liga:** consultar [ai/ligas.md](./ai/ligas.md) para mercados compatíveis.
-4. **Modelagem:** aplicar fórmulas de [ai/probabilidades.md](./ai/probabilidades.md) e [ai/value-bet.md](./ai/value-bet.md).
-5. **Score:** calcular confiança com [ai/score.md](./ai/score.md).
-6. **Correlação:** validar bilhetes com [ai/correlacoes.md](./ai/correlacoes.md) antes de sugerir combinações.
-7. **Live (opcional):** regras em [strategies/live.md](./strategies/live.md).
-8. **Liquidação:** usar seções **Como a Bet365 contabiliza** para simular backtest.
+3. **Pipeline:** [analysis/_pipeline.md](./analysis/_pipeline.md) + playbook do mercado em `analysis/`.
+4. **Contexto liga:** consultar [ai/ligas.md](./ai/ligas.md) para mercados compatíveis.
+5. **Modelagem:** aplicar fórmulas de [ai/probabilidades.md](./ai/probabilidades.md) e [ai/value-bet.md](./ai/value-bet.md).
+6. **Score:** calcular confiança com [ai/score.md](./ai/score.md).
+7. **Correlação:** validar bilhetes com [ai/correlacoes.md](./ai/correlacoes.md) antes de sugerir combinações.
+8. **Live (opcional):** regras em [strategy/live.md](./strategy/live.md).
+9. **Liquidação:** usar seções **Como a Bet365 contabiliza** em `markets/` para simular backtest.
+10. **Prompts:** [docs/prompts/](../prompts/) para agentes.
 
 ### Fluxo recomendado de análise
 
@@ -196,9 +222,16 @@ Copie o **template oficial** abaixo e preencha todas as seções. Não omita Gre
 
 ### Passo 3 — Atualizar o glossário
 
-Novos termos devem ser adicionados em [glossary.md](./glossary.md) com definição, fórmula (se houver) e referência cruzada.
+Novos termos devem ser adicionados em [knowledge/glossary.md](./knowledge/glossary.md) com definição, fórmula (se houver) e referência cruzada.
 
-### Passo 4 — Integrar à IA
+### Passo 4 — Playbook de análise
+
+1. Copiar [analysis/_template.md](./analysis/_template.md).
+2. Preencher delta de dados, limiar de score e checklist.
+3. Indexar em [analysis/README.md](./analysis/README.md).
+4. **Não** copiar tabelas Green/Red — linkar `markets/`.
+
+### Passo 5 — Integrar à IA
 
 | Arquivo | Ação |
 |---------|------|
@@ -207,16 +240,17 @@ Novos termos devem ser adicionados em [glossary.md](./glossary.md) com definiç�
 | `ai/score.md` | Ajustar pesos se o mercado for volátil ou líquido |
 | `ai/checklist.md` | Incluir itens específicos do mercado |
 
-### Passo 5 — Integrar ao código (quando aplicável)
+### Passo 6 — Integrar ao código (quando aplicável)
 
 1. Adicionar `MarketType` em `schema.prisma` se for mercado modelado.
 2. Mapear odds em `api-football.provider.ts`.
 3. Implementar probabilidade em `analysis-engine.service.ts` ou `player-engine.service.ts`.
 4. Atualizar `.ai/09-development/TASKS.md`.
 
-### Passo 6 — Revisão
+### Passo 7 — Revisão
 
-- [ ] Todas as seções do template preenchidas
+- [ ] Todas as seções do template de mercado preenchidas
+- [ ] Playbook em `analysis/` (se for tipável)
 - [ ] Exemplos numéricos verificados
 - [ ] Links cruzados no README
 - [ ] Termos no glossário
@@ -275,8 +309,9 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 | Versão | Data | Alterações |
 |--------|------|------------|
+| **1.4** | jul/2026 | Reorganização SSOT: `knowledge/`, `analysis/`, `strategy/`; `docs/prompts/` + `docs/integrations/`; playbooks SOT, defesas, O/U gols; `analise.md` vira redirect |
 | **1.3** | jul/2026 | Completar lacunas: props (passes decisivos, cabeçadas, tiros de meta goleiro, duelos, recuperações); glossário Yield/Duelo/Recuperação; cadeias 34–60 em correlações; checklist motivação/sequência; remoção de `bilhete-medio.md` vazio |
-| **1.2** | jul/2026 | Integração playbook sports-trading: `ai/ligas.md`, `ai/marcado-de-atuacao.md`, `strategies/live.md`, exemplo Brasileirão 6 perfis, gate 4/7 no checklist |
+| **1.2** | jul/2026 | Integração playbook sports-trading: `ai/ligas.md`, `ai/marcado-de-atuacao.md`, `strategy/live.md`, exemplo Brasileirão 6 perfis, gate 4/7 no checklist |
 | **1.1** | jul/2026 | Revisão fina: exemplos concretos em 01/02/06, seções Bet365 por mercado (06), referências cruzadas em todos os arquivos `markets/`, correção de mercados genéricos em 02 (gol cabeça, fora da área, próximo gol) |
 | **1.0** | jul/2026 | Estrutura inicial: 10 categorias, glossário, ai/, examples/ |
 
@@ -299,4 +334,4 @@ Ao alterar regras ou adicionar mercados, incremente a versão no topo do README 
 
 ---
 
-*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.3*
+*Soccer Analytics — Betting Module Documentation · Última atualização: jul/2026 · v1.4*

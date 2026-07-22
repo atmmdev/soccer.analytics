@@ -8,7 +8,7 @@
 
 Mercados recortados por **período da partida**. O tempo regulamentar divide-se em 1º tempo (45 min + acréscimo 1T) e 2º tempo (45 min + acréscimo 2T). Modelagem usa **λ_HT ≈ λ_total × 0,43–0,46** e **λ_2T ≈ λ_total × 0,54–0,57** (ajustável por time).
 
-**Odds operacionais:** Over 0.5 HT 1,35–1,55 · combo HT+FT 1,90–2,20 — ver [marcado-de-atuacao.md](../ai/marcado-de-atuacao.md) e [strategies/live.md](../strategies/live.md).
+**Odds operacionais:** Over 0.5 HT 1,35–1,55 · combo HT+FT 1,90–2,20 — ver [marcado-de-atuacao.md](../ai/marcado-de-atuacao.md) e [strategy/live.md](../strategy/live.md).
 
 ### Mercados neste arquivo
 

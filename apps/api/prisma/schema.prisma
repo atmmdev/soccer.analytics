@@ -435,6 +435,7 @@ model StudyTicket {
 
   @@index([placedAt])
   @@index([status])
+  @@index([bet365Ref])
   @@map("study_tickets")
 }
 

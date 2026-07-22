@@ -26,18 +26,36 @@ function extractPdf(abs: string): string {
 }
 
 async function persist(parsed: ReturnType<typeof parseBet365PdfText>) {
-  const existing = await prisma.studyTicket.findUnique({
+  const ref = parsed.bet365Ref?.trim() || null;
+
+  const existingBySource = await prisma.studyTicket.findUnique({
     where: { sourceFile: parsed.sourceFile },
   });
-  if (existing) {
-    await prisma.studyTicketLeg.deleteMany({ where: { ticketId: existing.id } });
-    await prisma.studyTicket.delete({ where: { id: existing.id } });
+
+  if (ref) {
+    const existingByRef = await prisma.studyTicket.findFirst({
+      where: { bet365Ref: ref },
+    });
+    if (
+      existingByRef &&
+      existingByRef.sourceFile !== parsed.sourceFile &&
+      existingBySource?.id !== existingByRef.id
+    ) {
+      throw new Error(
+        `Duplicado bet365Ref=${ref} já importado como ${existingByRef.sourceFile}`,
+      );
+    }
+  }
+
+  if (existingBySource) {
+    await prisma.studyTicketLeg.deleteMany({ where: { ticketId: existingBySource.id } });
+    await prisma.studyTicket.delete({ where: { id: existingBySource.id } });
   }
 
   const ticket = await prisma.studyTicket.create({
     data: {
       sourceFile: parsed.sourceFile,
-      bet365Ref: parsed.bet365Ref,
+      bet365Ref: ref,
       placedAt: new Date(parsed.placedAt),
       betType: parsed.betType,
       betLabel: parsed.betLabel,

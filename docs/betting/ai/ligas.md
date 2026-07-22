@@ -36,7 +36,7 @@ Priorizar quando o mercado exige **ritmo e gols**:
 - Alemanha (Bundesliga)
 - Holanda (Eredivisie)
 - Suécia, Bélgica (ligas secundárias europeias)
-- Japão, Brasil Série B (contexto live — ver [strategies/live.md](../strategies/live.md))
+- Japão, Brasil Série B (contexto live — ver [strategy/live.md](../strategy/live.md))
 
 **Indicadores:** média gols > 2,5 (10j) · BTTS ≥ 70% · ≥ 10 finalizações/jogo.
 
@@ -94,5 +94,5 @@ Converter valores fixos em **% bankroll** conforme [value-bet.md](./value-bet.md
 
 - [marcado-de-atuacao.md](./marcado-de-atuacao.md) — critérios 4/7 por mercado
 - [correlacoes.md](./correlacoes.md) — combinações fortes
-- [strategies/live.md](../strategies/live.md) — entrada in-play
+- [strategy/live.md](../strategy/live.md) — entrada in-play
 - [indicadores.md](./indicadores.md) — xG, PPDA, shots

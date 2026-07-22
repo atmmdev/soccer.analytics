@@ -2548,4 +2548,4 @@ Lateral ofensivo em monólogo; jogo de posse sem transição.
 - [07-marcadores.md](./07-marcadores.md) — gols e anytime scorer
 - [05-chutes.md](./05-chutes.md) — chutes e SOT
 - [04-cartoes-faltas.md](./04-cartoes-faltas.md) — cartões e faltas por jogador
-- [glossary.md](../glossary.md) — duelo, recuperação, key pass
+- [glossary.md](../knowledge/glossary.md) — duelo, recuperação, key pass

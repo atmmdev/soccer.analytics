@@ -18,22 +18,22 @@ bilhetes/
 | Mês | JSONs |
 |-----|------:|
 | 2025 | 2 |
-| 2026/janeiro | 16 |
+| 2026/janeiro | 14 |
 | 2026/fevereiro | 52 |
 | 2026/março | 33 |
 | 2026/abril | 160 |
 | 2026/maio | 61 |
 | 2026/junho | 85 |
 | 2026/julho | 41 |
-| **Total** | **450** |
+| **Total** | **448** |
 
-Relatório completo: [`imported/_export-report.json`](./imported/_export-report.json)
+Relatório completo: [`imported/_export-report.json`](./imported/_export-report.json) (pode estar desatualizado até novo export).
 
 ## Atenção antes de deletar PDFs
 
-- **~173 bilhetes** com `oddSuspect` (odd ~1,00 ou ausente) — revise/edite na UI ou no JSON.
-- **~172** com warnings do parser.
+- Bilhetes com odd ~1,00 ou ausente — revise/edite na UI ou no JSON.
 - O bilhete `2026/junho/01062026-101347hs.json` está **curado manualmente** (`_curated: true`).
+- Import com **dedupe por `bet365Ref`** (evita cópias do mesmo bilhete em pastas diferentes).
 
 ## Regenerar + limpar banco + reimportar
 
@@ -49,7 +49,7 @@ pnpm db:reimport-tickets
 Parser atual: **v2** (Criar Aposta + múltiplas clássicas).  
 Relatórios: `_export-report.json`, `_import-report.json`.
 
-**Status:** 450 no banco após reimport (sem duplicatas — clean antes do import).  
+**Status:** 448 no banco (após remoção de duplicatas 2025 em janeiro).  
 Bilhetes com odd ~1,00 no PDF ainda precisam edição manual na UI.
 
 ## Campos do JSON

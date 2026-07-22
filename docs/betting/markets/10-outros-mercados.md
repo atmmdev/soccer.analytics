@@ -179,6 +179,8 @@ Cancelado → **VOID**
 
 # Total Defesas do Goleiro
 
+> **Playbook de análise:** [analysis/goalkeeper-saves.md](../analysis/goalkeeper-saves.md)
+
 ## O que é
 
 Over/Under em **defesas (saves)** do goleiro — uma ou ambas equipes.

@@ -248,6 +248,6 @@ Ajustar λ_casa, λ_fora manualmente ou via delta xG:
 ## Referências
 
 - [checklist.md](./checklist.md)
-- [glossary.md](../glossary.md) — Yield, duelo, recuperação
+- [glossary.md](../knowledge/glossary.md) — Yield, duelo, recuperação
 - Statistics Engine: `apps/api/src/engines/statistics-engine/`
 - Player props: [markets/06-estatisticas-jogador.md](../markets/06-estatisticas-jogador.md)

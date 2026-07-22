@@ -188,4 +188,4 @@ Odd_combinada = Π Odd_i
 
 - [probabilidades.md](./probabilidades.md)
 - [score.md](./score.md)
-- [glossary.md](../glossary.md)
+- [glossary.md](../knowledge/glossary.md)

@@ -44,6 +44,18 @@
 - [ ] Export PDF nos Relatórios
 - [ ] Notificações push / e-mail para alertas EV+
 
+### Plano ativo — KB Betting + Clean Architecture
+
+Ver [PLAN-kb-betting-clean-architecture.md](./PLAN-kb-betting-clean-architecture.md):
+
+- [x] Fase 0–1: esqueleto KB (`knowledge/`, `analysis/`, `strategy/`, prompts, integrations)
+- [x] Playbooks iniciais: O/U gols, SOT, defesas GK
+- [x] E1: sidebar sem UI morta
+- [x] Dedupe import por `bet365Ref`
+- [ ] Fase 2: extrair playbooks restantes dos `markets/`
+- [ ] E2: engines fantasma / DRY shared
+- [ ] Fase 3: prompts conectados aos agentes no código
+
 ```bash
 pnpm start
 ```

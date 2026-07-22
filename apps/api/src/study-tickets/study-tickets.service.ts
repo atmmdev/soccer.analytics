@@ -177,9 +177,26 @@ export class StudyTicketsService {
   }
 
   async persistParsed(parsed: ParsedStudyTicket, replaceId?: string) {
+    const ref = parsed.bet365Ref?.trim() || null;
+
+    if (ref) {
+      const existingByRef = await this.prisma.studyTicket.findFirst({
+        where: { bet365Ref: ref },
+      });
+      if (
+        existingByRef &&
+        existingByRef.id !== replaceId &&
+        existingByRef.sourceFile !== parsed.sourceFile
+      ) {
+        throw new BadRequestException(
+          `Duplicado bet365Ref=${ref} já importado como ${existingByRef.sourceFile} (id=${existingByRef.id}).`,
+        );
+      }
+    }
+
     const data = {
       sourceFile: parsed.sourceFile,
-      bet365Ref: parsed.bet365Ref,
+      bet365Ref: ref,
       placedAt: new Date(parsed.placedAt),
       betType: parsed.betType,
       betLabel: parsed.betLabel,
