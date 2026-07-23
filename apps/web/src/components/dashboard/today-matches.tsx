@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 import {
   ListPagination,
   DEFAULT_PAGE_SIZE,
   type PageSize,
-} from '@/components/ui/list-pagination';
-import type { TodayMatch } from '@/types/dashboard';
+} from "@/components/ui/list-pagination";
+import type { TodayMatch } from "@/types/dashboard";
 
-const tabs = ['Todos', 'Ao Vivo', 'Hoje', 'Amanhã'] as const;
+const tabs = ["Todos", "Ao Vivo", "Hoje", "Amanhã"] as const;
 type Tab = (typeof tabs)[number];
-const ALL_COMPETITIONS_VALUE = '__all_competitions__';
+const ALL_COMPETITIONS_VALUE = "__all_competitions__";
 
 interface TodayMatchesProps {
   matches: TodayMatch[];
@@ -34,29 +34,41 @@ interface CompetitionOption {
 
 function filterByTab(matches: TodayMatch[], tab: Tab): TodayMatch[] {
   switch (tab) {
-    case 'Ao Vivo':
-      return matches.filter((m) => m.status === 'live');
-    case 'Hoje':
+    case "Ao Vivo":
+      return matches.filter((m) => m.status === "live");
+    case "Hoje":
       return matches.filter(
-        (m) => m.day === 'today' && (m.status === 'scheduled' || m.status === 'live'),
+        (m) =>
+          m.day === "today" &&
+          (m.status === "scheduled" || m.status === "live"),
       );
-    case 'Amanhã':
-      return matches.filter((m) => m.day === 'tomorrow' && m.status === 'scheduled');
-    case 'Todos':
+    case "Amanhã":
+      return matches.filter(
+        (m) => m.day === "tomorrow" && m.status === "scheduled",
+      );
+    case "Todos":
     default:
       return matches.filter(
         (m) =>
-          m.status === 'live' ||
-          (m.day === 'today' && m.status === 'scheduled') ||
-          (m.day === 'tomorrow' && m.status === 'scheduled'),
+          m.status === "live" ||
+          (m.day === "today" && m.status === "scheduled") ||
+          (m.day === "tomorrow" && m.status === "scheduled"),
       );
   }
 }
 
-function MatchList({ matches, emptyLabel }: { matches: TodayMatch[]; emptyLabel: string }) {
+function MatchList({
+  matches,
+  emptyLabel,
+}: {
+  matches: TodayMatch[];
+  emptyLabel: string;
+}) {
   if (matches.length === 0) {
     return (
-      <p className="py-6 text-center text-sm text-muted-foreground">{emptyLabel}</p>
+      <p className="py-6 text-center text-sm text-muted-foreground">
+        {emptyLabel}
+      </p>
     );
   }
 
@@ -73,30 +85,39 @@ function MatchList({ matches, emptyLabel }: { matches: TodayMatch[]; emptyLabel:
           </span>
           <div className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-2">
             <div className="flex min-w-0 items-center gap-2">
-              <span className="truncate text-sm font-medium">{match.homeTeam}</span>
+              <span className="truncate text-sm font-medium">
+                {match.homeTeam}
+              </span>
               <span className="text-xs text-muted-foreground">vs</span>
-              <span className="truncate text-sm font-medium">{match.awayTeam}</span>
+              <span className="truncate text-sm font-medium">
+                {match.awayTeam}
+              </span>
             </div>
-            <span className="truncate text-[10px] text-muted-foreground sm:ml-auto">
-              {match.competition}
+            <span className="text-[9px] text-muted-foreground sm:ml-auto flex flex-col">
+              <div>{match.competition}</div>
+              <div className="text-right">
+                {match.status === "live" ? (
+                  <Badge variant="destructive" className="text-[9px]">
+                    LIVE
+                  </Badge>
+                ) : (
+                  <Badge variant="success" className="text-[9px]">
+                    {match.score > 0 ? `${match.score} %` : "—"}
+                  </Badge>
+                )}
+              </div>
             </span>
           </div>
-          {match.status === 'live' ? (
-            <Badge variant="destructive" className="shrink-0 text-[10px]">
-              LIVE
-            </Badge>
-          ) : (
-            <Badge variant="success" className="shrink-0 font-mono">
-              {match.score > 0 ? `${match.score}%` : '—'}
-            </Badge>
-          )}
         </Link>
       ))}
     </div>
   );
 }
 
-function filterByCompetition(matches: TodayMatch[], competition: string): TodayMatch[] {
+function filterByCompetition(
+  matches: TodayMatch[],
+  competition: string,
+): TodayMatch[] {
   if (competition === ALL_COMPETITIONS_VALUE) return matches;
   return matches.filter((m) => m.competition === competition);
 }
@@ -110,24 +131,26 @@ function buildCompetitionOptions(matches: TodayMatch[]): CompetitionOption[] {
 
   return [...counts.entries()]
     .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
 }
 
 const emptyLabels: Record<Tab, string> = {
-  Todos: 'Aguardando sincronização ou nenhum jogo importado para hoje/amanhã.',
-  'Ao Vivo': 'Nenhum jogo ao vivo no momento.',
-  Hoje: 'Nenhum jogo importado para hoje — aguarde a sincronização automática.',
-  Amanhã: 'Nenhum jogo importado para amanhã.',
+  Todos: "Aguardando sincronização ou nenhum jogo importado para hoje/amanhã.",
+  "Ao Vivo": "Nenhum jogo ao vivo no momento.",
+  Hoje: "Nenhum jogo importado para hoje — aguarde a sincronização automática.",
+  Amanhã: "Nenhum jogo importado para amanhã.",
 };
 
 export function TodayMatches({ matches }: TodayMatchesProps) {
-  const [selectedCompetition, setSelectedCompetition] = useState(ALL_COMPETITIONS_VALUE);
-  const [activeTab, setActiveTab] = useState<Tab>('Hoje');
+  const [selectedCompetition, setSelectedCompetition] = useState(
+    ALL_COMPETITIONS_VALUE,
+  );
+  const [activeTab, setActiveTab] = useState<Tab>("Hoje");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
 
   const competitionOptions = useMemo(
-    () => buildCompetitionOptions(filterByTab(matches, 'Todos')),
+    () => buildCompetitionOptions(filterByTab(matches, "Todos")),
     [matches],
   );
 
@@ -177,12 +200,17 @@ export function TodayMatches({ matches }: TodayMatchesProps) {
         <div className="flex items-center justify-between gap-3">
           <CardTitle className="text-base">Jogos do Dia</CardTitle>
           <div className="w-[200px]">
-            <Select value={selectedCompetition} onValueChange={setSelectedCompetition}>
+            <Select
+              value={selectedCompetition}
+              onValueChange={setSelectedCompetition}
+            >
               <SelectTrigger className="h-8 bg-secondary/20 text-xs">
                 <SelectValue placeholder="Campeonato" />
               </SelectTrigger>
               <SelectContent align="end">
-                <SelectItem value={ALL_COMPETITIONS_VALUE}>Todos campeonatos</SelectItem>
+                <SelectItem value={ALL_COMPETITIONS_VALUE}>
+                  Todos campeonatos
+                </SelectItem>
                 {competitionOptions.map((competition) => (
                   <SelectItem key={competition.name} value={competition.name}>
                     {competition.name} ({competition.count})
