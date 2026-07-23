@@ -44,7 +44,7 @@ export function ListPagination({
     >
       <div className="flex flex-wrap items-center gap-3">
         <p className="text-xs text-muted-foreground">
-          Página {page} de {totalPages} · {total} {itemLabel}
+          {page} de {totalPages}
         </p>
         <div className="flex items-center gap-2">
           <Select

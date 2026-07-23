@@ -1,8 +1,14 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  DEFAULT_PAGE_SIZE,
+  ListPagination,
+  type PageSize,
+} from '@/components/ui/list-pagination';
 import { useMatchAnalysis } from '@/hooks/use-analyzer';
 import { cn } from '@/lib/utils';
 
@@ -23,6 +29,37 @@ export function MatchH2HPanel({
   className,
 }: MatchH2HPanelProps) {
   const { data, isLoading, isError } = useMatchAnalysis(matchId, period, 'h2h');
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(1);
+  }, [matchId, pageSize]);
+
+  const meetings = useMemo(() => {
+    if (!data?.h2h) return [];
+    const { h2h } = data;
+    if (h2h.meetings?.length) return h2h.meetings;
+    return h2h.lastMeetings.map((score) => ({
+      date: '',
+      score,
+      scoreAsPlayed: score,
+      homeName: homeTeamName,
+      awayName: awayTeamName,
+      competition: null as string | null,
+    }));
+  }, [data, homeTeamName, awayTeamName]);
+
+  const totalPages = Math.max(1, Math.ceil(meetings.length / pageSize));
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  const paginatedMeetings = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return meetings.slice(start, start + pageSize);
+  }, [meetings, page, pageSize]);
 
   if (isLoading) {
     return (
@@ -61,16 +98,6 @@ export function MatchH2HPanel({
   }
 
   const { h2h } = data;
-  const meetings = h2h.meetings?.length
-    ? h2h.meetings
-    : h2h.lastMeetings.map((score) => ({
-        date: '',
-        score,
-        scoreAsPlayed: score,
-        homeName: homeTeamName,
-        awayName: awayTeamName,
-        competition: null as string | null,
-      }));
 
   return (
     <Card
@@ -108,7 +135,7 @@ export function MatchH2HPanel({
             Placares
           </p>
           <div className="min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1">
-            {meetings.map((m, idx) => {
+            {paginatedMeetings.map((m, idx) => {
               const dateLabel = m.date
                 ? new Date(m.date).toLocaleDateString('pt-BR', {
                     day: '2-digit',
@@ -140,6 +167,15 @@ export function MatchH2HPanel({
               );
             })}
           </div>
+          <ListPagination
+            page={page}
+            pageSize={pageSize}
+            total={meetings.length}
+            onPageChange={setPage}
+            onPageSizeChange={setPageSize}
+            itemLabel="confrontos"
+            className="shrink-0 pt-1"
+          />
         </div>
       </CardContent>
     </Card>
