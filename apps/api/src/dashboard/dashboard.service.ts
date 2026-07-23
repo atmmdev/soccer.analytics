@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { MatchStatus, TicketStatus } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { BankrollService } from '../bankroll/bankroll.service';
 import { AnalysisService } from '../analysis/analysis.service';
 import { AnalyzerService } from '../analyzer/analyzer.service';
+import {
+  matchAllowlistFilter,
+  readSyncLeagueIds,
+} from '../sync/sync-config';
 
 @Injectable()
 export class DashboardService {
@@ -12,7 +17,12 @@ export class DashboardService {
     private bankroll: BankrollService,
     private analysis: AnalysisService,
     private analyzer: AnalyzerService,
+    private config: ConfigService,
   ) {}
+
+  private leagueIds() {
+    return readSyncLeagueIds(this.config.get<string>('SYNC_LEAGUE_IDS'));
+  }
 
   async getDashboard() {
     const [
@@ -155,12 +165,15 @@ export class DashboardService {
 
     // Busca hoje e amanhã em paralelo — evita que finalizados de hoje
     // consumam o take:N e escondam os jogos de amanhã.
+    const allowlist = matchAllowlistFilter(this.leagueIds());
+
     const [todayMatches, tomorrowMatches] = await Promise.all([
       this.prisma.match.findMany({
         where: {
           externalId: { not: null },
           matchDate: { gte: todayStart, lte: todayEnd },
           status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+          ...allowlist,
         },
         include: { homeTeam: true, awayTeam: true, competition: true },
         orderBy: { matchDate: 'asc' },
@@ -171,6 +184,7 @@ export class DashboardService {
           externalId: { not: null },
           matchDate: { gte: tomorrowStart, lte: tomorrowEnd },
           status: MatchStatus.SCHEDULED,
+          ...allowlist,
         },
         include: { homeTeam: true, awayTeam: true, competition: true },
         orderBy: { matchDate: 'asc' },

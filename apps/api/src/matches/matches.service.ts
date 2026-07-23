@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Prisma, MatchStatus } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { MatchQueryDto } from './dto/match-query.dto';
+import {
+  matchAllowlistFilter,
+  readSyncLeagueIds,
+} from '../sync/sync-config';
 
 const matchInclude = {
   homeTeam: true,
@@ -13,7 +18,14 @@ const matchInclude = {
 
 @Injectable()
 export class MatchesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private config: ConfigService,
+  ) {}
+
+  private leagueIds() {
+    return readSyncLeagueIds(this.config.get<string>('SYNC_LEAGUE_IDS'));
+  }
 
   async findAll(query: MatchQueryDto) {
     const page = query.page ?? 1;
@@ -22,6 +34,7 @@ export class MatchesService {
 
     const where: Prisma.MatchWhereInput = {
       externalId: { not: null },
+      ...matchAllowlistFilter(this.leagueIds()),
     };
 
     if (query.status) {
@@ -95,6 +108,7 @@ export class MatchesService {
   async getCompetitions() {
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
+    const leagueIds = this.leagueIds();
 
     const upcomingMatchFilter: Prisma.MatchWhereInput = {
       externalId: { not: null },
@@ -103,6 +117,7 @@ export class MatchesService {
 
     return this.prisma.competition.findMany({
       where: {
+        externalId: { in: leagueIds },
         matches: { some: upcomingMatchFilter },
       },
       orderBy: { name: 'asc' },
@@ -127,6 +142,7 @@ export class MatchesService {
       where: {
         matchDate: { gte: start, lte: end },
         status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        ...matchAllowlistFilter(this.leagueIds()),
       },
     });
   }

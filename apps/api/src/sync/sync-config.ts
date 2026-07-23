@@ -5,6 +5,7 @@
  * - Fixtures/odds: hoje → +7
  * - Stats/players: finalizados nos últimos 3 dias
  * - Ligas: 1ª+2ª dos 8 países + copas EN + Champions + Libertadores
+ *   + Brasil: Copa do Brasil, Copa do Nordeste, Supercopa e regionais (1ª)
  *
  * Override: SYNC_LEAGUE_IDS=39,40,...
  */
@@ -13,14 +14,46 @@ export const SYNC_STATS_LOOKBACK_DAYS = 3;
 
 /**
  * Allowlist padrão:
- * BR 71/72 · EN 39/40 + FA Cup 45 + EFL Cup 48
+ * BR 71/72 + Copa do Brasil/Nordeste/Supercopa + regionais A1
+ * EN 39/40 + FA Cup 45 + EFL Cup 48
  * FR 61/62 · DE 78/79 · IT 135/136 · NL 88/89 · PT 94/95 · ES 140/141
  * + Champions 2 · Libertadores 13
  */
 export const DEFAULT_SYNC_LEAGUE_IDS = [
-  // Brasil
-  '71',
-  '72',
+  // Brasil — nacionais
+  '71', // Serie A
+  '72', // Serie B
+  '73', // Copa Do Brasil
+  '612', // Copa do Nordeste
+  '632', // Supercopa do Brasil
+  // Brasil — regionais (1ª divisão estadual)
+  '475', // Paulista - A1
+  '624', // Carioca - 1
+  '629', // Mineiro - 1
+  '477', // Gaúcho - 1
+  '602', // Baiano - 1
+  '606', // Paranaense - 1
+  '604', // Catarinense - 1
+  '628', // Goiano - 1
+  '622', // Pernambucano - 1
+  '609', // Cearense - 1
+  '610', // Brasiliense
+  '77', // Alagoano
+  '626', // Sergipano
+  '627', // Paraense
+  '603', // Paraibano
+  '616', // Potiguar
+  '608', // Maranhense
+  '621', // Piauiense
+  '611', // Capixaba
+  '520', // Acreano
+  '522', // Amazonense
+  '630', // Matogrossense
+  '623', // Sul-Matogrossense
+  '631', // Tocantinense
+  '615', // Rondoniense
+  '607', // Roraimense
+  '521', // Amapaense
   // Inglaterra
   '39',
   '40',
@@ -52,6 +85,36 @@ export const DEFAULT_SYNC_LEAGUE_IDS = [
 export const SYNC_LEAGUE_LABELS: Record<string, string> = {
   '71': 'Brasileirão Série A',
   '72': 'Brasileirão Série B',
+  '73': 'Copa do Brasil',
+  '612': 'Copa do Nordeste',
+  '632': 'Supercopa do Brasil',
+  '475': 'Paulista A1',
+  '624': 'Carioca - 1',
+  '629': 'Mineiro - 1',
+  '477': 'Gaúcho - 1',
+  '602': 'Baiano - 1',
+  '606': 'Paranaense - 1',
+  '604': 'Catarinense - 1',
+  '628': 'Goiano - 1',
+  '622': 'Pernambucano - 1',
+  '609': 'Cearense - 1',
+  '610': 'Brasiliense',
+  '77': 'Alagoano',
+  '626': 'Sergipano',
+  '627': 'Paraense',
+  '603': 'Paraibano',
+  '616': 'Potiguar',
+  '608': 'Maranhense',
+  '621': 'Piauiense',
+  '611': 'Capixaba',
+  '520': 'Acreano',
+  '522': 'Amazonense',
+  '630': 'Matogrossense',
+  '623': 'Sul-Matogrossense',
+  '631': 'Tocantinense',
+  '615': 'Rondoniense',
+  '607': 'Roraimense',
+  '521': 'Amapaense',
   '39': 'Premier League',
   '40': 'Championship',
   '45': 'FA Cup',
@@ -83,6 +146,13 @@ export function readSyncLeagueIds(
     .map((s) => s.trim())
     .filter(Boolean);
   return ids.length ? ids : [...DEFAULT_SYNC_LEAGUE_IDS];
+}
+
+/** Prisma filter: matches whose competition.externalId is in the allowlist. */
+export function matchAllowlistFilter(leagueIds: string[]) {
+  return {
+    competition: { externalId: { in: leagueIds } },
+  };
 }
 
 export function buildDateWindow(
