@@ -200,22 +200,21 @@ export function TicketBuilderWidget({
                     <p className="truncate text-sm font-medium">
                       {sel.matchLabel}
                     </p>
-                    {(sel.competition || marketLabel || choiceLabel) && (
+                    {sel.competition ? (
                       <p className="truncate text-xs text-muted-foreground">
-                        {sel.competition ? (
-                          <span>{sel.competition}</span>
-                        ) : null}
-                        {sel.competition && marketLabel ? (
-                          <span> · </span>
-                        ) : null}
+                        {sel.competition}
+                      </p>
+                    ) : null}
+                    {(marketLabel || choiceLabel) && (
+                      <p className="truncate text-xs">
                         {marketLabel ? (
                           <span className="font-medium text-amber-400">
-                            {marketLabel} <span> · </span>
+                            {marketLabel}
                           </span>
                         ) : null}
                         {choiceLabel ? (
                           <span className="font-medium text-emerald-400">
-                            {' '}
+                            {" "}
                             ({choiceLabel})
                           </span>
                         ) : null}

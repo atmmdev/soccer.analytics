@@ -491,7 +491,27 @@ export class StudyTicketsService {
       /* ignore */
     }
 
-    return this.importFromPdf(destRel, { force: opts?.force ?? true });
+    return this.importFromPdf(destRel, { force: opts?.force ?? true }).then(
+      async (ticket) => {
+        // PDF é descartável — JSON em imported/ é a fonte de verdade
+        try {
+          if (existsSync(destAbs)) unlinkSync(destAbs);
+        } catch {
+          /* ignore */
+        }
+
+        const jsonAbs = this.resolveTicketJsonAbs(ticket.sourceFile);
+        const jsonRel = this.relativeFromRepo(jsonAbs);
+        if (existsSync(jsonAbs) && ticket.sourceFile !== jsonRel) {
+          await this.prisma.studyTicket.update({
+            where: { id: ticket.id },
+            data: { sourceFile: jsonRel },
+          });
+          return this.findOne(ticket.id);
+        }
+        return ticket;
+      },
+    );
   }
 
   async persistParsed(parsed: ParsedStudyTicket, replaceId?: string) {

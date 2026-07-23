@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select";
 import {
   useDeleteTicket,
+  useImportTicketPdf,
   useSaveTicket,
   useTicketCalculation,
   useTickets,
@@ -334,6 +335,11 @@ export function TicketBuilder() {
 }
 
 function TicketDetail({ ticket }: { ticket: Ticket }) {
+  const settled =
+    ticket.status === "WON" ||
+    ticket.status === "LOST" ||
+    ticket.status === "CASHED_OUT";
+
   return (
     <div className="space-y-3 border-t border-border/40 px-4 pb-4 pt-3">
       <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
@@ -351,12 +357,20 @@ function TicketDetail({ ticket }: { ticket: Ticket }) {
         </div>
         <div>
           <p className="text-[10px] uppercase text-muted-foreground">
-            Retorno pot.
+            {settled ? "Retorno" : "Retorno pot."}
           </p>
-          <p className="font-mono font-semibold">
-            {ticket.potentialReturn != null
-              ? formatCurrency(ticket.potentialReturn)
-              : "—"}
+          <p
+            className={cn(
+              "font-mono font-semibold",
+              ticket.status === "WON" && "text-emerald-400",
+              ticket.status === "LOST" && "text-red-400",
+            )}
+          >
+            {settled
+              ? formatCurrency(ticket.actualReturn ?? 0)
+              : ticket.potentialReturn != null
+                ? formatCurrency(ticket.potentialReturn)
+                : "—"}
           </p>
         </div>
         <div>
@@ -372,9 +386,26 @@ function TicketDetail({ ticket }: { ticket: Ticket }) {
           Seleções ({ticket.selections.length})
         </p>
         {ticket.selections.length === 0 ? (
-          <p className="text-xs text-muted-foreground">
-            Nenhuma seleção neste bilhete — use Editar se precisar corrigir.
-          </p>
+          <div className="rounded-md border border-border/40 bg-secondary/15 px-3 py-2 text-sm">
+            <p className="font-medium">{ticket.name ?? "Bilhete"}</p>
+            <p className="text-xs text-muted-foreground">
+              Resumo · pernas não foram salvas neste bilhete
+            </p>
+            <div className="mt-1 flex flex-wrap gap-3 text-xs font-mono text-muted-foreground">
+              {ticket.combinedOdd != null && (
+                <span>odd {ticket.combinedOdd.toFixed(2)}</span>
+              )}
+              {ticket.stake != null && (
+                <span>stake {formatCurrency(ticket.stake)}</span>
+              )}
+              {ticket.overallEV != null && (
+                <span>
+                  EV {ticket.overallEV >= 0 ? "+" : ""}
+                  {formatPct(ticket.overallEV)}
+                </span>
+              )}
+            </div>
+          </div>
         ) : (
           ticket.selections.map((sel) => {
             const marketLabel = getMarketCategoryLabel(
@@ -382,6 +413,7 @@ function TicketDetail({ ticket }: { ticket: Ticket }) {
               sel.selection,
             );
             const choiceLabel = translateSelectionText(sel.selection);
+            const competition = sel.match.competition?.name ?? null;
             return (
               <div
                 key={sel.id}
@@ -390,10 +422,10 @@ function TicketDetail({ ticket }: { ticket: Ticket }) {
                 <p className="font-medium">
                   {sel.match.homeTeam.name} vs {sel.match.awayTeam.name}
                 </p>
-                <p className="truncate text-xs text-muted-foreground">
-                  {sel.match.competition?.name ? (
-                    <span>{sel.match.competition.name} · </span>
-                  ) : null}
+                {competition ? (
+                  <p className="text-xs text-muted-foreground">{competition}</p>
+                ) : null}
+                <p className="truncate text-xs">
                   <span className="font-medium text-amber-400">
                     {marketLabel}
                   </span>
@@ -413,7 +445,9 @@ function TicketDetail({ ticket }: { ticket: Ticket }) {
                       {formatPct(sel.ev)}
                     </span>
                   )}
-                  {sel.confidence != null && <span>IA {sel.confidence}%</span>}
+                  {sel.confidence != null && (
+                    <span>IA {sel.confidence}%</span>
+                  )}
                 </div>
               </div>
             );
@@ -436,25 +470,81 @@ function parseDecimalInput(value: string): number | null {
 }
 
 function EditSystemTicketModal({
-  ticket,
+  ticket: initialTicket,
   onClose,
+  onUpdated,
 }: {
   ticket: Ticket;
   onClose: () => void;
+  onUpdated: (ticket: Ticket) => void;
 }) {
   const updateTicket = useUpdateTicket();
+  const importPdf = useImportTicketPdf();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [ticket, setTicket] = useState(initialTicket);
   const [stake, setStake] = useState(
-    ticket.stake != null ? String(ticket.stake) : "",
+    initialTicket.stake != null ? String(initialTicket.stake) : "",
   );
   const [actualReturn, setActualReturn] = useState(
-    ticket.actualReturn != null ? String(ticket.actualReturn) : "",
+    initialTicket.actualReturn != null
+      ? String(initialTicket.actualReturn)
+      : "",
   );
-  const [status, setStatus] = useState<TicketStatus>(ticket.status);
+  const [status, setStatus] = useState<TicketStatus>(initialTicket.status);
   const [oddById, setOddById] = useState<Record<string, string>>(() =>
     Object.fromEntries(
-      ticket.selections.map((s) => [s.id, String(s.odd)]),
+      initialTicket.selections.map((s) => [s.id, String(s.odd)]),
     ),
   );
+  const [importWarnings, setImportWarnings] = useState<string[]>([]);
+
+  const applyTicket = (next: Ticket) => {
+    setTicket(next);
+    setStake(next.stake != null ? String(next.stake) : "");
+    setActualReturn(
+      next.actualReturn != null ? String(next.actualReturn) : "",
+    );
+    setStatus(next.status);
+    setOddById(
+      Object.fromEntries(next.selections.map((s) => [s.id, String(s.odd)])),
+    );
+    onUpdated(next);
+  };
+
+  const handlePdf = (file: File | undefined) => {
+    if (!file) return;
+    if (!/\.pdf$/i.test(file.name)) {
+      toast.error("Selecione um arquivo PDF");
+      return;
+    }
+
+    importPdf.mutate(
+      { id: ticket.id, file },
+      {
+        onSuccess: (result) => {
+          applyTicket(result.ticket);
+          setImportWarnings(result.warnings ?? []);
+          if (result.linkedLegs > 0) {
+            toast.success(
+              `PDF importado: ${result.linkedLegs}/${result.parsedLegs} pernas vinculadas`,
+            );
+          } else {
+            toast.message(
+              "PDF lido, mas nenhuma perna foi vinculada a jogos. Ajuste e salve.",
+            );
+          }
+          if (fileInputRef.current) fileInputRef.current.value = "";
+        },
+        onError: (error) => {
+          const message = isAxiosError(error)
+            ? ((error.response?.data as { message?: string })?.message ??
+              error.message)
+            : "Falha ao importar PDF";
+          toast.error(Array.isArray(message) ? message.join(", ") : message);
+        },
+      },
+    );
+  };
 
   const save = () => {
     const stakeNum = parseDecimalInput(stake);
@@ -482,8 +572,9 @@ function EditSystemTicketModal({
         selections: selectionUpdates,
       },
       {
-        onSuccess: () => {
+        onSuccess: (saved) => {
           toast.success("Bilhete atualizado");
+          onUpdated(saved);
           onClose();
         },
         onError: (error) => {
@@ -510,6 +601,45 @@ function EditSystemTicketModal({
           <Button variant="ghost" size="icon" onClick={onClose}>
             <X className="h-4 w-4" />
           </Button>
+        </div>
+
+        <div className="mb-4 rounded-lg border border-border/50 bg-secondary/20 p-3">
+          <p className="mb-2 text-xs text-muted-foreground">
+            Envie o PDF Bet365 para preencher pernas, stake e status. O PDF é
+            descartado após a leitura — o JSON do bilhete é o que permanece.
+            Depois corrija o que a importação errar e salve.
+          </p>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/pdf,.pdf"
+            className="hidden"
+            onChange={(e) => handlePdf(e.target.files?.[0])}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={importPdf.isPending}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {importPdf.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <FileUp className="h-4 w-4" />
+            )}
+            Subir PDF
+          </Button>
+          {importWarnings.length > 0 ? (
+            <ul className="mt-3 space-y-1 text-xs text-amber-400/90">
+              {importWarnings.slice(0, 8).map((w) => (
+                <li key={w}>• {w}</li>
+              ))}
+              {importWarnings.length > 8 ? (
+                <li>• +{importWarnings.length - 8} avisos</li>
+              ) : null}
+            </ul>
+          ) : null}
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
@@ -564,7 +694,7 @@ function EditSystemTicketModal({
           </p>
           {ticket.selections.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              Este bilhete não tem seleções salvas.
+              Sem seleções — suba um PDF ou mantenha só stake/status.
             </p>
           ) : (
             ticket.selections.map((sel) => (
@@ -576,10 +706,12 @@ function EditSystemTicketModal({
                   <p className="truncate text-sm font-medium">
                     {sel.match.homeTeam.name} vs {sel.match.awayTeam.name}
                   </p>
-                  <p className="truncate text-xs text-muted-foreground">
-                    {sel.match.competition?.name
-                      ? `${sel.match.competition.name} · `
-                      : ""}
+                  {sel.match.competition?.name ? (
+                    <p className="truncate text-xs text-muted-foreground">
+                      {sel.match.competition.name}
+                    </p>
+                  ) : null}
+                  <p className="truncate text-xs">
                     <span className="text-amber-400">
                       {getMarketCategoryLabel(sel.marketType, sel.selection)}
                     </span>
@@ -610,7 +742,10 @@ function EditSystemTicketModal({
           <Button variant="outline" onClick={onClose}>
             Cancelar
           </Button>
-          <Button onClick={save} disabled={updateTicket.isPending}>
+          <Button
+            onClick={save}
+            disabled={updateTicket.isPending || importPdf.isPending}
+          >
             {updateTicket.isPending ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : null}
@@ -798,6 +933,7 @@ export function SavedTicketsList() {
         <EditSystemTicketModal
           ticket={editing}
           onClose={() => setEditing(null)}
+          onUpdated={setEditing}
         />
       )}
     </div>

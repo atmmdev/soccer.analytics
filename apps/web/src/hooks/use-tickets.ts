@@ -89,6 +89,29 @@ export function useUpdateTicket() {
   });
 }
 
+export function useImportTicketPdf() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload: { id: string; file: File }) => {
+      const form = new FormData();
+      form.append('file', payload.file);
+      const { data } = await apiClient.post<{
+        ticket: Ticket;
+        warnings: string[];
+        parsedLegs: number;
+        linkedLegs: number;
+      }>(`/tickets/${payload.id}/import-pdf`, form, {
+        headers: { 'Content-Type': undefined },
+      });
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
+    },
+  });
+}
+
 export function useDeleteTicket() {
   const queryClient = useQueryClient();
 

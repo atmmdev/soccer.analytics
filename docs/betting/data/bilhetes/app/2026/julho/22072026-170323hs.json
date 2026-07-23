@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-23T19:50:23.286Z",
+    "source": "ticket-builder",
+    "ticketId": "cmrwifewb0000uiwwrgc6y915",
+    "curated": true,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/app/2026/julho/22072026-170323hs.json",
+  "bet365Ref": null,
+  "placedAt": "2026-07-22T20:03:23.048Z",
+  "betType": "Simples",
+  "betLabel": "App — Montar bilhete",
+  "status": "PENDING",
+  "stake": 50,
+  "unitStake": 50,
+  "numBets": 1,
+  "combinedOdd": 7,
+  "potentialReturn": 350,
+  "actualReturn": null,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "overallEV": null,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchId": "cmrxxeans0004uijg16ubqatd",
+      "matchLabel": "Blumenau vs Nação Araquari",
+      "matchDate": null,
+      "competition": "Importado PDF",
+      "market": "MATCH_RESULT",
+      "selection": "Nação Araquari",
+      "period": null,
+      "odd": 7,
+      "boostedOdd": null,
+      "status": null,
+      "probability": null,
+      "ev": null,
+      "confidence": null,
+      "meta": {
+        "source": "ticket-builder"
+      }
+    }
+  ],
+  "calculation": {
+    "combinedOdd": 7,
+    "combinedProbability": null,
+    "overallEV": null,
+    "potentialReturn": 350,
+    "valid": true,
+    "warnings": []
+  }
+}
