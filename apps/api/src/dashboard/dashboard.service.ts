@@ -213,10 +213,11 @@ export class DashboardService {
 
   private async buildMatchAnalysis(matchId: string) {
     try {
-      const [statsAnalysis, poisson] = await Promise.all([
-        this.analyzer.analyzeMatch(matchId, 10, 'home'),
-        this.analysis.getLatest(matchId),
-      ]);
+      const statsAnalysis = await this.analyzer.analyzeMatch(matchId, 10, 'home');
+      const poisson = await this.ensurePoissonAnalysis(
+        matchId,
+        statsAnalysis.meta.source,
+      );
 
       let poissonBlock = null;
       if (poisson?.markets?.length) {
@@ -254,13 +255,47 @@ export class DashboardService {
         poisson: poissonBlock,
       };
     } catch {
-      return this.emptyMatchAnalysis();
+      return this.emptyMatchAnalysis(matchId);
     }
   }
 
-  private emptyMatchAnalysis() {
+  /**
+   * Garante Poisson do jogo selecionado.
+   * Reexecuta análise quando não há snapshot ou o snapshot foi gerado só com fallback.
+   */
+  private async ensurePoissonAnalysis(
+    matchId: string,
+    currentStatsSource: string,
+  ) {
+    const latest = await this.analysis.getLatest(matchId);
+
+    const snapshotLacksComputed =
+      !latest?.statsSource ||
+      latest.statsSource.home === 'fallback' ||
+      latest.statsSource.away === 'fallback';
+
+    const stale =
+      !latest ||
+      Date.now() - new Date(latest.analyzedAt).getTime() > 4 * 60 * 60 * 1000;
+
+    const shouldRerun =
+      !latest ||
+      stale ||
+      (snapshotLacksComputed && currentStatsSource === 'computed');
+
+    if (!shouldRerun) return latest;
+
+    try {
+      await this.analysis.runAnalysis(matchId, 10);
+      return this.analysis.getLatest(matchId);
+    } catch {
+      return latest;
+    }
+  }
+
+  private emptyMatchAnalysis(matchId: string | null = null) {
     return {
-      matchId: null,
+      matchId,
       homeTeam: '—',
       awayTeam: '—',
       homeFlag: '',

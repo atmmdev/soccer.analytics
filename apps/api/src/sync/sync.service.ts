@@ -6,14 +6,13 @@ import { DataEngineService } from '../engines/data-engine/data-engine.service';
 import { AnalysisService } from '../analysis/analysis.service';
 
 const SYNC_STATE_KEY = 'daily_sync';
-/** Full sync (odds/stats/analysis) — keep sparse for API rate limits */
-const FULL_RESYNC_INTERVAL_MS = 4 * 60 * 60 * 1000;
+/** Full sync (odds/stats/analysis) */
+const FULL_RESYNC_INTERVAL_MS = 2 * 60 * 60 * 1000;
 /** Fixtures-only refresh so live/finished scores update during the day */
-const FIXTURES_RESYNC_INTERVAL_MS = 15 * 60 * 1000;
-const STATS_MAX_BATCHES_PER_DATE = 3;
-// Plano free API-Football: janela ~hoje..hoje+2 — lookback costuma falhar
-const FIXTURE_LOOKBACK_DAYS = 0;
-const FIXTURE_LOOKAHEAD_DAYS = 1;
+const FIXTURES_RESYNC_INTERVAL_MS = 10 * 60 * 1000;
+/** Janela de produto: histórico recente + agenda curta */
+const FIXTURE_LOOKBACK_DAYS = 7;
+const FIXTURE_LOOKAHEAD_DAYS = 2;
 
 export type SyncStatusValue = 'idle' | 'running' | 'completed' | 'failed' | 'skipped';
 
@@ -221,9 +220,7 @@ export class SyncService implements OnModuleInit {
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'odds', result });
       const oddsDates = [syncDate, this.offsetDate(syncDate, 1)];
-      for (let i = 0; i < oddsDates.length; i++) {
-        const date = oddsDates[i];
-        if (i > 0) await this.sleep(6500);
+      for (const date of oddsDates) {
         try {
           const odds = await this.dataEngine.importOdds(date);
           (result.odds as unknown[]).push(odds);
@@ -236,22 +233,21 @@ export class SyncService implements OnModuleInit {
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'statistics', result });
       for (const date of fixtureDates) {
-        for (let batch = 0; batch < STATS_MAX_BATCHES_PER_DATE; batch++) {
+        // Continua até esgotar pendências ou a API responder rate limit.
+        for (;;) {
           const stats = await this.dataEngine.importStatistics(date);
           (result.statistics as unknown[]).push(stats);
           if (stats.rateLimited || stats.remainingWithoutStats === 0) break;
-          await this.sleep(6500);
         }
       }
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'players', result });
       result.players = [] as unknown[];
       for (const date of fixtureDates) {
-        for (let batch = 0; batch < STATS_MAX_BATCHES_PER_DATE; batch++) {
+        for (;;) {
           const players = await this.dataEngine.importPlayerStats(date);
           (result.players as unknown[]).push(players);
           if (players.rateLimited || players.remainingWithoutPlayers === 0) break;
-          await this.sleep(6500);
         }
       }
 
@@ -348,9 +344,5 @@ export class SyncService implements OnModuleInit {
     const next = new Date(date);
     next.setDate(next.getDate() + days);
     return next;
-  }
-
-  private sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }

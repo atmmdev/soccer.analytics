@@ -197,6 +197,7 @@ export class AnalysisService {
       expectedCorners?: number;
       expectedCards?: number;
       period?: number;
+      statsSource?: { home?: string; away?: string };
     };
 
     return {
@@ -212,6 +213,7 @@ export class AnalysisService {
       expectedCards: data.expectedCards,
       markets: data.markets,
       period: data.period ?? 10,
+      statsSource: data.statsSource ?? null,
     };
   }
 
@@ -469,8 +471,6 @@ export class AnalysisService {
 
     const matches = [...byMatch.values()].slice(0, maxLegs);
     const canRemote = this.dataEngine.isApiFootballConfigured();
-    // Free plan ~10 req/min — prioriza H2H para placares
-    let remoteBudget = 12;
 
     const enriched: Array<{
       m: MatchCtx;
@@ -514,13 +514,11 @@ export class AnalysisService {
       // Busca H2H/forma na API quando o banco local não tem amostra
       if (
         canRemote &&
-        remoteBudget > 0 &&
         h2h.totalGames === 0 &&
         m.homeExternalId &&
         m.awayExternalId
       ) {
         try {
-          remoteBudget -= 1;
           const remote = await this.dataEngine.fetchRemoteH2H(
             m.homeExternalId,
             m.awayExternalId,
@@ -530,17 +528,11 @@ export class AnalysisService {
             h2h = h2hFromRemoteScores(remote);
           }
         } catch {
-          // rate limit / rede — segue com o que houver
+          // API indisponível / rate limit — segue com o que houver
         }
       }
-      if (
-        canRemote &&
-        remoteBudget > 0 &&
-        homeForm.source === 'fallback' &&
-        m.homeExternalId
-      ) {
+      if (canRemote && homeForm.source === 'fallback' && m.homeExternalId) {
         try {
-          remoteBudget -= 1;
           const remote = await this.dataEngine.fetchRemoteTeamForm(
             m.homeExternalId,
             10,
@@ -552,14 +544,8 @@ export class AnalysisService {
           /* ignore */
         }
       }
-      if (
-        canRemote &&
-        remoteBudget > 0 &&
-        awayForm.source === 'fallback' &&
-        m.awayExternalId
-      ) {
+      if (canRemote && awayForm.source === 'fallback' && m.awayExternalId) {
         try {
-          remoteBudget -= 1;
           const remote = await this.dataEngine.fetchRemoteTeamForm(
             m.awayExternalId,
             10,

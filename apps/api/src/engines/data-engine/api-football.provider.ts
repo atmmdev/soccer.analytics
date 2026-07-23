@@ -64,10 +64,8 @@ export class ApiFootballProvider implements DataProvider {
     const map = new Map<string, ImportedOdd[]>();
     let page = 1;
     let totalPages = 1;
-    // Plano free da API-Football: page máximo = 3
-    const maxPage = 3;
 
-    while (page <= totalPages && page <= maxPage) {
+    while (page <= totalPages) {
       const data = await this.request<{
         response: ApiOddsEntry[];
         paging?: { current: number; total: number };
@@ -205,7 +203,6 @@ export class ApiFootballProvider implements DataProvider {
 
   /**
    * Confrontos diretos (API-Football) — placares no ponto de vista do mandante atual.
-   * Free plan: sem parâmetro `last` (não suportado).
    */
   async fetchHeadToHead(
     homeTeamExternalId: string,
@@ -216,6 +213,7 @@ export class ApiFootballProvider implements DataProvider {
       '/fixtures/headtohead',
       {
         h2h: `${homeTeamExternalId}-${awayTeamExternalId}`,
+        last: String(last),
       },
     );
 
@@ -239,15 +237,26 @@ export class ApiFootballProvider implements DataProvider {
 
   /**
    * Últimos jogos finalizados de um time — gols marcados/sofridos na perspectiva do time.
-   * Free plan: usa season (2022–2024) sem parâmetro `last`.
+   * Preferência: parâmetro `last` (planos pagos). Fallback: busca por temporada.
    */
   async fetchTeamRecentResults(
     teamExternalId: string,
     last = 10,
-  ): Promise<Array<{ scored: number; conceded: number }>> {
+  ): Promise<Array<{ scored: number; conceded: number; isHome: boolean }>> {
+    try {
+      const data = await this.request<{ response: ApiFixture[] }>('/fixtures', {
+        team: teamExternalId,
+        last: String(last),
+        status: 'FT',
+      });
+      const mapped = this.mapTeamResults(data.response ?? [], teamExternalId);
+      if (mapped.length) return mapped.slice(0, last);
+    } catch {
+      /* fallback por temporada */
+    }
+
     const year = new Date().getFullYear();
-    // Free plan tipicamente libera até a temporada anterior
-    const seasons = [year - 1, year - 2, year];
+    const seasons = [year, year - 1, year - 2];
     let items: ApiFixture[] = [];
 
     for (const season of seasons) {
@@ -264,7 +273,14 @@ export class ApiFootballProvider implements DataProvider {
       }
     }
 
-    const out: Array<{ scored: number; conceded: number }> = [];
+    return this.mapTeamResults(items, teamExternalId).slice(-last);
+  }
+
+  private mapTeamResults(
+    items: ApiFixture[],
+    teamExternalId: string,
+  ): Array<{ scored: number; conceded: number; isHome: boolean }> {
+    const out: Array<{ scored: number; conceded: number; isHome: boolean }> = [];
     for (const item of items) {
       const hs = item.goals.home;
       const as = item.goals.away;
@@ -273,9 +289,10 @@ export class ApiFootballProvider implements DataProvider {
       out.push({
         scored: isHome ? hs : as,
         conceded: isHome ? as : hs,
+        isHome,
       });
     }
-    return out.slice(-last);
+    return out;
   }
 
   private parseTeamStatistics(
@@ -335,7 +352,7 @@ export class ApiFootballProvider implements DataProvider {
 
     if (response.status === 429) {
       throw new Error(
-        'Limite de requisições da API-Football atingido (10/min no plano free). Aguarde 1 minuto e tente novamente.',
+        'Limite de requisições da API-Football atingido. Aguarde e tente novamente.',
       );
     }
 

@@ -54,12 +54,6 @@ export interface ImportPlayerStatsResult {
   errors: string[];
 }
 
-/** Plano free: 10 req/min — pausa de 6,5s entre requests extras */
-const STATS_BATCH_LIMIT = 5;
-const PLAYERS_BATCH_LIMIT = 5;
-const ODDS_FIXTURE_BATCH_LIMIT = 5;
-const STATS_REQUEST_DELAY_MS = 6500;
-
 function isRateLimitError(message: string): boolean {
   return /rate limit|too many requests|limite de requisi/i.test(message);
 }
@@ -136,16 +130,13 @@ export class DataEngineService {
     };
 
     const oddsByFixture = new Map<string, ImportedOdd[]>();
-    let bulkAttempted = false;
 
     try {
       const byDate = await provider.fetchOddsByDate(date);
-      bulkAttempted = true;
       for (const [fixtureId, odds] of byDate) {
         oddsByFixture.set(fixtureId, odds);
       }
     } catch (err) {
-      bulkAttempted = true;
       const message = err instanceof Error ? err.message : 'Falha ao buscar odds';
       result.errors.push(`Bulk por data: ${message}`);
       if (isRateLimitError(message)) {
@@ -169,16 +160,10 @@ export class DataEngineService {
       .sort((a, b) => a._count.odds - b._count.odds);
 
     if (!result.rateLimited && missing.length > 0) {
-      // Bulk já consumiu até 3 requests — espera antes do fallback por fixture
-      if (bulkAttempted) {
-        await this.sleep(STATS_REQUEST_DELAY_MS);
-      }
-
-      for (let i = 0; i < missing.length && i < ODDS_FIXTURE_BATCH_LIMIT; i++) {
+      for (let i = 0; i < missing.length; i++) {
         const match = missing[i];
         if (!match.externalId) continue;
         try {
-          if (i > 0) await this.sleep(STATS_REQUEST_DELAY_MS);
           const odds = await provider.fetchOdds(match.externalId);
           if (odds.length > 0) {
             oddsByFixture.set(match.externalId, odds);
@@ -272,10 +257,9 @@ export class DataEngineService {
     });
 
     const pending = candidates.filter((m) => !m.matchStatistics);
-    const batch = pending.slice(0, STATS_BATCH_LIMIT);
 
-    for (let i = 0; i < batch.length; i++) {
-      const match = batch[i];
+    for (let i = 0; i < pending.length; i++) {
+      const match = pending[i];
       if (!match.externalId || !match.homeTeam.externalId) continue;
 
       const label = `${match.homeTeam.name} vs ${match.awayTeam.name}`;
@@ -343,10 +327,6 @@ export class DataEngineService {
         }
         result.errors.push(`${label}: ${msg}`);
       }
-
-      if (i < batch.length - 1 && !result.rateLimited) {
-        await this.sleep(STATS_REQUEST_DELAY_MS);
-      }
     }
 
     result.remainingWithoutStats = await this.countPendingStatistics(start, end);
@@ -386,10 +366,9 @@ export class DataEngineService {
     });
 
     const pending = candidates.filter((m) => m._count.playerPerformances === 0);
-    const batch = pending.slice(0, PLAYERS_BATCH_LIMIT);
 
-    for (let i = 0; i < batch.length; i++) {
-      const match = batch[i];
+    for (let i = 0; i < pending.length; i++) {
+      const match = pending[i];
       if (!match.externalId) continue;
 
       const label = `${match.homeTeam.name} vs ${match.awayTeam.name}`;
@@ -451,10 +430,6 @@ export class DataEngineService {
           break;
         }
         result.errors.push(`${label}: ${msg}`);
-      }
-
-      if (i < batch.length - 1 && !result.rateLimited) {
-        await this.sleep(STATS_REQUEST_DELAY_MS);
       }
     }
 
@@ -529,10 +504,6 @@ export class DataEngineService {
       message.includes('rate limit') ||
       message.includes('429')
     );
-  }
-
-  private sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   private getLocalDateRange(date: string) {

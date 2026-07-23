@@ -31,7 +31,8 @@
 ## Limites / cuidados
 
 - Sem key → provider reporta `configured: false`; sync não importa dados reais.
-- Paginação em `/odds` por data.
+- O código **não assume** plano free/pago: consome o que a API permitir e só para se receber `429`.
+- Paginação em `/odds` por data segue `paging.total` da resposta.
 - Definições Opta/API podem divergir levemente da Bet365 — liquidação da aposta segue a casa.
 
 ## Não documentar aqui
