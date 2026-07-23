@@ -1,8 +1,8 @@
+import { Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
   IsDateString,
-  IsEnum,
   IsIn,
   IsNumber,
   IsOptional,
@@ -22,9 +22,10 @@ export enum BankrollEntryType {
 }
 
 export class CreateBankrollEntryDto {
-  @IsEnum(BankrollEntryType)
-  type: BankrollEntryType;
+  @IsIn([BankrollEntryType.DEPOSIT, BankrollEntryType.WITHDRAWAL])
+  type: BankrollEntryType.DEPOSIT | BankrollEntryType.WITHDRAWAL;
 
+  @Type(() => Number)
   @IsNumber()
   @Min(0.01)
   amount: number;
@@ -40,6 +41,7 @@ export class CreateBankrollEntryDto {
 
 export class UpdateBankrollEntryDto {
   @IsOptional()
+  @Type(() => Number)
   @IsNumber()
   @Min(0.01)
   amount?: number;

@@ -89,6 +89,8 @@ export interface BankrollSummary {
   winRate: number;
   maxDrawdown: number;
   totalStaked: number;
+  totalDeposited: number;
+  totalWithdrawn: number;
   ticketsPlaced: number;
   ticketsWon: number;
   ticketsLost: number;
@@ -106,6 +108,7 @@ export interface BankrollEntry {
   type: string;
   description: string | null;
   ticketId: string | null;
+  studyTicketId?: string | null;
   periodId?: string | null;
   createdAt: string;
 }

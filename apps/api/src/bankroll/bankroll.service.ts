@@ -957,13 +957,18 @@ export class BankrollService {
     const deposits = entries
       .filter((e) => e.type === BankrollEntryType.DEPOSIT)
       .reduce((sum, e) => sum + e.amount, 0);
+    const withdrawals = entries
+      .filter((e) => e.type === BankrollEntryType.WITHDRAWAL)
+      .reduce((sum, e) => sum + Math.abs(e.amount), 0);
     const totalStaked = entries
       .filter((e) => e.type === BankrollEntryType.STAKE)
       .reduce((sum, e) => sum + Math.abs(e.amount), 0);
     const wins = entries.filter((e) => e.type === BankrollEntryType.WIN);
     const losses = entries.filter((e) => e.type === BankrollEntryType.LOSS);
 
-    const profit = balance - deposits;
+    // Lucro = saldo − dinheiro líquido colocado (depósitos − saques)
+    const netCashIn = deposits - withdrawals;
+    const profit = balance - netCashIn;
     const roi = totalStaked > 0 ? round((profit / totalStaked) * 100, 2) : 0;
     const settled = wins.length + losses.length;
     const winRate = settled > 0 ? round((wins.length / settled) * 100, 1) : 0;
@@ -1019,6 +1024,8 @@ export class BankrollService {
       winRate,
       maxDrawdown,
       totalStaked: round(totalStaked),
+      totalDeposited: round(deposits),
+      totalWithdrawn: round(withdrawals),
       ticketsPlaced: systemTickets.length + studyTickets.length,
       ticketsWon: wins.length,
       ticketsLost: losses.length,
@@ -1039,7 +1046,6 @@ export class BankrollService {
     return this.prisma.bankrollEntry.findMany({
       where: { periodId: id },
       orderBy: { createdAt: 'desc' },
-      take: 100,
     });
   }
 

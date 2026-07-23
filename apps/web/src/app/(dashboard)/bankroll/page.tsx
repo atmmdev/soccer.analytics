@@ -44,6 +44,7 @@ import {
   useCreateBankrollPeriod,
   useDeleteBankrollEntry,
   useDeleteBankrollPeriod,
+  useCreateBankrollEntry,
   useLinkBankrollTickets,
   useReopenBankrollPeriod,
   useUnlinkBankrollTickets,
@@ -141,6 +142,7 @@ export default function BankrollPage() {
 
   const updateEntry = useUpdateBankrollEntry();
   const deleteEntry = useDeleteBankrollEntry();
+  const createEntry = useCreateBankrollEntry();
   const createPeriod = useCreateBankrollPeriod();
   const updatePeriod = useUpdateBankrollPeriod();
   const closePeriod = useCloseBankrollPeriod();
@@ -154,6 +156,9 @@ export default function BankrollPage() {
   const [selectedSystemIds, setSelectedSystemIds] = useState<string[]>([]);
   const [editingEntryId, setEditingEntryId] = useState<string | null>(null);
   const [editingEntryAmount, setEditingEntryAmount] = useState('');
+  const [cashType, setCashType] = useState<'DEPOSIT' | 'WITHDRAWAL'>('DEPOSIT');
+  const [cashAmount, setCashAmount] = useState('');
+  const [cashDescription, setCashDescription] = useState('');
 
   const [formName, setFormName] = useState('');
   const [formAmount, setFormAmount] = useState('1000');
@@ -482,6 +487,34 @@ export default function BankrollPage() {
   const isManualCashEntry = (type: string) =>
     type === 'DEPOSIT' || type === 'WITHDRAWAL';
 
+  const ledgerSummary = useMemo(() => {
+    const list = entries ?? [];
+    const deposited = list
+      .filter((e) => e.type === 'DEPOSIT')
+      .reduce((sum, e) => sum + e.amount, 0);
+    const withdrawn = list
+      .filter((e) => e.type === 'WITHDRAWAL')
+      .reduce((sum, e) => sum + Math.abs(e.amount), 0);
+    const staked = list
+      .filter((e) => e.type === 'STAKE')
+      .reduce((sum, e) => sum + Math.abs(e.amount), 0);
+    const greens = list.filter((e) => e.type === 'WIN').length;
+    const reds = list.filter((e) => e.type === 'LOSS').length;
+    const ticketKeys = new Set(
+      list
+        .map((e) => e.ticketId ?? e.studyTicketId)
+        .filter((id): id is string => !!id),
+    );
+    return {
+      deposited,
+      withdrawn,
+      staked,
+      greens,
+      reds,
+      ticketsPlaced: ticketKeys.size || summary?.ticketsPlaced || 0,
+    };
+  }, [entries, summary?.ticketsPlaced]);
+
   const startEditEntry = (entryId: string, amount: number) => {
     setEditingEntryId(entryId);
     setEditingEntryAmount(String(Math.abs(amount)));
@@ -519,6 +552,41 @@ export default function BankrollPage() {
       onError: (error) =>
         toast.error(errorMessage(error, 'Falha ao remover lançamento')),
     });
+  };
+
+  const handleRegisterCash = () => {
+    if (!periodId || !isOpen) return;
+    const amount = parseFloat(cashAmount);
+    if (!amount || amount <= 0) {
+      toast.error('Informe um valor válido');
+      return;
+    }
+    createEntry.mutate(
+      {
+        type: cashType,
+        amount,
+        description: cashDescription.trim() || undefined,
+        periodId,
+      },
+      {
+        onSuccess: () => {
+          toast.success(
+            cashType === 'DEPOSIT' ? 'Depósito registrado' : 'Saque registrado',
+          );
+          setCashAmount('');
+          setCashDescription('');
+        },
+        onError: (error) =>
+          toast.error(
+            errorMessage(
+              error,
+              cashType === 'DEPOSIT'
+                ? 'Falha ao registrar depósito'
+                : 'Falha ao registrar saque',
+            ),
+          ),
+      },
+    );
   };
 
   return (
@@ -1039,43 +1107,134 @@ export default function BankrollPage() {
               />
             </div>
 
-            {history && history.length > 0 && <BankrollChart data={history} />}
-
-            <Card className="border-border/60 bg-card/80">
-                <CardHeader>
-                  <CardTitle className="text-base">Resumo de apostas</CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <p className="text-muted-foreground">Total apostado</p>
-                    <p className="font-mono font-bold">
-                      {formatCurrency(summary.totalStaked)}
+            <div className="grid gap-4 lg:grid-cols-2">
+              {history && history.length > 0 ? (
+                <BankrollChart data={history} />
+              ) : (
+                <Card className="border-border/60 bg-card/80">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base">Evolução da Banca</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="py-10 text-center text-sm text-muted-foreground">
+                      Sem histórico ainda — registre depósitos, saques ou apostas.
                     </p>
+                  </CardContent>
+                </Card>
+              )}
+
+              <Card className="border-border/60 bg-card/80">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base">Resumo da banca</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-sm">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-muted-foreground">Depósitos</p>
+                      <p className="font-mono font-bold text-emerald-400">
+                        {formatCurrency(ledgerSummary.deposited)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Saques</p>
+                      <p className="font-mono font-bold text-red-400">
+                        {formatCurrency(ledgerSummary.withdrawn)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Total apostado</p>
+                      <p className="font-mono font-bold">
+                        {formatCurrency(ledgerSummary.staked)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Bilhetes</p>
+                      <p className="font-mono font-bold">
+                        {ledgerSummary.ticketsPlaced}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-muted-foreground">Bilhetes apostados</p>
-                  <p className="font-mono font-bold">
-                    {summary.ticketsPlaced}
-                  </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-emerald-400" />
-                  <span className="text-emerald-400">
-                    {summary.ticketsWon} greens
-                  </span>
-                    <TrendingDown className="ml-2 h-4 w-4 text-red-400" />
-                  <span className="text-red-400">
-                    {summary.ticketsLost} reds
-                  </span>
+                  <div className="flex flex-wrap items-center gap-3 border-t border-border/40 pt-3">
+                    <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                      <TrendingUp className="h-4 w-4" />
+                      {ledgerSummary.greens} greens
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-red-400">
+                      <TrendingDown className="h-4 w-4" />
+                      {ledgerSummary.reds} reds
+                    </span>
                   </div>
                 </CardContent>
               </Card>
+            </div>
 
             <Card className="border-border/60 bg-card/80">
-              <CardHeader>
-                <CardTitle className="text-base">Movimentações</CardTitle>
+              <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-3 space-y-0">
+                <div>
+                  <CardTitle className="text-base">Movimentações</CardTitle>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Entradas e saídas: depósitos, saques, apostas, greens e reds
+                  </p>
+                </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
+                {isOpen && (
+                  <div className="flex flex-wrap items-end gap-3 rounded-lg border border-border/50 bg-muted/20 p-3">
+                    <div className="space-y-1">
+                      <p className="text-xs text-muted-foreground">Tipo</p>
+                      <Select
+                        value={cashType}
+                        onValueChange={(v) =>
+                          setCashType(v as 'DEPOSIT' | 'WITHDRAWAL')
+                        }
+                      >
+                        <SelectTrigger className="w-[140px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="DEPOSIT">Depósito</SelectItem>
+                          <SelectItem value="WITHDRAWAL">Saque</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xs text-muted-foreground">Valor (R$)</p>
+                      <Input
+                        type="number"
+                        min={0.01}
+                        step="0.01"
+                        className="w-32"
+                        placeholder="0,00"
+                        value={cashAmount}
+                        onChange={(e) => setCashAmount(e.target.value)}
+                      />
+                    </div>
+                    <div className="min-w-[180px] flex-1 space-y-1">
+                      <p className="text-xs text-muted-foreground">
+                        Descrição (opcional)
+                      </p>
+                      <Input
+                        placeholder={
+                          cashType === 'DEPOSIT'
+                            ? 'Ex.: reforço de banca'
+                            : 'Ex.: retirada de lucro'
+                        }
+                        value={cashDescription}
+                        onChange={(e) => setCashDescription(e.target.value)}
+                      />
+                    </div>
+                    <Button
+                      disabled={createEntry.isPending}
+                      onClick={handleRegisterCash}
+                    >
+                      {createEntry.isPending && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      )}
+                      Registrar {cashType === 'DEPOSIT' ? 'depósito' : 'saque'}
+                    </Button>
+                  </div>
+                )}
+
                 {!entries?.length ? (
                   <p className="py-6 text-center text-sm text-muted-foreground">
                     Nenhuma movimentação nesta banca.
