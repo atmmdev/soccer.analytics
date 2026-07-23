@@ -212,7 +212,7 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
           <Button
             type="button"
             variant="outline"
-            className="w-full"
+            className="w-full uppercase tracking-widest hover:bg-primary/10 hover:text-primary"
             onClick={handleGenerateRandom}
             disabled={suggestRandom.isPending}
           >
