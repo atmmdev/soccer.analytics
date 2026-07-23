@@ -5,6 +5,8 @@
  * - Fixtures/odds: hoje → +7
  * - Stats/players: finalizados nos últimos 3 dias
  * - Ligas: 1ª+2ª dos 8 países + copas EN + Champions + Libertadores
+ *   + Sul-Americana + Europa League + Conference League
+ *   + Argentina / Dinamarca / Suécia + amistosos de clubes
  *   + Brasil: Copa do Brasil, Copa do Nordeste, Supercopa e regionais (1ª)
  *
  * Override: SYNC_LEAGUE_IDS=39,40,...
@@ -17,7 +19,10 @@ export const SYNC_STATS_LOOKBACK_DAYS = 3;
  * BR 71/72 + Copa do Brasil/Nordeste/Supercopa + regionais A1
  * EN 39/40 + FA Cup 45 + EFL Cup 48
  * FR 61/62 · DE 78/79 · IT 135/136 · NL 88/89 · PT 94/95 · ES 140/141
- * + Champions 2 · Libertadores 13
+ * AR 128 · DK 119 · SE 113
+ * + Champions 2 · Europa League 3 · Conference 848
+ * + Libertadores 13 · Sul-Americana 11
+ * + Amistosos de clubes 667
  */
 export const DEFAULT_SYNC_LEAGUE_IDS = [
   // Brasil — nacionais
@@ -77,9 +82,18 @@ export const DEFAULT_SYNC_LEAGUE_IDS = [
   // Espanha
   '140',
   '141',
+  // América do Sul / Europa — extras
+  '128', // Liga Profesional Argentina
+  '119', // Superliga (Dinamarca)
+  '113', // Allsvenskan (Suécia)
   // Continentais
   '2', // UEFA Champions League
+  '3', // UEFA Europa League
+  '848', // UEFA Europa Conference League
   '13', // Copa Libertadores
+  '11', // Copa Sul-Americana
+  // Amistosos
+  '667', // Friendlies Clubs
 ] as const;
 
 export const SYNC_LEAGUE_LABELS: Record<string, string> = {
@@ -131,8 +145,15 @@ export const SYNC_LEAGUE_LABELS: Record<string, string> = {
   '95': 'Liga Portugal 2',
   '140': 'La Liga',
   '141': 'La Liga 2',
+  '128': 'Liga Profesional Argentina',
+  '119': 'Superliga (Dinamarca)',
+  '113': 'Allsvenskan',
   '2': 'UEFA Champions League',
+  '3': 'UEFA Europa League',
+  '848': 'UEFA Europa Conference League',
   '13': 'Copa Libertadores',
+  '11': 'Copa Sul-Americana',
+  '667': 'Amistosos (Clubes)',
 };
 
 export function readSyncLeagueIds(
