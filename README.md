@@ -66,10 +66,8 @@ pnpm dev
 
 ## Login
 
-Credenciais padrão (configuráveis em `.env`):
-
-- **Email:** `admin@soccer-analytics.local`
-- **Senha:** `change-me-in-production`
+Credenciais do admin ficam em `apps/api/.env` (`ADMIN_EMAIL` / `ADMIN_PASSWORD`).
+Para referência local, use o arquivo `SENHAS.md` na raiz (não versionado).
 
 ## Estrutura
 

@@ -93,7 +93,7 @@ function startDev() {
   console.log('  Frontend  → http://localhost:3000');
   console.log('  API       → http://localhost:3001');
   console.log('  Swagger   → http://localhost:3001/api/docs');
-  console.log('  Login     → admin@soccer-analytics.local / change-me-in-production');
+  console.log('  Login     → ver SENHAS.md (local) ou ADMIN_* em apps/api/.env');
   console.log('\n  Pressione Ctrl+C para parar.\n');
 
   const pnpm = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';

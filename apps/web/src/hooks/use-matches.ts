@@ -6,9 +6,19 @@ interface MatchFilters {
   status?: MatchStatus;
   competitionId?: string;
   date?: string;
+  /** ISO YYYY-MM-DD — only matches on/after this date */
+  dateFrom?: string;
   q?: string;
   page?: number;
   limit?: number;
+}
+
+export function todayIsoDate() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
 }
 
 export function useMatches(filters: MatchFilters = {}) {
@@ -20,6 +30,8 @@ export function useMatches(filters: MatchFilters = {}) {
       });
       return data;
     },
+    // Keep scores/status fresh while browsing today's matches
+    refetchInterval: 30_000,
   });
 }
 

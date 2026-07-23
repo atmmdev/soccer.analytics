@@ -412,7 +412,7 @@ export default function MarketsPage() {
               </div>
             </div>
             {selectedGroup && (
-              <div className="flex flex-col items-center border-b border-border/40 px-7 pb-5 text-center">
+              <div className="flex flex-col items-center border-b border-border/40 px-7 pb-5 text-center py-3 mt-3">
                 <div className="flex items-center justify-center gap-4 sm:gap-6">
                   <div className="flex w-24 flex-col items-center gap-2 sm:w-28">
                     <TeamLogo src={homeLogo} name={homeTeam} size={56} />

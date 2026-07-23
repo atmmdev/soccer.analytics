@@ -63,7 +63,7 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="admin@soccer-analytics.local"
+                placeholder="seu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-secondary/30"
@@ -82,9 +82,6 @@ export default function LoginPage() {
               />
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
-            <p className="text-center text-xs text-muted-foreground">
-              Senha padrão: <span className="font-mono">change-me-in-production</span>
-            </p>
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Entrando...' : 'Entrar'}
             </Button>

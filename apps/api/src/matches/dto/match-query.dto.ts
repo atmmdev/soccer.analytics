@@ -19,6 +19,13 @@ export class MatchQueryDto {
   @IsDateString()
   date?: string;
 
+  @ApiPropertyOptional({
+    description: 'Only matches on/after this date (ISO YYYY-MM-DD)',
+  })
+  @IsOptional()
+  @IsDateString()
+  dateFrom?: string;
+
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()

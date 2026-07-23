@@ -42,5 +42,6 @@ apps/api/prisma/migrations/**/migration_lock.toml
 .turbo/
 
 # Personal files
+SENHAS.md
 docs/betting/data/bilhetes/2025
 docs/betting/data/bilhetes/2026

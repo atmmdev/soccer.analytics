@@ -6,7 +6,10 @@ import { DataEngineService } from '../engines/data-engine/data-engine.service';
 import { AnalysisService } from '../analysis/analysis.service';
 
 const SYNC_STATE_KEY = 'daily_sync';
-const RESYNC_INTERVAL_MS = 4 * 60 * 60 * 1000;
+/** Full sync (odds/stats/analysis) — keep sparse for API rate limits */
+const FULL_RESYNC_INTERVAL_MS = 4 * 60 * 60 * 1000;
+/** Fixtures-only refresh so live/finished scores update during the day */
+const FIXTURES_RESYNC_INTERVAL_MS = 15 * 60 * 1000;
 const STATS_MAX_BATCHES_PER_DATE = 3;
 // Plano free API-Football: janela ~hoje..hoje+2 — lookback costuma falhar
 const FIXTURE_LOOKBACK_DAYS = 0;
@@ -82,7 +85,16 @@ export class SyncService implements OnModuleInit {
       );
     }
 
-    if (this.isUpToDate(stored, today)) {
+    if (this.isUpToDate(stored, today) && stored) {
+      if (this.needsFixturesRefresh(stored)) {
+        void this.refreshFixturesOnly(today);
+        return this.toStatus({
+          ...stored,
+          syncDate: stored.syncDate,
+          status: 'running',
+          currentStep: 'fixtures',
+        });
+      }
       return this.toStatus(stored);
     }
 
@@ -113,7 +125,60 @@ export class SyncService implements OnModuleInit {
       return false;
     }
     if (!stored.completedAt) return false;
-    return Date.now() - new Date(stored.completedAt).getTime() < RESYNC_INTERVAL_MS;
+    return Date.now() - new Date(stored.completedAt).getTime() < FULL_RESYNC_INTERVAL_MS;
+  }
+
+  private needsFixturesRefresh(stored: StoredSyncState): boolean {
+    const result = stored.result as { lastFixturesRefreshAt?: string } | null;
+    const last = result?.lastFixturesRefreshAt ?? stored.completedAt;
+    if (!last) return true;
+    return Date.now() - new Date(last).getTime() >= FIXTURES_RESYNC_INTERVAL_MS;
+  }
+
+  /** Lightweight pass: update status/scores without odds/stats/analysis */
+  private async refreshFixturesOnly(syncDate: string) {
+    if (this.running) return;
+    this.running = true;
+
+    try {
+      const existing = await this.readState();
+      await this.writeState({
+        syncDate,
+        status: 'running',
+        currentStep: 'fixtures',
+        result: existing?.result ?? {},
+      });
+
+      const fixtureDates = this.getFixtureDates();
+      for (const date of fixtureDates) {
+        try {
+          await this.dataEngine.importFixtures(date);
+        } catch (err) {
+          const message = err instanceof Error ? err.message : 'Erro desconhecido';
+          this.logger.warn(`Fixtures refresh skipped for ${date}: ${message}`);
+        }
+      }
+
+      const refreshedAt = new Date().toISOString();
+      await this.writeState({
+        syncDate,
+        status: existing?.status === 'failed' ? 'failed' : 'completed',
+        currentStep: null,
+        completedAt: existing?.completedAt ?? refreshedAt,
+        message: existing?.message ?? 'Fixtures atualizados',
+        result: {
+          ...(existing?.result ?? {}),
+          lastFixturesRefreshAt: refreshedAt,
+        },
+      });
+
+      this.logger.log(`Fixtures refresh completed for ${syncDate}`);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Erro desconhecido';
+      this.logger.error(`Fixtures refresh failed: ${message}`);
+    } finally {
+      this.running = false;
+    }
   }
 
   private async runDailySync(syncDate: string, force = false) {
@@ -149,6 +214,7 @@ export class SyncService implements OnModuleInit {
           this.logger.warn(`Skipping fixtures import for ${date}: ${message}`);
         }
       }
+      result.lastFixturesRefreshAt = new Date().toISOString();
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'resolve', result });
       result.snapshotsDiscarded = await this.analysis.discardInactiveAnalyses();

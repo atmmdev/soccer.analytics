@@ -50,13 +50,21 @@ export class MatchesService {
       const start = new Date(y, m - 1, d, 0, 0, 0, 0);
       const end = new Date(y, m - 1, d, 23, 59, 59, 999);
       where.matchDate = { gte: start, lte: end };
+    } else if (query.dateFrom) {
+      const [y, m, d] = query.dateFrom.split('-').map(Number);
+      const start = new Date(y, m - 1, d, 0, 0, 0, 0);
+      where.matchDate = { gte: start };
     }
+
+    const orderBy: Prisma.MatchOrderByWithRelationInput = query.dateFrom
+      ? { matchDate: 'asc' }
+      : { matchDate: 'desc' };
 
     const [data, total] = await Promise.all([
       this.prisma.match.findMany({
         where,
         include: matchInclude,
-        orderBy: { matchDate: 'desc' },
+        orderBy,
         skip,
         take: limit,
       }),
@@ -85,15 +93,23 @@ export class MatchesService {
   }
 
   async getCompetitions() {
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const upcomingMatchFilter: Prisma.MatchWhereInput = {
+      externalId: { not: null },
+      matchDate: { gte: todayStart },
+    };
+
     return this.prisma.competition.findMany({
       where: {
-        matches: { some: { externalId: { not: null } } },
+        matches: { some: upcomingMatchFilter },
       },
       orderBy: { name: 'asc' },
       include: {
         _count: {
           select: {
-            matches: { where: { externalId: { not: null } } },
+            matches: { where: upcomingMatchFilter },
           },
         },
       },

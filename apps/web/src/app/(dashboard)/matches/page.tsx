@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AppHeader } from "@/components/layout/app-header";
-import { MatchCard } from "@/components/matches/match-card";
+import { MatchTable } from "@/components/matches/match-table";
 import { CompetitionFilter } from "@/components/matches/competition-filter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { useInfiniteMatches, useCompetitions } from "@/hooks/use-matches";
+import {
+  ListPagination,
+  type PageSize,
+} from "@/components/ui/list-pagination";
+import { useMatches, useCompetitions, todayIsoDate } from "@/hooks/use-matches";
 import type { MatchStatus } from "@/types/match";
 import { Loader2 } from "lucide-react";
-import { useMemo } from "react";
-
-const PAGE_SIZE = 30;
 
 const statusTabs: { value: string; label: string; status?: MatchStatus }[] = [
   { value: "all", label: "Todos" },
@@ -30,20 +30,30 @@ function MatchList({
   q?: string;
   competitionId?: string;
 }) {
-  const filters = {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState<PageSize>(30);
+  const dateFrom = todayIsoDate();
+
+  useEffect(() => {
+    setPage(1);
+  }, [status, q, competitionId, pageSize]);
+
+  const { data, isLoading, isError } = useMatches({
     ...(status ? { status } : {}),
     ...(q ? { q } : {}),
     ...(competitionId ? { competitionId } : {}),
-  };
+    dateFrom,
+    page,
+    limit: pageSize,
+  });
 
-  const {
-    data,
-    isLoading,
-    isError,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteMatches(filters, PAGE_SIZE);
+  const matches = data?.data ?? [];
+  const total = data?.meta.total ?? 0;
+  const totalPages = Math.max(1, data?.meta.totalPages ?? 1);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
 
   if (isLoading) {
     return (
@@ -68,7 +78,7 @@ function MatchList({
     );
   }
 
-  if (!data?.pages.length || !data.pages[0].data.length) {
+  if (matches.length === 0) {
     return (
       <div className="rounded-lg border border-border/60 bg-card/50 p-8 text-center">
         <p className="text-muted-foreground">
@@ -82,34 +92,18 @@ function MatchList({
     );
   }
 
-  const total = data.pages[0].meta.total;
-  const matches = data.pages.flatMap((p) => p.data);
-  const showing = matches.length;
-
   return (
-    <div className="space-y-3">
-      <p className="mb-4 text-xs text-muted-foreground">
-        Exibindo {showing} de {total} jogos
-        {q ? ` · busca: "${q}"` : ""}
-      </p>
-      {matches.map((match) => (
-        <MatchCard key={match.id} match={match} />
-      ))}
+    <div className="space-y-4">
+      <MatchTable matches={matches} />
 
-      {hasNextPage && (
-        <div className="flex justify-center pt-4">
-          <Button
-            variant="outline"
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-          >
-            {isFetchingNextPage ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : null}
-            Carregar mais ({total - showing} restantes)
-          </Button>
-        </div>
-      )}
+      <ListPagination
+        page={page}
+        pageSize={pageSize}
+        total={total}
+        onPageChange={setPage}
+        onPageSizeChange={setPageSize}
+        itemLabel="jogos"
+      />
     </div>
   );
 }
