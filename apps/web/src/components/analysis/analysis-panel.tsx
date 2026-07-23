@@ -30,6 +30,7 @@ import { TicketDraftBanner } from '@/components/tickets/ticket-draft-banner';
 import { AiExplanationPanel } from '@/components/ai/explanation-panel';
 import { useMatchExplanation } from '@/hooks/use-ai';
 import type { MarketType } from '@/types/ticket';
+import { formatSelectionLabel } from '@/lib/market-labels';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
@@ -176,7 +177,9 @@ function MarketsGroupedTable({
                 group.markets.map((m) => (
                   <TableRow key={`${m.marketType}-${m.selection}`}>
                     <TableCell>
-                      <div className="font-medium">{m.selection}</div>
+                      <div className="font-medium">
+                        {formatSelectionLabel(m.marketType, m.selection)}
+                      </div>
                       {(m.marketType === 'PLAYER' ||
                         m.marketType?.startsWith('PLAYER_')) && (
                         <div className="text-[10px] text-muted-foreground">
@@ -416,12 +419,15 @@ export function AnalysisPanel({
       confidence: market.confidence,
     });
     if (added) {
-      toast.success(`${market.selection} adicionado ao bilhete`, {
-        action: {
-          label: 'Ver bilhete',
-          onClick: () => router.push('/tickets'),
+      toast.success(
+        `${formatSelectionLabel(market.marketType, market.selection)} adicionado ao bilhete`,
+        {
+          action: {
+            label: 'Ver bilhete',
+            onClick: () => router.push('/tickets'),
+          },
         },
-      });
+      );
     } else {
       toast.info('Seleção já está no bilhete');
     }

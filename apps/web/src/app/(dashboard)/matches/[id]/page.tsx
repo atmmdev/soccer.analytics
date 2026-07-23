@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowLeft, Loader2, MapPin, Trophy, BarChart3 } from 'lucide-react';
-import { AppHeader } from '@/components/layout/app-header';
-import { useMatch } from '@/hooks/use-matches';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { AnalysisPanel } from '@/components/analysis/analysis-panel';
-import { MatchH2HPanel } from '@/components/matches/match-h2h-panel';
-import { TeamLogo } from '@/components/teams/team-logo';
-import { STATUS_LABELS, STATUS_VARIANT } from '@/types/match';
-import { use } from 'react';
+import Link from "next/link";
+import { ArrowLeft, Loader2, MapPin, Trophy, BarChart3 } from "lucide-react";
+import { AppHeader } from "@/components/layout/app-header";
+import { useMatch } from "@/hooks/use-matches";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { AnalysisPanel } from "@/components/analysis/analysis-panel";
+import { MatchH2HPanel } from "@/components/matches/match-h2h-panel";
+import { TeamLogo } from "@/components/teams/team-logo";
+import { STATUS_LABELS, STATUS_VARIANT } from "@/types/match";
+import { use } from "react";
 
 export default function MatchDetailPage({
   params,
@@ -39,14 +39,16 @@ export default function MatchDetailPage({
             Voltar
           </Link>
         </Button>
-        <p className="mt-8 text-center text-muted-foreground">Jogo não encontrado.</p>
+        <p className="mt-8 text-center text-muted-foreground">
+          Jogo não encontrado.
+        </p>
       </div>
     );
   }
 
   const matchDate = new Date(match.matchDate);
-  const isFinished = match.status === 'FINISHED';
-  const isLive = match.status === 'LIVE';
+  const isFinished = match.status === "FINISHED";
+  const isLive = match.status === "LIVE";
 
   return (
     <div className="flex min-h-full flex-col">
@@ -60,93 +62,104 @@ export default function MatchDetailPage({
           </Link>
         </Button>
 
-        <Card className="border-border/60 bg-card/80">
-          <CardHeader>
-            <div className="flex items-start justify-between">
-              <div>
-                <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
-                  <Trophy className="h-4 w-4" />
-                  {match.competition.name}
-                  {match.round && ` · ${match.round}`}
-                </div>
-                <CardTitle className="text-2xl">
-                  {match.homeTeam.name} vs {match.awayTeam.name}
-                </CardTitle>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {matchDate.toLocaleDateString('pt-BR', {
-                    weekday: 'long',
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric',
-                  })}{' '}
-                  ·{' '}
-                  {matchDate.toLocaleTimeString('pt-BR', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </p>
-              </div>
-              <Badge variant={STATUS_VARIANT[match.status]} className="text-sm">
-                {STATUS_LABELS[match.status]}
-              </Badge>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-center gap-8 py-8">
-              <div className="flex flex-col items-center gap-2 text-center">
-                <TeamLogo
-                  src={match.homeTeam.logoUrl}
-                  name={match.homeTeam.name}
-                  size={64}
-                  rounded="md"
-                />
-                <p className="text-lg font-semibold">{match.homeTeam.name}</p>
-                <p className="text-xs text-muted-foreground">{match.homeTeam.country}</p>
-              </div>
-              <div className="text-center">
-                {isFinished || isLive ? (
-                  <p className="font-mono text-5xl font-bold">
-                    {match.homeScore} - {match.awayScore}
+        <div className="flex gap-6">
+          <Card className="w-[60%] border-border/60 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+                    <Trophy className="h-4 w-4" />
+                    {match.competition.name}
+                    {match.round && ` · ${match.round}`}
+                  </div>
+                  <CardTitle className="text-2xl">
+                    {match.homeTeam.name} vs {match.awayTeam.name}
+                  </CardTitle>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {matchDate.toLocaleDateString("pt-BR", {
+                      weekday: "long",
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}{" "}
+                    ·{" "}
+                    {matchDate.toLocaleTimeString("pt-BR", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </p>
-                ) : (
-                  <p className="text-3xl font-bold text-muted-foreground">vs</p>
-                )}
-              </div>
-              <div className="flex flex-col items-center gap-2 text-center">
-                <TeamLogo
-                  src={match.awayTeam.logoUrl}
-                  name={match.awayTeam.name}
-                  size={64}
-                  rounded="md"
-                />
-                <p className="text-lg font-semibold">{match.awayTeam.name}</p>
-                <p className="text-xs text-muted-foreground">{match.awayTeam.country}</p>
-              </div>
-            </div>
-
-            {match.venue && (
-              <>
-                <Separator className="my-4" />
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPin className="h-4 w-4" />
-                  {match.venue}
                 </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
+                <Badge
+                  variant={STATUS_VARIANT[match.status]}
+                  className="text-sm"
+                >
+                  {STATUS_LABELS[match.status]}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-center gap-8 py-8">
+                <div className="flex flex-col items-center gap-2 text-center">
+                  <TeamLogo
+                    src={match.homeTeam.logoUrl}
+                    name={match.homeTeam.name}
+                    size={64}
+                    rounded="md"
+                  />
+                  <p className="text-lg font-semibold">{match.homeTeam.name}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {match.homeTeam.country}
+                  </p>
+                </div>
+                <div className="text-center">
+                  {isFinished || isLive ? (
+                    <p className="font-mono text-5xl font-bold">
+                      {match.homeScore} - {match.awayScore}
+                    </p>
+                  ) : (
+                    <p className="text-3xl font-bold text-muted-foreground">
+                      vs
+                    </p>
+                  )}
+                </div>
+                <div className="flex flex-col items-center gap-2 text-center">
+                  <TeamLogo
+                    src={match.awayTeam.logoUrl}
+                    name={match.awayTeam.name}
+                    size={64}
+                    rounded="md"
+                  />
+                  <p className="text-lg font-semibold">{match.awayTeam.name}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {match.awayTeam.country}
+                  </p>
+                </div>
+              </div>
 
-        <MatchH2HPanel
-          matchId={id}
-          homeTeamName={match.homeTeam.name}
-          awayTeamName={match.awayTeam.name}
-          period={20}
-        />
+              {match.venue && (
+                <>
+                  <Separator className="my-4" />
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4" />
+                    {match.venue}
+                  </div>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          <MatchH2HPanel
+            matchId={id}
+            homeTeamName={match.homeTeam.name}
+            awayTeamName={match.awayTeam.name}
+            period={20}
+          />
+        </div>
 
         <AnalysisPanel
           matchId={id}
           matchLabel={`${match.homeTeam.name} vs ${match.awayTeam.name}`}
-          canAnalyze={match.status === 'SCHEDULED' || match.status === 'LIVE'}
+          canAnalyze={match.status === "SCHEDULED" || match.status === "LIVE"}
         />
 
         <Card className="border-border/60 bg-card/50">

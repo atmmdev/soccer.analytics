@@ -46,7 +46,38 @@ const SELECTION_LABELS: Record<string, string> = {
   'Casa ou Fora': 'Casa ou Fora (12)',
   Yes: 'Sim',
   No: 'Não',
+  Sim: 'Sim',
+  Não: 'Não',
 };
+
+/** Traduz seleções ainda em inglês (ex.: Clean Sheet / Win to Nil). */
+export function translateSelectionText(selection: string): string {
+  let s = selection.trim();
+  if (!s) return s;
+
+  const phrases: Array<[RegExp, string]> = [
+    [/to score in both halves/gi, 'Marcar nos dois tempos'],
+    [/win both halves/gi, 'Vencer ambos os tempos'],
+    [/win\s*to\s*nil/gi, 'Vencer sem sofrer'],
+    [/clean\s*sheet/gi, 'Sem sofrer gols'],
+    [/both teams to score/gi, 'Ambas marcam'],
+    [/highest scoring half/gi, 'Tempo com mais gols'],
+    [/exact score/gi, 'Placar exato'],
+    [/double chance/gi, 'Chance dupla'],
+  ];
+  for (const [re, pt] of phrases) {
+    s = s.replace(re, pt);
+  }
+
+  s = s
+    .replace(/\bHome\b/g, 'Casa')
+    .replace(/\bAway\b/g, 'Fora')
+    .replace(/\bDraw\b/gi, 'Empate')
+    .replace(/\bYes\b/gi, 'Sim')
+    .replace(/\bNo\b/gi, 'Não');
+
+  return s;
+}
 
 function detectCategoryFromSelection(
   marketType: string | null | undefined,
@@ -76,7 +107,11 @@ function formatSelectionLabel(
   const mapped = SELECTION_LABELS[selection];
   if (mapped) return mapped;
 
-  const overUnder = selection.match(/^(Over|Under)\s+([\d.]+)$/i);
+  const translated = translateSelectionText(selection);
+  const mappedTranslated = SELECTION_LABELS[translated];
+  if (mappedTranslated) return mappedTranslated;
+
+  const overUnder = translated.match(/^(Over|Under)\s+([\d.]+)$/i);
   if (overUnder) {
     const side = overUnder[1].toLowerCase() === 'over' ? 'Over' : 'Under';
     const line = overUnder[2];
@@ -89,17 +124,17 @@ function formatSelectionLabel(
     return `${side} ${line} gols`;
   }
 
-  const handicap = selection.match(/^(Casa|Fora|Home|Away)\s*([+-][\d.]+)$/i);
+  const handicap = translated.match(/^(Casa|Fora|Home|Away)\s*([+-][\d.]+)$/i);
   if (handicap) {
     const side = /casa|home/i.test(handicap[1]) ? 'Casa' : 'Fora';
     return `${side} ${handicap[2]} (AH)`;
   }
 
   if (category === 'PLAYER' || category === 'FIRST_SCORER' || category === 'PLAYER_SHOTS') {
-    return selection;
+    return translated;
   }
 
-  return selection;
+  return translated;
 }
 
 /** Ex.: "Escanteios · Over 8.5 escanteios" */
@@ -259,4 +294,4 @@ export function describeMarket(
   };
 }
 
-export { CATEGORY_LABELS };
+export { CATEGORY_LABELS, formatSelectionLabel };

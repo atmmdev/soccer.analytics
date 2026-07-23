@@ -59,7 +59,7 @@ export function MatchH2HPanel({
       }));
 
   return (
-    <Card className="border-border/60 bg-card/80">
+    <Card className="border-border/60 bg-card/80 w-[40%]">
       <CardHeader className="pb-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <CardTitle className="text-base">Head to Head</CardTitle>
@@ -75,7 +75,7 @@ export function MatchH2HPanel({
         <div className="flex justify-center gap-8 text-center">
           <div>
             <p className="text-2xl font-bold text-emerald-400">{h2h.homeWins}</p>
-            <p className="text-xs text-muted-foreground">Vitórias {homeTeamName}</p>
+            <p className="text-xs text-muted-foreground">{homeTeamName}</p>
           </div>
           <div>
             <p className="text-2xl font-bold">{h2h.draws}</p>
@@ -83,7 +83,7 @@ export function MatchH2HPanel({
           </div>
           <div>
             <p className="text-2xl font-bold text-sky-400">{h2h.awayWins}</p>
-            <p className="text-xs text-muted-foreground">Vitórias {awayTeamName}</p>
+            <p className="text-xs text-muted-foreground">{awayTeamName}</p>
           </div>
         </div>
 

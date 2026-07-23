@@ -917,12 +917,14 @@ export class ApiFootballProvider implements DataProvider {
     bookmaker: string,
     betName: string,
   ): ImportedOdd[] {
-    const prefix = betName.trim();
+    const prefix = this.translateTeamSpecialBetName(betName.trim());
     return values
       .map((v) => {
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
-        const outcome = oddSelectionText(v.value);
+        const outcome = this.translateTeamSpecialOutcome(
+          oddSelectionText(v.value),
+        );
         if (!outcome) return null;
         return {
           marketType: MarketType.TEAM_SPECIAL,
@@ -932,6 +934,25 @@ export class ApiFootballProvider implements DataProvider {
         };
       })
       .filter(Boolean) as ImportedOdd[];
+  }
+
+  private translateTeamSpecialBetName(name: string): string {
+    let s = name;
+    s = s.replace(/to score in both halves/gi, 'Marcar nos dois tempos');
+    s = s.replace(/win both halves/gi, 'Vencer ambos os tempos');
+    s = s.replace(/win\s*to\s*nil/gi, 'Vencer sem sofrer');
+    s = s.replace(/clean\s*sheet/gi, 'Sem sofrer gols');
+    s = s.replace(/\bHome\b/g, 'Casa').replace(/\bAway\b/g, 'Fora');
+    return s.trim() || name;
+  }
+
+  private translateTeamSpecialOutcome(raw: string): string {
+    const lower = raw.trim().toLowerCase();
+    if (lower === 'yes' || lower === 'sim') return 'Sim';
+    if (lower === 'no' || lower === 'não' || lower === 'nao') return 'Não';
+    if (lower === 'home' || lower === 'casa') return 'Casa';
+    if (lower === 'away' || lower === 'fora') return 'Fora';
+    return this.translateTeamSpecialBetName(raw);
   }
 
   private mapYesNo(
