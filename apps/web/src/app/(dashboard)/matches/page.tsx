@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { AppHeader } from '@/components/layout/app-header';
-import { MatchCard } from '@/components/matches/match-card';
-import { CompetitionFilter } from '@/components/matches/competition-filter';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
-import { useInfiniteMatches, useCompetitions } from '@/hooks/use-matches';
-import type { MatchStatus } from '@/types/match';
-import { Loader2 } from 'lucide-react';
-import { useMemo } from 'react';
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { AppHeader } from "@/components/layout/app-header";
+import { MatchCard } from "@/components/matches/match-card";
+import { CompetitionFilter } from "@/components/matches/competition-filter";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { useInfiniteMatches, useCompetitions } from "@/hooks/use-matches";
+import type { MatchStatus } from "@/types/match";
+import { Loader2 } from "lucide-react";
+import { useMemo } from "react";
 
 const PAGE_SIZE = 30;
 
 const statusTabs: { value: string; label: string; status?: MatchStatus }[] = [
-  { value: 'all', label: 'Todos' },
-  { value: 'SCHEDULED', label: 'Agendados', status: 'SCHEDULED' },
-  { value: 'LIVE', label: 'Ao Vivo', status: 'LIVE' },
-  { value: 'FINISHED', label: 'Finalizados', status: 'FINISHED' },
+  { value: "all", label: "Todos" },
+  { value: "SCHEDULED", label: "Agendados", status: "SCHEDULED" },
+  { value: "LIVE", label: "Ao Vivo", status: "LIVE" },
+  { value: "FINISHED", label: "Finalizados", status: "FINISHED" },
 ];
 
 function MatchList({
@@ -36,8 +36,14 @@ function MatchList({
     ...(competitionId ? { competitionId } : {}),
   };
 
-  const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteMatches(filters, PAGE_SIZE);
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteMatches(filters, PAGE_SIZE);
 
   if (isLoading) {
     return (
@@ -51,10 +57,12 @@ function MatchList({
     return (
       <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-6 text-center">
         <p className="text-sm text-destructive">
-          Não foi possível carregar os jogos. Verifique se a API e o banco estão rodando.
+          Não foi possível carregar os jogos. Verifique se a API e o banco estão
+          rodando.
         </p>
         <p className="mt-2 text-xs text-muted-foreground">
-          Os jogos são importados automaticamente via API-Football ao acessar o sistema.
+          Os jogos são importados automaticamente via API-Football ao acessar o
+          sistema.
         </p>
       </div>
     );
@@ -67,8 +75,8 @@ function MatchList({
           {q
             ? `Nenhum jogo encontrado para "${q}".`
             : competitionId
-              ? 'Nenhum jogo neste campeonato com os filtros atuais.'
-              : 'Nenhum jogo encontrado.'}
+              ? "Nenhum jogo neste campeonato com os filtros atuais."
+              : "Nenhum jogo encontrado."}
         </p>
       </div>
     );
@@ -82,7 +90,7 @@ function MatchList({
     <div className="space-y-3">
       <p className="mb-4 text-xs text-muted-foreground">
         Exibindo {showing} de {total} jogos
-        {q ? ` · busca: "${q}"` : ''}
+        {q ? ` · busca: "${q}"` : ""}
       </p>
       {matches.map((match) => (
         <MatchCard key={match.id} match={match} />
@@ -108,10 +116,11 @@ function MatchList({
 
 export default function MatchesPage() {
   const searchParams = useSearchParams();
-  const q = searchParams.get('q') ?? undefined;
+  const q = searchParams.get("q") ?? undefined;
   const [competitionId, setCompetitionId] = useState<string | null>(null);
 
-  const { data: competitions, isLoading: loadingCompetitions } = useCompetitions();
+  const { data: competitions, isLoading: loadingCompetitions } =
+    useCompetitions();
 
   const competitionOptions = useMemo(
     () =>
@@ -124,34 +133,37 @@ export default function MatchesPage() {
     [competitions],
   );
 
-  const selectedCompetition = competitionOptions.find((c) => c.id === competitionId);
+  const selectedCompetition = competitionOptions.find(
+    (c) => c.id === competitionId,
+  );
 
   const subtitle = q
     ? `Resultados para "${q}"`
     : selectedCompetition
       ? `${selectedCompetition.name} — ${selectedCompetition.matchCount} jogos`
-      : 'Match Center — visualize e filtre partidas';
+      : "Match Center — visualize e filtre partidas";
 
   return (
     <div className="flex min-h-full flex-col">
       <AppHeader title="Jogos" subtitle={subtitle} />
 
       <div className="flex-1 p-6">
-        <CompetitionFilter
-          competitions={competitionOptions}
-          value={competitionId}
-          onChange={setCompetitionId}
-          isLoading={loadingCompetitions}
-        />
-
         <Tabs defaultValue="all">
-          <TabsList className="mb-6">
-            {statusTabs.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {tab.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <CompetitionFilter
+              competitions={competitionOptions}
+              value={competitionId}
+              onChange={setCompetitionId}
+              isLoading={loadingCompetitions}
+            />
+            <TabsList className="w-full shrink-0 sm:w-auto">
+              {statusTabs.map((tab) => (
+                <TabsTrigger key={tab.value} value={tab.value}>
+                  {tab.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
 
           {statusTabs.map((tab) => (
             <TabsContent key={tab.value} value={tab.value}>
@@ -159,7 +171,7 @@ export default function MatchesPage() {
                 status={tab.status}
                 q={q}
                 competitionId={competitionId ?? undefined}
-                key={`${tab.value}-${q ?? ''}-${competitionId ?? ''}`}
+                key={`${tab.value}-${q ?? ""}-${competitionId ?? ""}`}
               />
             </TabsContent>
           ))}

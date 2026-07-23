@@ -94,7 +94,7 @@ export function CompetitionFilter({
   const inputValue = open ? query : selected ? selected.name : query;
 
   return (
-    <div ref={containerRef} className="relative mb-6 max-w-md">
+    <div ref={containerRef} className="relative w-full max-w-md">
       <label htmlFor="competition-filter" className="mb-2 block text-sm font-medium">
         Campeonato
       </label>
