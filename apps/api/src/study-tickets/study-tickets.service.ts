@@ -92,15 +92,41 @@ export class StudyTicketsService {
   }
 
   async update(id: string, dto: UpdateStudyTicketDto) {
-    await this.findOne(id);
+    const existing = await this.findOne(id);
 
     const { legs, placedAt, cashOutAt, ...rest } = dto;
+
+    const stake =
+      rest.stake !== undefined ? rest.stake : existing.stake;
+    const legsForCalc =
+      legs ??
+      existing.legs.map((l) => ({
+        odd: l.odd,
+        boostedOdd: l.boostedOdd,
+        builderGroup: l.builderGroup,
+      }));
+
+    const derived = this.deriveTotalsFromLegs({
+      legs: legsForCalc,
+      stake,
+      combinedOdd:
+        rest.combinedOdd !== undefined
+          ? rest.combinedOdd
+          : existing.combinedOdd,
+      potentialReturn:
+        rest.potentialReturn !== undefined
+          ? rest.potentialReturn
+          : existing.potentialReturn,
+      preferLegsProduct: rest.combinedOdd === undefined,
+    });
 
     await this.prisma.$transaction(async (tx) => {
       await tx.studyTicket.update({
         where: { id },
         data: {
           ...rest,
+          combinedOdd: derived.combinedOdd,
+          potentialReturn: derived.potentialReturn,
           ...(placedAt ? { placedAt: new Date(placedAt) } : {}),
           ...(cashOutAt !== undefined
             ? { cashOutAt: cashOutAt ? new Date(cashOutAt) : null }
@@ -133,9 +159,71 @@ export class StudyTicketsService {
     });
 
     const ticket = await this.findOne(id);
-    await this.persistTicketJson(ticket);
+    const jsonPath = await this.persistTicketJson(ticket);
     await this.bankroll.resyncStudyTicketLedger(id);
-    return this.findOne(id);
+    const saved = await this.findOne(id);
+    return { ...saved, jsonPath };
+  }
+
+  /**
+   * Odd combinada e retorno potencial.
+   * - 1 odd por builderGroup (Criar Aposta) + pernas avulsas
+   * - Se o cliente enviou combinedOdd (>1.01), respeita
+   * - Retorno potencial = stake × odd quando ausente ou ≤0
+   */
+  private deriveTotalsFromLegs(input: {
+    legs: {
+      odd?: number | null;
+      boostedOdd?: number | null;
+      builderGroup?: number | null;
+    }[];
+    stake: number;
+    combinedOdd: number | null;
+    potentialReturn: number | null;
+    preferLegsProduct?: boolean;
+  }): { combinedOdd: number | null; potentialReturn: number | null } {
+    const byGroup = new Map<string, number | null>();
+    input.legs.forEach((l, i) => {
+      const key =
+        l.builderGroup != null ? `g-${l.builderGroup}` : `solo-${i}`;
+      const raw = l.boostedOdd ?? l.odd;
+      const odd = raw != null && raw > 1.001 ? raw : null;
+      const prev = byGroup.get(key) ?? null;
+      if (odd != null && (prev == null || odd > prev)) {
+        byGroup.set(key, odd);
+      } else if (!byGroup.has(key)) {
+        byGroup.set(key, null);
+      }
+    });
+
+    const odds = [...byGroup.values()].filter((o): o is number => o != null);
+    const fromLegs =
+      odds.length > 0
+        ? Number(odds.reduce((a, b) => a * b, 1).toFixed(4))
+        : null;
+
+    let combinedOdd = input.combinedOdd;
+    if (fromLegs != null) {
+      if (
+        input.preferLegsProduct ||
+        combinedOdd == null ||
+        combinedOdd <= 1.01
+      ) {
+        combinedOdd = fromLegs;
+      }
+    }
+
+    let potentialReturn = input.potentialReturn;
+    if (
+      (potentialReturn == null || potentialReturn <= 0) &&
+      input.stake > 0 &&
+      combinedOdd != null &&
+      combinedOdd > 0
+    ) {
+      potentialReturn = Number((input.stake * combinedOdd).toFixed(2));
+    }
+
+    return { combinedOdd, potentialReturn };
   }
 
   /** Caminho do JSON curado espelhado em bilhetes/imported/... */
@@ -163,8 +251,43 @@ export class StudyTicketsService {
     return importedAbs;
   }
 
+  private relativeFromRepo(absPath: string): string {
+    return relative(REPO_ROOT, absPath).replace(/\\/g, '/');
+  }
+
+  private buildCuratedWarnings(
+    ticket: Awaited<ReturnType<StudyTicketsService['findOne']>>,
+    prevWarnings: unknown,
+  ): string[] {
+    const kept: string[] = [];
+    if (Array.isArray(prevWarnings)) {
+      for (const w of prevWarnings) {
+        if (typeof w !== 'string') continue;
+        // Remove avisos de parse sobre odd 1 / parcial — agora o JSON é curado
+        if (/odd 1 no PDF/i.test(w)) continue;
+        if (/Odd combinada parcial/i.test(w)) continue;
+        if (/provavelmente incorreta/i.test(w)) continue;
+        kept.push(w);
+      }
+    }
+
+    const missingOdd = ticket.legs.filter(
+      (l) => (l.boostedOdd ?? l.odd) == null,
+    ).length;
+    if (missingOdd > 0) {
+      kept.push(
+        `${missingOdd}/${ticket.legs.length} pernas sem odd — preencher na edição`,
+      );
+    }
+    if (ticket.combinedOdd == null || ticket.combinedOdd <= 1.01) {
+      kept.push('Odd combinada ausente ou inválida — revisar');
+    }
+    return kept;
+  }
+
   private buildTicketJsonPayload(
     ticket: Awaited<ReturnType<StudyTicketsService['findOne']>>,
+    jsonRelPath: string,
   ) {
     const prev =
       ticket.rawExtract && typeof ticket.rawExtract === 'object'
@@ -175,14 +298,36 @@ export class StudyTicketsService {
         ? (prev._meta as Record<string, unknown>)
         : {};
 
+    const legs = ticket.legs.map((leg) => ({
+      sortOrder: leg.sortOrder,
+      builderGroup: leg.builderGroup,
+      matchLabel: leg.matchLabel,
+      matchDate: leg.matchDate,
+      market: leg.market,
+      selection: leg.selection,
+      period: leg.period,
+      odd: leg.odd,
+      boostedOdd: leg.boostedOdd,
+      status: leg.status,
+      progressValue: leg.progressValue,
+      progressLine: leg.progressLine,
+      meta: leg.meta ?? undefined,
+    }));
+
+    const warnings = this.buildCuratedWarnings(ticket, prev.warnings);
+    const missingOdd = legs.filter(
+      (l) => (l.boostedOdd ?? l.odd) == null,
+    ).length;
+    const needsReview =
+      missingOdd > 0 ||
+      ticket.combinedOdd == null ||
+      ticket.combinedOdd <= 1.01;
+
+    const revision =
+      typeof prevMeta.revision === 'number' ? prevMeta.revision + 1 : 1;
+
+    // Documento curado: estado atual do bilhete é a fonte da verdade
     return {
-      ...prev,
-      _meta: {
-        ...prevMeta,
-        updatedAt: new Date().toISOString(),
-        curated: true,
-        source: 'study-ticket-update',
-      },
       sourceFile: ticket.sourceFile,
       bet365Ref: ticket.bet365Ref,
       placedAt: ticket.placedAt.toISOString(),
@@ -202,40 +347,42 @@ export class StudyTicketsService {
               total: ticket.cashOutValue,
               value: ticket.cashOutValue,
             }
-          : ((prev.cashOut as unknown) ?? null),
+          : null,
       hasOddsBoost: ticket.hasOddsBoost,
       bankrollPeriodId: ticket.bankrollPeriodId,
       notes: ticket.notes,
-      legs: ticket.legs.map((leg) => ({
-        sortOrder: leg.sortOrder,
-        builderGroup: leg.builderGroup,
-        matchLabel: leg.matchLabel,
-        matchDate: leg.matchDate,
-        market: leg.market,
-        selection: leg.selection,
-        period: leg.period,
-        odd: leg.odd,
-        boostedOdd: leg.boostedOdd,
-        status: leg.status,
-        progressValue: leg.progressValue,
-        progressLine: leg.progressLine,
-        meta: leg.meta ?? undefined,
-      })),
+      legs,
+      warnings,
+      needsReview,
+      // Auditoria do PDF original (não reprocessar como verdade)
+      rawLines: Array.isArray(prev.rawLines) ? prev.rawLines : undefined,
+      _meta: {
+        ...prevMeta,
+        updatedAt: new Date().toISOString(),
+        curated: true,
+        source: 'study-ticket-update',
+        revision,
+        jsonPath: jsonRelPath,
+      },
     };
   }
 
+  /** Regrava o JSON em imported/ + rawExtract no DB. Retorna path relativo ao repo. */
   private async persistTicketJson(
     ticket: Awaited<ReturnType<StudyTicketsService['findOne']>>,
-  ) {
-    const payload = this.buildTicketJsonPayload(ticket);
+  ): Promise<string> {
     const abs = this.resolveTicketJsonAbs(ticket.sourceFile);
+    const jsonRelPath = this.relativeFromRepo(abs);
+    const payload = this.buildTicketJsonPayload(ticket, jsonRelPath);
     mkdirSync(dirname(abs), { recursive: true });
-    writeFileSync(abs, JSON.stringify(payload, null, 2), 'utf8');
+    writeFileSync(abs, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 
     await this.prisma.studyTicket.update({
       where: { id: ticket.id },
       data: { rawExtract: payload as unknown as Prisma.InputJsonValue },
     });
+
+    return jsonRelPath;
   }
 
   async remove(id: string) {

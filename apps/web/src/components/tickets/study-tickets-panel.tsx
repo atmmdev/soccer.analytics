@@ -52,6 +52,84 @@ function formatOdd(value: number | null | undefined) {
   });
 }
 
+/** Aceita digitação parcial ("1.", "1,3") sem perder o separador decimal. */
+function isDecimalTyping(value: string) {
+  return value === '' || /^\d*[.,]?\d*$/.test(value);
+}
+
+function parseDecimalInput(value: string): number | null {
+  const normalized = value.trim().replace(',', '.');
+  if (!normalized || normalized === '.') return null;
+  // "1." ainda incompleto — usa a parte inteira só para cálculo ao vivo
+  const n = Number(
+    normalized.endsWith('.') ? normalized.slice(0, -1) : normalized,
+  );
+  return Number.isFinite(n) ? n : null;
+}
+
+function oddToInputString(value: number | null | undefined) {
+  if (value == null) return '';
+  return String(value);
+}
+
+function effectiveLegOdd(leg: {
+  odd: number | null;
+  boostedOdd: number | null;
+}): number | null {
+  const v = leg.boostedOdd ?? leg.odd;
+  // Ignora placeholder 1.00 do PDF Bet365
+  return v != null && v > 1.001 ? v : null;
+}
+
+/**
+ * Odd combinada a partir das pernas:
+ * - Em "Criar Aposta", várias pernas compartilham builderGroup e a odd
+ *   costuma estar só em uma delas → usa 1 odd por grupo.
+ * - Pernas sem grupo entram individualmente.
+ * - Produto de todas as odds efetivas encontradas (parcial ok).
+ */
+function computeCombinedOddFromLegs(
+  legs: {
+    odd: number | null;
+    boostedOdd: number | null;
+    builderGroup?: number | null;
+  }[],
+): number | null {
+  if (!legs.length) return null;
+
+  const byGroup = new Map<string, number | null>();
+  for (let i = 0; i < legs.length; i++) {
+    const leg = legs[i];
+    const key =
+      leg.builderGroup != null ? `g-${leg.builderGroup}` : `solo-${i}`;
+    const odd = effectiveLegOdd(leg);
+    const prev = byGroup.get(key) ?? null;
+    // Mantém a maior odd do grupo (ou a primeira válida)
+    if (odd != null && (prev == null || odd > prev)) {
+      byGroup.set(key, odd);
+    } else if (!byGroup.has(key)) {
+      byGroup.set(key, null);
+    }
+  }
+
+  const odds = [...byGroup.values()].filter((o): o is number => o != null);
+  if (!odds.length) return null;
+  return Number(odds.reduce((acc, o) => acc * o, 1).toFixed(4));
+}
+
+type EditableLeg = StudyTicketLeg & {
+  oddStr: string;
+  boostedOddStr: string;
+};
+
+function toEditableLegs(legs: StudyTicketLeg[]): EditableLeg[] {
+  return legs.map((l) => ({
+    ...l,
+    oddStr: oddToInputString(l.odd),
+    boostedOddStr: oddToInputString(l.boostedOdd),
+  }));
+}
+
 function formatDateTime(iso: string) {
   return new Date(iso).toLocaleString('pt-BR', {
     day: '2-digit',
@@ -353,7 +431,9 @@ function EditStudyTicketDialog({
   onClose: () => void;
 }) {
   const update = useUpdateStudyTicket();
-  const [stake, setStake] = useState(String(ticket.stake));
+  const [stake, setStake] = useState(
+    ticket.stake != null ? String(ticket.stake) : '',
+  );
   const [combinedOdd, setCombinedOdd] = useState(
     ticket.combinedOdd != null ? String(ticket.combinedOdd) : '',
   );
@@ -368,24 +448,59 @@ function EditStudyTicketDialog({
   );
   const [status, setStatus] = useState<StudyTicketStatus>(ticket.status);
   const [notes, setNotes] = useState(ticket.notes ?? '');
-  const [legs, setLegs] = useState(ticket.legs);
+  const [legs, setLegs] = useState(() => toEditableLegs(ticket.legs));
+  /** false = recalcula a partir das pernas / stake */
+  const [combinedOddManual, setCombinedOddManual] = useState(false);
+  const [potentialReturnManual, setPotentialReturnManual] = useState(false);
+
+  const autoCombined = useMemo(
+    () => computeCombinedOddFromLegs(legs),
+    [legs],
+  );
+
+  useEffect(() => {
+    if (combinedOddManual) return;
+    if (autoCombined != null) {
+      setCombinedOdd(String(autoCombined));
+    } else {
+      setCombinedOdd('');
+    }
+  }, [autoCombined, combinedOddManual]);
+
+  useEffect(() => {
+    if (potentialReturnManual) return;
+    const stakeN = parseDecimalInput(stake);
+    const oddN =
+      parseDecimalInput(combinedOdd) ??
+      (combinedOddManual ? null : autoCombined);
+    if (stakeN != null && oddN != null && stakeN > 0 && oddN > 0) {
+      setPotentialReturn((stakeN * oddN).toFixed(2));
+    } else if (!potentialReturnManual) {
+      setPotentialReturn('');
+    }
+  }, [
+    stake,
+    combinedOdd,
+    autoCombined,
+    combinedOddManual,
+    potentialReturnManual,
+  ]);
 
   const save = () => {
-    const oddNum = combinedOdd ? Number(combinedOdd.replace(',', '.')) : null;
+    const stakeNum = parseDecimalInput(stake);
+    if (stakeNum == null || stakeNum < 0) {
+      toast.error('Stake inválida');
+      return;
+    }
+    const oddNum = parseDecimalInput(combinedOdd);
     update.mutate(
       {
         id: ticket.id,
-        stake: Number(stake.replace(',', '.')),
+        stake: stakeNum,
         combinedOdd: oddNum,
-        actualReturn: actualReturn
-          ? Number(actualReturn.replace(',', '.'))
-          : null,
-        potentialReturn: potentialReturn
-          ? Number(potentialReturn.replace(',', '.'))
-          : null,
-        cashOutValue: cashOutValue
-          ? Number(cashOutValue.replace(',', '.'))
-          : null,
+        actualReturn: parseDecimalInput(actualReturn),
+        potentialReturn: parseDecimalInput(potentialReturn),
+        cashOutValue: parseDecimalInput(cashOutValue),
         status,
         notes: notes || null,
         legs: legs.map((l, i) => ({
@@ -396,16 +511,23 @@ function EditStudyTicketDialog({
           market: l.market,
           selection: l.selection,
           period: l.period,
-          odd: l.odd,
-          boostedOdd: l.boostedOdd,
+          odd: parseDecimalInput(l.oddStr),
+          boostedOdd: parseDecimalInput(l.boostedOddStr),
           status: l.status,
           progressValue: l.progressValue,
           progressLine: l.progressLine,
         })),
       },
       {
-        onSuccess: () => {
-          toast.success('Bilhete atualizado');
+        onSuccess: (saved) => {
+          const jsonHint =
+            saved &&
+            typeof saved === 'object' &&
+            'jsonPath' in saved &&
+            typeof (saved as { jsonPath?: string }).jsonPath === 'string'
+              ? ` · JSON: ${(saved as { jsonPath: string }).jsonPath}`
+              : '';
+          toast.success(`Bilhete atualizado${jsonHint}`);
           onClose();
         },
         onError: () => toast.error('Falha ao salvar'),
@@ -413,21 +535,44 @@ function EditStudyTicketDialog({
     );
   };
 
-  const updateLegOdd = (
+  const updateLegOddStr = (
     id: string,
-    field: 'odd' | 'boostedOdd',
+    field: 'oddStr' | 'boostedOddStr',
     value: string,
   ) => {
+    if (!isDecimalTyping(value)) return;
+    setCombinedOddManual(false);
+    setPotentialReturnManual(false);
     setLegs((prev) =>
-      prev.map((l) =>
-        l.id === id
-          ? {
-              ...l,
-              [field]: value ? Number(value.replace(',', '.')) : null,
-            }
-          : l,
-      ),
+      prev.map((l) => {
+        if (l.id !== id) return l;
+        const numField = field === 'oddStr' ? 'odd' : 'boostedOdd';
+        return {
+          ...l,
+          [field]: value,
+          [numField]: parseDecimalInput(value),
+        };
+      }),
     );
+  };
+
+  const onStakeChange = (value: string) => {
+    if (!isDecimalTyping(value)) return;
+    setPotentialReturnManual(false);
+    setStake(value);
+  };
+
+  const onCombinedOddChange = (value: string) => {
+    if (!isDecimalTyping(value)) return;
+    setCombinedOddManual(true);
+    setPotentialReturnManual(false);
+    setCombinedOdd(value);
+  };
+
+  const onPotentialReturnChange = (value: string) => {
+    if (!isDecimalTyping(value)) return;
+    setPotentialReturnManual(true);
+    setPotentialReturn(value);
   };
 
   return (
@@ -443,35 +588,65 @@ function EditStudyTicketDialog({
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="space-y-1 text-xs">
             <span className="text-muted-foreground">Stake</span>
-            <Input value={stake} onChange={(e) => setStake(e.target.value)} />
-          </label>
-          <label className="space-y-1 text-xs">
-            <span className="text-muted-foreground">Odd combinada</span>
             <Input
-              value={combinedOdd}
-              onChange={(e) => setCombinedOdd(e.target.value)}
-              placeholder="Corrigir se veio 1,00"
+              inputMode="decimal"
+              value={stake}
+              onChange={(e) => onStakeChange(e.target.value)}
             />
           </label>
           <label className="space-y-1 text-xs">
-            <span className="text-muted-foreground">Retorno potencial</span>
+            <span className="text-muted-foreground">
+              Odd combinada
+              {!combinedOddManual && autoCombined != null ? (
+                <span className="ml-1 font-normal opacity-70">
+                  (auto · {autoCombined.toFixed(2)})
+                </span>
+              ) : null}
+            </span>
             <Input
+              inputMode="decimal"
+              value={combinedOdd}
+              onChange={(e) => onCombinedOddChange(e.target.value)}
+              placeholder="Produto das pernas"
+            />
+          </label>
+          <label className="space-y-1 text-xs">
+            <span className="text-muted-foreground">
+              Retorno potencial
+              {!potentialReturnManual ? (
+                <span className="ml-1 font-normal opacity-70">
+                  (stake × odd)
+                </span>
+              ) : null}
+            </span>
+            <Input
+              inputMode="decimal"
               value={potentialReturn}
-              onChange={(e) => setPotentialReturn(e.target.value)}
+              onChange={(e) => onPotentialReturnChange(e.target.value)}
             />
           </label>
           <label className="space-y-1 text-xs">
             <span className="text-muted-foreground">Retorno obtido</span>
             <Input
+              inputMode="decimal"
               value={actualReturn}
-              onChange={(e) => setActualReturn(e.target.value)}
+              onChange={(e) => {
+                const v = e.target.value;
+                if (!isDecimalTyping(v)) return;
+                setActualReturn(v);
+              }}
             />
           </label>
           <label className="space-y-1 text-xs">
             <span className="text-muted-foreground">Cash out (valor)</span>
             <Input
+              inputMode="decimal"
               value={cashOutValue}
-              onChange={(e) => setCashOutValue(e.target.value)}
+              onChange={(e) => {
+                const v = e.target.value;
+                if (!isDecimalTyping(v)) return;
+                setCashOutValue(v);
+              }}
             />
           </label>
           <div className="space-y-1 text-xs">
@@ -498,7 +673,7 @@ function EditStudyTicketDialog({
 
         <div className="mt-4 space-y-2">
           <p className="text-xs font-medium text-muted-foreground">
-            Odds por perna (editáveis)
+            Odds por perna (editáveis — use ponto ou vírgula, ex.: 1.33)
           </p>
           {legs.map((leg) => (
             <div
@@ -513,15 +688,19 @@ function EditStudyTicketDialog({
               </div>
               <Input
                 className="h-8 font-mono text-xs"
-                value={leg.odd ?? ''}
-                onChange={(e) => updateLegOdd(leg.id, 'odd', e.target.value)}
+                inputMode="decimal"
+                value={leg.oddStr}
+                onChange={(e) =>
+                  updateLegOddStr(leg.id, 'oddStr', e.target.value)
+                }
                 placeholder="Odd"
               />
               <Input
                 className="h-8 font-mono text-xs"
-                value={leg.boostedOdd ?? ''}
+                inputMode="decimal"
+                value={leg.boostedOddStr}
                 onChange={(e) =>
-                  updateLegOdd(leg.id, 'boostedOdd', e.target.value)
+                  updateLegOddStr(leg.id, 'boostedOddStr', e.target.value)
                 }
                 placeholder="Boost"
               />

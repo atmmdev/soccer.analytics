@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsString,
   Min,
+  ValidateIf,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -45,12 +46,12 @@ export class UpdateStudyLegDto {
   @IsString()
   period?: string | null;
 
-  @IsOptional()
+  @ValidateIf((_, v) => v != null)
   @IsNumber()
   @Min(1)
   odd?: number | null;
 
-  @IsOptional()
+  @ValidateIf((_, v) => v != null)
   @IsNumber()
   @Min(1)
   boostedOdd?: number | null;
@@ -103,17 +104,17 @@ export class UpdateStudyTicketDto {
   @IsNumber()
   numBets?: number | null;
 
-  @IsOptional()
+  @ValidateIf((_, v) => v != null)
   @IsNumber()
   @Min(1)
   combinedOdd?: number | null;
 
-  @IsOptional()
+  @ValidateIf((_, v) => v != null)
   @IsNumber()
   @Min(0)
   potentialReturn?: number | null;
 
-  @IsOptional()
+  @ValidateIf((_, v) => v != null)
   @IsNumber()
   @Min(0)
   actualReturn?: number | null;
@@ -122,7 +123,7 @@ export class UpdateStudyTicketDto {
   @IsDateString()
   cashOutAt?: string | null;
 
-  @IsOptional()
+  @ValidateIf((_, v) => v != null)
   @IsNumber()
   @Min(0)
   cashOutValue?: number | null;
