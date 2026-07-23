@@ -63,6 +63,11 @@ function isRateLimitError(message: string): boolean {
   return /rate limit|too many requests|limite de requisi/i.test(message);
 }
 
+export interface SyncImportOptions {
+  /** Filtra por externalId da liga (API-Football). Vazio = sem filtro. */
+  leagueIds?: string[];
+}
+
 @Injectable()
 export class DataEngineService {
   constructor(
@@ -82,9 +87,13 @@ export class DataEngineService {
     return this.apiUsage.getUsage();
   }
 
-  async importFixtures(date: string): Promise<ImportFixturesResult> {
+  async importFixtures(
+    date: string,
+    options?: SyncImportOptions,
+  ): Promise<ImportFixturesResult> {
     this.assertDate(date);
     const provider = this.getActiveProvider();
+    const leagueIds = options?.leagueIds?.filter(Boolean) ?? [];
 
     const result: ImportFixturesResult = {
       provider: provider.name,
@@ -102,6 +111,11 @@ export class DataEngineService {
       throw new BadRequestException(
         err instanceof Error ? err.message : 'Falha ao buscar jogos',
       );
+    }
+
+    if (leagueIds.length > 0) {
+      const allowed = new Set(leagueIds);
+      fixtures = fixtures.filter((f) => allowed.has(f.competition.externalId));
     }
 
     result.fixturesFound = fixtures.length;
@@ -123,10 +137,14 @@ export class DataEngineService {
     return result;
   }
 
-  async importOdds(date: string): Promise<ImportOddsResult> {
+  async importOdds(
+    date: string,
+    options?: SyncImportOptions,
+  ): Promise<ImportOddsResult> {
     this.assertDate(date);
     const provider = this.getActiveProvider();
     const { start, end } = this.getLocalDateRange(date);
+    const leagueFilter = this.leagueWhere(options?.leagueIds);
 
     const result: ImportOddsResult = {
       provider: provider.name,
@@ -160,6 +178,7 @@ export class DataEngineService {
         externalId: { not: null },
         status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
         matchDate: { gte: start, lte: end },
+        ...leagueFilter,
       },
       include: { _count: { select: { odds: true } } },
       orderBy: { matchDate: 'asc' },
@@ -243,13 +262,17 @@ export class DataEngineService {
    * Busca odds só para jogos agendados/ao vivo da data que ainda não têm odds no banco.
    * Não reimporta fixtures nem reprocessa quem já tem odds — ideal para retomar após 429.
    */
-  async importPendingOdds(date: string): Promise<ImportOddsResult> {
+  async importPendingOdds(
+    date: string,
+    options?: SyncImportOptions,
+  ): Promise<ImportOddsResult> {
     this.assertDate(date);
     const provider = this.getActiveProvider();
     const { start, end } = this.getLocalDateRange(date);
     const minuteLimit = this.readMinuteLimit();
     // Folga vs 300 r/min do Pro para reduzir 429 em rajada
     const delayMs = Math.ceil(60_000 / Math.max(60, minuteLimit - 20));
+    const leagueFilter = this.leagueWhere(options?.leagueIds);
 
     const result: ImportOddsResult = {
       provider: provider.name,
@@ -269,6 +292,7 @@ export class DataEngineService {
         status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
         matchDate: { gte: start, lte: end },
         odds: { none: {} },
+        ...leagueFilter,
       },
       orderBy: { matchDate: 'asc' },
     });
@@ -309,16 +333,21 @@ export class DataEngineService {
         status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
         matchDate: { gte: start, lte: end },
         odds: { none: {} },
+        ...leagueFilter,
       },
     });
 
     return result;
   }
 
-  async importStatistics(date: string): Promise<ImportStatisticsResult> {
+  async importStatistics(
+    date: string,
+    options?: SyncImportOptions,
+  ): Promise<ImportStatisticsResult> {
     this.assertDate(date);
     const provider = this.getActiveProvider();
     const { start, end } = this.getLocalDateRange(date);
+    const leagueFilter = this.leagueWhere(options?.leagueIds);
 
     const result: ImportStatisticsResult = {
       provider: provider.name,
@@ -337,6 +366,7 @@ export class DataEngineService {
         externalId: { not: null },
         status: MatchStatus.FINISHED,
         matchDate: { gte: start, lte: end },
+        ...leagueFilter,
       },
       include: {
         homeTeam: true,
@@ -419,15 +449,23 @@ export class DataEngineService {
       }
     }
 
-    result.remainingWithoutStats = await this.countPendingStatistics(start, end);
+    result.remainingWithoutStats = await this.countPendingStatistics(
+      start,
+      end,
+      options?.leagueIds,
+    );
 
     return result;
   }
 
-  async importPlayerStats(date: string): Promise<ImportPlayerStatsResult> {
+  async importPlayerStats(
+    date: string,
+    options?: SyncImportOptions,
+  ): Promise<ImportPlayerStatsResult> {
     this.assertDate(date);
     const provider = this.getActiveProvider();
     const { start, end } = this.getLocalDateRange(date);
+    const leagueFilter = this.leagueWhere(options?.leagueIds);
 
     const result: ImportPlayerStatsResult = {
       provider: provider.name,
@@ -446,6 +484,7 @@ export class DataEngineService {
         externalId: { not: null },
         status: MatchStatus.FINISHED,
         matchDate: { gte: start, lte: end },
+        ...leagueFilter,
       },
       include: {
         homeTeam: true,
@@ -523,7 +562,11 @@ export class DataEngineService {
       }
     }
 
-    result.remainingWithoutPlayers = await this.countPendingPlayerStats(start, end);
+    result.remainingWithoutPlayers = await this.countPendingPlayerStats(
+      start,
+      end,
+      options?.leagueIds,
+    );
 
     return result;
   }
@@ -566,26 +609,44 @@ export class DataEngineService {
     });
   }
 
-  private async countPendingPlayerStats(start: Date, end: Date) {
+  private async countPendingPlayerStats(
+    start: Date,
+    end: Date,
+    leagueIds?: string[],
+  ) {
     return this.prisma.match.count({
       where: {
         externalId: { not: null },
         status: MatchStatus.FINISHED,
         matchDate: { gte: start, lte: end },
         playerPerformances: { none: {} },
+        ...this.leagueWhere(leagueIds),
       },
     });
   }
 
-  private async countPendingStatistics(start: Date, end: Date) {
+  private async countPendingStatistics(
+    start: Date,
+    end: Date,
+    leagueIds?: string[],
+  ) {
     return this.prisma.match.count({
       where: {
         externalId: { not: null },
         status: MatchStatus.FINISHED,
         matchDate: { gte: start, lte: end },
         matchStatistics: null,
+        ...this.leagueWhere(leagueIds),
       },
     });
+  }
+
+  private leagueWhere(leagueIds?: string[]) {
+    const ids = leagueIds?.filter(Boolean) ?? [];
+    if (!ids.length) return {};
+    return {
+      competition: { externalId: { in: ids } },
+    };
   }
 
   private isRateLimitError(message: string) {

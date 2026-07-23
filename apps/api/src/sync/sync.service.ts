@@ -5,15 +5,19 @@ import { PrismaService } from '../prisma/prisma.service';
 import { DataEngineService } from '../engines/data-engine/data-engine.service';
 import type { ApiFootballUsage } from '../engines/data-engine/api-football-usage.service';
 import { AnalysisService } from '../analysis/analysis.service';
+import {
+  SYNC_AGENDA_LOOKAHEAD_DAYS,
+  SYNC_STATS_LOOKBACK_DAYS,
+  buildDateWindow,
+  readSyncLeagueIds,
+  SYNC_LEAGUE_LABELS,
+} from './sync-config';
 
 const SYNC_STATE_KEY = 'daily_sync';
 /** Full sync (odds/stats/analysis) */
 const FULL_RESYNC_INTERVAL_MS = 2 * 60 * 60 * 1000;
 /** Fixtures-only refresh so live/finished scores update during the day */
 const FIXTURES_RESYNC_INTERVAL_MS = 10 * 60 * 1000;
-/** Janela de produto: histórico recente + agenda curta */
-const FIXTURE_LOOKBACK_DAYS = 7;
-const FIXTURE_LOOKAHEAD_DAYS = 2;
 
 export type SyncStatusValue = 'idle' | 'running' | 'completed' | 'failed' | 'skipped';
 
@@ -182,11 +186,13 @@ export class SyncService implements OnModuleInit {
       let matchesProcessed = 0;
       let oddsCreated = 0;
 
-      for (const date of this.getFixtureDates()) {
+      for (const date of this.getAgendaDates()) {
         if (rateLimited) break;
 
         try {
-          const odds = await this.dataEngine.importPendingOdds(date);
+          const odds = await this.dataEngine.importPendingOdds(date, {
+            leagueIds: this.getLeagueIds(),
+          });
           (result.odds as unknown[]).push(odds);
           matchesProcessed += odds.matchesProcessed;
           oddsCreated += odds.oddsCreated;
@@ -259,10 +265,11 @@ export class SyncService implements OnModuleInit {
         result: existing?.result ?? {},
       });
 
-      const fixtureDates = this.getFixtureDates();
+      const fixtureDates = this.getAgendaDates();
+      const leagueIds = this.getLeagueIds();
       for (const date of fixtureDates) {
         try {
-          await this.dataEngine.importFixtures(date);
+          await this.dataEngine.importFixtures(date, { leagueIds });
         } catch (err) {
           const message = err instanceof Error ? err.message : 'Erro desconhecido';
           this.logger.warn(`Fixtures refresh skipped for ${date}: ${message}`);
@@ -313,10 +320,21 @@ export class SyncService implements OnModuleInit {
         result,
       });
 
-      const fixtureDates = this.getFixtureDates();
-      for (const date of fixtureDates) {
+      const agendaDates = this.getAgendaDates();
+      const statsDates = this.getStatsDates();
+      const leagueIds = this.getLeagueIds();
+      result.syncWindow = {
+        agenda: agendaDates,
+        stats: statsDates,
+        leagues: leagueIds,
+        note: this.leagueFilterNote(),
+      };
+
+      for (const date of agendaDates) {
         try {
-          const fixtures = await this.dataEngine.importFixtures(date);
+          const fixtures = await this.dataEngine.importFixtures(date, {
+            leagueIds,
+          });
           (result.fixtures as unknown[]).push(fixtures);
         } catch (err) {
           const message = err instanceof Error ? err.message : 'Erro desconhecido';
@@ -330,11 +348,10 @@ export class SyncService implements OnModuleInit {
       result.snapshotsDiscarded = await this.analysis.discardInactiveAnalyses();
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'odds', result });
-      // Odds para todas as datas da janela com jogos ainda abertos (não só hoje/amanhã)
-      const oddsDates = fixtureDates;
-      for (const date of oddsDates) {
+      // Odds só na agenda (hoje→+7), jogos SCHEDULED/LIVE das ligas allowlist
+      for (const date of agendaDates) {
         try {
-          const odds = await this.dataEngine.importOdds(date);
+          const odds = await this.dataEngine.importOdds(date, { leagueIds });
           (result.odds as unknown[]).push(odds);
         } catch (err) {
           const message = err instanceof Error ? err.message : 'Erro desconhecido';
@@ -344,10 +361,11 @@ export class SyncService implements OnModuleInit {
       }
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'statistics', result });
-      for (const date of fixtureDates) {
-        // Continua até esgotar pendências ou a API responder rate limit.
+      for (const date of statsDates) {
         for (;;) {
-          const stats = await this.dataEngine.importStatistics(date);
+          const stats = await this.dataEngine.importStatistics(date, {
+            leagueIds,
+          });
           (result.statistics as unknown[]).push(stats);
           if (stats.rateLimited || stats.remainingWithoutStats === 0) break;
         }
@@ -355,9 +373,11 @@ export class SyncService implements OnModuleInit {
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'players', result });
       result.players = [] as unknown[];
-      for (const date of fixtureDates) {
+      for (const date of statsDates) {
         for (;;) {
-          const players = await this.dataEngine.importPlayerStats(date);
+          const players = await this.dataEngine.importPlayerStats(date, {
+            leagueIds,
+          });
           (result.players as unknown[]).push(players);
           if (players.rateLimited || players.remainingWithoutPlayers === 0) break;
         }
@@ -371,7 +391,9 @@ export class SyncService implements OnModuleInit {
         status: 'completed',
         currentStep: null,
         completedAt: new Date().toISOString(),
-        message: force ? 'Sincronização manual concluída' : 'Sincronização diária concluída',
+        message: force
+          ? `Sincronização manual concluída (${this.leagueFilterNote()})`
+          : `Sincronização diária concluída (${this.leagueFilterNote()})`,
         result,
       });
 
@@ -391,13 +413,24 @@ export class SyncService implements OnModuleInit {
     }
   }
 
-  private getFixtureDates(): string[] {
-    const today = new Date();
-    const dates: string[] = [];
-    for (let offset = -FIXTURE_LOOKBACK_DAYS; offset <= FIXTURE_LOOKAHEAD_DAYS; offset++) {
-      dates.push(this.formatDate(this.addDays(today, offset)));
-    }
-    return dates;
+  private getLeagueIds(): string[] {
+    return readSyncLeagueIds(this.config.get<string>('SYNC_LEAGUE_IDS'));
+  }
+
+  /** Fixtures + odds: hoje → +7 */
+  private getAgendaDates(): string[] {
+    return buildDateWindow(0, SYNC_AGENDA_LOOKAHEAD_DAYS);
+  }
+
+  /** Stats/players: finalizados recentes (−3 … ontem/hoje) */
+  private getStatsDates(): string[] {
+    return buildDateWindow(-SYNC_STATS_LOOKBACK_DAYS, 0);
+  }
+
+  private leagueFilterNote(): string {
+    const ids = this.getLeagueIds();
+    const names = ids.map((id) => SYNC_LEAGUE_LABELS[id] ?? id).join(', ');
+    return `Ligas: ${names}`;
   }
 
   private async readState(): Promise<StoredSyncState | null> {

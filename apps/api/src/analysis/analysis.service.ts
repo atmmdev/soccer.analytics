@@ -924,14 +924,32 @@ const VARIATION_PROFILES = [
 ] as const;
 
 function h2hFromRemoteScores(
-  rows: Array<{ homeGoals: number; awayGoals: number }>,
+  rows: Array<{
+    homeGoals: number;
+    awayGoals: number;
+    date?: string;
+    homeName?: string;
+    awayName?: string;
+    scoreAsPlayed?: string;
+    competition?: string | null;
+  }>,
 ): H2HStats {
   let homeWins = 0;
   let awayWins = 0;
   let draws = 0;
   const lastMeetings: string[] = [];
+  const meetings: H2HStats['meetings'] = [];
   for (const r of rows) {
-    lastMeetings.push(`${r.homeGoals}-${r.awayGoals}`);
+    const score = `${r.homeGoals}-${r.awayGoals}`;
+    lastMeetings.push(score);
+    meetings.push({
+      date: r.date ?? new Date().toISOString(),
+      score,
+      scoreAsPlayed: r.scoreAsPlayed ?? score,
+      homeName: r.homeName ?? 'Casa',
+      awayName: r.awayName ?? 'Fora',
+      competition: r.competition ?? null,
+    });
     if (r.homeGoals > r.awayGoals) homeWins++;
     else if (r.homeGoals < r.awayGoals) awayWins++;
     else draws++;
@@ -942,6 +960,7 @@ function h2hFromRemoteScores(
     draws,
     totalGames: rows.length,
     lastMeetings,
+    meetings,
   };
 }
 

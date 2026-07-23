@@ -4,13 +4,16 @@ import { AnalysisView } from './dto/analyze-match.dto';
 import {
   ComputedTeamStats,
   StatisticsEngineService,
+  type H2HStats,
 } from '../engines/statistics-engine/statistics-engine.service';
+import { DataEngineService } from '../engines/data-engine/data-engine.service';
 
 @Injectable()
 export class AnalyzerService {
   constructor(
     private prisma: PrismaService,
     private statisticsEngine: StatisticsEngineService,
+    private dataEngine: DataEngineService,
   ) {}
 
   async analyzeMatch(matchId: string, period: number, view: AnalysisView) {
@@ -31,10 +34,35 @@ export class AnalyzerService {
     );
 
     const stats = this.buildStatRows(homeStats, awayStats);
-    const h2h =
-      view === 'h2h'
-        ? await this.statisticsEngine.getH2H(match.homeTeamId, match.awayTeamId, period)
-        : undefined;
+    let h2h: H2HStats | undefined;
+
+    if (view === 'h2h') {
+      h2h = await this.statisticsEngine.getH2H(
+        match.homeTeamId,
+        match.awayTeamId,
+        period,
+      );
+
+      if (
+        h2h.totalGames < Math.min(5, period) &&
+        match.homeTeam.externalId &&
+        match.awayTeam.externalId &&
+        this.dataEngine.isApiFootballConfigured()
+      ) {
+        try {
+          const remote = await this.dataEngine.fetchRemoteH2H(
+            match.homeTeam.externalId,
+            match.awayTeam.externalId,
+            period,
+          );
+          if (remote.length > h2h.totalGames) {
+            h2h = this.h2hFromRemote(remote);
+          }
+        } catch {
+          /* mantém H2H local */
+        }
+      }
+    }
 
     const source =
       homeStats.source === 'computed' || awayStats.source === 'computed'
@@ -63,6 +91,47 @@ export class AnalyzerService {
             ? `Baseado em ${homeStats.matchesPlayed}/${awayStats.matchesPlayed} jogos finalizados`
             : 'Poucos jogos no histórico — usando médias padrão da liga',
       },
+    };
+  }
+
+  private h2hFromRemote(
+    rows: Array<{
+      homeGoals: number;
+      awayGoals: number;
+      date?: string;
+      homeName?: string;
+      awayName?: string;
+      scoreAsPlayed?: string;
+      competition?: string | null;
+    }>,
+  ): H2HStats {
+    let homeWins = 0;
+    let awayWins = 0;
+    let draws = 0;
+    const lastMeetings: string[] = [];
+    const meetings: H2HStats['meetings'] = [];
+    for (const r of rows) {
+      const score = `${r.homeGoals}-${r.awayGoals}`;
+      lastMeetings.push(score);
+      meetings.push({
+        date: r.date ?? new Date().toISOString(),
+        score,
+        scoreAsPlayed: r.scoreAsPlayed ?? score,
+        homeName: r.homeName ?? 'Casa',
+        awayName: r.awayName ?? 'Fora',
+        competition: r.competition ?? null,
+      });
+      if (r.homeGoals > r.awayGoals) homeWins++;
+      else if (r.homeGoals < r.awayGoals) awayWins++;
+      else draws++;
+    }
+    return {
+      homeWins,
+      awayWins,
+      draws,
+      totalGames: rows.length,
+      lastMeetings,
+      meetings,
     };
   }
 

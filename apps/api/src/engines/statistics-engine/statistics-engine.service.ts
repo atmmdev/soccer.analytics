@@ -30,12 +30,24 @@ export interface ComputedTeamStats {
   source: 'computed' | 'fallback';
 }
 
+export interface H2HMeeting {
+  date: string;
+  /** Placar no ponto de vista do mandante atual (homeTeamId da análise) */
+  score: string;
+  /** Placar como jogado (casa daquele jogo × visitante) */
+  scoreAsPlayed: string;
+  homeName: string;
+  awayName: string;
+  competition?: string | null;
+}
+
 export interface H2HStats {
   homeWins: number;
   awayWins: number;
   draws: number;
   totalGames: number;
   lastMeetings: string[];
+  meetings: H2HMeeting[];
 }
 
 const FALLBACK = {
@@ -202,6 +214,11 @@ export class StatisticsEngineService {
           { homeTeamId: awayTeamId, awayTeamId: homeTeamId },
         ],
       },
+      include: {
+        homeTeam: true,
+        awayTeam: true,
+        competition: true,
+      },
       orderBy: { matchDate: 'desc' },
       take: limit,
     });
@@ -213,6 +230,7 @@ export class StatisticsEngineService {
         draws: 0,
         totalGames: 0,
         lastMeetings: [],
+        meetings: [],
       };
     }
 
@@ -220,6 +238,7 @@ export class StatisticsEngineService {
     let awayWins = 0;
     let draws = 0;
     const lastMeetings: string[] = [];
+    const meetings: H2HMeeting[] = [];
 
     for (const m of matches) {
       const hs = m.homeScore!;
@@ -228,8 +247,17 @@ export class StatisticsEngineService {
       const upcomingHomeWasHome = m.homeTeamId === homeTeamId;
       const homeScored = upcomingHomeWasHome ? hs : as;
       const awayScored = upcomingHomeWasHome ? as : hs;
-      // Placares no ponto de vista do mandante atual (para Poisson / sugestão)
-      lastMeetings.push(`${homeScored}-${awayScored}`);
+      const score = `${homeScored}-${awayScored}`;
+      lastMeetings.push(score);
+
+      meetings.push({
+        date: m.matchDate.toISOString(),
+        score,
+        scoreAsPlayed: `${hs}-${as}`,
+        homeName: m.homeTeam.name,
+        awayName: m.awayTeam.name,
+        competition: m.competition?.name ?? null,
+      });
 
       if (homeScored > awayScored) homeWins++;
       else if (homeScored < awayScored) awayWins++;
@@ -242,6 +270,7 @@ export class StatisticsEngineService {
       draws,
       totalGames: matches.length,
       lastMeetings,
+      meetings,
     };
   }
 

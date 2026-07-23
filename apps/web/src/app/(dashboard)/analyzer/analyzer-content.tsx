@@ -169,9 +169,30 @@ export default function AnalyzerPage() {
                       <p className="text-xs text-muted-foreground">Vitórias fora</p>
                     </div>
                   </div>
-                  <p className="mt-4 text-center text-xs text-muted-foreground">
-                    Últimos placares: {analysis.h2h.lastMeetings.join(' · ')}
-                  </p>
+                  {analysis.h2h.meetings?.length ? (
+                    <div className="mt-4 max-h-56 space-y-1.5 overflow-y-auto">
+                      {analysis.h2h.meetings.map((m, idx) => (
+                        <div
+                          key={`${m.date}-${idx}`}
+                          className="flex justify-between gap-2 rounded border border-border/40 px-2 py-1.5 text-xs"
+                        >
+                          <span className="text-muted-foreground">
+                            {m.date
+                              ? new Date(m.date).toLocaleDateString('pt-BR')
+                              : '—'}
+                            {m.competition ? ` · ${m.competition}` : ''}
+                          </span>
+                          <span className="font-medium">
+                            {m.homeName} {m.scoreAsPlayed} {m.awayName}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-4 text-center text-xs text-muted-foreground">
+                      Últimos placares: {analysis.h2h.lastMeetings.join(' · ')}
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             )}

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { AnalysisPanel } from '@/components/analysis/analysis-panel';
+import { MatchH2HPanel } from '@/components/matches/match-h2h-panel';
 import { TeamLogo } from '@/components/teams/team-logo';
 import { STATUS_LABELS, STATUS_VARIANT } from '@/types/match';
 import { use } from 'react';
@@ -134,6 +135,13 @@ export default function MatchDetailPage({
             )}
           </CardContent>
         </Card>
+
+        <MatchH2HPanel
+          matchId={id}
+          homeTeamName={match.homeTeam.name}
+          awayTeamName={match.awayTeam.name}
+          period={20}
+        />
 
         <AnalysisPanel
           matchId={id}

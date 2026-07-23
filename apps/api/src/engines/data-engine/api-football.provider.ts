@@ -212,7 +212,17 @@ export class ApiFootballProvider implements DataProvider {
     homeTeamExternalId: string,
     awayTeamExternalId: string,
     last = 10,
-  ): Promise<Array<{ homeGoals: number; awayGoals: number }>> {
+  ): Promise<
+    Array<{
+      homeGoals: number;
+      awayGoals: number;
+      date: string;
+      homeName: string;
+      awayName: string;
+      scoreAsPlayed: string;
+      competition?: string | null;
+    }>
+  > {
     const data = await this.request<{ response: ApiFixture[] }>(
       '/fixtures/headtohead',
       {
@@ -221,7 +231,16 @@ export class ApiFootballProvider implements DataProvider {
       },
     );
 
-    const out: Array<{ homeGoals: number; awayGoals: number }> = [];
+    const out: Array<{
+      homeGoals: number;
+      awayGoals: number;
+      date: string;
+      homeName: string;
+      awayName: string;
+      scoreAsPlayed: string;
+      competition?: string | null;
+    }> = [];
+
     for (const item of data.response ?? []) {
       if (item.fixture.status.short !== 'FT' && item.fixture.status.short !== 'AET') {
         continue;
@@ -234,6 +253,11 @@ export class ApiFootballProvider implements DataProvider {
       out.push({
         homeGoals: homeWasHome ? hs : as,
         awayGoals: homeWasHome ? as : hs,
+        date: item.fixture.date,
+        homeName: item.teams.home.name,
+        awayName: item.teams.away.name,
+        scoreAsPlayed: `${hs}-${as}`,
+        competition: item.league?.name ?? null,
       });
     }
     return out.slice(0, last);
@@ -415,7 +439,7 @@ export class ApiFootballProvider implements DataProvider {
 
   private mapBet(
     betName: string,
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     const normalized = betName.toLowerCase().trim();
@@ -706,12 +730,12 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapGoalBandLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const raw = v.value.trim();
+        const raw = oddSelectionText(v.value);
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
 
@@ -755,12 +779,12 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapHighestScoringHalfLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const lower = v.value.trim().toLowerCase();
+        const lower = oddSelectionText(v.value).toLowerCase();
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
 
@@ -800,13 +824,13 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapTeamMostLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     kind: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const lower = v.value.trim().toLowerCase();
+        const lower = oddSelectionText(v.value).toLowerCase();
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
 
@@ -827,7 +851,7 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapTeamToScoreLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     betName: string,
   ): ImportedOdd[] {
@@ -837,7 +861,7 @@ export class ApiFootballProvider implements DataProvider {
 
     return values
       .map((v) => {
-        const raw = v.value.trim();
+        const raw = oddSelectionText(v.value);
         const lower = raw.toLowerCase();
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
@@ -889,7 +913,7 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapTeamSpecialLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     betName: string,
   ): ImportedOdd[] {
@@ -898,7 +922,7 @@ export class ApiFootballProvider implements DataProvider {
       .map((v) => {
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
-        const outcome = v.value.trim();
+        const outcome = oddSelectionText(v.value);
         if (!outcome) return null;
         return {
           marketType: MarketType.TEAM_SPECIAL,
@@ -911,7 +935,7 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapYesNo(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     marketType: MarketType,
   ): ImportedOdd[] {
@@ -923,13 +947,13 @@ export class ApiFootballProvider implements DataProvider {
 
   /** Seleção = nome do jogador (mercados Sim/Anytime-like). */
   private mapPlayerNamedLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     marketType: MarketType,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const name = v.value.trim();
+        const name = oddSelectionText(v.value);
         if (!name || /^(yes|no|over|under)/i.test(name)) return null;
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
@@ -940,13 +964,13 @@ export class ApiFootballProvider implements DataProvider {
 
   /** Props O/U: "Name - Over 1.5" / "Name Over 0.5". */
   private mapPlayerPropLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     marketType: MarketType,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const raw = v.value.trim();
+        const raw = oddSelectionText(v.value);
         const match = raw.match(
           /^(.+?)\s*[-–]?\s*(Over|Under)\s+([\d.]+)$/i,
         );
@@ -980,14 +1004,15 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapSimpleSelections(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     marketType: MarketType,
     mapping: Record<string, string>,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const selection = mapping[v.value] ?? mapping[v.value.trim()];
+        const key = oddSelectionText(v.value);
+        const selection = mapping[key];
         if (!selection) return null;
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
@@ -997,12 +1022,12 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapExactScoreLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const raw = v.value.trim();
+        const raw = oddSelectionText(v.value);
         const match = raw.match(/^(\d+)\s*[:\-]\s*(\d+)$/);
         if (!match) return null;
         const odd = parseFloat(v.odd);
@@ -1018,7 +1043,7 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapHtFtLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     const side = (token: string): string | null => {
@@ -1031,7 +1056,7 @@ export class ApiFootballProvider implements DataProvider {
 
     return values
       .map((v) => {
-        const parts = v.value.split(/[\/\-]/);
+        const parts = oddSelectionText(v.value).split(/[\/\-]/);
         if (parts.length !== 2) return null;
         const ht = side(parts[0]);
         const ft = side(parts[1]);
@@ -1049,12 +1074,12 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapWinningMarginLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const raw = v.value.trim();
+        const raw = oddSelectionText(v.value);
         const lower = raw.toLowerCase();
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
@@ -1096,12 +1121,14 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapHandicapLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const match = v.value.match(/^(Home|Away)\s*([+-][\d.]+)$/i);
+        const match = oddSelectionText(v.value).match(
+          /^(Home|Away)\s*([+-][\d.]+)$/i,
+        );
         if (!match) return null;
 
         const side = match[1].toLowerCase() === 'home' ? 'Casa' : 'Fora';
@@ -1120,12 +1147,12 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapGoalScorerLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const name = v.value.trim();
+        const name = oddSelectionText(v.value);
         if (!name || name.toLowerCase() === 'no goalscorer') return null;
         const odd = parseFloat(v.odd);
         if (!Number.isFinite(odd) || odd <= 1) return null;
@@ -1141,13 +1168,15 @@ export class ApiFootballProvider implements DataProvider {
   }
 
   private mapOverUnderLines(
-    values: Array<{ value: string; odd: string }>,
+    values: Array<{ value: unknown; odd: string }>,
     bookmaker: string,
     marketType: MarketType,
   ): ImportedOdd[] {
     return values
       .map((v) => {
-        const match = v.value.match(/^(Over|Under)\s+([\d.]+)$/i);
+        const match = oddSelectionText(v.value).match(
+          /^(Over|Under)\s+([\d.]+)$/i,
+        );
         if (!match) return null;
         const side =
           match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
@@ -1191,7 +1220,7 @@ interface ApiOddsEntry {
     name: string;
     bets: Array<{
       name: string;
-      values: Array<{ value: string; odd: string }>;
+      values: Array<{ value: unknown; odd: string }>;
     }>;
   }>;
 }
@@ -1223,4 +1252,19 @@ function parseStat(value: string | number | null | undefined): number | undefine
   if (value === null || value === undefined) return undefined;
   const n = parseFloat(String(value).replace('%', '').trim());
   return Number.isNaN(n) ? undefined : n;
+}
+
+/** API-Football às vezes manda value como number/object — nunca chamar .trim() direto. */
+function oddSelectionText(value: unknown): string {
+  if (value == null) return '';
+  if (typeof value === 'string') return value.trim();
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return String(value).trim();
+  }
+  if (typeof value === 'object') {
+    const obj = value as Record<string, unknown>;
+    if ('value' in obj) return oddSelectionText(obj.value);
+    if ('name' in obj) return oddSelectionText(obj.name);
+  }
+  return String(value).trim();
 }

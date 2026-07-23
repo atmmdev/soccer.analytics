@@ -28,6 +28,14 @@ export interface MatchAnalysisResult {
     draws: number;
     totalGames: number;
     lastMeetings: string[];
+    meetings?: Array<{
+      date: string;
+      score: string;
+      scoreAsPlayed: string;
+      homeName: string;
+      awayName: string;
+      competition?: string | null;
+    }>;
   };
   meta: { source: string; note: string };
 }
