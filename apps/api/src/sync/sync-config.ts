@@ -69,6 +69,8 @@ export const DEFAULT_SYNC_LEAGUE_IDS = [
   '848', // UEFA Europa Conference League
   '13', // Copa Libertadores
   '11', // Copa Sul-Americana
+  '1', // FIFA World Cup
+  '15', // FIFA Club World Cup
   // Amistosos
   '667', // Friendlies Clubs
 ] as const;
@@ -130,6 +132,8 @@ export const SYNC_LEAGUE_LABELS: Record<string, string> = {
   '848': 'UEFA Europa Conference League',
   '13': 'Copa Libertadores',
   '11': 'Copa Sul-Americana',
+  '1': 'Copa do Mundo',
+  '15': 'Mundial de Clubes',
   '667': 'Amistosos (Clubes)',
 };
 
