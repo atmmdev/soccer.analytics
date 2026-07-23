@@ -941,8 +941,78 @@ function parseScoreLine(s: string): { h: number; a: number } | null {
   return { h: Number(m[1]), a: Number(m[2]) };
 }
 
+/** Snapshot λ genérico (fallback) — não diferencia confrontos */
+function isGenericSnapshotLambda(homeXg: number, awayXg: number) {
+  return (
+    Math.abs(homeXg - awayXg) < 0.05 &&
+    homeXg > 0.55 &&
+    homeXg < 0.85
+  );
+}
+
 /**
- * Análise de placar por confronto (H2H em 1º plano + forma + 1X2).
+ * λ por confronto a partir das odds 1X2 da casa (diferencia jogos mesmo
+ * sem forma/H2H local — evita o mesmo 0-0 em todos).
+ */
+function expectedGoalsFromBookmaker1x2(
+  idx: OneXTwoIndex | null | undefined,
+): { home: number; away: number; fav: 'Casa' | 'Empate' | 'Fora'; notes: string } | null {
+  if (!idx?.Casa || !idx?.Empate || !idx?.Fora) return null;
+  const rawH = 1 / idx.Casa.bookmakerOdd;
+  const rawD = 1 / idx.Empate.bookmakerOdd;
+  const rawA = 1 / idx.Fora.bookmakerOdd;
+  const sum = rawH + rawD + rawA || 1;
+  const ph = rawH / sum;
+  const pd = rawD / sum;
+  const pa = rawA / sum;
+
+  // Menos gols quando o mercado aponta empate; mais quando há favorito claro
+  const total = Math.max(1.4, Math.min(3.1, 2.55 - 1.2 * pd + 0.35 * Math.abs(ph - pa)));
+  const strength = Math.max(0.15, Math.min(0.85, ph / (ph + pa + 1e-9)));
+  let λh = total * strength;
+  let λa = total * (1 - strength);
+  // Empate alto → equaliza e reduz um pouco
+  if (pd >= Math.max(ph, pa)) {
+    const mid = (λh + λa) / 2;
+    λh = 0.55 * λh + 0.45 * mid;
+    λa = 0.55 * λa + 0.45 * mid;
+  }
+  λh = Math.max(0.35, Math.min(3.2, λh));
+  λa = Math.max(0.35, Math.min(3.2, λa));
+
+  const fav =
+    idx.Casa.bookmakerOdd <= idx.Empate.bookmakerOdd &&
+    idx.Casa.bookmakerOdd <= idx.Fora.bookmakerOdd
+      ? ('Casa' as const)
+      : idx.Fora.bookmakerOdd <= idx.Empate.bookmakerOdd &&
+          idx.Fora.bookmakerOdd <= idx.Casa.bookmakerOdd
+        ? ('Fora' as const)
+        : ('Empate' as const);
+
+  return {
+    home: λh,
+    away: λa,
+    fav,
+    notes: `odds 1X2 ${idx.Casa.bookmakerOdd.toFixed(2)}/${idx.Empate.bookmakerOdd.toFixed(2)}/${idx.Fora.bookmakerOdd.toFixed(2)} → λ ${λh.toFixed(2)}–${λa.toFixed(2)} (fav ${fav})`,
+  };
+}
+
+function favoriteFromBookmaker1x2(
+  idx: OneXTwoIndex | null | undefined,
+): 'Casa' | 'Empate' | 'Fora' | null {
+  if (!idx?.Casa && !idx?.Empate && !idx?.Fora) return null;
+  const opts = [
+    idx.Casa ? ({ sel: 'Casa' as const, odd: idx.Casa.bookmakerOdd }) : null,
+    idx.Empate ? ({ sel: 'Empate' as const, odd: idx.Empate.bookmakerOdd }) : null,
+    idx.Fora ? ({ sel: 'Fora' as const, odd: idx.Fora.bookmakerOdd }) : null,
+  ].filter((x): x is { sel: 'Casa' | 'Empate' | 'Fora'; odd: number } => x != null);
+  if (!opts.length) return null;
+  opts.sort((a, b) => a.odd - b.odd);
+  return opts[0].sel;
+}
+
+/**
+ * Análise de placar por confronto (H2H → forma → odds 1X2 do jogo).
  * Devolve até 4 variantes distintas para montar bilhetes de placares.
  */
 function analyzeExactScoreVariants(input: {
@@ -977,12 +1047,15 @@ function analyzeExactScoreVariants(input: {
     homeForm.matchesPlayed >= 1 &&
     awayForm.matchesPlayed >= 1;
   const hasH2h = h2hScores.length >= 1;
-  const hasSnapshot = input.hasSnapshotXg;
+  const snapshotUsable =
+    input.hasSnapshotXg &&
+    !isGenericSnapshotLambda(input.snapshotHomeXg, input.snapshotAwayXg);
+  const fromOdds = expectedGoalsFromBookmaker1x2(input.oneXTwo);
   const predicted = input.predictedScore
     ? parseScoreLine(input.predictedScore)
     : null;
 
-  if (!hasForm && !hasH2h && !hasSnapshot && !predicted) {
+  if (!hasForm && !hasH2h && !snapshotUsable && !fromOdds) {
     return null;
   }
 
@@ -991,7 +1064,7 @@ function analyzeExactScoreVariants(input: {
   let λa: number;
   let dataQuality = 0;
 
-  // Placares: H2H manda no confronto quando existir amostra
+  // Prioridade: H2H real → forma real → odds do confronto → snapshot útil
   if (hasH2h) {
     const avgH =
       h2hScores.reduce((s, p) => s + p.h, 0) / h2hScores.length;
@@ -1013,15 +1086,18 @@ function analyzeExactScoreVariants(input: {
       );
       λh = 0.55 * λh + 0.45 * fromForm.home;
       λa = 0.55 * λa + 0.45 * fromForm.away;
-      dataQuality += Math.min(20, homeForm.matchesPlayed + awayForm.matchesPlayed);
+      dataQuality += Math.min(
+        20,
+        homeForm.matchesPlayed + awayForm.matchesPlayed,
+      );
       notes.push(
         `forma casa ${homeForm.avgGoalsFor.toFixed(2)}/${homeForm.avgGoalsAgainst.toFixed(2)} · fora ${awayForm.avgGoalsFor.toFixed(2)}/${awayForm.avgGoalsAgainst.toFixed(2)}`,
       );
-    }
-    if (hasSnapshot) {
-      λh = 0.8 * λh + 0.2 * input.snapshotHomeXg;
-      λa = 0.8 * λa + 0.2 * input.snapshotAwayXg;
-      dataQuality += 8;
+    } else if (fromOdds) {
+      λh = 0.6 * λh + 0.4 * fromOdds.home;
+      λa = 0.6 * λa + 0.4 * fromOdds.away;
+      dataQuality += 18;
+      notes.push(fromOdds.notes);
     }
   } else if (hasForm) {
     const fromForm = calculateExpectedGoals(
@@ -1037,19 +1113,29 @@ function analyzeExactScoreVariants(input: {
     notes.push(
       `forma ${input.homeTeam}: ${homeForm.avgGoalsFor.toFixed(2)}/${homeForm.avgGoalsAgainst.toFixed(2)} · ${input.awayTeam}: ${awayForm.avgGoalsFor.toFixed(2)}/${awayForm.avgGoalsAgainst.toFixed(2)}`,
     );
-    if (hasSnapshot) {
-      λh = 0.75 * λh + 0.25 * input.snapshotHomeXg;
-      λa = 0.75 * λa + 0.25 * input.snapshotAwayXg;
+    if (fromOdds) {
+      λh = 0.65 * λh + 0.35 * fromOdds.home;
+      λa = 0.65 * λa + 0.35 * fromOdds.away;
+      dataQuality += 12;
+      notes.push(fromOdds.notes);
     }
-  } else if (hasSnapshot) {
+  } else if (fromOdds) {
+    λh = fromOdds.home;
+    λa = fromOdds.away;
+    dataQuality += 42;
+    notes.push(fromOdds.notes);
+  } else if (snapshotUsable) {
     λh = input.snapshotHomeXg;
     λa = input.snapshotAwayXg;
-    dataQuality += 40;
+    dataQuality += 35;
     notes.push(`λ snapshot ${λh.toFixed(2)}–${λa.toFixed(2)}`);
   } else {
-    λh = Math.max(0.4, (predicted?.h ?? 1) + 0.35);
-    λa = Math.max(0.4, (predicted?.a ?? 1) + 0.35);
-    dataQuality += 25;
+    return null;
+  }
+
+  if (snapshotUsable && (hasH2h || hasForm || fromOdds)) {
+    λh = 0.85 * λh + 0.15 * input.snapshotHomeXg;
+    λa = 0.85 * λa + 0.15 * input.snapshotAwayXg;
   }
 
   const matrix = scoreMatrix(λh, λa);
@@ -1081,27 +1167,32 @@ function analyzeExactScoreVariants(input: {
     if (h2hMode) notes.push(`moda H2H ${h2hMode.h}-${h2hMode.a} (${best}x)`);
   }
 
-  const fav1x2 =
-    input.oneXTwo &&
-    [input.oneXTwo.Casa, input.oneXTwo.Empate, input.oneXTwo.Fora]
-      .filter((x): x is OneXTwoPick => x != null)
-      .sort((a, b) => b.probability - a.probability)[0]?.selection;
-  if (fav1x2) notes.push(`1X2 favorece ${fav1x2}`);
-  if (predicted) notes.push(`predito ${predicted.h}-${predicted.a}`);
+  const fav1x2 = favoriteFromBookmaker1x2(input.oneXTwo) ?? fromOdds?.fav;
+  if (fav1x2) notes.push(`favorito casa (odd) ${fav1x2}`);
+  if (predicted && !isGenericSnapshotLambda(input.snapshotHomeXg, input.snapshotAwayXg)) {
+    notes.push(`predito ${predicted.h}-${predicted.a}`);
+  }
 
   const scored = top.map((cell) => {
     let boost = 0;
-    if (predicted && cell.home === predicted.h && cell.away === predicted.a) {
-      boost += 0.04;
+    if (
+      predicted &&
+      !isGenericSnapshotLambda(input.snapshotHomeXg, input.snapshotAwayXg) &&
+      cell.home === predicted.h &&
+      cell.away === predicted.a
+    ) {
+      boost += 0.035;
     }
     if (h2hMode && cell.home === h2hMode.h && cell.away === h2hMode.a) {
       boost += 0.05;
     }
-    if (fav1x2 === 'Casa' && cell.home > cell.away) boost += 0.022;
-    if (fav1x2 === 'Fora' && cell.away > cell.home) boost += 0.022;
-    if (fav1x2 === 'Empate' && cell.home === cell.away) boost += 0.028;
-    if (fav1x2 === 'Casa' && cell.home === cell.away + 1) boost += 0.01;
-    if (fav1x2 === 'Fora' && cell.away === cell.home + 1) boost += 0.01;
+    if (fav1x2 === 'Casa' && cell.home > cell.away) boost += 0.03;
+    if (fav1x2 === 'Fora' && cell.away > cell.home) boost += 0.03;
+    if (fav1x2 === 'Empate' && cell.home === cell.away) boost += 0.035;
+    if (fav1x2 === 'Casa' && cell.home === cell.away + 1) boost += 0.018;
+    if (fav1x2 === 'Fora' && cell.away === cell.home + 1) boost += 0.018;
+    if (fav1x2 === 'Casa' && cell.home === cell.away + 2) boost += 0.01;
+    if (fav1x2 === 'Fora' && cell.away === cell.home + 2) boost += 0.01;
     return { ...cell, rank: cell.probability + boost };
   });
   scored.sort((a, b) => b.rank - a.rank);
@@ -1154,13 +1245,23 @@ function analyzeExactScoreVariants(input: {
     out.push(toPick(cell, variant, extraWhy));
   };
 
-  pushUnique(scored[0], 'primary', 'principal (H2H+forma+1X2)');
+  pushUnique(scored[0], 'primary', 'principal do confronto');
 
   if (h2hMode) {
     const modeCell =
       scored.find((c) => c.home === h2hMode!.h && c.away === h2hMode!.a) ??
       top.find((c) => c.home === h2hMode!.h && c.away === h2hMode!.a);
     pushUnique(modeCell, 'h2h_mode', 'moda dos confrontos diretos');
+  } else if (fav1x2) {
+    // Sem H2H: 2ª hipótese alinhada ao favorito das odds
+    const aligned = scored.find((c) => {
+      const key = `${c.home}-${c.away}`;
+      if (used.has(key)) return false;
+      if (fav1x2 === 'Casa') return c.home > c.away;
+      if (fav1x2 === 'Fora') return c.away > c.home;
+      return c.home === c.away;
+    });
+    pushUnique(aligned ?? scored[1], 'h2h_mode', 'alternativa alinhada ao favorito 1X2');
   }
 
   pushUnique(scored[1] ?? top[1], 'alt', '2ª célula Poisson do confronto');
@@ -1171,7 +1272,7 @@ function analyzeExactScoreVariants(input: {
   pushUnique(
     longshot ?? scored[2] ?? top[2],
     'longshot',
-    'alternativa de maior odd ainda suportada pelo modelo',
+    'maior odd ainda suportada pelo modelo do confronto',
   );
 
   return out.length ? out : null;
@@ -1283,10 +1384,10 @@ function buildPlacaresH2HTickets(
     {
       id: 'placar-2',
       code: '02',
-      name: 'Moda H2H',
+      name: 'Moda / favorito',
       variant: 'h2h_mode',
       objective:
-        'Placar que mais se repetiu nos confrontos diretos — stake 0,25–0,5%',
+        'Moda H2H ou placar alinhado ao favorito das odds — stake 0,25–0,5%',
     },
     {
       id: 'placar-3',
@@ -1317,11 +1418,20 @@ function buildPlacaresH2HTickets(
     );
 
     const legs = [];
+    const usedScoresInTicket = new Set<string>();
     for (const row of ordered) {
       if (legs.length >= targetLegs) break;
-      const pick =
+      let pick =
         row.variants.find((v) => v.variant === profile.variant) ??
         row.variants[0];
+      // Evita o mesmo placar em todas as pernas quando o confronto tem alternativa
+      if (usedScoresInTicket.has(pick.score)) {
+        const different = row.variants.find(
+          (v) => !usedScoresInTicket.has(v.score),
+        );
+        if (different) pick = different;
+      }
+      usedScoresInTicket.add(pick.score);
       legs.push({
         matchId: row.m.matchId,
         matchLabel: row.m.matchLabel,

@@ -256,7 +256,7 @@ function TicketCard({
             {ticket.objective}
           </p>
         </div>
-        <Badge variant="warning">Odd: {formatOdd(ticket.combinedOdd)}</Badge>
+        <Badge variant="warning" className='text-center'>Odd: {formatOdd(ticket.combinedOdd)}</Badge>
       </div>
       <ol className="mb-3 space-y-2">
         {ticket.legs.map((leg) => (
@@ -283,16 +283,15 @@ function TicketCard({
       <div className="flex flex-wrap gap-2">
         <Button
           size="sm"
-          className="h-8 text-xs"
+          className="h-8 text-xs uppercase"
           onClick={() => onAdd(competition, ticket, true)}
         >
-          <Ticket className="mr-1.5 h-3.5 w-3.5" />
           Montar bilhete
         </Button>
         <Button
           size="sm"
           variant="outline"
-          className="h-8 text-xs"
+          className="h-8 text-xs uppercase"
           onClick={() => onAdd(competition, ticket, false)}
         >
           Acrescentar

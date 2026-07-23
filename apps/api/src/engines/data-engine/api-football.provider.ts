@@ -205,6 +205,7 @@ export class ApiFootballProvider implements DataProvider {
 
   /**
    * Confrontos diretos (API-Football) — placares no ponto de vista do mandante atual.
+   * Free plan: sem parâmetro `last` (não suportado).
    */
   async fetchHeadToHead(
     homeTeamExternalId: string,
@@ -215,7 +216,6 @@ export class ApiFootballProvider implements DataProvider {
       '/fixtures/headtohead',
       {
         h2h: `${homeTeamExternalId}-${awayTeamExternalId}`,
-        last: String(last),
       },
     );
 
@@ -234,24 +234,38 @@ export class ApiFootballProvider implements DataProvider {
         awayGoals: homeWasHome ? as : hs,
       });
     }
-    return out;
+    return out.slice(0, last);
   }
 
   /**
    * Últimos jogos finalizados de um time — gols marcados/sofridos na perspectiva do time.
+   * Free plan: usa season (2022–2024) sem parâmetro `last`.
    */
   async fetchTeamRecentResults(
     teamExternalId: string,
     last = 10,
   ): Promise<Array<{ scored: number; conceded: number }>> {
-    const data = await this.request<{ response: ApiFixture[] }>('/fixtures', {
-      team: teamExternalId,
-      last: String(last),
-      status: 'FT-AET',
-    });
+    const year = new Date().getFullYear();
+    // Free plan tipicamente libera até a temporada anterior
+    const seasons = [year - 1, year - 2, year];
+    let items: ApiFixture[] = [];
+
+    for (const season of seasons) {
+      try {
+        const data = await this.request<{ response: ApiFixture[] }>('/fixtures', {
+          team: teamExternalId,
+          season: String(season),
+          status: 'FT',
+        });
+        items = data.response ?? [];
+        if (items.length) break;
+      } catch {
+        /* tenta temporada seguinte */
+      }
+    }
 
     const out: Array<{ scored: number; conceded: number }> = [];
-    for (const item of data.response ?? []) {
+    for (const item of items) {
       const hs = item.goals.home;
       const as = item.goals.away;
       if (hs == null || as == null) continue;
@@ -261,7 +275,7 @@ export class ApiFootballProvider implements DataProvider {
         conceded: isHome ? as : hs,
       });
     }
-    return out;
+    return out.slice(-last);
   }
 
   private parseTeamStatistics(
