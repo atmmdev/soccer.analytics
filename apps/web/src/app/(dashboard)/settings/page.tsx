@@ -130,35 +130,40 @@ export default function SettingsPage() {
 
                 {summary && sync.status !== "running" && (
                   <>
-                    <div className="gap-2 border-t pt-3 flex justify-between">
-                      <p className="text-sm text-muted-foreground">
-                        Jogos:{" "}
-                        <span className="text-foreground">
-                          {summary.fixturesUpdated}
-                        </span>
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Odds criadas:{" "}
-                        <span className="text-foreground">
-                          {summary.oddsCreated}
-                        </span>
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Jogos com odds:{" "}
-                        <span className="text-foreground">
-                          {summary.matchesWithOdds}
-                        </span>
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Análises:{" "}
-                        <span className="text-foreground">
-                          {summary.analysesRun}
-                        </span>
-                      </p>
+                    <div className="gap-2 border-t pt-3 flex flex-col justify-between">
+                      <div className="flex gap-4">
+                        <p className="text-sm text-muted-foreground">
+                          Jogos:{" "}
+                          <span className="text-foreground">
+                            {summary.fixturesUpdated}
+                          </span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Odds criadas:{" "}
+                          <span className="text-foreground">
+                            {summary.oddsCreated}
+                          </span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Jogos com odds:{" "}
+                          <span className="text-foreground">
+                            {summary.matchesWithOdds}
+                          </span>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Análises:{" "}
+                          <span className="text-foreground">
+                            {summary.analysesRun}
+                          </span>
+                        </p>
+                      </div>
                       {summary.remainingWithoutOdds > 0 && (
                         <p className="text-sm text-amber-400 sm:col-span-2">
                           Ainda sem odds: {summary.remainingWithoutOdds} — a
-                          próxima sync completa o restante
+                          API-Football ainda não publicou odds para esses jogos
+                          (comum em ligas menores / jogos longe). Use “Forçar
+                          sincronização agora” para tentar de novo; não precisa
+                          esperar a sync automática.
                         </p>
                       )}
                     </div>
@@ -179,11 +184,13 @@ export default function SettingsPage() {
 
                 {sync.apiUsage && (
                   <div className="space-y-1 border-t pt-3">
-                    <p className="text-sm font-medium">Uso API-Football (hoje)</p>
+                    <p className="text-sm font-medium">
+                      Uso API-Football (hoje)
+                    </p>
                     <p className="font-mono text-sm text-foreground">
                       {sync.apiUsage.used.toLocaleString("pt-BR")} /{" "}
-                      {sync.apiUsage.dailyLimit.toLocaleString("pt-BR")} requests
-                      ({sync.apiUsage.percentUsed}%)
+                      {sync.apiUsage.dailyLimit.toLocaleString("pt-BR")}{" "}
+                      requests ({sync.apiUsage.percentUsed}%)
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Restante:{" "}
@@ -196,7 +203,9 @@ export default function SettingsPage() {
                         <>
                           {" · "}API reporta{" "}
                           <span className="font-mono text-foreground">
-                            {sync.apiUsage.remainingFromApi.toLocaleString("pt-BR")}
+                            {sync.apiUsage.remainingFromApi.toLocaleString(
+                              "pt-BR",
+                            )}
                           </span>
                           {sync.apiUsage.limitFromApi != null
                             ? ` / ${sync.apiUsage.limitFromApi.toLocaleString("pt-BR")}`
@@ -242,9 +251,9 @@ export default function SettingsPage() {
                   </p>
                   {sync?.apiUsage && (
                     <p className="mt-2 font-mono text-xs text-foreground">
-                      {sync.apiUsage.used.toLocaleString('pt-BR')} /{' '}
-                      {sync.apiUsage.dailyLimit.toLocaleString('pt-BR')} requests
-                      hoje ({sync.apiUsage.percentUsed}%) ·{' '}
+                      {sync.apiUsage.used.toLocaleString("pt-BR")} /{" "}
+                      {sync.apiUsage.dailyLimit.toLocaleString("pt-BR")}{" "}
+                      requests hoje ({sync.apiUsage.percentUsed}%) ·{" "}
                       {sync.apiUsage.minuteLimit} r/min
                     </p>
                   )}

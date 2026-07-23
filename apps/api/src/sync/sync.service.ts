@@ -222,7 +222,8 @@ export class SyncService implements OnModuleInit {
       result.snapshotsDiscarded = await this.analysis.discardInactiveAnalyses();
 
       await this.writeState({ syncDate, status: 'running', currentStep: 'odds', result });
-      const oddsDates = [syncDate, this.offsetDate(syncDate, 1)];
+      // Odds para todas as datas da janela com jogos ainda abertos (não só hoje/amanhã)
+      const oddsDates = fixtureDates;
       for (const date of oddsDates) {
         try {
           const odds = await this.dataEngine.importOdds(date);

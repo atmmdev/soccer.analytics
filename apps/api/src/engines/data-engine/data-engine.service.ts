@@ -227,9 +227,12 @@ export class DataEngineService {
       }
     }
 
-    result.remainingWithoutOdds = matches.filter(
-      (m) => m.externalId && !oddsByFixture.has(m.externalId),
-    ).length;
+    // Só conta quem ainda ficou sem odds no banco (não quem a API simplesmente não republicou)
+    result.remainingWithoutOdds = matches.filter((m) => {
+      if (!m.externalId) return false;
+      if (oddsByFixture.has(m.externalId)) return false;
+      return m._count.odds === 0;
+    }).length;
 
     return result;
   }
