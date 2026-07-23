@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { MatchStatus } from '@prisma/client';
+import { MatchStatus, MarketType } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 import { ApiFootballProvider } from './api-football.provider';
 import {
@@ -732,8 +732,9 @@ export class DataEngineService {
   private async replaceOdds(matchId: string, odds: ImportedOdd[]) {
     if (odds.length === 0) return 0;
 
-    const markets = await this.prisma.market.findMany();
-    const marketByType = new Map(markets.map((m) => [m.type, m.id]));
+    const marketByType = await this.ensureMarkets(
+      [...new Set(odds.map((o) => o.marketType))],
+    );
 
     await this.prisma.odd.deleteMany({ where: { matchId } });
 
@@ -755,6 +756,52 @@ export class DataEngineService {
     }
 
     return created;
+  }
+
+  private async ensureMarkets(types: MarketType[]) {
+    const existing = await this.prisma.market.findMany({
+      where: { type: { in: types } },
+    });
+    const byType = new Map(existing.map((m) => [m.type, m.id]));
+
+    const labels: Partial<Record<MarketType, string>> = {
+      MATCH_RESULT: 'Resultado Final',
+      BTTS: 'Ambas Marcam',
+      OVER_UNDER: 'Total de Gols',
+      CORNERS: 'Escanteios',
+      CARDS: 'Cartões',
+      HANDICAP: 'Handicap',
+      PLAYER: 'Jogador a Marcar',
+      DOUBLE_CHANCE: 'Chance Dupla',
+      HT_FT: 'Intervalo/Final',
+      EXACT_SCORE: 'Placar',
+      WINNING_MARGIN: 'Margem de Vitória',
+      SHOTS: 'Total de Chutes',
+      SHOTS_ON_TARGET: 'Total de Chutes ao Gol',
+      RED_CARD: 'Cartão Vermelho',
+      BOTH_TEAMS_CARDS: 'Ambos Recebem Cartão',
+      GOALKEEPER_SAVES: 'Defesas de Goleiro',
+      PLAYER_SHOTS: 'Jogador - Chutes',
+      PLAYER_SHOTS_ON_TARGET: 'Jogador - Chutes ao Gol',
+      PLAYER_CARDS: 'Jogador - Cartão',
+      PLAYER_FOULS: 'Jogador - Faltas',
+      PLAYER_TACKLES: 'Jogador - Desarmes',
+      PLAYER_ASSIST_OR_GOAL: 'Jogador a Marcar ou Assistir',
+    };
+
+    for (const type of types) {
+      if (byType.has(type)) continue;
+      const created = await this.prisma.market.create({
+        data: {
+          type,
+          name: labels[type] ?? type,
+          description: type,
+        },
+      });
+      byType.set(type, created.id);
+    }
+
+    return byType;
   }
 
   async fetchRemoteH2H(

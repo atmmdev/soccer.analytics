@@ -46,13 +46,28 @@ function formatPct(value: number) {
 }
 
 const MARKET_GROUP_ORDER = [
+  'PLAYER_ASSIST_OR_GOAL',
+  'PLAYER',
+  'PLAYER_CARDS',
+  'PLAYER_SHOTS_ON_TARGET',
+  'PLAYER_SHOTS',
+  'PLAYER_FOULS',
+  'PLAYER_TACKLES',
+  'GOALKEEPER_SAVES',
   'MATCH_RESULT',
-  'HANDICAP',
-  'OVER_UNDER',
   'BTTS',
+  'DOUBLE_CHANCE',
+  'OVER_UNDER',
   'CORNERS',
   'CARDS',
-  'PLAYER',
+  'BOTH_TEAMS_CARDS',
+  'SHOTS_ON_TARGET',
+  'SHOTS',
+  'HT_FT',
+  'EXACT_SCORE',
+  'RED_CARD',
+  'WINNING_MARGIN',
+  'HANDICAP',
 ] as const;
 
 type AnalysisMarket = AnalysisResult['markets'][number];
@@ -92,7 +107,10 @@ function MarketsGroupedTable({
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
   const toggleGroup = (type: string) => {
-    setCollapsed((prev) => ({ ...prev, [type]: !prev[type] }));
+    setCollapsed((prev) => {
+      const currentlyClosed = prev[type] ?? true;
+      return { ...prev, [type]: !currentlyClosed };
+    });
   };
 
   return (
@@ -110,7 +128,7 @@ function MarketsGroupedTable({
       </TableHeader>
       <TableBody>
         {groups.map((group) => {
-          const isCollapsed = Boolean(collapsed[group.type]);
+          const isCollapsed = collapsed[group.type] ?? true;
           const bestEv = group.markets.reduce(
             (max, m) => Math.max(max, m.ev),
             Number.NEGATIVE_INFINITY,
@@ -152,7 +170,8 @@ function MarketsGroupedTable({
                   <TableRow key={`${m.marketType}-${m.selection}`}>
                     <TableCell>
                       <div className="font-medium">{m.selection}</div>
-                      {m.marketType === 'PLAYER' && (
+                      {(m.marketType === 'PLAYER' ||
+                        m.marketType?.startsWith('PLAYER_')) && (
                         <div className="text-[10px] text-muted-foreground">
                           {m.playerModel
                             ? 'modelo Poisson (gols/90)'

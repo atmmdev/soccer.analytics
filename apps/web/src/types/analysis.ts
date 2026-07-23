@@ -102,12 +102,27 @@ export interface EvPlusMarket {
 
 export const MARKET_TYPE_LABELS: Record<string, string> = {
   MATCH_RESULT: 'Resultado',
-  OVER_UNDER: 'Gols O/U',
-  BTTS: 'BTTS',
+  DOUBLE_CHANCE: 'Chance Dupla',
+  OVER_UNDER: 'Total de Gols',
+  BTTS: 'Ambas Marcam',
   CORNERS: 'Escanteios',
   CARDS: 'Cartões',
+  BOTH_TEAMS_CARDS: 'Ambos Recebem Cartão',
+  RED_CARD: 'Cartão Vermelho',
+  HT_FT: 'Intervalo/Final',
+  EXACT_SCORE: 'Placar',
+  WINNING_MARGIN: 'Margem de Vitória',
   HANDICAP: 'Handicap',
-  PLAYER: 'Jogador',
+  SHOTS: 'Total de Chutes',
+  SHOTS_ON_TARGET: 'Total de Chutes ao Gol',
+  GOALKEEPER_SAVES: 'Defesas de Goleiro',
+  PLAYER: 'Jogador a Marcar',
+  PLAYER_ASSIST_OR_GOAL: 'Jogador a Marcar ou Assistir',
+  PLAYER_CARDS: 'Jogador - Cartão',
+  PLAYER_SHOTS: 'Jogador - Chutes',
+  PLAYER_SHOTS_ON_TARGET: 'Jogador - Chutes ao Gol',
+  PLAYER_FOULS: 'Jogador - Faltas',
+  PLAYER_TACKLES: 'Jogador - Desarmes',
 };
 
 export const RECOMMENDATION_LABELS: Record<Recommendation, string> = {

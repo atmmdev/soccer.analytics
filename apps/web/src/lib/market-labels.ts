@@ -2,20 +2,29 @@
 
 const CATEGORY_LABELS: Record<string, string> = {
   MATCH_RESULT: 'Resultado Final (1X2)',
-  OVER_UNDER: 'Gols Over/Under',
+  OVER_UNDER: 'Total de Gols',
   BTTS: 'Ambas Marcam (BTTS)',
   CORNERS: 'Escanteios',
   CARDS: 'Cartões',
   HANDICAP: 'Handicap Asiático (gols)',
-  PLAYER: 'Marcador / Jogador',
-  SHOTS: 'Chutes / Finalizações',
-  SHOTS_ON_TARGET: 'Chutes no Gol (SOT)',
+  PLAYER: 'Jogador a Marcar',
+  SHOTS: 'Total de Chutes',
+  SHOTS_ON_TARGET: 'Total de Chutes ao Gol',
   GOALKEEPER_SAVES: 'Defesas do Goleiro',
-  PLAYER_SHOTS: 'Chutes do Jogador',
+  PLAYER_SHOTS: 'Jogador - Chutes',
+  PLAYER_SHOTS_ON_TARGET: 'Jogador - Chutes ao Gol',
+  PLAYER_CARDS: 'Jogador - Cartão',
+  PLAYER_FOULS: 'Jogador - Faltas',
+  PLAYER_TACKLES: 'Jogador - Desarmes',
+  PLAYER_ASSIST_OR_GOAL: 'Jogador a Marcar ou Assistir',
   DOUBLE_CHANCE: 'Chance Dupla',
   HT_RESULT: 'Resultado 1º Tempo',
   HT_OVER_UNDER: 'Gols 1º Tempo O/U',
   HT_FT: 'Intervalo/Final',
+  EXACT_SCORE: 'Placar',
+  WINNING_MARGIN: 'Margem de Vitória',
+  RED_CARD: 'Cartão Vermelho',
+  BOTH_TEAMS_CARDS: 'Ambos Recebem Cartão',
   FIRST_SCORER: 'Primeiro Marcador',
 };
 
@@ -25,6 +34,9 @@ const SELECTION_LABELS: Record<string, string> = {
   Fora: 'Fora vence',
   'BTTS Sim': 'Ambas marcam — Sim',
   'BTTS Não': 'Ambas marcam — Não',
+  'Casa ou Empate': 'Casa ou Empate (1X)',
+  'Empate ou Fora': 'Empate ou Fora (X2)',
+  'Casa ou Fora': 'Casa ou Fora (12)',
   Yes: 'Sim',
   No: 'Não',
 };
@@ -95,11 +107,32 @@ export function formatMarketLabel(
   if (category === 'PLAYER') {
     return `Anytime marcador · ${selectionLabel}`;
   }
+  if (category === 'PLAYER_ASSIST_OR_GOAL') {
+    return `Marcar ou assistir · ${selectionLabel}`;
+  }
+  if (category === 'PLAYER_CARDS') {
+    return `Jogador cartão · ${selectionLabel}`;
+  }
   if (category === 'FIRST_SCORER') {
     return `Primeiro marcador · ${selectionLabel}`;
   }
-  if (category === 'PLAYER_SHOTS') {
-    return `Chutes do jogador · ${selectionLabel}`;
+  if (category === 'PLAYER_SHOTS' || category === 'PLAYER_SHOTS_ON_TARGET') {
+    return `${CATEGORY_LABELS[category]} · ${selectionLabel}`;
+  }
+  if (category === 'PLAYER_FOULS' || category === 'PLAYER_TACKLES') {
+    return `${CATEGORY_LABELS[category]} · ${selectionLabel}`;
+  }
+  if (category === 'HT_FT') {
+    return `Intervalo/Final · ${selectionLabel}`;
+  }
+  if (category === 'EXACT_SCORE') {
+    return `Placar · ${selectionLabel}`;
+  }
+  if (category === 'WINNING_MARGIN') {
+    return `Margem · ${selectionLabel}`;
+  }
+  if (category === 'DOUBLE_CHANCE') {
+    return `Chance Dupla · ${selectionLabel}`;
   }
 
   return `${categoryLabel} · ${selectionLabel}`;
@@ -139,7 +172,11 @@ const CATEGORY_SUMMARIES: Record<string, string> = {
     'Chance dupla (1X, X2 ou 12): cobre dois dos três resultados do 1X2.',
   HT_RESULT: 'Resultado apenas do 1º tempo.',
   HT_OVER_UNDER: 'Total de gols só no 1º tempo (Over/Under).',
-  HT_FT: 'Resultado intervalo/final (HT/FT).',
+  HT_FT: 'Resultado intervalo/final (HT/FT) — 9 combinações.',
+  EXACT_SCORE: 'Placar exato da partida no tempo regulamentar.',
+  WINNING_MARGIN: 'Margem de vitória (ex.: Casa por 1, Fora por 2+).',
+  RED_CARD: 'Mercado de cartão vermelho na partida ou no tempo.',
+  BOTH_TEAMS_CARDS: 'Ambos os times recebem pelo menos um cartão.',
   FIRST_SCORER: 'Primeiro marcador do jogo — só o autor do 1º gol ganha.',
 };
 

@@ -21,10 +21,12 @@ export interface ComputedTeamStats {
   over25Pct: number;
   avgCorners: number;
   avgShots: number;
+  avgShotsOnTarget: number;
   avgPossession: number;
   avgXg: number;
   avgXga: number;
   avgCards: number;
+  avgRedCards: number;
   source: 'computed' | 'fallback';
 }
 
@@ -43,10 +45,12 @@ const FALLBACK = {
   over25Pct: 50,
   avgCorners: 5,
   avgShots: 11,
+  avgShotsOnTarget: 3.5,
   avgPossession: 50,
   avgXg: 1.25,
   avgXga: 1.25,
   avgCards: 2.5,
+  avgRedCards: 0.12,
 };
 
 const matchInclude = {
@@ -101,10 +105,12 @@ export class StatisticsEngineService {
     let over25 = 0;
     let corners = 0;
     let shots = 0;
+    let shotsOnTarget = 0;
     let possession = 0;
     let xg = 0;
     let xga = 0;
     let cards = 0;
+    let reds = 0;
     let statSamples = 0;
     const form: FormResult[] = [];
 
@@ -131,17 +137,21 @@ export class StatisticsEngineService {
         if (isHome) {
           corners += ms.homeCorners ?? 0;
           shots += ms.homeShots ?? 0;
+          shotsOnTarget += ms.homeShotsOnTarget ?? 0;
           possession += ms.homePossession ?? 50;
           xg += ms.homeXG ?? scored * 0.92;
           xga += ms.awayXG ?? conceded * 0.92;
           cards += (ms.homeYellowCards ?? 0) + (ms.homeRedCards ?? 0);
+          reds += ms.homeRedCards ?? 0;
         } else {
           corners += ms.awayCorners ?? 0;
           shots += ms.awayShots ?? 0;
+          shotsOnTarget += ms.awayShotsOnTarget ?? 0;
           possession += ms.awayPossession ?? 50;
           xg += ms.awayXG ?? scored * 0.92;
           xga += ms.homeXG ?? conceded * 0.92;
           cards += (ms.awayYellowCards ?? 0) + (ms.awayRedCards ?? 0);
+          reds += ms.awayRedCards ?? 0;
         }
       }
     }
@@ -165,6 +175,10 @@ export class StatisticsEngineService {
       over25Pct: round((over25 / n) * 100),
       avgCorners: round(statSamples > 0 ? corners / statSamples : avgGoalsFor * 3.2),
       avgShots: round(statSamples > 0 ? shots / statSamples : avgGoalsFor * 8),
+      avgShotsOnTarget: round(
+        statSamples > 0 ? shotsOnTarget / statSamples : avgGoalsFor * 2.8,
+      ),
+      avgRedCards: round(statSamples > 0 ? reds / statSamples : 0.12),
       avgPossession: round(statSamples > 0 ? possession / statSamples : 50),
       avgXg: round(statSamples > 0 ? xg / statSamples : avgGoalsFor * 0.92),
       avgXga: round(statSamples > 0 ? xga / statSamples : avgGoalsAgainst * 0.92),
@@ -321,6 +335,8 @@ export class StatisticsEngineService {
       over25Pct: round((over25 / n) * 100),
       avgCorners: round(avgGoalsFor * 3.2),
       avgShots: round(avgGoalsFor * 8),
+      avgShotsOnTarget: round(avgGoalsFor * 2.8),
+      avgRedCards: 0.12,
       avgPossession: 50,
       avgXg: round(avgGoalsFor * 0.92),
       avgXga: round(avgGoalsAgainst * 0.92),
@@ -461,6 +477,8 @@ export class StatisticsEngineService {
       over25Pct: round((over25 / n) * 100),
       avgCorners: round(avgGoalsFor * 3.2),
       avgShots: round(avgGoalsFor * 8),
+      avgShotsOnTarget: round(avgGoalsFor * 2.8),
+      avgRedCards: 0.12,
       avgPossession: 50,
       avgXg: round(avgGoalsFor * 0.92),
       avgXga: round(avgGoalsAgainst * 0.92),
@@ -489,6 +507,8 @@ export class StatisticsEngineService {
       over25Pct: FALLBACK.over25Pct,
       avgCorners: FALLBACK.avgCorners,
       avgShots: FALLBACK.avgShots,
+      avgShotsOnTarget: FALLBACK.avgShotsOnTarget,
+      avgRedCards: FALLBACK.avgRedCards,
       avgPossession: FALLBACK.avgPossession,
       avgXg: FALLBACK.avgXg,
       avgXga: FALLBACK.avgXga,

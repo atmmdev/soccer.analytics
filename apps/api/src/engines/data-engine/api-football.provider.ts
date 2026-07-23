@@ -418,76 +418,89 @@ export class ApiFootballProvider implements DataProvider {
     values: Array<{ value: string; odd: string }>,
     bookmaker: string,
   ): ImportedOdd[] {
-    const normalized = betName.toLowerCase();
+    const normalized = betName.toLowerCase().trim();
 
     if (normalized.includes('match winner') || normalized === '1x2') {
-      return values
-        .map((v) => {
-          const selection =
-            v.value === 'Home'
-              ? 'Casa'
-              : v.value === 'Draw'
-                ? 'Empate'
-                : v.value === 'Away'
-                  ? 'Fora'
-                  : null;
-          if (!selection) return null;
-          return {
-            marketType: MarketType.MATCH_RESULT,
-            selection,
-            value: parseFloat(v.odd),
-            bookmaker,
-          };
-        })
-        .filter(Boolean) as ImportedOdd[];
+      return this.mapSimpleSelections(values, bookmaker, MarketType.MATCH_RESULT, {
+        Home: 'Casa',
+        Draw: 'Empate',
+        Away: 'Fora',
+      });
     }
 
     if (
-      normalized.includes('over/under') &&
-      !normalized.includes('half') &&
-      !normalized.includes('corner') &&
-      !normalized.includes('card')
+      normalized.includes('double chance') ||
+      normalized === '1x2 double chance'
     ) {
-      return values
-        .map((v) => {
-          const selection =
-            v.value === 'Over 2.5'
-              ? 'Over 2.5'
-              : v.value === 'Under 2.5'
-                ? 'Under 2.5'
-                : null;
-          if (!selection) return null;
-          return {
-            marketType: MarketType.OVER_UNDER,
-            selection,
-            value: parseFloat(v.odd),
-            bookmaker,
-          };
-        })
-        .filter(Boolean) as ImportedOdd[];
+      return this.mapSimpleSelections(values, bookmaker, MarketType.DOUBLE_CHANCE, {
+        'Home/Draw': 'Casa ou Empate',
+        'Draw/Away': 'Empate ou Fora',
+        'Home/Away': 'Casa ou Fora',
+        '1X': 'Casa ou Empate',
+        X2: 'Empate ou Fora',
+        '12': 'Casa ou Fora',
+      });
     }
 
-    if (normalized.includes('both teams score') || normalized.includes('btts')) {
-      return values
-        .map((v) => {
-          const selection =
-            v.value === 'Yes' ? 'BTTS Sim' : v.value === 'No' ? 'BTTS Não' : null;
-          if (!selection) return null;
-          return {
-            marketType: MarketType.BTTS,
-            selection,
-            value: parseFloat(v.odd),
-            bookmaker,
-          };
-        })
-        .filter(Boolean) as ImportedOdd[];
+    if (
+      (normalized.includes('exact score') ||
+        normalized.includes('correct score')) &&
+      !normalized.includes('half')
+    ) {
+      return this.mapExactScoreLines(values, bookmaker);
+    }
+
+    if (
+      normalized.includes('ht/ft') ||
+      normalized.includes('half time/full time') ||
+      normalized.includes('halftime/fulltime') ||
+      normalized.includes('ht/ft double')
+    ) {
+      return this.mapHtFtLines(values, bookmaker);
+    }
+
+    if (normalized.includes('winning margin') || normalized.includes('win margin')) {
+      return this.mapWinningMarginLines(values, bookmaker);
+    }
+
+    if (
+      (normalized.includes('goals over/under') ||
+        normalized.includes('over/under') ||
+        normalized.includes('total goals') ||
+        normalized.includes('alternative total goals')) &&
+      !normalized.includes('half') &&
+      !normalized.includes('corner') &&
+      !normalized.includes('card') &&
+      !normalized.includes('shot') &&
+      !normalized.includes('team')
+    ) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.OVER_UNDER);
+    }
+
+    if (
+      (normalized.includes('both teams score') || normalized.includes('btts')) &&
+      !normalized.includes('half')
+    ) {
+      return this.mapSimpleSelections(values, bookmaker, MarketType.BTTS, {
+        Yes: 'BTTS Sim',
+        No: 'BTTS Não',
+      });
     }
 
     if (normalized.includes('corner')) {
       return this.mapOverUnderLines(values, bookmaker, MarketType.CORNERS);
     }
 
-    if (normalized.includes('card') && !normalized.includes('corner')) {
+    if (
+      (normalized.includes('total cards') ||
+        (normalized.includes('cards') && normalized.includes('over'))) &&
+      !normalized.includes('player') &&
+      !normalized.includes('red')
+    ) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.CARDS);
+    }
+
+    if (normalized.includes('card') && !normalized.includes('corner') && !normalized.includes('player') && !normalized.includes('red')) {
       return this.mapOverUnderLines(values, bookmaker, MarketType.CARDS);
     }
 
@@ -508,7 +521,284 @@ export class ApiFootballProvider implements DataProvider {
       return this.mapGoalScorerLines(values, bookmaker);
     }
 
+    // ── Fase 2: chutes / cartões especiais ──
+    if (
+      (normalized.includes('total shots on target') ||
+        normalized.includes('shots on goal') ||
+        normalized.includes('shots on target')) &&
+      !normalized.includes('player')
+    ) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.SHOTS_ON_TARGET);
+    }
+
+    if (
+      (normalized.includes('total shots') ||
+        normalized === 'shots' ||
+        normalized.includes('shots over/under')) &&
+      !normalized.includes('on target') &&
+      !normalized.includes('player') &&
+      !normalized.includes('corner')
+    ) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.SHOTS);
+    }
+
+    if (
+      normalized.includes('goalkeeper saves') ||
+      normalized.includes('keeper saves') ||
+      normalized.includes('total saves')
+    ) {
+      return this.mapOverUnderLines(values, bookmaker, MarketType.GOALKEEPER_SAVES);
+    }
+
+    if (
+      normalized.includes('red card') ||
+      normalized.includes('to be sent off') ||
+      normalized === 'sending off'
+    ) {
+      return this.mapYesNo(values, bookmaker, MarketType.RED_CARD);
+    }
+
+    if (
+      normalized.includes('both teams to receive a card') ||
+      normalized.includes('both teams receive a card') ||
+      normalized.includes('both teams cards')
+    ) {
+      return this.mapYesNo(values, bookmaker, MarketType.BOTH_TEAMS_CARDS);
+    }
+
+    // ── Fase 3: props de jogador ──
+    if (
+      normalized.includes('to score or assist') ||
+      normalized.includes('score or assist') ||
+      normalized.includes('goal or assist')
+    ) {
+      return this.mapPlayerNamedLines(
+        values,
+        bookmaker,
+        MarketType.PLAYER_ASSIST_OR_GOAL,
+      );
+    }
+
+    if (
+      normalized.includes('player shots on target') ||
+      (normalized.includes('shots on target') && normalized.includes('player'))
+    ) {
+      return this.mapPlayerPropLines(
+        values,
+        bookmaker,
+        MarketType.PLAYER_SHOTS_ON_TARGET,
+      );
+    }
+
+    if (normalized.includes('player shots') || normalized === 'player shot') {
+      return this.mapPlayerPropLines(values, bookmaker, MarketType.PLAYER_SHOTS);
+    }
+
+    if (
+      normalized.includes('player to be booked') ||
+      normalized.includes('player card') ||
+      normalized.includes('to receive a card')
+    ) {
+      return this.mapPlayerNamedLines(values, bookmaker, MarketType.PLAYER_CARDS);
+    }
+
+    if (normalized.includes('player fouls') || normalized.includes('fouls committed')) {
+      return this.mapPlayerPropLines(values, bookmaker, MarketType.PLAYER_FOULS);
+    }
+
+    if (
+      normalized.includes('player tackles') ||
+      (normalized.includes('tackles') && normalized.includes('player'))
+    ) {
+      return this.mapPlayerPropLines(values, bookmaker, MarketType.PLAYER_TACKLES);
+    }
+
     return [];
+  }
+
+  private mapYesNo(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    marketType: MarketType,
+  ): ImportedOdd[] {
+    return this.mapSimpleSelections(values, bookmaker, marketType, {
+      Yes: 'Sim',
+      No: 'Não',
+    });
+  }
+
+  /** Seleção = nome do jogador (mercados Sim/Anytime-like). */
+  private mapPlayerNamedLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    marketType: MarketType,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const name = v.value.trim();
+        if (!name || /^(yes|no|over|under)/i.test(name)) return null;
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+        return { marketType, selection: name, value: odd, bookmaker };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  /** Props O/U: "Name - Over 1.5" / "Name Over 0.5". */
+  private mapPlayerPropLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    marketType: MarketType,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const raw = v.value.trim();
+        const match = raw.match(
+          /^(.+?)\s*[-–]?\s*(Over|Under)\s+([\d.]+)$/i,
+        );
+        if (!match) {
+          // Só nome = Over 0.5 implícito (ex.: to be booked variants)
+          if (raw && !/^(over|under|yes|no)$/i.test(raw)) {
+            const odd = parseFloat(v.odd);
+            if (!Number.isFinite(odd) || odd <= 1) return null;
+            return {
+              marketType,
+              selection: `${raw} Over 0.5`,
+              value: odd,
+              bookmaker,
+            };
+          }
+          return null;
+        }
+        const name = match[1].replace(/[-–]\s*$/, '').trim();
+        const side =
+          match[2].charAt(0).toUpperCase() + match[2].slice(1).toLowerCase();
+        const odd = parseFloat(v.odd);
+        if (!name || !Number.isFinite(odd) || odd <= 1) return null;
+        return {
+          marketType,
+          selection: `${name} ${side} ${match[3]}`,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapSimpleSelections(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    marketType: MarketType,
+    mapping: Record<string, string>,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const selection = mapping[v.value] ?? mapping[v.value.trim()];
+        if (!selection) return null;
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+        return { marketType, selection, value: odd, bookmaker };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapExactScoreLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const raw = v.value.trim();
+        const match = raw.match(/^(\d+)\s*[:\-]\s*(\d+)$/);
+        if (!match) return null;
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+        return {
+          marketType: MarketType.EXACT_SCORE,
+          selection: `${match[1]}-${match[2]}`,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapHtFtLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    const side = (token: string): string | null => {
+      const t = token.trim().toLowerCase();
+      if (t === 'home' || t === '1') return 'Casa';
+      if (t === 'draw' || t === 'x') return 'Empate';
+      if (t === 'away' || t === '2') return 'Fora';
+      return null;
+    };
+
+    return values
+      .map((v) => {
+        const parts = v.value.split(/[\/\-]/);
+        if (parts.length !== 2) return null;
+        const ht = side(parts[0]);
+        const ft = side(parts[1]);
+        if (!ht || !ft) return null;
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+        return {
+          marketType: MarketType.HT_FT,
+          selection: `${ht}/${ft}`,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapWinningMarginLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const raw = v.value.trim();
+        const lower = raw.toLowerCase();
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+
+        let selection: string | null = null;
+
+        const byGoals = lower.match(
+          /^(home|away)\s*(?:to\s*win\s*)?by\s*(\d+)\s*(?:\+|or\s*more|goals?)?$/i,
+        );
+        if (byGoals) {
+          const team = byGoals[1].toLowerCase() === 'home' ? 'Casa' : 'Fora';
+          const n = byGoals[2];
+          const plus =
+            lower.includes('+') ||
+            lower.includes('or more') ||
+            lower.includes('more');
+          selection = `${team} por ${n}${plus ? '+' : ''}`;
+        }
+
+        const short = lower.match(/^(home|away)\s+(\d+)(\+)?$/i);
+        if (!selection && short) {
+          const team = short[1].toLowerCase() === 'home' ? 'Casa' : 'Fora';
+          selection = `${team} por ${short[2]}${short[3] ? '+' : ''}`;
+        }
+
+        if (!selection && /draw|empate|score draw/i.test(lower)) {
+          selection = 'Empate';
+        }
+
+        if (!selection) return null;
+        return {
+          marketType: MarketType.WINNING_MARGIN,
+          selection,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
   }
 
   private mapHandicapLines(
@@ -522,11 +812,13 @@ export class ApiFootballProvider implements DataProvider {
 
         const side = match[1].toLowerCase() === 'home' ? 'Casa' : 'Fora';
         const line = match[2];
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
 
         return {
           marketType: MarketType.HANDICAP,
           selection: `${side} ${line}`,
-          value: parseFloat(v.odd),
+          value: odd,
           bookmaker,
         };
       })
@@ -541,11 +833,13 @@ export class ApiFootballProvider implements DataProvider {
       .map((v) => {
         const name = v.value.trim();
         if (!name || name.toLowerCase() === 'no goalscorer') return null;
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
 
         return {
           marketType: MarketType.PLAYER,
           selection: name,
-          value: parseFloat(v.odd),
+          value: odd,
           bookmaker,
         };
       })
@@ -555,17 +849,20 @@ export class ApiFootballProvider implements DataProvider {
   private mapOverUnderLines(
     values: Array<{ value: string; odd: string }>,
     bookmaker: string,
-    marketType: 'CORNERS' | 'CARDS',
+    marketType: MarketType,
   ): ImportedOdd[] {
     return values
       .map((v) => {
         const match = v.value.match(/^(Over|Under)\s+([\d.]+)$/i);
         if (!match) return null;
-        const side = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+        const side =
+          match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
         return {
           marketType,
           selection: `${side} ${match[2]}`,
-          value: parseFloat(v.odd),
+          value: odd,
           bookmaker,
         };
       })

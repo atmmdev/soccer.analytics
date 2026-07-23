@@ -13,6 +13,9 @@ export interface TeamMetricsInput {
   goalsAgainst: number;
   avgCorners: number;
   avgCards: number;
+  avgShots?: number;
+  avgShotsOnTarget?: number;
+  avgRedCards?: number;
 }
 
 export interface MarketAnalysisResult {
@@ -105,14 +108,125 @@ function probability1X2(matrix: number[][]): { home: number; draw: number; away:
   return { home: home / total, draw: draw / total, away: away / total };
 }
 
-function probabilityOver25(matrix: number[][]): number {
-  let under = 0;
+function resultFromScore(home: number, away: number): 'Casa' | 'Empate' | 'Fora' {
+  if (home > away) return 'Casa';
+  if (home < away) return 'Fora';
+  return 'Empate';
+}
+
+/** P(total gols > line) a partir da matriz Poisson */
+export function probabilityGoalsOver(matrix: number[][], line: number): number {
+  let pOver = 0;
+  let total = 0;
   for (let h = 0; h < matrix.length; h++) {
     for (let a = 0; a < matrix[h].length; a++) {
-      if (h + a <= 2) under += matrix[h][a];
+      const p = matrix[h][a];
+      total += p;
+      if (h + a > line) pOver += p;
     }
   }
-  return 1 - under;
+  return Math.min(0.99, Math.max(0.01, total > 0 ? pOver / total : 0.5));
+}
+
+export function probabilityDoubleChance(
+  matrix: number[][],
+  selection: string,
+): number | null {
+  const r = probability1X2(matrix);
+  const s = selection.toLowerCase();
+  if (s.includes('casa ou empate') || s === '1x') return r.home + r.draw;
+  if (s.includes('empate ou fora') || s === 'x2') return r.draw + r.away;
+  if (s.includes('casa ou fora') || s === '12') return r.home + r.away;
+  return null;
+}
+
+export function probabilityExactScore(
+  matrix: number[][],
+  selection: string,
+): number | null {
+  const match = selection.trim().match(/^(\d+)\s*[-:]\s*(\d+)$/);
+  if (!match) return null;
+  const h = Number(match[1]);
+  const a = Number(match[2]);
+  if (h >= matrix.length || a >= (matrix[0]?.length ?? 0)) {
+    // Fora da grade modelada: residual baixo
+    return 0.005;
+  }
+  return Math.min(0.99, Math.max(0.001, matrix[h][a]));
+}
+
+/**
+ * HT/FT via 1º tempo (~45% dos λ) + 2º tempo (resto), independentes.
+ * Seleção: "Casa/Empate", "Empate/Fora", etc.
+ */
+export function probabilityHtFt(
+  homeLambda: number,
+  awayLambda: number,
+  selection: string,
+  htShare = 0.45,
+): number | null {
+  const parts = selection.split('/');
+  if (parts.length !== 2) return null;
+  const wantHt = parts[0].trim();
+  const wantFt = parts[1].trim();
+  if (!['Casa', 'Empate', 'Fora'].includes(wantHt)) return null;
+  if (!['Casa', 'Empate', 'Fora'].includes(wantFt)) return null;
+
+  const maxGoals = 4;
+  const ht = scoreMatrix(homeLambda * htShare, awayLambda * htShare, maxGoals);
+  const sh = scoreMatrix(
+    homeLambda * (1 - htShare),
+    awayLambda * (1 - htShare),
+    maxGoals,
+  );
+
+  let p = 0;
+  for (let h1 = 0; h1 <= maxGoals; h1++) {
+    for (let a1 = 0; a1 <= maxGoals; a1++) {
+      if (resultFromScore(h1, a1) !== wantHt) continue;
+      for (let h2 = 0; h2 <= maxGoals; h2++) {
+        for (let a2 = 0; a2 <= maxGoals; a2++) {
+          const ftH = h1 + h2;
+          const ftA = a1 + a2;
+          if (resultFromScore(ftH, ftA) !== wantFt) continue;
+          p += ht[h1][a1] * sh[h2][a2];
+        }
+      }
+    }
+  }
+
+  return Math.min(0.99, Math.max(0.001, p));
+}
+
+export function probabilityWinningMargin(
+  matrix: number[][],
+  selection: string,
+): number | null {
+  const s = selection.trim();
+  if (/^empate$/i.test(s)) {
+    return probability1X2(matrix).draw;
+  }
+
+  const match = s.match(/^(Casa|Fora)\s+por\s+(\d+)(\+)?$/i);
+  if (!match) return null;
+
+  const side = match[1].toLowerCase() === 'casa' ? 'home' : 'away';
+  const n = Number(match[2]);
+  const plus = Boolean(match[3]);
+
+  let p = 0;
+  for (let h = 0; h < matrix.length; h++) {
+    for (let a = 0; a < matrix[h].length; a++) {
+      const diff = side === 'home' ? h - a : a - h;
+      if (diff <= 0) continue;
+      if (plus ? diff >= n : diff === n) p += matrix[h][a];
+    }
+  }
+  return Math.min(0.99, Math.max(0.001, p));
+}
+
+function probabilityOver25(matrix: number[][]): number {
+  return probabilityGoalsOver(matrix, 2.5);
 }
 
 function probabilityBtts(matrix: number[][]): number {
@@ -187,12 +301,27 @@ export function calculateScoreIa(input: {
   let S_modelo = 0;
   if (input.modelSupported) {
     const t = input.marketType.toUpperCase();
-    if (t === 'PLAYER') {
+    if (t === 'PLAYER' || t.startsWith('PLAYER_')) {
       S_modelo = input.hasPlayerModel ? 85 : 25;
-    } else if (t === 'CORNERS' || t === 'CARDS' || t === 'HANDICAP') {
+    } else if (
+      t === 'CORNERS' ||
+      t === 'CARDS' ||
+      t === 'HANDICAP' ||
+      t === 'SHOTS' ||
+      t === 'SHOTS_ON_TARGET' ||
+      t === 'GOALKEEPER_SAVES' ||
+      t === 'RED_CARD' ||
+      t === 'BOTH_TEAMS_CARDS'
+    ) {
       S_modelo = 78;
-    } else {
+    } else if (t === 'HT_FT' || t === 'WINNING_MARGIN') {
+      S_modelo = 80;
+    } else if (t === 'EXACT_SCORE') {
+      S_modelo = 82;
+    } else if (t === 'DOUBLE_CHANCE' || t === 'OVER_UNDER' || t === 'BTTS' || t === 'MATCH_RESULT') {
       S_modelo = 90;
+    } else {
+      S_modelo = 70;
     }
   }
 
@@ -265,8 +394,15 @@ function resolveProbability(
   odd: MarketOddInput,
   goalMap: Record<string, number>,
   matrix: number[][],
+  homeLambda: number,
+  awayLambda: number,
   cornerLambda: number,
   cardLambda: number,
+  shotLambda: number,
+  sotLambda: number,
+  redLambda: number,
+  homeCardLambda: number,
+  awayCardLambda: number,
   playerContext?: Record<string, PlayerMarketContext>,
 ): { probability: number; modeled: boolean } {
   if (goalMap[odd.selection] !== undefined) {
@@ -274,6 +410,44 @@ function resolveProbability(
   }
 
   const type = odd.marketType.toUpperCase();
+
+  if (type === 'DOUBLE_CHANCE') {
+    const p = probabilityDoubleChance(matrix, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'EXACT_SCORE') {
+    const p = probabilityExactScore(matrix, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'HT_FT') {
+    const p = probabilityHtFt(homeLambda, awayLambda, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'WINNING_MARGIN') {
+    const p = probabilityWinningMargin(matrix, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'RED_CARD') {
+    const pYes = 1 - Math.exp(-Math.max(0.01, redLambda));
+    const yes = /sim|yes/i.test(odd.selection);
+    return { probability: yes ? pYes : 1 - pYes, modeled: true };
+  }
+
+  if (type === 'BOTH_TEAMS_CARDS') {
+    const pHome = 1 - Math.exp(-Math.max(0.01, homeCardLambda));
+    const pAway = 1 - Math.exp(-Math.max(0.01, awayCardLambda));
+    const pBoth = pHome * pAway;
+    const yes = /sim|yes/i.test(odd.selection);
+    return { probability: yes ? pBoth : 1 - pBoth, modeled: true };
+  }
 
   if (type === 'HANDICAP') {
     const parsed = parseHandicapSelection(odd.selection);
@@ -286,12 +460,11 @@ function resolveProbability(
     return { probability: 0, modeled: false };
   }
 
-  if (type === 'PLAYER') {
+  if (type === 'PLAYER' || type.startsWith('PLAYER_')) {
     const ctx = playerContext?.[odd.selection];
     if (ctx?.hasModel) {
       return { probability: ctx.probability, modeled: true };
     }
-    // Odd implícita só para exibição; recomendação permanece SKIP
     return {
       probability: Math.min(0.95, Math.max(0.02, 1 / odd.bookmakerOdd)),
       modeled: false,
@@ -305,6 +478,11 @@ function resolveProbability(
 
   const isOver = isOverSelection(odd.selection);
 
+  if (type === 'OVER_UNDER') {
+    const pOver = probabilityGoalsOver(matrix, line);
+    return { probability: isOver ? pOver : 1 - pOver, modeled: true };
+  }
+
   if (type === 'CORNERS') {
     const pOver = probabilityOverLine(cornerLambda, line);
     return { probability: isOver ? pOver : 1 - pOver, modeled: true };
@@ -312,6 +490,23 @@ function resolveProbability(
 
   if (type === 'CARDS') {
     const pOver = probabilityOverLine(cardLambda, line);
+    return { probability: isOver ? pOver : 1 - pOver, modeled: true };
+  }
+
+  if (type === 'SHOTS') {
+    const pOver = probabilityOverLine(shotLambda, line);
+    return { probability: isOver ? pOver : 1 - pOver, modeled: true };
+  }
+
+  if (type === 'SHOTS_ON_TARGET') {
+    const pOver = probabilityOverLine(sotLambda, line);
+    return { probability: isOver ? pOver : 1 - pOver, modeled: true };
+  }
+
+  if (type === 'GOALKEEPER_SAVES') {
+    // Aproxima defesas ≈ chutes ao gol - gols esperados
+    const saveLambda = Math.max(0.5, sotLambda - homeLambda - awayLambda);
+    const pOver = probabilityOverLine(saveLambda, line);
     return { probability: isOver ? pOver : 1 - pOver, modeled: true };
   }
 
@@ -326,8 +521,9 @@ function marketScoreIa(
   playerContext?: Record<string, PlayerMarketContext>,
   selection?: string,
 ): number {
+  const type = marketType.toUpperCase();
   const hasPlayerModel =
-    marketType.toUpperCase() === 'PLAYER' &&
+    (type === 'PLAYER' || type.startsWith('PLAYER_')) &&
     Boolean(selection && playerContext?.[selection]?.hasModel);
 
   return calculateScoreIa({
@@ -347,7 +543,8 @@ function getMarketRecommendation(
   playerContext?: Record<string, PlayerMarketContext>,
   selection?: string,
 ): Recommendation {
-  if (marketType.toUpperCase() === 'PLAYER') {
+  const type = marketType.toUpperCase();
+  if (type === 'PLAYER' || type.startsWith('PLAYER_')) {
     const hasModel = selection ? playerContext?.[selection]?.hasModel : false;
     if (!hasModel) return 'SKIP';
   }
@@ -371,6 +568,19 @@ export function runAnalysis(
 
   const cornerLambda = Math.max(1, home.avgCorners + away.avgCorners);
   const cardLambda = Math.max(0.5, home.avgCards + away.avgCards);
+  const shotLambda = Math.max(
+    8,
+    (home.avgShots ?? home.goalsFor * 8) + (away.avgShots ?? away.goalsFor * 8),
+  );
+  const sotLambda = Math.max(
+    3,
+    (home.avgShotsOnTarget ?? home.goalsFor * 2.8) +
+      (away.avgShotsOnTarget ?? away.goalsFor * 2.8),
+  );
+  const redLambda = Math.max(
+    0.05,
+    (home.avgRedCards ?? 0.12) + (away.avgRedCards ?? 0.12),
+  );
 
   const matrix = scoreMatrix(homeXg, awayXg);
   const result1x2 = probability1X2(matrix);
@@ -401,8 +611,15 @@ export function runAnalysis(
       odd,
       probabilityMap,
       matrix,
+      homeXg,
+      awayXg,
       cornerLambda,
       cardLambda,
+      shotLambda,
+      sotLambda,
+      redLambda,
+      home.avgCards,
+      away.avgCards,
       playerContext,
     );
 
@@ -418,7 +635,8 @@ export function runAnalysis(
         scoreIa: 0,
         recommendation: 'SKIP' as Recommendation,
         modelSupported: false,
-        ...(odd.marketType.toUpperCase() === 'PLAYER'
+        ...(odd.marketType.toUpperCase() === 'PLAYER' ||
+        odd.marketType.toUpperCase().startsWith('PLAYER_')
           ? { playerModel: false }
           : {}),
       };
@@ -436,7 +654,8 @@ export function runAnalysis(
       odd.selection,
     );
     const hasPlayerModel =
-      odd.marketType.toUpperCase() === 'PLAYER' &&
+      (odd.marketType.toUpperCase() === 'PLAYER' ||
+        odd.marketType.toUpperCase().startsWith('PLAYER_')) &&
       Boolean(playerContext[odd.selection]?.hasModel);
 
     return {

@@ -5,7 +5,22 @@ export type MarketType =
   | 'CORNERS'
   | 'CARDS'
   | 'PLAYER'
-  | 'HANDICAP';
+  | 'HANDICAP'
+  | 'DOUBLE_CHANCE'
+  | 'HT_FT'
+  | 'EXACT_SCORE'
+  | 'WINNING_MARGIN'
+  | 'SHOTS'
+  | 'SHOTS_ON_TARGET'
+  | 'RED_CARD'
+  | 'BOTH_TEAMS_CARDS'
+  | 'GOALKEEPER_SAVES'
+  | 'PLAYER_SHOTS'
+  | 'PLAYER_SHOTS_ON_TARGET'
+  | 'PLAYER_CARDS'
+  | 'PLAYER_FOULS'
+  | 'PLAYER_TACKLES'
+  | 'PLAYER_ASSIST_OR_GOAL';
 
 export type TicketStatus = 'DRAFT' | 'PLACED' | 'WON' | 'LOST' | 'VOID' | 'CASHED_OUT';
 
