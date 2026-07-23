@@ -138,6 +138,10 @@ export class DashboardService {
     };
   }
 
+  async getMatchAnalysis(matchId: string) {
+    return this.buildMatchAnalysis(matchId);
+  }
+
   private async getScheduleMatches() {
     const now = new Date();
     const todayStart = new Date(now);

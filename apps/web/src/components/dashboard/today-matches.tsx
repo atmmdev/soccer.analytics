@@ -1,30 +1,32 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useMemo, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   ListPagination,
   DEFAULT_PAGE_SIZE,
   type PageSize,
-} from "@/components/ui/list-pagination";
-import type { TodayMatch } from "@/types/dashboard";
+} from '@/components/ui/list-pagination';
+import { cn } from '@/lib/utils';
+import type { TodayMatch } from '@/types/dashboard';
 
-const tabs = ["Todos", "Ao Vivo", "Hoje", "Amanhã"] as const;
+const tabs = ['Todos', 'Ao Vivo', 'Hoje', 'Amanhã'] as const;
 type Tab = (typeof tabs)[number];
-const ALL_COMPETITIONS_VALUE = "__all_competitions__";
+const ALL_COMPETITIONS_VALUE = '__all_competitions__';
 
 interface TodayMatchesProps {
   matches: TodayMatch[];
+  selectedMatchId?: string | null;
+  onSelectMatch?: (matchId: string) => void;
 }
 
 interface CompetitionOption {
@@ -34,25 +36,25 @@ interface CompetitionOption {
 
 function filterByTab(matches: TodayMatch[], tab: Tab): TodayMatch[] {
   switch (tab) {
-    case "Ao Vivo":
-      return matches.filter((m) => m.status === "live");
-    case "Hoje":
+    case 'Ao Vivo':
+      return matches.filter((m) => m.status === 'live');
+    case 'Hoje':
       return matches.filter(
         (m) =>
-          m.day === "today" &&
-          (m.status === "scheduled" || m.status === "live"),
+          m.day === 'today' &&
+          (m.status === 'scheduled' || m.status === 'live'),
       );
-    case "Amanhã":
+    case 'Amanhã':
       return matches.filter(
-        (m) => m.day === "tomorrow" && m.status === "scheduled",
+        (m) => m.day === 'tomorrow' && m.status === 'scheduled',
       );
-    case "Todos":
+    case 'Todos':
     default:
       return matches.filter(
         (m) =>
-          m.status === "live" ||
-          (m.day === "today" && m.status === "scheduled") ||
-          (m.day === "tomorrow" && m.status === "scheduled"),
+          m.status === 'live' ||
+          (m.day === 'today' && m.status === 'scheduled') ||
+          (m.day === 'tomorrow' && m.status === 'scheduled'),
       );
   }
 }
@@ -60,9 +62,13 @@ function filterByTab(matches: TodayMatch[], tab: Tab): TodayMatch[] {
 function MatchList({
   matches,
   emptyLabel,
+  selectedMatchId,
+  onSelectMatch,
 }: {
   matches: TodayMatch[];
   emptyLabel: string;
+  selectedMatchId?: string | null;
+  onSelectMatch?: (matchId: string) => void;
 }) {
   if (matches.length === 0) {
     return (
@@ -74,42 +80,52 @@ function MatchList({
 
   return (
     <div className="space-y-2">
-      {matches.map((match) => (
-        <Link
-          key={match.id}
-          href={`/matches/${match.id}`}
-          className="flex items-center gap-3 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2.5 transition-colors hover:bg-secondary/40"
-        >
-          <span className="w-10 shrink-0 text-xs font-mono text-muted-foreground">
-            {match.time}
-          </span>
-          <div className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-2">
-            <div className="flex min-w-0 items-center gap-2">
-              <span className="truncate text-sm font-medium">
-                {match.homeTeam}
-              </span>
-              <span className="text-xs text-muted-foreground">vs</span>
-              <span className="truncate text-sm font-medium">
-                {match.awayTeam}
+      {matches.map((match) => {
+        const isSelected = selectedMatchId === match.id;
+
+        return (
+          <button
+            key={match.id}
+            type="button"
+            onClick={() => onSelectMatch?.(match.id)}
+            className={cn(
+              'flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors',
+              isSelected
+                ? 'border-primary/50 bg-primary/10 hover:bg-primary/15'
+                : 'border-border/40 bg-secondary/20 hover:bg-secondary/40',
+            )}
+          >
+            <span className="w-10 shrink-0 text-xs font-mono text-muted-foreground">
+              {match.time}
+            </span>
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-2">
+              <div className="flex min-w-0 items-center gap-2">
+                <span className="truncate text-sm font-medium">
+                  {match.homeTeam}
+                </span>
+                <span className="text-xs text-muted-foreground">vs</span>
+                <span className="truncate text-sm font-medium">
+                  {match.awayTeam}
+                </span>
+              </div>
+              <span className="flex flex-col text-[9px] text-muted-foreground sm:ml-auto">
+                <div>{match.competition}</div>
+                <div className="text-right">
+                  {match.status === 'live' ? (
+                    <Badge variant="destructive" className="text-[9px]">
+                      LIVE
+                    </Badge>
+                  ) : (
+                    <Badge variant="success" className="text-[9px]">
+                      {match.score > 0 ? `${match.score} %` : '—'}
+                    </Badge>
+                  )}
+                </div>
               </span>
             </div>
-            <span className="text-[9px] text-muted-foreground sm:ml-auto flex flex-col">
-              <div>{match.competition}</div>
-              <div className="text-right">
-                {match.status === "live" ? (
-                  <Badge variant="destructive" className="text-[9px]">
-                    LIVE
-                  </Badge>
-                ) : (
-                  <Badge variant="success" className="text-[9px]">
-                    {match.score > 0 ? `${match.score} %` : "—"}
-                  </Badge>
-                )}
-              </div>
-            </span>
-          </div>
-        </Link>
-      ))}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -131,26 +147,30 @@ function buildCompetitionOptions(matches: TodayMatch[]): CompetitionOption[] {
 
   return [...counts.entries()]
     .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
+    .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
 }
 
 const emptyLabels: Record<Tab, string> = {
-  Todos: "Aguardando sincronização ou nenhum jogo importado para hoje/amanhã.",
-  "Ao Vivo": "Nenhum jogo ao vivo no momento.",
-  Hoje: "Nenhum jogo importado para hoje — aguarde a sincronização automática.",
-  Amanhã: "Nenhum jogo importado para amanhã.",
+  Todos: 'Aguardando sincronização ou nenhum jogo importado para hoje/amanhã.',
+  'Ao Vivo': 'Nenhum jogo ao vivo no momento.',
+  Hoje: 'Nenhum jogo importado para hoje — aguarde a sincronização automática.',
+  Amanhã: 'Nenhum jogo importado para amanhã.',
 };
 
-export function TodayMatches({ matches }: TodayMatchesProps) {
+export function TodayMatches({
+  matches,
+  selectedMatchId,
+  onSelectMatch,
+}: TodayMatchesProps) {
   const [selectedCompetition, setSelectedCompetition] = useState(
     ALL_COMPETITIONS_VALUE,
   );
-  const [activeTab, setActiveTab] = useState<Tab>("Hoje");
+  const [activeTab, setActiveTab] = useState<Tab>('Hoje');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
 
   const competitionOptions = useMemo(
-    () => buildCompetitionOptions(filterByTab(matches, "Todos")),
+    () => buildCompetitionOptions(filterByTab(matches, 'Todos')),
     [matches],
   );
 
@@ -237,6 +257,8 @@ export function TodayMatches({ matches }: TodayMatchesProps) {
             <MatchList
               matches={paginatedMatches}
               emptyLabel={getEmptyLabel(activeTab)}
+              selectedMatchId={selectedMatchId}
+              onSelectMatch={onSelectMatch}
             />
             <ListPagination
               page={page}

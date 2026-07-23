@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import {
   Wallet,
   TrendingUp,
@@ -19,26 +19,51 @@ import { EvMarketsTable } from '@/components/dashboard/ev-markets-table';
 import { BankrollChart } from '@/components/dashboard/bankroll-chart';
 import { RecentEntries } from '@/components/dashboard/recent-entries';
 import { DashboardTip } from '@/components/dashboard/dashboard-tip';
-import { apiClient } from '@/lib/api/client';
-import type { DashboardData } from '@/types/dashboard';
+import {
+  useDashboard,
+  useDashboardMatchAnalysis,
+} from '@/hooks/use-dashboard';
 import { useSyncStatus } from '@/hooks/use-sync';
 
 function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
-async function fetchDashboard(): Promise<DashboardData> {
-  const { data } = await apiClient.get<DashboardData>('/dashboard');
-  return data;
-}
-
 export default function DashboardPage() {
   const { data: sync } = useSyncStatus();
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ['dashboard'],
-    queryFn: fetchDashboard,
+  const { data, isLoading, isError, refetch } = useDashboard({
     refetchInterval: sync?.status === 'running' ? 5000 : false,
   });
+  const [selectedMatchId, setSelectedMatchId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!data) return;
+
+    const featuredId = data.matchAnalysis.matchId ?? data.todayMatches[0]?.id ?? null;
+
+    setSelectedMatchId((current) => {
+      if (current && data.todayMatches.some((m) => m.id === current)) {
+        return current;
+      }
+      return featuredId;
+    });
+  }, [data]);
+
+  const {
+    data: selectedAnalysis,
+    isLoading: analysisLoading,
+    isFetching: analysisFetching,
+  } = useDashboardMatchAnalysis(selectedMatchId);
+
+  const analysisData =
+    selectedAnalysis ??
+    (selectedMatchId && data?.matchAnalysis.matchId === selectedMatchId
+      ? data.matchAnalysis
+      : undefined);
+
+  const showAnalysisLoading =
+    !!selectedMatchId &&
+    (analysisLoading || (analysisFetching && !analysisData));
 
   if (isLoading) {
     return (
@@ -126,10 +151,17 @@ export default function DashboardPage() {
 
         <div className="grid gap-4 xl:grid-cols-3">
           <div className="xl:col-span-1">
-            <TodayMatches matches={data.todayMatches} />
+            <TodayMatches
+              matches={data.todayMatches}
+              selectedMatchId={selectedMatchId}
+              onSelectMatch={setSelectedMatchId}
+            />
           </div>
           <div className="xl:col-span-1">
-            <MatchAnalysis data={data.matchAnalysis} />
+            <MatchAnalysis
+              data={analysisData}
+              isLoading={showAnalysisLoading}
+            />
           </div>
           <div className="xl:col-span-1">
             <TicketBuilderWidget data={data.ticketBuilder} />
