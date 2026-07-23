@@ -40,6 +40,7 @@ export const SYNC_STEP_LABELS: Record<string, string> = {
   fixtures: 'Importando jogos',
   resolve: 'Atualizando resultados',
   odds: 'Importando odds',
+  'odds-pending': 'Odds pendentes',
   statistics: 'Importando estatísticas',
   players: 'Importando stats de jogadores',
   analysis: 'Rodando análises Poisson',

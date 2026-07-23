@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { MatchStatus } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 import { ApiFootballProvider } from './api-football.provider';
@@ -66,6 +67,7 @@ function isRateLimitError(message: string): boolean {
 export class DataEngineService {
   constructor(
     private prisma: PrismaService,
+    private config: ConfigService,
     private apiFootball: ApiFootballProvider,
     private apiUsage: ApiFootballUsageService,
   ) {}
@@ -233,6 +235,82 @@ export class DataEngineService {
       if (oddsByFixture.has(m.externalId)) return false;
       return m._count.odds === 0;
     }).length;
+
+    return result;
+  }
+
+  /**
+   * Busca odds só para jogos agendados/ao vivo da data que ainda não têm odds no banco.
+   * Não reimporta fixtures nem reprocessa quem já tem odds — ideal para retomar após 429.
+   */
+  async importPendingOdds(date: string): Promise<ImportOddsResult> {
+    this.assertDate(date);
+    const provider = this.getActiveProvider();
+    const { start, end } = this.getLocalDateRange(date);
+    const minuteLimit = this.readMinuteLimit();
+    // Folga vs 300 r/min do Pro para reduzir 429 em rajada
+    const delayMs = Math.ceil(60_000 / Math.max(60, minuteLimit - 20));
+
+    const result: ImportOddsResult = {
+      provider: provider.name,
+      date,
+      fixturesWithOdds: 0,
+      matchesProcessed: 0,
+      oddsCreated: 0,
+      skippedNoOdds: 0,
+      remainingWithoutOdds: 0,
+      rateLimited: false,
+      errors: [],
+    };
+
+    const pending = await this.prisma.match.findMany({
+      where: {
+        externalId: { not: null },
+        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        matchDate: { gte: start, lte: end },
+        odds: { none: {} },
+      },
+      orderBy: { matchDate: 'asc' },
+    });
+
+    if (pending.length === 0) {
+      result.remainingWithoutOdds = 0;
+      return result;
+    }
+
+    for (let i = 0; i < pending.length; i++) {
+      const match = pending[i];
+      if (!match.externalId) continue;
+
+      try {
+        if (i > 0) await this.sleep(delayMs);
+        const odds = await provider.fetchOdds(match.externalId);
+        if (!odds.length) {
+          result.skippedNoOdds++;
+          continue;
+        }
+        const created = await this.replaceOdds(match.id, this.dedupeOdds(odds));
+        result.matchesProcessed++;
+        result.oddsCreated += created;
+        result.fixturesWithOdds++;
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'erro desconhecido';
+        result.errors.push(`Fixture ${match.externalId}: ${message}`);
+        if (isRateLimitError(message)) {
+          result.rateLimited = true;
+          break;
+        }
+      }
+    }
+
+    result.remainingWithoutOdds = await this.prisma.match.count({
+      where: {
+        externalId: { not: null },
+        status: { in: [MatchStatus.SCHEDULED, MatchStatus.LIVE] },
+        matchDate: { gte: start, lte: end },
+        odds: { none: {} },
+      },
+    });
 
     return result;
   }
@@ -537,6 +615,16 @@ export class DataEngineService {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       throw new BadRequestException('Data inválida — use YYYY-MM-DD');
     }
+  }
+
+  private readMinuteLimit(): number {
+    const raw = this.config.get<string | number>('API_FOOTBALL_MINUTE_LIMIT');
+    const n = typeof raw === 'number' ? raw : Number(raw);
+    return Number.isFinite(n) && n > 0 ? n : 300;
+  }
+
+  private sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   private dedupeOdds(odds: ImportedOdd[]): ImportedOdd[] {

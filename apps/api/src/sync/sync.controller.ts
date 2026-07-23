@@ -27,4 +27,12 @@ export class SyncController {
   run() {
     return this.syncService.forceSync();
   }
+
+  @Post('odds-pending')
+  @ApiOperation({
+    summary: 'Import odds only for scheduled/live matches still missing odds',
+  })
+  runOddsPending() {
+    return this.syncService.forcePendingOddsSync();
+  }
 }

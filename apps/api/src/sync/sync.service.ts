@@ -122,6 +122,21 @@ export class SyncService implements OnModuleInit {
     return this.getStatus();
   }
 
+  /** Só busca odds de jogos agendados/ao vivo que ainda não têm odds no banco. */
+  async forcePendingOddsSync(): Promise<SyncStatus> {
+    if (!this.isConfigured()) {
+      return this.ensureDailySync();
+    }
+
+    if (this.running) {
+      return this.getStatus();
+    }
+
+    const today = this.formatDate(new Date());
+    void this.runPendingOddsSync(today);
+    return this.getStatus();
+  }
+
   private isUpToDate(stored: StoredSyncState | null, today: string): boolean {
     if (!stored || stored.status !== 'completed' || stored.syncDate !== today) {
       return false;
@@ -135,6 +150,99 @@ export class SyncService implements OnModuleInit {
     const last = result?.lastFixturesRefreshAt ?? stored.completedAt;
     if (!last) return true;
     return Date.now() - new Date(last).getTime() >= FIXTURES_RESYNC_INTERVAL_MS;
+  }
+
+  /**
+   * Sync parcial: apenas odds de jogos SCHEDULED/LIVE sem odds no banco.
+   * Para no 429 para poder retomar depois sem refazer fixtures/stats/análises.
+   */
+  private async runPendingOddsSync(syncDate: string) {
+    if (this.running) return;
+    this.running = true;
+
+    const existing = await this.readState();
+    const previousResult = (existing?.result ?? {}) as Record<string, unknown>;
+    const result: Record<string, unknown> = {
+      ...previousResult,
+      odds: [] as unknown[],
+      oddsErrors: [] as string[],
+      oddsPendingMode: true,
+    };
+
+    try {
+      await this.writeState({
+        syncDate,
+        status: 'running',
+        currentStep: 'odds-pending',
+        result,
+      });
+
+      let rateLimited = false;
+      let remainingWithoutOdds = 0;
+      let matchesProcessed = 0;
+      let oddsCreated = 0;
+
+      for (const date of this.getFixtureDates()) {
+        if (rateLimited) break;
+
+        try {
+          const odds = await this.dataEngine.importPendingOdds(date);
+          (result.odds as unknown[]).push(odds);
+          matchesProcessed += odds.matchesProcessed;
+          oddsCreated += odds.oddsCreated;
+          remainingWithoutOdds += odds.remainingWithoutOdds;
+          if (odds.rateLimited) {
+            rateLimited = true;
+            (result.oddsErrors as string[]).push(
+              `${date}: limite por minuto atingido — rode de novo em ~1 min para continuar`,
+            );
+          }
+        } catch (err) {
+          const message = err instanceof Error ? err.message : 'Erro desconhecido';
+          (result.oddsErrors as string[]).push(`${date}: ${message}`);
+          this.logger.warn(`Pending odds import skipped for ${date}: ${message}`);
+        }
+
+        await this.writeState({
+          syncDate,
+          status: 'running',
+          currentStep: 'odds-pending',
+          result,
+        });
+      }
+
+      const message = rateLimited
+        ? `Odds pendentes pausadas no rate limit (${matchesProcessed} jogos atualizados, ${remainingWithoutOdds} ainda sem odds). Aguarde ~1 min e rode de novo.`
+        : remainingWithoutOdds > 0
+          ? `Odds pendentes concluídas: ${matchesProcessed} jogos atualizados, ${remainingWithoutOdds} ainda sem odds na API.`
+          : `Odds pendentes concluídas: ${matchesProcessed} jogos atualizados (${oddsCreated} odds).`;
+
+      await this.writeState({
+        syncDate,
+        status: 'completed',
+        currentStep: null,
+        completedAt: new Date().toISOString(),
+        message,
+        result: {
+          ...result,
+          lastOddsPendingAt: new Date().toISOString(),
+        },
+      });
+
+      this.logger.log(`Pending odds sync completed for ${syncDate}`);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Erro desconhecido';
+      this.logger.error(`Pending odds sync failed: ${message}`);
+      await this.writeState({
+        syncDate,
+        status: 'failed',
+        currentStep: null,
+        message,
+        result,
+      });
+    } finally {
+      this.running = false;
+    }
   }
 
   /** Lightweight pass: update status/scores without odds/stats/analysis */

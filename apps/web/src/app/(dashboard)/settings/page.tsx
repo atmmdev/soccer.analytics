@@ -35,11 +35,25 @@ export default function SettingsPage() {
       return data;
     },
     onSuccess: () => {
-      toast.success("Sincronização iniciada");
+      toast.success("Sincronização completa iniciada");
       void queryClient.invalidateQueries({ queryKey: ["sync"] });
       void queryClient.invalidateQueries({ queryKey: ["dashboard"] });
     },
     onError: () => toast.error("Falha ao iniciar sincronização"),
+  });
+
+  const pendingOddsSync = useMutation({
+    mutationFn: async () => {
+      const { data } = await apiClient.post("/sync/odds-pending");
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Busca de odds pendentes iniciada");
+      void queryClient.invalidateQueries({ queryKey: ["sync"] });
+      void queryClient.invalidateQueries({ queryKey: ["dashboard"] });
+      void queryClient.invalidateQueries({ queryKey: ["matches"] });
+    },
+    onError: () => toast.error("Falha ao buscar odds pendentes"),
   });
 
   const provider = status?.providers[0];
@@ -63,21 +77,45 @@ export default function SettingsPage() {
                 recente).
               </CardDescription>
             </div>
-            <Button
-              onClick={() => forceSync.mutate()}
-              disabled={
-                !isConfigured ||
-                forceSync.isPending ||
-                sync?.status === "running"
-              }
-            >
-              {forceSync.isPending || sync?.status === "running" ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <RefreshCw className="mr-2 h-4 w-4" />
-              )}
-              Forçar sincronização agora
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="outline"
+                onClick={() => pendingOddsSync.mutate()}
+                disabled={
+                  !isConfigured ||
+                  pendingOddsSync.isPending ||
+                  forceSync.isPending ||
+                  sync?.status === "running"
+                }
+              >
+                {pendingOddsSync.isPending ||
+                (sync?.status === "running" &&
+                  sync.currentStep === "odds-pending") ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                )}
+                Só odds pendentes
+              </Button>
+              <Button
+                onClick={() => forceSync.mutate()}
+                disabled={
+                  !isConfigured ||
+                  forceSync.isPending ||
+                  pendingOddsSync.isPending ||
+                  sync?.status === "running"
+                }
+              >
+                {forceSync.isPending ||
+                (sync?.status === "running" &&
+                  sync.currentStep !== "odds-pending") ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                )}
+                Forçar sincronização agora
+              </Button>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             {loadingSync ? (
@@ -159,11 +197,10 @@ export default function SettingsPage() {
                       </div>
                       {summary.remainingWithoutOdds > 0 && (
                         <p className="text-sm text-amber-400 sm:col-span-2">
-                          Ainda sem odds: {summary.remainingWithoutOdds} — a
-                          API-Football ainda não publicou odds para esses jogos
-                          (comum em ligas menores / jogos longe). Use “Forçar
-                          sincronização agora” para tentar de novo; não precisa
-                          esperar a sync automática.
+                          Ainda sem odds: {summary.remainingWithoutOdds}. Use
+                          “Só odds pendentes” para retomar sem refazer a sync
+                          completa (ideal após rate limit). Se a API não tiver
+                          odds publicadas, o jogo continua pendente.
                         </p>
                       )}
                     </div>
@@ -219,9 +256,9 @@ export default function SettingsPage() {
             ) : null}
 
             <p className="text-xs text-muted-foreground">
-              A sync roda ao iniciar a API e periodicamente enquanto o sistema
-              estiver ativo. O uso de requests aparece no menu de sincronização
-              (ícone no header) e respeita o teto do seu plano na API-Football.
+              “Só odds pendentes” busca apenas jogos sem odds e respeita o
+              limite por minuto do plano (pausa e retoma). A sync completa
+              reprocessa fixtures, odds, stats, players e análises.
             </p>
           </CardContent>
         </Card>
