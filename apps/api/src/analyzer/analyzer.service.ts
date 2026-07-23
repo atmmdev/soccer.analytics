@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { AnalysisView } from './dto/analyze-match.dto';
 import {
@@ -10,6 +10,8 @@ import { DataEngineService } from '../engines/data-engine/data-engine.service';
 
 @Injectable()
 export class AnalyzerService {
+  private readonly logger = new Logger(AnalyzerService.name);
+
   constructor(
     private prisma: PrismaService,
     private statisticsEngine: StatisticsEngineService,
@@ -35,6 +37,8 @@ export class AnalyzerService {
 
     const stats = this.buildStatRows(homeStats, awayStats);
     let h2h: H2HStats | undefined;
+    let h2hSource: 'local' | 'remote' | 'empty' | undefined;
+    let h2hNote: string | undefined;
 
     if (view === 'h2h') {
       h2h = await this.statisticsEngine.getH2H(
@@ -42,24 +46,57 @@ export class AnalyzerService {
         match.awayTeamId,
         period,
       );
+      h2hSource = h2h.totalGames > 0 ? 'local' : 'empty';
 
-      if (
+      const needsRemote =
         h2h.totalGames < Math.min(5, period) &&
-        match.homeTeam.externalId &&
-        match.awayTeam.externalId &&
-        this.dataEngine.isApiFootballConfigured()
-      ) {
+        !!match.homeTeam.externalId &&
+        !!match.awayTeam.externalId &&
+        this.dataEngine.isApiFootballConfigured();
+
+      if (needsRemote) {
         try {
           const remote = await this.dataEngine.fetchRemoteH2H(
-            match.homeTeam.externalId,
-            match.awayTeam.externalId,
+            match.homeTeam.externalId!,
+            match.awayTeam.externalId!,
             period,
           );
           if (remote.length > h2h.totalGames) {
             h2h = this.h2hFromRemote(remote);
+            h2hSource = 'remote';
+            h2hNote = `Confrontos carregados da API-Football (${remote.length}).`;
+            // Cacheia no banco para a próxima visita
+            void this.dataEngine
+              .persistRemoteH2HFixtures(remote)
+              .catch((err) =>
+                this.logger.warn(
+                  `Falha ao persistir H2H remoto: ${err instanceof Error ? err.message : 'unknown'}`,
+                ),
+              );
+          } else if (remote.length === 0 && h2h.totalGames === 0) {
+            h2hSource = 'empty';
+            h2hNote =
+              'Nenhum confronto finalizado encontrado no banco nem na API-Football para este duelo.';
           }
-        } catch {
-          /* mantém H2H local */
+        } catch (err) {
+          const msg = err instanceof Error ? err.message : 'erro desconhecido';
+          this.logger.warn(
+            `H2H remoto falhou (${match.homeTeam.name} vs ${match.awayTeam.name}): ${msg}`,
+          );
+          h2hNote =
+            h2h.totalGames === 0
+              ? `Sem histórico local. Falha ao buscar na API: ${msg}`
+              : `Usando só histórico local. API: ${msg}`;
+        }
+      } else if (h2h.totalGames === 0) {
+        if (!this.dataEngine.isApiFootballConfigured()) {
+          h2hNote =
+            'Sem confrontos no banco. Configure API_FOOTBALL_KEY para buscar H2H remoto.';
+        } else if (!match.homeTeam.externalId || !match.awayTeam.externalId) {
+          h2hNote =
+            'Sem confrontos no banco e times sem externalId — não é possível consultar a API.';
+        } else {
+          h2hNote = 'Nenhum confronto direto disponível para este duelo.';
         }
       }
     }
@@ -90,6 +127,8 @@ export class AnalyzerService {
           source === 'computed'
             ? `Baseado em ${homeStats.matchesPlayed}/${awayStats.matchesPlayed} jogos finalizados`
             : 'Poucos jogos no histórico — usando médias padrão da liga',
+        h2hSource,
+        h2hNote,
       },
     };
   }

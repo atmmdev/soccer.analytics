@@ -98,6 +98,7 @@ export function MatchH2HPanel({
   }
 
   const { h2h } = data;
+  const empty = h2h.totalGames === 0;
 
   return (
     <Card
@@ -113,6 +114,9 @@ export function MatchH2HPanel({
         <p className="text-xs text-muted-foreground">
           Placares no ponto de vista de {homeTeamName} (mandante deste jogo).
         </p>
+        {data.meta?.h2hNote && (
+          <p className="text-xs text-amber-400/90">{data.meta.h2hNote}</p>
+        )}
       </CardHeader>
       <CardContent className="flex min-h-0 flex-1 flex-col gap-4">
         <div className="flex shrink-0 justify-center gap-6 text-center sm:gap-8">
@@ -134,48 +138,56 @@ export function MatchH2HPanel({
           <p className="shrink-0 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
             Placares
           </p>
-          <div className="min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1">
-            {paginatedMeetings.map((m, idx) => {
-              const dateLabel = m.date
-                ? new Date(m.date).toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                  })
-                : '—';
-              return (
-                <div
-                  key={`${m.date}-${m.scoreAsPlayed}-${idx}`}
-                  className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-border/40 bg-secondary/15 px-3 py-2 text-sm"
-                >
-                  <div className="min-w-0">
-                    <p className="truncate font-medium">
-                      {m.homeName} {m.scoreAsPlayed} {m.awayName}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {dateLabel}
-                      {m.competition ? ` · ${m.competition}` : ''}
-                      {m.score !== m.scoreAsPlayed
-                        ? ` · vista atual ${m.score}`
-                        : ''}
-                    </p>
-                  </div>
-                  <span className="font-mono text-sm font-semibold">
-                    {m.score}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-          <ListPagination
-            page={page}
-            pageSize={pageSize}
-            total={meetings.length}
-            onPageChange={setPage}
-            onPageSizeChange={setPageSize}
-            itemLabel="confrontos"
-            className="shrink-0 pt-1"
-          />
+          {empty ? (
+            <p className="py-6 text-center text-sm text-muted-foreground">
+              Nenhum placar de confronto direto para exibir.
+            </p>
+          ) : (
+            <>
+              <div className="min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1">
+                {paginatedMeetings.map((m, idx) => {
+                  const dateLabel = m.date
+                    ? new Date(m.date).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                      })
+                    : '—';
+                  return (
+                    <div
+                      key={`${m.date}-${m.scoreAsPlayed}-${idx}`}
+                      className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-border/40 bg-secondary/15 px-3 py-2 text-sm"
+                    >
+                      <div className="min-w-0">
+                        <p className="truncate font-medium">
+                          {m.homeName} {m.scoreAsPlayed} {m.awayName}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {dateLabel}
+                          {m.competition ? ` · ${m.competition}` : ''}
+                          {m.score !== m.scoreAsPlayed
+                            ? ` · vista atual ${m.score}`
+                            : ''}
+                        </p>
+                      </div>
+                      <span className="font-mono text-sm font-semibold">
+                        {m.score}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <ListPagination
+                page={page}
+                pageSize={pageSize}
+                total={meetings.length}
+                onPageChange={setPage}
+                onPageSizeChange={setPageSize}
+                itemLabel="confrontos"
+                className="shrink-0 pt-1"
+              />
+            </>
+          )}
         </div>
       </CardContent>
     </Card>

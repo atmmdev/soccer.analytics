@@ -37,7 +37,7 @@ export interface MatchAnalysisResult {
       competition?: string | null;
     }>;
   };
-  meta: { source: string; note: string };
+  meta: { source: string; note: string; h2hSource?: string; h2hNote?: string };
 }
 
 export const PERIODS: AnalysisPeriod[] = [5, 10, 15, 20];

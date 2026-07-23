@@ -884,6 +884,58 @@ export class DataEngineService {
     );
   }
 
+  /**
+   * Persiste confrontos H2H vindos da API para o banco local
+   * (assim o painel deixa de depender só do remote na próxima visita).
+   */
+  async persistRemoteH2HFixtures(
+    rows: Array<{
+      externalId: string;
+      date: string;
+      homeName: string;
+      awayName: string;
+      homeTeamExternalId: string;
+      awayTeamExternalId: string;
+      homeScoreAsPlayed: number;
+      awayScoreAsPlayed: number;
+      competition?: string | null;
+      competitionExternalId?: string | null;
+    }>,
+  ): Promise<number> {
+    let saved = 0;
+    for (const row of rows) {
+      if (!row.externalId) continue;
+      try {
+        const fixture: ImportedFixture = {
+          externalId: row.externalId,
+          matchDate: new Date(row.date),
+          status: MatchStatus.FINISHED,
+          homeScore: row.homeScoreAsPlayed,
+          awayScore: row.awayScoreAsPlayed,
+          competition: {
+            externalId:
+              row.competitionExternalId ?? `h2h-${row.externalId}-league`,
+            name: row.competition?.trim() || 'Head to Head',
+            country: undefined,
+          },
+          homeTeam: {
+            externalId: row.homeTeamExternalId,
+            name: row.homeName,
+          },
+          awayTeam: {
+            externalId: row.awayTeamExternalId,
+            name: row.awayName,
+          },
+        };
+        await this.upsertFixture(fixture);
+        saved++;
+      } catch {
+        /* segue nos demais */
+      }
+    }
+    return saved;
+  }
+
   async fetchRemoteTeamForm(teamExternalId: string, last = 10) {
     return this.apiFootball.fetchTeamRecentResults(teamExternalId, last);
   }

@@ -214,53 +214,75 @@ export class ApiFootballProvider implements DataProvider {
     last = 10,
   ): Promise<
     Array<{
+      externalId: string;
       homeGoals: number;
       awayGoals: number;
       date: string;
       homeName: string;
       awayName: string;
+      homeTeamExternalId: string;
+      awayTeamExternalId: string;
       scoreAsPlayed: string;
+      homeScoreAsPlayed: number;
+      awayScoreAsPlayed: number;
       competition?: string | null;
+      competitionExternalId?: string | null;
     }>
   > {
+    const homeId = String(homeTeamExternalId).trim();
+    const awayId = String(awayTeamExternalId).trim();
+    const limit = Math.min(Math.max(1, last), 20);
+
     const data = await this.request<{ response: ApiFixture[] }>(
       '/fixtures/headtohead',
       {
-        h2h: `${homeTeamExternalId}-${awayTeamExternalId}`,
-        last: String(last),
+        h2h: `${homeId}-${awayId}`,
+        last: String(limit),
       },
     );
 
+    const finished = new Set(['FT', 'AET', 'PEN']);
     const out: Array<{
+      externalId: string;
       homeGoals: number;
       awayGoals: number;
       date: string;
       homeName: string;
       awayName: string;
+      homeTeamExternalId: string;
+      awayTeamExternalId: string;
       scoreAsPlayed: string;
+      homeScoreAsPlayed: number;
+      awayScoreAsPlayed: number;
       competition?: string | null;
+      competitionExternalId?: string | null;
     }> = [];
 
     for (const item of data.response ?? []) {
-      if (item.fixture.status.short !== 'FT' && item.fixture.status.short !== 'AET') {
-        continue;
-      }
+      if (!finished.has(item.fixture.status.short)) continue;
       const hs = item.goals.home;
       const as = item.goals.away;
       if (hs == null || as == null) continue;
 
-      const homeWasHome = String(item.teams.home.id) === homeTeamExternalId;
+      const playedHomeExt = String(item.teams.home.id);
+      const homeWasHome = playedHomeExt === homeId;
       out.push({
+        externalId: String(item.fixture.id),
         homeGoals: homeWasHome ? hs : as,
         awayGoals: homeWasHome ? as : hs,
         date: item.fixture.date,
         homeName: item.teams.home.name,
         awayName: item.teams.away.name,
+        homeTeamExternalId: playedHomeExt,
+        awayTeamExternalId: String(item.teams.away.id),
         scoreAsPlayed: `${hs}-${as}`,
+        homeScoreAsPlayed: hs,
+        awayScoreAsPlayed: as,
         competition: item.league?.name ?? null,
+        competitionExternalId: item.league?.id != null ? String(item.league.id) : null,
       });
     }
-    return out.slice(0, last);
+    return out.slice(0, limit);
   }
 
   /**
