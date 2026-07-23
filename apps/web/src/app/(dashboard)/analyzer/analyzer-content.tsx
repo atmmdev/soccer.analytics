@@ -4,11 +4,10 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { AppHeader } from '@/components/layout/app-header';
-import { StatComparison, FormBadge } from '@/components/analyzer/stat-comparison';
 import { ComparisonChart } from '@/components/analyzer/comparison-chart';
 import { useMatchAnalysis } from '@/hooks/use-analyzer';
 import { useMatches } from '@/hooks/use-matches';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useDashboardMatchAnalysis } from '@/hooks/use-dashboard';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -19,6 +18,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { AnalysisPanel } from '@/components/analysis/analysis-panel';
+import { MatchH2HPanel } from '@/components/matches/match-h2h-panel';
+import { MatchAnalysis } from '@/components/dashboard/match-analysis';
 import type { AnalysisPeriod, AnalysisView } from '@/types/analyzer';
 import { PERIODS, VIEW_LABELS } from '@/types/analyzer';
 
@@ -47,6 +48,12 @@ export default function AnalyzerPage() {
     period,
     view,
   );
+  /** Mesmo endpoint/componente do Dashboard — inclui Modelo Poisson (ensurePoisson). */
+  const {
+    data: metricsData,
+    isLoading: loadingMetrics,
+    isFetching: fetchingMetrics,
+  } = useDashboardMatchAnalysis(matchId);
 
   useEffect(() => {
     if (initialMatchId) setMatchId(initialMatchId);
@@ -68,6 +75,9 @@ export default function AnalyzerPage() {
   const canAnalyze =
     selectedMatch?.status === 'SCHEDULED' || selectedMatch?.status === 'LIVE';
 
+  const showMetricsLoading =
+    !!matchId && (loadingMetrics || (fetchingMetrics && !metricsData));
+
   return (
     <div className="flex min-h-full flex-col">
       <AppHeader
@@ -78,7 +88,9 @@ export default function AnalyzerPage() {
       <div className="flex-1 space-y-6 p-6">
         <div className="flex flex-wrap items-end gap-4">
           <div className="min-w-[280px] flex-1 space-y-2">
-            <label className="text-xs font-medium text-muted-foreground">Partida</label>
+            <label className="text-xs font-medium text-muted-foreground">
+              Partida
+            </label>
             {loadingMatches ? (
               <Loader2 className="h-5 w-5 animate-spin text-primary" />
             ) : (
@@ -99,7 +111,9 @@ export default function AnalyzerPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-medium text-muted-foreground">Período</label>
+            <label className="text-xs font-medium text-muted-foreground">
+              Período
+            </label>
             <div className="flex gap-1">
               {PERIODS.map((p) => (
                 <button
@@ -142,97 +156,38 @@ export default function AnalyzerPage() {
                 Últimos {analysis.period} jogos · {VIEW_LABELS[analysis.view]}
               </Badge>
               <Badge
-                variant={analysis.meta.source === 'computed' ? 'default' : 'secondary'}
+                variant={
+                  analysis.meta.source === 'computed' ? 'default' : 'secondary'
+                }
                 className="text-xs"
               >
                 {analysis.meta.note}
               </Badge>
             </div>
 
-            {analysis.h2h && view === 'h2h' && (
-              <Card className="border-border/60 bg-card/80">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base">Head to Head</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex justify-center gap-8 text-center">
-                    <div>
-                      <p className="text-2xl font-bold text-emerald-400">{analysis.h2h.homeWins}</p>
-                      <p className="text-xs text-muted-foreground">Vitórias casa</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold">{analysis.h2h.draws}</p>
-                      <p className="text-xs text-muted-foreground">Empates</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold">{analysis.h2h.awayWins}</p>
-                      <p className="text-xs text-muted-foreground">Vitórias fora</p>
-                    </div>
-                  </div>
-                  {analysis.h2h.meetings?.length ? (
-                    <div className="mt-4 max-h-56 space-y-1.5 overflow-y-auto">
-                      {analysis.h2h.meetings.map((m, idx) => (
-                        <div
-                          key={`${m.date}-${idx}`}
-                          className="flex justify-between gap-2 rounded border border-border/40 px-2 py-1.5 text-xs"
-                        >
-                          <span className="text-muted-foreground">
-                            {m.date
-                              ? new Date(m.date).toLocaleDateString('pt-BR')
-                              : '—'}
-                            {m.competition ? ` · ${m.competition}` : ''}
-                          </span>
-                          <span className="font-medium">
-                            {m.homeName} {m.scoreAsPlayed} {m.awayName}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="mt-4 text-center text-xs text-muted-foreground">
-                      Últimos placares: {analysis.h2h.lastMeetings.join(' · ')}
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-            )}
+            <div className="grid gap-4 lg:grid-cols-3 lg:items-stretch lg:min-h-[32rem]">
+              {matchId && (
+                <MatchH2HPanel
+                  matchId={matchId}
+                  homeTeamName={analysis.match.homeTeam.name}
+                  awayTeamName={analysis.match.awayTeam.name}
+                  period={period}
+                  className="min-h-[28rem] lg:min-h-0 lg:h-full"
+                />
+              )}
 
-            <div className="grid gap-4 lg:grid-cols-2">
-              <Card className="border-border/60 bg-card/80">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base">
-                    {analysis.match.homeTeam.name} x {analysis.match.awayTeam.name}
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground">{analysis.match.competition}</p>
-                </CardHeader>
-                <CardContent>
-                  <StatComparison
-                    stats={analysis.stats}
-                    homeTeam={analysis.match.homeTeam.name}
-                    awayTeam={analysis.match.awayTeam.name}
-                  />
-                  <div className="mt-4 border-t border-border/40 pt-4">
-                    <p className="mb-2 text-center text-xs text-muted-foreground">Forma recente</p>
-                    <div className="flex items-center justify-between px-4">
-                      <div className="flex gap-1">
-                        {analysis.homeForm.map((r, i) => (
-                          <FormBadge key={`h-${i}`} result={r} />
-                        ))}
-                      </div>
-                      <div className="flex gap-1">
-                        {analysis.awayForm.map((r, i) => (
-                          <FormBadge key={`a-${i}`} result={r} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <MatchAnalysis
+                data={metricsData}
+                isLoading={showMetricsLoading}
+                hideAnalyzeButton
+                className="min-h-[28rem] lg:min-h-0 lg:h-full"
+              />
 
               <ComparisonChart
                 stats={analysis.stats}
                 homeTeam={analysis.match.homeTeam.name}
                 awayTeam={analysis.match.awayTeam.name}
+                className="min-h-[28rem] lg:min-h-0 lg:h-full"
               />
             </div>
           </>

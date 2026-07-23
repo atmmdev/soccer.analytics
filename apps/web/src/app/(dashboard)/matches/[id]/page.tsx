@@ -150,13 +150,13 @@ export default function MatchDetailPage({
             </CardContent>
           </Card>
 
-          {/* 40% — H2H */}
+          {/* H2H — mesmo componente do Analyzer */}
           <MatchH2HPanel
             matchId={id}
             homeTeamName={match.homeTeam.name}
             awayTeamName={match.awayTeam.name}
             period={20}
-            className="w-full lg:w-[30%] lg:min-w-0"
+            className="min-h-[28rem] w-full lg:min-h-0 lg:h-auto lg:w-[30%] lg:min-w-0"
           />
 
           {/* 40% — criação do bilhete */}

@@ -10,8 +10,8 @@ interface MatchH2HPanelProps {
   matchId: string;
   homeTeamName: string;
   awayTeamName: string;
-  /** Quantidade de confrontos (10 ou 20) */
-  period?: 10 | 20;
+  /** Quantidade de confrontos */
+  period?: 5 | 10 | 15 | 20;
   className?: string;
 }
 
@@ -26,8 +26,13 @@ export function MatchH2HPanel({
 
   if (isLoading) {
     return (
-      <Card className={cn('border-border/60 bg-card/80', className)}>
-        <CardContent className="flex justify-center py-8">
+      <Card
+        className={cn(
+          'flex flex-col border-border/60 bg-card/80',
+          className,
+        )}
+      >
+        <CardContent className="flex flex-1 items-center justify-center py-8">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
         </CardContent>
       </Card>
@@ -36,11 +41,16 @@ export function MatchH2HPanel({
 
   if (isError || !data?.h2h) {
     return (
-      <Card className={cn('border-border/60 bg-card/80', className)}>
-        <CardHeader>
-          <CardTitle className="text-base">Head to Head</CardTitle>
+      <Card
+        className={cn(
+          'flex flex-col border-border/60 bg-card/80',
+          className,
+        )}
+      >
+        <CardHeader className="shrink-0">
+          <CardTitle>Head to Head</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex-1">
           <p className="text-sm text-muted-foreground">
             Sem confrontos diretos disponíveis para {homeTeamName} ×{' '}
             {awayTeamName}.
@@ -63,10 +73,12 @@ export function MatchH2HPanel({
       }));
 
   return (
-    <Card className={cn('border-border/60 bg-card/80', className)}>
-      <CardHeader className="pb-2">
+    <Card
+      className={cn('flex flex-col border-border/60 bg-card/80', className)}
+    >
+      <CardHeader className="shrink-0 pb-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <CardTitle className="text-base">Head to Head</CardTitle>
+          <CardTitle>Head to Head</CardTitle>
           <Badge variant="outline" className="text-xs">
             Últimos {h2h.totalGames} confrontos (até {period})
           </Badge>
@@ -75,8 +87,8 @@ export function MatchH2HPanel({
           Placares no ponto de vista de {homeTeamName} (mandante deste jogo).
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="flex justify-center gap-6 text-center sm:gap-8">
+      <CardContent className="flex min-h-0 flex-1 flex-col gap-4">
+        <div className="flex shrink-0 justify-center gap-6 text-center sm:gap-8">
           <div>
             <p className="text-2xl font-bold text-emerald-400">{h2h.homeWins}</p>
             <p className="text-xs text-muted-foreground">{homeTeamName}</p>
@@ -91,11 +103,11 @@ export function MatchH2HPanel({
           </div>
         </div>
 
-        <div className="space-y-2">
-          <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+        <div className="flex min-h-0 flex-1 flex-col gap-2">
+          <p className="shrink-0 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
             Placares
           </p>
-          <div className="max-h-72 space-y-1.5 overflow-y-auto pr-1">
+          <div className="min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1">
             {meetings.map((m, idx) => {
               const dateLabel = m.date
                 ? new Date(m.date).toLocaleDateString('pt-BR', {

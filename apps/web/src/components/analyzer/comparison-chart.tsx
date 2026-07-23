@@ -12,14 +12,21 @@ import {
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { StatRow } from '@/types/analyzer';
+import { cn } from '@/lib/utils';
 
 interface ComparisonChartProps {
   stats: StatRow[];
   homeTeam: string;
   awayTeam: string;
+  className?: string;
 }
 
-export function ComparisonChart({ stats, homeTeam, awayTeam }: ComparisonChartProps) {
+export function ComparisonChart({
+  stats,
+  homeTeam,
+  awayTeam,
+  className,
+}: ComparisonChartProps) {
   const chartData = stats
     .filter((s) => !s.suffix || s.suffix !== '%')
     .slice(0, 6)
@@ -30,12 +37,12 @@ export function ComparisonChart({ stats, homeTeam, awayTeam }: ComparisonChartPr
     }));
 
   return (
-    <Card className="border-border/60 bg-card/80">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base">Comparativo visual</CardTitle>
+    <Card className={cn('flex flex-col border-border/60 bg-card/80', className)}>
+      <CardHeader className="shrink-0 pb-2">
+        <CardTitle>Comparativo visual</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[280px] w-full">
+      <CardContent className="flex min-h-0 flex-1 flex-col">
+        <div className="min-h-[280px] w-full flex-1">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} margin={{ top: 5, right: 5, left: -10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
