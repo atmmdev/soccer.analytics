@@ -37,7 +37,7 @@ export function useMatches(filters: MatchFilters = {}) {
 
 export function useInfiniteMatches(
   filters: Omit<MatchFilters, 'page'> = {},
-  pageSize = 30,
+  pageSize = 10,
 ) {
   return useInfiniteQuery({
     queryKey: ['matches', 'infinite', filters, pageSize],

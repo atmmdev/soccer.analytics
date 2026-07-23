@@ -8,6 +8,7 @@ import { CompetitionFilter } from "@/components/matches/competition-filter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ListPagination,
+  DEFAULT_PAGE_SIZE,
   type PageSize,
 } from "@/components/ui/list-pagination";
 import { useMatches, useCompetitions, todayIsoDate } from "@/hooks/use-matches";
@@ -31,7 +32,7 @@ function MatchList({
   competitionId?: string;
 }) {
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState<PageSize>(30);
+  const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
   const dateFrom = todayIsoDate();
 
   useEffect(() => {

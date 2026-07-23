@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ListPagination,
+  DEFAULT_PAGE_SIZE,
   type PageSize,
 } from "@/components/ui/list-pagination";
 import {
@@ -116,7 +117,7 @@ export default function MarketsPage() {
   const [ticketProfile, setTicketProfile] =
     useState<TicketProfileId>("moderado");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState<PageSize>(15);
+  const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
 
   const { data: markets, isLoading, isError } = useAnalyzedMarkets(filter);
   const { data: matchDetail } = useMatch(selectedMatchId ?? "");

@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
   ListPagination,
+  DEFAULT_PAGE_SIZE,
   type PageSize,
 } from '@/components/ui/list-pagination';
 import {
@@ -563,7 +564,7 @@ export function StudyTicketsPanel() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [expandAllTickets, setExpandAllTickets] = useState(false);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState<PageSize>(15);
+  const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
 
   const availableYears = useMemo(() => {
     const set = new Set<number>();

@@ -12,6 +12,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  ListPagination,
+  DEFAULT_PAGE_SIZE,
+  type PageSize,
+} from '@/components/ui/list-pagination';
 import type { TodayMatch } from '@/types/dashboard';
 
 const tabs = ['Todos', 'Ao Vivo', 'Hoje', 'Amanhã'] as const;
@@ -117,11 +122,27 @@ const emptyLabels: Record<Tab, string> = {
 
 export function TodayMatches({ matches }: TodayMatchesProps) {
   const [selectedCompetition, setSelectedCompetition] = useState(ALL_COMPETITIONS_VALUE);
+  const [activeTab, setActiveTab] = useState<Tab>('Hoje');
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState<PageSize>(DEFAULT_PAGE_SIZE);
 
   const competitionOptions = useMemo(
     () => buildCompetitionOptions(filterByTab(matches, 'Todos')),
     [matches],
   );
+
+  const filteredMatches = useMemo(
+    () =>
+      filterByCompetition(filterByTab(matches, activeTab), selectedCompetition),
+    [matches, activeTab, selectedCompetition],
+  );
+
+  const totalPages = Math.max(1, Math.ceil(filteredMatches.length / pageSize));
+
+  const paginatedMatches = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return filteredMatches.slice(start, start + pageSize);
+  }, [filteredMatches, page, pageSize]);
 
   useEffect(() => {
     if (
@@ -131,6 +152,16 @@ export function TodayMatches({ matches }: TodayMatchesProps) {
       setSelectedCompetition(ALL_COMPETITIONS_VALUE);
     }
   }, [competitionOptions, selectedCompetition]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [activeTab, selectedCompetition, pageSize]);
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages);
+    }
+  }, [page, totalPages]);
 
   function getEmptyLabel(tab: Tab): string {
     if (selectedCompetition === ALL_COMPETITIONS_VALUE) {
@@ -163,7 +194,10 @@ export function TodayMatches({ matches }: TodayMatchesProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="Hoje">
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => setActiveTab(value as Tab)}
+        >
           <TabsList className="mb-3 h-8 w-full justify-start">
             {tabs.map((tab) => (
               <TabsTrigger key={tab} value={tab} className="text-xs">
@@ -171,14 +205,21 @@ export function TodayMatches({ matches }: TodayMatchesProps) {
               </TabsTrigger>
             ))}
           </TabsList>
-          {tabs.map((tab) => (
-            <TabsContent key={tab} value={tab} className="mt-0">
-              <MatchList
-                matches={filterByCompetition(filterByTab(matches, tab), selectedCompetition)}
-                emptyLabel={getEmptyLabel(tab)}
-              />
-            </TabsContent>
-          ))}
+          <TabsContent value={activeTab} className="mt-0">
+            <MatchList
+              matches={paginatedMatches}
+              emptyLabel={getEmptyLabel(activeTab)}
+            />
+            <ListPagination
+              page={page}
+              pageSize={pageSize}
+              total={filteredMatches.length}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+              itemLabel="jogos"
+              className="mt-4"
+            />
+          </TabsContent>
         </Tabs>
       </CardContent>
     </Card>
