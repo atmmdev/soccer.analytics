@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { StudyTicketStatus, Prisma } from '@prisma/client';
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import {
   basename,
   dirname,
@@ -24,6 +24,7 @@ import {
   type ParsedStudyTicket,
 } from './bet365-pdf.parser';
 import { UpdateStudyTicketDto } from './dto/study-ticket.dto';
+import { studyTicketMonthFolder } from '../tickets/study-ticket-code';
 
 const BILHETES_ROOT = resolve(
   process.cwd(),
@@ -292,7 +293,58 @@ export class StudyTicketsService {
 
     const text = this.extractPdfText(abs);
     const parsed = parseBet365PdfText(text, sourceFile);
-    return this.persistParsed(parsed, existing?.id);
+    const ticket = await this.persistParsed(parsed, existing?.id);
+    await this.persistTicketJson(ticket);
+    return this.findOne(ticket.id);
+  }
+
+  /**
+   * Upload pela UI: grava PDF em bilhetes/{ano}/{mês}/, parseia, salva no DB
+   * e gera JSON em bilhetes/imported/...
+   */
+  async importFromUpload(
+    file: { buffer: Buffer; originalname: string },
+    opts?: { force?: boolean },
+  ) {
+    if (!file?.buffer?.length) {
+      throw new BadRequestException('PDF vazio ou inválido');
+    }
+    const original = file.originalname || 'bilhete.pdf';
+    if (!/\.pdf$/i.test(original)) {
+      throw new BadRequestException('Envie um arquivo .pdf');
+    }
+
+    // Parse preliminar em temp para descobrir placedAt e organizar pastas
+    const tmpDir = resolve(BILHETES_ROOT, '_uploads');
+    mkdirSync(tmpDir, { recursive: true });
+    const tmpName = `${Date.now()}-${basename(original).replace(/[^\w.\-]+/g, '_')}`;
+    const tmpAbs = join(tmpDir, tmpName);
+    writeFileSync(tmpAbs, file.buffer);
+
+    let placedAt = new Date();
+    try {
+      const text = this.extractPdfText(tmpAbs);
+      const preview = parseBet365PdfText(text, `tmp/${tmpName}`);
+      if (preview.placedAt) placedAt = new Date(preview.placedAt);
+    } catch {
+      // mantém now — ainda tentamos importar pelo path final
+    }
+
+    const year = String(placedAt.getFullYear());
+    const month = studyTicketMonthFolder(placedAt);
+    const safeBase = basename(original).replace(/[^\w.\-]+/g, '_');
+    const destRel = `${year}/${month}/${safeBase}`;
+    const destAbs = resolve(BILHETES_ROOT, destRel);
+    mkdirSync(dirname(destAbs), { recursive: true });
+    writeFileSync(destAbs, file.buffer);
+
+    try {
+      if (existsSync(tmpAbs)) unlinkSync(tmpAbs);
+    } catch {
+      /* ignore */
+    }
+
+    return this.importFromPdf(destRel, { force: opts?.force ?? true });
   }
 
   async persistParsed(parsed: ParsedStudyTicket, replaceId?: string) {

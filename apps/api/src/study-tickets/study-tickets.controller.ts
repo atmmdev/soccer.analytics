@@ -7,9 +7,18 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { StudyTicketStatus } from '@prisma/client';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { StudyTicketsService } from './study-tickets.service';
@@ -72,6 +81,37 @@ export class StudyTicketsController {
     return this.service.importFromPdf(dto.filePath, {
       force: force === 'true' || force === '1',
     });
+  }
+
+  @Post('import-upload')
+  @ApiOperation({ summary: 'Upload de PDF Bet365 → parse + JSON + DB' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: { type: 'string', format: 'binary' },
+      },
+      required: ['file'],
+    },
+  })
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: { fileSize: 15 * 1024 * 1024 },
+    }),
+  )
+  importUpload(
+    @UploadedFile()
+    file: { buffer?: Buffer; originalname?: string } | undefined,
+    @Query('force') force?: string,
+  ) {
+    return this.service.importFromUpload(
+      {
+        buffer: file?.buffer as Buffer,
+        originalname: file?.originalname ?? 'bilhete.pdf',
+      },
+      { force: force !== 'false' && force !== '0' },
+    );
   }
 
   @Post('preview')

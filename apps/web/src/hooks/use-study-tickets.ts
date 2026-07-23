@@ -60,3 +60,26 @@ export function useImportStudyTicket() {
     },
   });
 }
+
+/** Upload de PDF Bet365 pela UI (grava PDF + JSON + DB). */
+export function useImportStudyTicketPdf() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (file: File) => {
+      const form = new FormData();
+      form.append('file', file);
+      const { data } = await apiClient.post<StudyTicket>(
+        '/study-tickets/import-upload',
+        form,
+        {
+          headers: { 'Content-Type': undefined },
+        },
+      );
+      return data;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['study-tickets'] });
+      qc.invalidateQueries({ queryKey: ['bankroll'] });
+    },
+  });
+}
