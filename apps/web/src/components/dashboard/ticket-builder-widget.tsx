@@ -1,35 +1,45 @@
-"use client";
+'use client';
 
-import { isAxiosError } from "axios";
-import { Dices, Loader2, Ticket } from "lucide-react";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useSuggestRandomTicket } from "@/hooks/use-analysis";
-import { useSaveTicket, useTicketCalculation } from "@/hooks/use-tickets";
-import { formatStudyTicketCode } from "@/lib/study-ticket-code";
-import { useTicketDraftStore } from "@/stores/ticket-draft.store";
-import type { TicketBuilderData } from "@/types/dashboard";
-import type { DraftSelection, MarketType } from "@/types/ticket";
+import { useMemo } from 'react';
+import { isAxiosError } from 'axios';
+import { Dices, Loader2, Ticket } from 'lucide-react';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useSuggestRandomTicket } from '@/hooks/use-analysis';
+import { useSaveTicket, useTicketCalculation } from '@/hooks/use-tickets';
+import { formatStudyTicketCode } from '@/lib/study-ticket-code';
+import {
+  getMarketCategoryLabel,
+  translateSelectionText,
+} from '@/lib/market-labels';
+import { useTicketDraftStore } from '@/stores/ticket-draft.store';
+import type { TicketBuilderData, TodayMatch } from '@/types/dashboard';
+import type { DraftSelection, MarketType } from '@/types/ticket';
 
 interface TicketBuilderWidgetProps {
   data: TicketBuilderData;
+  /** Jogos do dia — usados para exibir o campeonato nas seleções */
+  matches?: TodayMatch[];
 }
 
 function formatCurrency(value: number) {
-  return value.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
+  return value.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
   });
 }
 
 function formatPct(value: number | null | undefined) {
-  if (value == null || Number.isNaN(value)) return "0%";
+  if (value == null || Number.isNaN(value)) return '0%';
   return `${Math.round(value * 100)}%`;
 }
 
-export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
-  const { selections, stake, clear, addSelection, setStake } =
+export function TicketBuilderWidget({
+  data,
+  matches = [],
+}: TicketBuilderWidgetProps) {
+  const { selections, stake, clear, setSelections, setStake } =
     useTicketDraftStore();
   const { data: calc, isLoading: calculating } = useTicketCalculation(
     selections,
@@ -38,14 +48,42 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
   const suggestRandom = useSuggestRandomTicket();
   const saveTicket = useSaveTicket();
 
+  const resolveCompetition = useMemo(() => {
+    const byId = new Map<string, string>();
+    const byLabel = new Map<string, string>();
+    for (const m of matches) {
+      if (!m.competition) continue;
+      byId.set(m.id, m.competition);
+      byLabel.set(`${m.homeTeam} vs ${m.awayTeam}`, m.competition);
+    }
+    return (s: {
+      matchId?: string;
+      matchLabel?: string;
+      competition?: string | null;
+    }) =>
+      s.competition ||
+      (s.matchId ? byId.get(s.matchId) : undefined) ||
+      (s.matchLabel ? byLabel.get(s.matchLabel) : undefined) ||
+      null;
+  }, [matches]);
+
   const hasDraft = selections.length > 0;
 
   const displaySelections = hasDraft
     ? selections.map((s) => ({
-        market: `${s.matchLabel} — ${s.selection}`,
+        matchLabel: s.matchLabel,
+        selection: s.selection,
+        marketType: s.marketType,
+        competition: resolveCompetition(s),
         odd: s.odd,
       }))
-    : data.selections;
+    : data.selections.map((s) => ({
+        matchLabel: s.market,
+        selection: '',
+        marketType: undefined as string | undefined,
+        competition: null as string | null,
+        odd: s.odd,
+      }));
 
   const combinedOdd = hasDraft ? (calc?.combinedOdd ?? 0) : data.combinedOdd;
   const probability = hasDraft
@@ -70,34 +108,32 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
       { minProbability: 0.7, minLegs: 3, maxLegs: 4 },
       {
         onSuccess: (result) => {
-          clear();
           if (stake <= 0) setStake(20);
 
-          let added = 0;
-          for (const sel of result.selections) {
-            const draft: DraftSelection = {
-              matchId: sel.matchId,
-              matchLabel: sel.matchLabel,
-              marketType: (sel.marketType as MarketType) || "MATCH_RESULT",
-              selection: sel.selection,
-              odd: sel.odd,
-              probability: sel.probability,
-              ev: sel.ev,
-              confidence: sel.confidence,
-            };
-            if (addSelection(draft)) added += 1;
-          }
+          const next: DraftSelection[] = result.selections.map((sel) => ({
+            matchId: sel.matchId,
+            matchLabel: sel.matchLabel,
+            competition: resolveCompetition(sel),
+            marketType: (sel.marketType as MarketType) || 'MATCH_RESULT',
+            selection: sel.selection,
+            odd: sel.odd,
+            probability: sel.probability,
+            ev: sel.ev,
+            confidence: sel.confidence,
+          }));
+
+          setSelections(next);
 
           toast.success(
-            `Bilhete gerado: ${added} jogos do dia (≥70% probabilidade)`,
+            `Bilhete gerado: ${next.length} jogos do dia (≥70% probabilidade)`,
           );
         },
         onError: (error) => {
           const message = isAxiosError(error)
             ? ((error.response?.data as { message?: string })?.message ??
               error.message)
-            : "Não foi possível gerar o bilhete";
-          toast.error(Array.isArray(message) ? message.join(", ") : message);
+            : 'Não foi possível gerar o bilhete';
+          toast.error(Array.isArray(message) ? message.join(', ') : message);
         },
       },
     );
@@ -105,11 +141,11 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
 
   const handleSave = () => {
     if (!selections.length) {
-      toast.error("Gere ou adicione seleções ao bilhete");
+      toast.error('Gere ou adicione seleções ao bilhete');
       return;
     }
     if (calc && !calc.valid) {
-      toast.error("Corrija os conflitos de correlação antes de salvar");
+      toast.error('Corrija os conflitos de correlação antes de salvar');
       return;
     }
 
@@ -126,8 +162,8 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
           const message = isAxiosError(error)
             ? ((error.response?.data as { message?: string })?.message ??
               error.message)
-            : "Erro ao salvar";
-          toast.error(Array.isArray(message) ? message.join(", ") : message);
+            : 'Erro ao salvar';
+          toast.error(Array.isArray(message) ? message.join(', ') : message);
         },
       },
     );
@@ -148,17 +184,50 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
               Gere um bilhete aleatório do dia ou monte um em Bilhetes
             </p>
           ) : (
-            displaySelections.map((sel) => (
-              <div
-                key={`${sel.market}-${sel.odd}`}
-                className="flex items-center justify-between gap-2 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2"
-              >
-                <span className="line-clamp-2 text-sm">{sel.market}</span>
-                <span className="shrink-0 font-mono text-sm font-semibold text-primary">
-                  {sel.odd.toFixed(2)}
-                </span>
-              </div>
-            ))
+            displaySelections.map((sel, idx) => {
+              const marketLabel = sel.selection
+                ? getMarketCategoryLabel(sel.marketType, sel.selection)
+                : null;
+              const choiceLabel = sel.selection
+                ? translateSelectionText(sel.selection)
+                : null;
+              return (
+                <div
+                  key={`${sel.matchLabel}-${sel.selection}-${sel.odd}-${idx}`}
+                  className="flex items-center justify-between gap-2 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2"
+                >
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium">
+                      {sel.matchLabel}
+                    </p>
+                    {(sel.competition || marketLabel || choiceLabel) && (
+                      <p className="truncate text-xs text-muted-foreground">
+                        {sel.competition ? (
+                          <span>{sel.competition}</span>
+                        ) : null}
+                        {sel.competition && marketLabel ? (
+                          <span> · </span>
+                        ) : null}
+                        {marketLabel ? (
+                          <span className="font-medium text-amber-400">
+                            {marketLabel} <span> · </span>
+                          </span>
+                        ) : null}
+                        {choiceLabel ? (
+                          <span className="font-medium text-emerald-400">
+                            {' '}
+                            ({choiceLabel})
+                          </span>
+                        ) : null}
+                      </p>
+                    )}
+                  </div>
+                  <span className="shrink-0 font-mono text-sm font-semibold text-primary">
+                    {sel.odd.toFixed(2)}
+                  </span>
+                </div>
+              );
+            })
           )}
         </div>
 
@@ -168,7 +237,7 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
               Odd total
             </p>
             <p className="truncate font-mono font-bold">
-              {calculating && hasDraft ? "…" : combinedOdd.toFixed(2)}
+              {calculating && hasDraft ? '…' : combinedOdd.toFixed(2)}
             </p>
           </div>
           <div className="min-w-0">
@@ -186,7 +255,7 @@ export function TicketBuilderWidget({ data }: TicketBuilderWidgetProps) {
               EV
             </p>
             <p className="truncate font-mono font-bold text-emerald-400">
-              {ev >= 0 ? "+" : ""}
+              {ev >= 0 ? '+' : ''}
               {ev}%
             </p>
           </div>

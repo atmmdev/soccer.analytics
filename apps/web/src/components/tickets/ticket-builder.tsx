@@ -8,25 +8,43 @@ import {
   ChevronRight,
   FileUp,
   Loader2,
+  Pencil,
   Plus,
   Ticket,
   Trash2,
+  X,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   useDeleteTicket,
   useSaveTicket,
   useTicketCalculation,
   useTickets,
+  useUpdateTicket,
 } from "@/hooks/use-tickets";
 import { usePlaceTicket, useSettleTicket } from "@/hooks/use-bankroll";
 import { useImportStudyTicketPdf } from "@/hooks/use-study-tickets";
+import {
+  getMarketCategoryLabel,
+  translateSelectionText,
+} from "@/lib/market-labels";
 import { formatStudyTicketCode } from "@/lib/study-ticket-code";
 import { useTicketDraftStore } from "@/stores/ticket-draft.store";
-import { TICKET_STATUS_LABELS, type Ticket } from "@/types/ticket";
+import {
+  TICKET_STATUS_LABELS,
+  type Ticket,
+  type TicketStatus,
+} from "@/types/ticket";
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -353,35 +371,252 @@ function TicketDetail({ ticket }: { ticket: Ticket }) {
         <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
           Seleções ({ticket.selections.length})
         </p>
-        {ticket.selections.map((sel) => (
-          <div
-            key={sel.id}
-            className="rounded-md border border-border/40 bg-secondary/15 px-3 py-2 text-sm"
-          >
-            <p className="font-medium">
-              {sel.match.homeTeam.name} vs {sel.match.awayTeam.name}
-            </p>
+        {ticket.selections.length === 0 ? (
+          <p className="text-xs text-muted-foreground">
+            Nenhuma seleção neste bilhete — use Editar se precisar corrigir.
+          </p>
+        ) : (
+          ticket.selections.map((sel) => {
+            const marketLabel = getMarketCategoryLabel(
+              sel.marketType,
+              sel.selection,
+            );
+            const choiceLabel = translateSelectionText(sel.selection);
+            return (
+              <div
+                key={sel.id}
+                className="rounded-md border border-border/40 bg-secondary/15 px-3 py-2 text-sm"
+              >
+                <p className="font-medium">
+                  {sel.match.homeTeam.name} vs {sel.match.awayTeam.name}
+                </p>
+                <p className="truncate text-xs text-muted-foreground">
+                  {sel.match.competition?.name ? (
+                    <span>{sel.match.competition.name} · </span>
+                  ) : null}
+                  <span className="font-medium text-amber-400">
+                    {marketLabel}
+                  </span>
+                  <span className="font-medium text-emerald-400">
+                    {" "}
+                    ({choiceLabel})
+                  </span>
+                </p>
+                <div className="mt-1 flex flex-wrap gap-3 text-xs font-mono text-muted-foreground">
+                  <span>odd {sel.odd.toFixed(2)}</span>
+                  {sel.probability != null && (
+                    <span>P {formatPct(sel.probability)}</span>
+                  )}
+                  {sel.ev != null && (
+                    <span>
+                      EV {sel.ev >= 0 ? "+" : ""}
+                      {formatPct(sel.ev)}
+                    </span>
+                  )}
+                  {sel.confidence != null && <span>IA {sel.confidence}%</span>}
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>
+  );
+}
+
+function isDecimalTyping(value: string) {
+  return value === "" || /^\d*[.,]?\d*$/.test(value);
+}
+
+function parseDecimalInput(value: string): number | null {
+  const normalized = value.trim().replace(",", ".");
+  if (!normalized) return null;
+  const n = Number(normalized);
+  return Number.isFinite(n) ? n : null;
+}
+
+function EditSystemTicketModal({
+  ticket,
+  onClose,
+}: {
+  ticket: Ticket;
+  onClose: () => void;
+}) {
+  const updateTicket = useUpdateTicket();
+  const [stake, setStake] = useState(
+    ticket.stake != null ? String(ticket.stake) : "",
+  );
+  const [actualReturn, setActualReturn] = useState(
+    ticket.actualReturn != null ? String(ticket.actualReturn) : "",
+  );
+  const [status, setStatus] = useState<TicketStatus>(ticket.status);
+  const [oddById, setOddById] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      ticket.selections.map((s) => [s.id, String(s.odd)]),
+    ),
+  );
+
+  const save = () => {
+    const stakeNum = parseDecimalInput(stake);
+    if (stakeNum == null || stakeNum < 0) {
+      toast.error("Stake inválida");
+      return;
+    }
+
+    const selectionUpdates: Array<{ id: string; odd: number }> = [];
+    for (const sel of ticket.selections) {
+      const oddNum = parseDecimalInput(oddById[sel.id] ?? "");
+      if (oddNum == null || oddNum < 1.01) {
+        toast.error(`Odd inválida em ${sel.selection}`);
+        return;
+      }
+      selectionUpdates.push({ id: sel.id, odd: oddNum });
+    }
+
+    updateTicket.mutate(
+      {
+        id: ticket.id,
+        stake: stakeNum,
+        status,
+        actualReturn: parseDecimalInput(actualReturn),
+        selections: selectionUpdates,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Bilhete atualizado");
+          onClose();
+        },
+        onError: (error) => {
+          const message = isAxiosError(error)
+            ? ((error.response?.data as { message?: string })?.message ??
+              error.message)
+            : "Falha ao salvar";
+          toast.error(Array.isArray(message) ? message.join(", ") : message);
+        },
+      },
+    );
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+      <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-border bg-card p-5 shadow-xl">
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <h3 className="text-base font-semibold">Editar bilhete</h3>
             <p className="text-xs text-muted-foreground">
-              {sel.marketType} · {sel.selection}
-              {sel.match.competition?.name
-                ? ` · ${sel.match.competition.name}`
-                : ""}
+              {ticket.name ?? ticket.id}
             </p>
-            <div className="mt-1 flex flex-wrap gap-3 text-xs font-mono text-muted-foreground">
-              <span>odd {sel.odd.toFixed(2)}</span>
-              {sel.probability != null && (
-                <span>P {formatPct(sel.probability)}</span>
-              )}
-              {sel.ev != null && (
-                <span>
-                  EV {sel.ev >= 0 ? "+" : ""}
-                  {formatPct(sel.ev)}
-                </span>
-              )}
-              {sel.confidence != null && <span>IA {sel.confidence}%</span>}
-            </div>
           </div>
-        ))}
+          <Button variant="ghost" size="icon" onClick={onClose}>
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="space-y-1 text-xs">
+            <span className="text-muted-foreground">Stake</span>
+            <Input
+              inputMode="decimal"
+              value={stake}
+              onChange={(e) => {
+                if (isDecimalTyping(e.target.value)) setStake(e.target.value);
+              }}
+            />
+          </label>
+          <label className="space-y-1 text-xs">
+            <span className="text-muted-foreground">Status</span>
+            <Select
+              value={status}
+              onValueChange={(v) => setStatus(v as TicketStatus)}
+            >
+              <SelectTrigger className="h-9 w-full bg-background">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {(Object.keys(TICKET_STATUS_LABELS) as TicketStatus[]).map(
+                  (s) => (
+                    <SelectItem key={s} value={s}>
+                      {TICKET_STATUS_LABELS[s]}
+                    </SelectItem>
+                  ),
+                )}
+              </SelectContent>
+            </Select>
+          </label>
+          <label className="space-y-1 text-xs sm:col-span-2">
+            <span className="text-muted-foreground">Retorno obtido</span>
+            <Input
+              inputMode="decimal"
+              value={actualReturn}
+              onChange={(e) => {
+                if (isDecimalTyping(e.target.value)) {
+                  setActualReturn(e.target.value);
+                }
+              }}
+              placeholder="Opcional"
+            />
+          </label>
+        </div>
+
+        <div className="mt-4 space-y-2">
+          <p className="text-xs font-medium text-muted-foreground">
+            Odds por seleção ({ticket.selections.length})
+          </p>
+          {ticket.selections.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              Este bilhete não tem seleções salvas.
+            </p>
+          ) : (
+            ticket.selections.map((sel) => (
+              <div
+                key={sel.id}
+                className="flex flex-wrap items-center gap-3 rounded-md border border-border/40 bg-secondary/15 px-3 py-2"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">
+                    {sel.match.homeTeam.name} vs {sel.match.awayTeam.name}
+                  </p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    {sel.match.competition?.name
+                      ? `${sel.match.competition.name} · `
+                      : ""}
+                    <span className="text-amber-400">
+                      {getMarketCategoryLabel(sel.marketType, sel.selection)}
+                    </span>
+                    <span className="text-emerald-400">
+                      {" "}
+                      ({translateSelectionText(sel.selection)})
+                    </span>
+                  </p>
+                </div>
+                <Input
+                  className="h-8 w-24 font-mono text-sm"
+                  inputMode="decimal"
+                  value={oddById[sel.id] ?? ""}
+                  onChange={(e) => {
+                    if (!isDecimalTyping(e.target.value)) return;
+                    setOddById((prev) => ({
+                      ...prev,
+                      [sel.id]: e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+            ))
+          )}
+        </div>
+
+        <div className="mt-5 flex justify-end gap-2">
+          <Button variant="outline" onClick={onClose}>
+            Cancelar
+          </Button>
+          <Button onClick={save} disabled={updateTicket.isPending}>
+            {updateTicket.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : null}
+            Salvar
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -393,6 +628,7 @@ export function SavedTicketsList() {
   const placeTicket = usePlaceTicket();
   const settleTicket = useSettleTicket();
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [editing, setEditing] = useState<Ticket | null>(null);
 
   if (isLoading) {
     return (
@@ -470,6 +706,14 @@ export function SavedTicketsList() {
                     className="flex flex-wrap items-center justify-end gap-2 border-t border-border/40 px-4 py-3"
                     onClick={(e) => e.stopPropagation()}
                   >
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setEditing(ticket)}
+                    >
+                      <Pencil className="h-3.5 w-3.5" />
+                      Editar
+                    </Button>
                     {ticket.status === "DRAFT" && (
                       <Button
                         size="sm"
@@ -528,22 +772,20 @@ export function SavedTicketsList() {
                         </Button>
                       </>
                     )}
-                    {ticket.status === "DRAFT" && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() =>
-                          deleteTicket.mutate(ticket.id, {
-                            onSuccess: () => {
-                              toast.success("Bilhete removido");
-                              setExpandedId(null);
-                            },
-                          })
-                        }
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    )}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() =>
+                        deleteTicket.mutate(ticket.id, {
+                          onSuccess: () => {
+                            toast.success("Bilhete removido");
+                            setExpandedId(null);
+                          },
+                        })
+                      }
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
                 </>
               )}
@@ -551,6 +793,13 @@ export function SavedTicketsList() {
           </Card>
         );
       })}
+
+      {editing && (
+        <EditSystemTicketModal
+          ticket={editing}
+          onClose={() => setEditing(null)}
+        />
+      )}
     </div>
   );
 }

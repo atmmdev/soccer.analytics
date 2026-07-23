@@ -1,0 +1,115 @@
+{
+  "_meta": {
+    "exportedAt": "2026-07-23T19:10:51.851Z",
+    "source": "ticket-builder",
+    "ticketId": "cmrxvzq1p0000ui3852o6moph",
+    "curated": true,
+    "needsReview": false
+  },
+  "sourceFile": "docs/betting/data/bilhetes/app/2026/julho/23072026-161051hs.json",
+  "bet365Ref": null,
+  "placedAt": "2026-07-23T19:10:51.803Z",
+  "betType": "4 Múltiplas",
+  "betLabel": "App — Montar bilhete",
+  "status": "PENDING",
+  "stake": 10,
+  "unitStake": 10,
+  "numBets": 1,
+  "combinedOdd": 2.39,
+  "potentialReturn": 23.9,
+  "actualReturn": null,
+  "cashOut": null,
+  "hasOddsBoost": false,
+  "overallEV": 0.3518,
+  "needsReview": false,
+  "legs": [
+    {
+      "sortOrder": 0,
+      "builderGroup": null,
+      "matchId": "cmrw5w78v00duuii4bfryog6s",
+      "matchLabel": "Athletic Club vs São Bernardo",
+      "matchDate": null,
+      "competition": "Serie B",
+      "market": "HANDICAP",
+      "selection": "Fora +1",
+      "period": null,
+      "odd": 1.32,
+      "boostedOdd": null,
+      "status": null,
+      "probability": 0.8,
+      "ev": 5.797,
+      "confidence": 71,
+      "meta": {
+        "source": "ticket-builder"
+      }
+    },
+    {
+      "sortOrder": 1,
+      "builderGroup": null,
+      "matchId": "cmrw5w75r00dhuii4xcb2od5g",
+      "matchLabel": "Corinthians vs Remo",
+      "matchDate": null,
+      "competition": "Serie A",
+      "market": "CORNERS",
+      "selection": "Over 6.5",
+      "period": null,
+      "odd": 1.16,
+      "boostedOdd": null,
+      "status": null,
+      "probability": 0.954,
+      "ev": 0.67,
+      "confidence": 71,
+      "meta": {
+        "source": "ticket-builder"
+      }
+    },
+    {
+      "sortOrder": 2,
+      "builderGroup": null,
+      "matchId": "cmrxhi262000uuie8eaovhkhw",
+      "matchLabel": "Botafogo SP vs Juventude",
+      "matchDate": null,
+      "competition": "Serie B",
+      "market": "CORNERS",
+      "selection": "Over 5",
+      "period": null,
+      "odd": 1.04,
+      "boostedOdd": null,
+      "status": null,
+      "probability": 0.844,
+      "ev": 0.942,
+      "confidence": 71,
+      "meta": {
+        "source": "ticket-builder"
+      }
+    },
+    {
+      "sortOrder": 3,
+      "builderGroup": null,
+      "matchId": "cmrw5w7c900e0uii471m7zfsv",
+      "matchLabel": "Cuiaba vs Atletico Goianiense",
+      "matchDate": null,
+      "competition": "Serie B",
+      "market": "OVER_UNDER",
+      "selection": "Under 1.5",
+      "period": null,
+      "odd": 1.5,
+      "boostedOdd": null,
+      "status": null,
+      "probability": 0.878,
+      "ev": 1.371,
+      "confidence": 74,
+      "meta": {
+        "source": "ticket-builder"
+      }
+    }
+  ],
+  "calculation": {
+    "combinedOdd": 2.39,
+    "combinedProbability": 0.5656,
+    "overallEV": 0.3518,
+    "potentialReturn": 23.9,
+    "valid": true,
+    "warnings": []
+  }
+}

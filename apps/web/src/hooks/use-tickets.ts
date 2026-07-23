@@ -13,7 +13,9 @@ export function useTicketCalculation(
       const { data } = await apiClient.post<TicketCalculation>(
         '/tickets/calculate',
         {
-          selections: selections.map(({ matchLabel: _, ...rest }) => rest),
+          selections: selections.map(
+            ({ matchLabel: _m, competition: _c, ...rest }) => rest,
+          ),
           stake,
         },
       );
@@ -47,8 +49,38 @@ export function useSaveTicket() {
       >('/tickets', {
         name: payload.name,
         stake: payload.stake,
-        selections: payload.selections.map(({ matchLabel: _, ...rest }) => rest),
+        selections: payload.selections.map(
+          ({ matchLabel: _m, competition: _c, ...rest }) => rest,
+        ),
       });
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
+    },
+  });
+}
+
+export function useUpdateTicket() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload: {
+      id: string;
+      name?: string;
+      status?: Ticket['status'];
+      stake?: number;
+      actualReturn?: number | null;
+      selections?: Array<{
+        id: string;
+        odd?: number;
+        probability?: number;
+        ev?: number;
+        confidence?: number;
+      }>;
+    }) => {
+      const { id, ...body } = payload;
+      const { data } = await apiClient.patch<Ticket>(`/tickets/${id}`, body);
       return data;
     },
     onSuccess: () => {

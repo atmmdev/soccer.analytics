@@ -164,7 +164,10 @@ export default function DashboardPage() {
             />
           </div>
           <div className="xl:col-span-1">
-            <TicketBuilderWidget data={data.ticketBuilder} />
+            <TicketBuilderWidget
+              data={data.ticketBuilder}
+              matches={data.todayMatches}
+            />
           </div>
         </div>
 

@@ -6,6 +6,7 @@ interface TicketDraftState {
   selections: DraftSelection[];
   stake: number;
   addSelection: (selection: DraftSelection) => boolean;
+  setSelections: (selections: DraftSelection[]) => void;
   removeSelection: (matchId: string, selection: string) => void;
   updateSelectionOdd: (
     matchId: string,
@@ -35,6 +36,8 @@ export const useTicketDraftStore = create<TicketDraftState>()(
         }));
         return true;
       },
+
+      setSelections: (selections) => set({ selections }),
 
       removeSelection: (matchId, selection) => {
         set((state) => ({

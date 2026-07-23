@@ -113,6 +113,7 @@ export interface RandomTicketSuggestion {
   selections: Array<{
     matchId: string;
     matchLabel: string;
+    competition: string | null;
     marketType: string;
     selection: string;
     odd: number;

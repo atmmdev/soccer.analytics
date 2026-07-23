@@ -4,13 +4,18 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { TicketsService } from './tickets.service';
-import { CalculateTicketDto, CreateTicketDto } from './dto/ticket.dto';
+import {
+  CalculateTicketDto,
+  CreateTicketDto,
+  UpdateTicketDto,
+} from './dto/ticket.dto';
 
 @ApiTags('tickets')
 @Controller('tickets')
@@ -41,6 +46,12 @@ export class TicketsController {
   @ApiOperation({ summary: 'Get ticket' })
   findOne(@Param('id') id: string) {
     return this.ticketsService.findOne(id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update ticket (stake, status, odds das seleções)' })
+  update(@Param('id') id: string, @Body() dto: UpdateTicketDto) {
+    return this.ticketsService.update(id, dto);
   }
 
   @Delete(':id')

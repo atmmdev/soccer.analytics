@@ -446,7 +446,7 @@ export class AnalysisService {
         matchDate: { gte: todayStart, lte: todayEnd },
         status: { in: ANALYZABLE_STATUSES },
       },
-      include: { homeTeam: true, awayTeam: true },
+      include: { homeTeam: true, awayTeam: true, competition: true },
       orderBy: { matchDate: 'asc' },
       take: 80,
     });
@@ -454,6 +454,7 @@ export class AnalysisService {
     type Pick = {
       matchId: string;
       matchLabel: string;
+      competition: string | null;
       marketType: string;
       selection: string;
       odd: number;
@@ -484,6 +485,7 @@ export class AnalysisService {
       if (!data.markets?.length) continue;
 
       const matchLabel = `${match.homeTeam.name} vs ${match.awayTeam.name}`;
+      const competition = match.competition?.name ?? null;
       const eligible = data.markets
         .filter(
           (m) =>
@@ -494,6 +496,7 @@ export class AnalysisService {
         .map((m) => ({
           matchId: match.id,
           matchLabel,
+          competition,
           marketType: m.marketType ?? 'MATCH_RESULT',
           selection: m.selection,
           odd: m.bookmakerOdd,

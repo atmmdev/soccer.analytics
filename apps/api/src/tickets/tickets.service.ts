@@ -8,7 +8,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { PrismaService } from '../prisma/prisma.service';
 import { TicketEngineService } from '../engines/ticket-engine/ticket-engine.service';
-import { CalculateTicketDto, CreateTicketDto } from './dto/ticket.dto';
+import { CalculateTicketDto, CreateTicketDto, UpdateTicketDto } from './dto/ticket.dto';
 import {
   betTypeFromLegs,
   formatStudyTicketCode,
@@ -212,7 +212,7 @@ export class TicketsService {
         selections: {
           include: {
             match: {
-              include: { homeTeam: true, awayTeam: true },
+              include: { homeTeam: true, awayTeam: true, competition: true },
             },
           },
         },
@@ -236,6 +236,104 @@ export class TicketsService {
 
     if (!ticket) throw new NotFoundException('Ticket not found');
     return ticket;
+  }
+
+  async update(id: string, dto: UpdateTicketDto) {
+    const existing = await this.findOne(id);
+
+    if (dto.selections?.length) {
+      for (const sel of dto.selections) {
+        const owned = existing.selections.some((s) => s.id === sel.id);
+        if (!owned) {
+          throw new BadRequestException(
+            `Seleção ${sel.id} não pertence a este bilhete`,
+          );
+        }
+        await this.prisma.ticketSelection.update({
+          where: { id: sel.id },
+          data: {
+            ...(sel.odd != null ? { odd: sel.odd } : {}),
+            ...(sel.probability != null
+              ? { probability: sel.probability }
+              : {}),
+            ...(sel.ev != null ? { ev: sel.ev } : {}),
+            ...(sel.confidence != null ? { confidence: sel.confidence } : {}),
+          },
+        });
+      }
+    }
+
+    const refreshed = await this.findOne(id);
+    const stake =
+      dto.stake != null && dto.stake >= 0
+        ? dto.stake
+        : (refreshed.stake ?? 0);
+
+    let calc: {
+      combinedOdd: number;
+      combinedProbability: number | null;
+      overallEV: number | null;
+      potentialReturn: number | null;
+      valid: boolean;
+      warnings: unknown[];
+      suggestedStake: number;
+    } | null = null;
+
+    if (refreshed.selections.length > 0) {
+      calc = this.ticketEngine.calculate(
+        refreshed.selections.map((s) => ({
+          matchId: s.matchId,
+          marketType: s.marketType,
+          selection: s.selection,
+          odd: s.odd,
+          probability: s.probability ?? undefined,
+          ev: s.ev ?? undefined,
+          confidence: s.confidence ?? undefined,
+        })),
+        stake,
+      );
+    }
+
+    const updated = await this.prisma.ticket.update({
+      where: { id },
+      data: {
+        ...(dto.name != null ? { name: dto.name } : {}),
+        ...(dto.status != null ? { status: dto.status } : {}),
+        stake,
+        ...(dto.actualReturn !== undefined
+          ? { actualReturn: dto.actualReturn }
+          : {}),
+        ...(calc
+          ? {
+              combinedOdd: calc.combinedOdd,
+              potentialReturn: calc.potentialReturn,
+              overallEV: calc.overallEV,
+            }
+          : {}),
+      },
+      include: {
+        selections: {
+          include: {
+            match: {
+              include: { homeTeam: true, awayTeam: true, competition: true },
+            },
+          },
+        },
+      },
+    });
+
+    const code = updated.name;
+    if (code && /^\d{8}-\d{6}hs$/.test(code) && calc) {
+      const studyJson = this.buildStudyJson(
+        updated,
+        calc,
+        code,
+        updated.createdAt,
+      );
+      this.writeStudyJson(studyJson, code, updated.createdAt);
+    }
+
+    return updated;
   }
 
   async remove(id: string) {

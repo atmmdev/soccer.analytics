@@ -34,6 +34,8 @@ export type TicketStatus = 'DRAFT' | 'PLACED' | 'WON' | 'LOST' | 'VOID' | 'CASHE
 export interface DraftSelection {
   matchId: string;
   matchLabel: string;
+  /** Campeonato — só para exibição no draft */
+  competition?: string | null;
   marketType: MarketType;
   selection: string;
   odd: number;
