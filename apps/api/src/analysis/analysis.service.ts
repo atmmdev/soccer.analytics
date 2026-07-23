@@ -22,6 +22,25 @@ const ANALYZABLE_STATUSES: MatchStatus[] = [
   MatchStatus.LIVE,
 ];
 
+type AnalysisTeamInput = {
+  name: string;
+  source: string;
+  side: string;
+  matchesPlayed: number;
+  avgGoalsFor: number;
+  avgGoalsAgainst: number;
+  avgCorners: number;
+  avgCards: number;
+  bttsPct: number;
+  over25Pct: number;
+  form: Array<'W' | 'D' | 'L'>;
+};
+
+type AnalysisTeamInputs = {
+  home: AnalysisTeamInput;
+  away: AnalysisTeamInput;
+};
+
 @Injectable()
 export class AnalysisService {
   constructor(
@@ -51,9 +70,19 @@ export class AnalysisService {
       );
     }
 
-    const [homeTeamStats, awayTeamStats] = await Promise.all([
+    const [homeSideStats, awaySideStats] = await Promise.all([
       this.statisticsEngine.computeTeamStats(match.homeTeamId, period, 'home'),
       this.statisticsEngine.computeTeamStats(match.awayTeamId, period, 'away'),
+    ]);
+
+    // Se mando específico tiver amostra fraca, amplia para todos os jogos (local + remoto)
+    const [homeTeamStats, awayTeamStats] = await Promise.all([
+      homeSideStats.matchesPlayed >= 3
+        ? homeSideStats
+        : this.statisticsEngine.computeTeamStats(match.homeTeamId, period, 'all'),
+      awaySideStats.matchesPlayed >= 3
+        ? awaySideStats
+        : this.statisticsEngine.computeTeamStats(match.awayTeamId, period, 'all'),
     ]);
 
     const odds: MarketOddInput[] = match.odds.map((o) => ({
@@ -70,8 +99,12 @@ export class AnalysisService {
 
     const statsQuality =
       homeTeamStats.source === 'computed' && awayTeamStats.source === 'computed'
-        ? 88
-        : 68;
+        ? homeTeamStats.matchesPlayed >= 5 && awayTeamStats.matchesPlayed >= 5
+          ? 90
+          : 82
+        : homeTeamStats.source === 'computed' || awayTeamStats.source === 'computed'
+          ? 72
+          : 58;
 
     const { home: homeXg, away: awayXg } = calculateExpectedGoals(
       homeTeamStats.avgGoalsFor,
@@ -127,6 +160,35 @@ export class AnalysisService {
       playerContext,
     );
 
+    const teamInputs = {
+      home: {
+        name: match.homeTeam.name,
+        source: homeTeamStats.source,
+        side: homeTeamStats.side,
+        matchesPlayed: homeTeamStats.matchesPlayed,
+        avgGoalsFor: homeTeamStats.avgGoalsFor,
+        avgGoalsAgainst: homeTeamStats.avgGoalsAgainst,
+        avgCorners: homeTeamStats.avgCorners,
+        avgCards: homeTeamStats.avgCards,
+        bttsPct: homeTeamStats.bttsPct,
+        over25Pct: homeTeamStats.over25Pct,
+        form: homeTeamStats.form.slice(0, 5),
+      },
+      away: {
+        name: match.awayTeam.name,
+        source: awayTeamStats.source,
+        side: awayTeamStats.side,
+        matchesPlayed: awayTeamStats.matchesPlayed,
+        avgGoalsFor: awayTeamStats.avgGoalsFor,
+        avgGoalsAgainst: awayTeamStats.avgGoalsAgainst,
+        avgCorners: awayTeamStats.avgCorners,
+        avgCards: awayTeamStats.avgCards,
+        bttsPct: awayTeamStats.bttsPct,
+        over25Pct: awayTeamStats.over25Pct,
+        form: awayTeamStats.form.slice(0, 5),
+      },
+    };
+
     const snapshotData = {
       match: {
         id: match.id,
@@ -146,6 +208,7 @@ export class AnalysisService {
         homeMatches: homeTeamStats.matchesPlayed,
         awayMatches: awayTeamStats.matchesPlayed,
       },
+      teamInputs,
     };
 
     const [snapshot, prediction] = await this.prisma.$transaction([
@@ -173,6 +236,9 @@ export class AnalysisService {
       snapshotId: snapshot.id,
       predictionId: prediction.id,
       analyzedAt: snapshot.analyzedAt,
+      period,
+      statsSource: snapshotData.statsSource,
+      teamInputs,
       match: {
         id: match.id,
         homeTeam: match.homeTeam.name,
@@ -197,7 +263,13 @@ export class AnalysisService {
       expectedCorners?: number;
       expectedCards?: number;
       period?: number;
-      statsSource?: { home?: string; away?: string };
+      statsSource?: {
+        home?: string;
+        away?: string;
+        homeMatches?: number;
+        awayMatches?: number;
+      };
+      teamInputs?: AnalysisTeamInputs;
     };
 
     return {
@@ -214,6 +286,7 @@ export class AnalysisService {
       markets: data.markets,
       period: data.period ?? 10,
       statsSource: data.statsSource ?? null,
+      teamInputs: data.teamInputs ?? null,
     };
   }
 

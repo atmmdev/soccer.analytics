@@ -1,4 +1,5 @@
 export type Recommendation = 'BET' | 'WATCH' | 'SKIP';
+export type FormResult = 'W' | 'D' | 'L';
 
 export interface MarketAnalysis {
   marketType: string;
@@ -12,6 +13,32 @@ export interface MarketAnalysis {
   playerModel?: boolean;
 }
 
+export interface AnalysisTeamInput {
+  name: string;
+  source: 'computed' | 'fallback' | string;
+  side: string;
+  matchesPlayed: number;
+  avgGoalsFor: number;
+  avgGoalsAgainst: number;
+  avgCorners: number;
+  avgCards: number;
+  bttsPct: number;
+  over25Pct: number;
+  form: FormResult[];
+}
+
+export interface AnalysisTeamInputs {
+  home: AnalysisTeamInput;
+  away: AnalysisTeamInput;
+}
+
+export interface AnalysisStatsSource {
+  home?: string;
+  away?: string;
+  homeMatches?: number;
+  awayMatches?: number;
+}
+
 export interface AnalysisResult {
   homeExpectedGoals: number;
   awayExpectedGoals: number;
@@ -23,6 +50,9 @@ export interface AnalysisResult {
   snapshotId: string;
   predictionId: string;
   analyzedAt: string;
+  period?: number;
+  statsSource?: AnalysisStatsSource | null;
+  teamInputs?: AnalysisTeamInputs | null;
   match: {
     id: string;
     homeTeam: string;
@@ -44,6 +74,8 @@ export interface LatestAnalysis {
   expectedCards?: number;
   markets: MarketAnalysis[];
   period: number;
+  statsSource?: AnalysisStatsSource | null;
+  teamInputs?: AnalysisTeamInputs | null;
 }
 
 export interface EvPlusMarket {

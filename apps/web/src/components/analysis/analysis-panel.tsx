@@ -20,6 +20,8 @@ import {
   RECOMMENDATION_LABELS,
   RECOMMENDATION_VARIANT,
   MARKET_TYPE_LABELS,
+  type AnalysisTeamInput,
+  type AnalysisTeamInputs,
   type LatestAnalysis,
   type AnalysisResult,
 } from '@/types/analysis';
@@ -30,6 +32,7 @@ import { useMatchExplanation } from '@/hooks/use-ai';
 import type { MarketType } from '@/types/ticket';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 interface AnalysisPanelProps {
   matchId: string;
@@ -42,6 +45,83 @@ function formatPct(value: number) {
   return `${(value * 100).toFixed(1)}%`;
 }
 
+function formLabel(result: 'W' | 'D' | 'L') {
+  return result === 'W' ? 'V' : result === 'D' ? 'E' : 'D';
+}
+
+function isFallbackAnalysis(
+  data: LatestAnalysis | AnalysisResult,
+): boolean {
+  const source = data.statsSource;
+  if (!source) return false;
+  return source.home === 'fallback' || source.away === 'fallback';
+}
+
+function TeamInputsCard({
+  team,
+  side,
+}: {
+  team: AnalysisTeamInput;
+  side: 'Casa' | 'Fora';
+}) {
+  return (
+    <div className="rounded-lg border border-border/60 bg-muted/20 p-3 space-y-2">
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
+            {side}
+          </p>
+          <p className="text-sm font-medium">{team.name}</p>
+        </div>
+        <Badge variant={team.source === 'computed' ? 'success' : 'outline'}>
+          {team.source === 'computed' ? 'Stats reais' : 'Fallback'}
+        </Badge>
+      </div>
+      <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
+        <p className="text-muted-foreground">
+          Amostra:{' '}
+          <span className="font-mono text-foreground">
+            {team.matchesPlayed}j ({team.side})
+          </span>
+        </p>
+        <p className="text-muted-foreground">
+          GF/GS:{' '}
+          <span className="font-mono text-foreground">
+            {team.avgGoalsFor.toFixed(2)}/{team.avgGoalsAgainst.toFixed(2)}
+          </span>
+        </p>
+        <p className="text-muted-foreground">
+          Esc/Cart:{' '}
+          <span className="font-mono text-foreground">
+            {team.avgCorners.toFixed(1)}/{team.avgCards.toFixed(1)}
+          </span>
+        </p>
+        <p className="text-muted-foreground">
+          BTTS/O2.5:{' '}
+          <span className="font-mono text-foreground">
+            {team.bttsPct}%/{team.over25Pct}%
+          </span>
+        </p>
+      </div>
+      <div className="flex gap-1">
+        {team.form.map((r, i) => (
+          <span
+            key={`${side}-${i}`}
+            className={cn(
+              'flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-bold',
+              r === 'W' && 'bg-emerald-500/20 text-emerald-400',
+              r === 'D' && 'bg-amber-500/20 text-amber-400',
+              r === 'L' && 'bg-red-500/20 text-red-400',
+            )}
+          >
+            {formLabel(r)}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AnalysisSummary({
   data,
 }: {
@@ -49,16 +129,26 @@ function AnalysisSummary({
 }) {
   const predicted =
     'predictedScore' in data ? data.predictedScore : data.predictedResult;
+  const teamInputs = data.teamInputs as AnalysisTeamInputs | null | undefined;
+  const fallback = isFallbackAnalysis(data);
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-3">
+      {fallback && (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-xs text-amber-200">
+          Esta análise usou médias genéricas (fallback) porque faltava histórico
+          dos times. Clique em <strong>Executar Análise</strong> para recalcular
+          com forma real da API-Football.
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
           <p className="text-xs text-muted-foreground">Placar previsto</p>
           <p className="mt-1 font-mono text-2xl font-bold">{predicted}</p>
         </div>
         <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
-          <p className="text-xs text-muted-foreground">Gols esperados</p>
+          <p className="text-xs text-muted-foreground">Gols esperados (xG)</p>
           <p className="mt-1 font-mono text-lg font-semibold">
             {data.homeExpectedGoals?.toFixed(2)} — {data.awayExpectedGoals?.toFixed(2)}
           </p>
@@ -68,26 +158,39 @@ function AnalysisSummary({
           <p className="mt-1 font-mono text-2xl font-bold text-primary">
             {data.overallConfidence}%
           </p>
+          {data.period != null && (
+            <p className="mt-1 text-[10px] text-muted-foreground">
+              Janela: últimos {data.period} jogos
+            </p>
+          )}
         </div>
+        {data.expectedCorners != null && (
+          <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+            <p className="text-xs text-muted-foreground">Escanteios esperados</p>
+            <p className="mt-1 font-mono text-lg font-semibold">
+              {data.expectedCorners.toFixed(1)}
+            </p>
+          </div>
+        )}
+        {data.expectedCards != null && (
+          <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+            <p className="text-xs text-muted-foreground">Cartões esperados</p>
+            <p className="mt-1 font-mono text-lg font-semibold">
+              {data.expectedCards.toFixed(1)}
+            </p>
+          </div>
+        )}
       </div>
-      {(data.expectedCorners != null || data.expectedCards != null) && (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {data.expectedCorners != null && (
-            <div className="rounded-lg border border-border/60 bg-muted/20 px-4 py-3">
-              <p className="text-xs text-muted-foreground">Escanteios esperados (total)</p>
-              <p className="mt-1 font-mono text-lg font-semibold">
-                {data.expectedCorners.toFixed(1)}
-              </p>
-            </div>
-          )}
-          {data.expectedCards != null && (
-            <div className="rounded-lg border border-border/60 bg-muted/20 px-4 py-3">
-              <p className="text-xs text-muted-foreground">Cartões esperados (total)</p>
-              <p className="mt-1 font-mono text-lg font-semibold">
-                {data.expectedCards.toFixed(1)}
-              </p>
-            </div>
-          )}
+
+      {teamInputs && (
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-muted-foreground">
+            Inputs da análise (médias usadas no Poisson)
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <TeamInputsCard team={teamInputs.home} side="Casa" />
+            <TeamInputsCard team={teamInputs.away} side="Fora" />
+          </div>
         </div>
       )}
     </div>
@@ -144,7 +247,16 @@ export function AnalysisPanel({
       return;
     }
     runAnalysis.mutate(10, {
-      onSuccess: () => toast.success('Análise concluída e snapshot salvo'),
+      onSuccess: (data) => {
+        const weak =
+          data.statsSource?.home === 'fallback' ||
+          data.statsSource?.away === 'fallback';
+        toast.success(
+          weak
+            ? 'Análise salva — ainda com fallback em um dos times'
+            : 'Análise concluída com stats reais',
+        );
+      },
       onError: (error) => {
         const message = isAxiosError(error)
           ? (error.response?.data as { message?: string })?.message ??
@@ -236,7 +348,7 @@ export function AnalysisPanel({
         ) : !display ? (
           <p className="text-sm text-muted-foreground">
             Nenhuma análise ainda. Execute o engine para calcular probabilidades,
-            EV e recomendações.
+            EV e recomendações com a forma real dos times.
           </p>
         ) : (
           <>
