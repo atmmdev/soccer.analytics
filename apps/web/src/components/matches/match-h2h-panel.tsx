@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useMatchAnalysis } from '@/hooks/use-analyzer';
+import { cn } from '@/lib/utils';
 
 interface MatchH2HPanelProps {
   matchId: string;
@@ -11,6 +12,7 @@ interface MatchH2HPanelProps {
   awayTeamName: string;
   /** Quantidade de confrontos (10 ou 20) */
   period?: 10 | 20;
+  className?: string;
 }
 
 export function MatchH2HPanel({
@@ -18,12 +20,13 @@ export function MatchH2HPanel({
   homeTeamName,
   awayTeamName,
   period = 20,
+  className,
 }: MatchH2HPanelProps) {
   const { data, isLoading, isError } = useMatchAnalysis(matchId, period, 'h2h');
 
   if (isLoading) {
     return (
-      <Card className="border-border/60 bg-card/80">
+      <Card className={cn('border-border/60 bg-card/80', className)}>
         <CardContent className="flex justify-center py-8">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
         </CardContent>
@@ -33,13 +36,14 @@ export function MatchH2HPanel({
 
   if (isError || !data?.h2h) {
     return (
-      <Card className="border-border/60 bg-card/80">
+      <Card className={cn('border-border/60 bg-card/80', className)}>
         <CardHeader>
           <CardTitle className="text-base">Head to Head</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            Sem confrontos diretos disponíveis para {homeTeamName} × {awayTeamName}.
+            Sem confrontos diretos disponíveis para {homeTeamName} ×{' '}
+            {awayTeamName}.
           </p>
         </CardContent>
       </Card>
@@ -59,7 +63,7 @@ export function MatchH2HPanel({
       }));
 
   return (
-    <Card className="border-border/60 bg-card/80 w-[40%]">
+    <Card className={cn('border-border/60 bg-card/80', className)}>
       <CardHeader className="pb-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <CardTitle className="text-base">Head to Head</CardTitle>
@@ -72,7 +76,7 @@ export function MatchH2HPanel({
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex justify-center gap-8 text-center">
+        <div className="flex justify-center gap-6 text-center sm:gap-8">
           <div>
             <p className="text-2xl font-bold text-emerald-400">{h2h.homeWins}</p>
             <p className="text-xs text-muted-foreground">{homeTeamName}</p>
@@ -117,7 +121,9 @@ export function MatchH2HPanel({
                         : ''}
                     </p>
                   </div>
-                  <span className="font-mono text-sm font-semibold">{m.score}</span>
+                  <span className="font-mono text-sm font-semibold">
+                    {m.score}
+                  </span>
                 </div>
               );
             })}
