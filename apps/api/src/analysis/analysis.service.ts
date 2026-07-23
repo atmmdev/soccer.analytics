@@ -1670,6 +1670,13 @@ function marketCategoryLabel(marketType: string): string {
     RED_CARD: 'Cartão Vermelho',
     BOTH_TEAMS_CARDS: 'Ambos Recebem Cartão',
     FIRST_SCORER: 'Primeiro Marcador',
+    GOAL_BANDS: 'Faixa de Gols',
+    ANY_PLAYER_SCORE: 'Qualquer Jogador a Marcar',
+    ANY_PLAYER_CARD: 'Qualquer Jogador Receber Cartão',
+    HIGHEST_SCORING_HALF: 'Tempo Com Mais Gols',
+    TEAM_MOST: 'Time - Maior Número',
+    TEAM_TO_SCORE: 'Time - Marcador de Gols',
+    TEAM_SPECIAL: 'Time - Especiais',
   };
   return map[t] ?? t;
 }

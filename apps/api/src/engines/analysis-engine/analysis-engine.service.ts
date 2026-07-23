@@ -225,6 +225,173 @@ export function probabilityWinningMargin(
   return Math.min(0.99, Math.max(0.001, p));
 }
 
+/** Faixa / número exato de gols totais: "0", "2", "3+", "0-1", "2-3" */
+export function probabilityGoalBand(
+  matrix: number[][],
+  selection: string,
+): number | null {
+  const s = selection.trim();
+  const range = s.match(/^(\d+)\s*[-–]\s*(\d+)$/);
+  if (range) {
+    const lo = Number(range[1]);
+    const hi = Number(range[2]);
+    let p = 0;
+    for (let h = 0; h < matrix.length; h++) {
+      for (let a = 0; a < matrix[h].length; a++) {
+        const total = h + a;
+        if (total >= lo && total <= hi) p += matrix[h][a];
+      }
+    }
+    return Math.min(0.99, Math.max(0.001, p));
+  }
+
+  const plus = s.match(/^(\d+)\+$/);
+  if (plus) {
+    const min = Number(plus[1]);
+    let p = 0;
+    for (let h = 0; h < matrix.length; h++) {
+      for (let a = 0; a < matrix[h].length; a++) {
+        if (h + a >= min) p += matrix[h][a];
+      }
+    }
+    return Math.min(0.99, Math.max(0.001, p));
+  }
+
+  const exact = s.match(/^(\d+)$/);
+  if (exact) {
+    const n = Number(exact[1]);
+    let p = 0;
+    for (let h = 0; h < matrix.length; h++) {
+      for (let a = 0; a < matrix[h].length; a++) {
+        if (h + a === n) p += matrix[h][a];
+      }
+    }
+    return Math.min(0.99, Math.max(0.001, p));
+  }
+
+  return null;
+}
+
+/** Tempo com mais gols via split 45%/55% dos λ */
+export function probabilityHighestScoringHalf(
+  homeLambda: number,
+  awayLambda: number,
+  selection: string,
+  htShare = 0.45,
+): number | null {
+  const want = selection.trim();
+  if (!['1º Tempo', '2º Tempo', 'Empate'].includes(want)) return null;
+
+  const maxGoals = 5;
+  const ht = scoreMatrix(homeLambda * htShare, awayLambda * htShare, maxGoals);
+  const sh = scoreMatrix(
+    homeLambda * (1 - htShare),
+    awayLambda * (1 - htShare),
+    maxGoals,
+  );
+
+  let first = 0;
+  let second = 0;
+  let draw = 0;
+  for (let h1 = 0; h1 <= maxGoals; h1++) {
+    for (let a1 = 0; a1 <= maxGoals; a1++) {
+      const g1 = h1 + a1;
+      for (let h2 = 0; h2 <= maxGoals; h2++) {
+        for (let a2 = 0; a2 <= maxGoals; a2++) {
+          const g2 = h2 + a2;
+          const p = ht[h1][a1] * sh[h2][a2];
+          if (g1 > g2) first += p;
+          else if (g2 > g1) second += p;
+          else draw += p;
+        }
+      }
+    }
+  }
+
+  if (want === '1º Tempo') return Math.min(0.99, Math.max(0.001, first));
+  if (want === '2º Tempo') return Math.min(0.99, Math.max(0.001, second));
+  return Math.min(0.99, Math.max(0.001, draw));
+}
+
+export function probabilityTeamToScore(
+  matrix: number[][],
+  selection: string,
+): number | null {
+  const s = selection.trim().toLowerCase();
+  let homeZero = 0;
+  let awayZero = 0;
+  let bothZero = 0;
+  let total = 0;
+  const exactMatch = selection.match(
+    /^(Casa|Fora|Time)\s+exatamente\s+(\d+)(\+)?\s+gols$/i,
+  );
+
+  for (let h = 0; h < matrix.length; h++) {
+    for (let a = 0; a < matrix[h].length; a++) {
+      const p = matrix[h][a];
+      total += p;
+      if (h === 0) homeZero += p;
+      if (a === 0) awayZero += p;
+      if (h === 0 && a === 0) bothZero += p;
+    }
+  }
+  if (total <= 0) return null;
+
+  if (exactMatch) {
+    const side = exactMatch[1].toLowerCase();
+    const n = Number(exactMatch[2]);
+    const plus = Boolean(exactMatch[3]);
+    let p = 0;
+    for (let h = 0; h < matrix.length; h++) {
+      for (let a = 0; a < matrix[h].length; a++) {
+        const goals = side.startsWith('casa')
+          ? h
+          : side.startsWith('fora')
+            ? a
+            : h + a;
+        if (plus ? goals >= n : goals === n) p += matrix[h][a];
+      }
+    }
+    return Math.min(0.99, Math.max(0.001, p / total));
+  }
+
+  if (s === 'casa marca') return 1 - homeZero / total;
+  if (s === 'casa não marca' || s === 'casa nao marca') return homeZero / total;
+  if (s === 'fora marca') return 1 - awayZero / total;
+  if (s === 'fora não marca' || s === 'fora nao marca') return awayZero / total;
+  if (s === 'ambos marcam') return 1 - (homeZero + awayZero - bothZero) / total;
+  if (s === 'nenhum marca') return bothZero / total;
+  return null;
+}
+
+/** Maior número de escanteios/cartões: Casa / Empate / Fora */
+export function probabilityTeamMost(
+  homeLambda: number,
+  awayLambda: number,
+  selection: string,
+  max = 12,
+): number | null {
+  const match = selection.match(/^(Casa|Empate|Fora)\s*[—-]/i);
+  if (!match) return null;
+  const want = match[1];
+
+  let home = 0;
+  let draw = 0;
+  let away = 0;
+  for (let h = 0; h <= max; h++) {
+    for (let a = 0; a <= max; a++) {
+      const p = poisson(homeLambda, h) * poisson(awayLambda, a);
+      if (h > a) home += p;
+      else if (h === a) draw += p;
+      else away += p;
+    }
+  }
+  const total = home + draw + away || 1;
+  if (/casa/i.test(want)) return home / total;
+  if (/empate/i.test(want)) return draw / total;
+  return away / total;
+}
+
 function probabilityOver25(matrix: number[][]): number {
   return probabilityGoalsOver(matrix, 2.5);
 }
@@ -314,6 +481,15 @@ export function calculateScoreIa(input: {
       t === 'BOTH_TEAMS_CARDS'
     ) {
       S_modelo = 78;
+    } else if (
+      t === 'GOAL_BANDS' ||
+      t === 'HIGHEST_SCORING_HALF' ||
+      t === 'TEAM_TO_SCORE' ||
+      t === 'ANY_PLAYER_SCORE'
+    ) {
+      S_modelo = 85;
+    } else if (t === 'TEAM_MOST' || t === 'ANY_PLAYER_CARD') {
+      S_modelo = 75;
     } else if (t === 'HT_FT' || t === 'WINNING_MARGIN') {
       S_modelo = 80;
     } else if (t === 'EXACT_SCORE') {
@@ -403,6 +579,8 @@ function resolveProbability(
   redLambda: number,
   homeCardLambda: number,
   awayCardLambda: number,
+  homeCornerLambda: number,
+  awayCornerLambda: number,
   playerContext?: Record<string, PlayerMarketContext>,
 ): { probability: number; modeled: boolean } {
   if (goalMap[odd.selection] !== undefined) {
@@ -433,6 +611,56 @@ function resolveProbability(
     const p = probabilityWinningMargin(matrix, odd.selection);
     if (p !== null) return { probability: p, modeled: true };
     return { probability: 0, modeled: false };
+  }
+
+  if (type === 'GOAL_BANDS') {
+    const p = probabilityGoalBand(matrix, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'HIGHEST_SCORING_HALF') {
+    const p = probabilityHighestScoringHalf(homeLambda, awayLambda, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'TEAM_TO_SCORE') {
+    const p = probabilityTeamToScore(matrix, odd.selection);
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'TEAM_MOST') {
+    const isCards = /cart[oõ]es/i.test(odd.selection);
+    const p = probabilityTeamMost(
+      isCards ? homeCardLambda : homeCornerLambda,
+      isCards ? awayCardLambda : awayCornerLambda,
+      odd.selection,
+    );
+    if (p !== null) return { probability: p, modeled: true };
+    return { probability: 0, modeled: false };
+  }
+
+  if (type === 'ANY_PLAYER_SCORE') {
+    // P(pelo menos 1 gol na partida)
+    const pYes = probabilityGoalsOver(matrix, 0.5);
+    const yes = /sim|yes/i.test(odd.selection);
+    return { probability: yes ? pYes : 1 - pYes, modeled: true };
+  }
+
+  if (type === 'ANY_PLAYER_CARD') {
+    const pYes = 1 - Math.exp(-Math.max(0.01, cardLambda));
+    const yes = /sim|yes/i.test(odd.selection);
+    return { probability: yes ? pYes : 1 - pYes, modeled: true };
+  }
+
+  if (type === 'TEAM_SPECIAL') {
+    // Sem modelo genérico confiável — só odd implícita
+    return {
+      probability: Math.min(0.95, Math.max(0.02, 1 / odd.bookmakerOdd)),
+      modeled: false,
+    };
   }
 
   if (type === 'RED_CARD') {
@@ -504,7 +732,6 @@ function resolveProbability(
   }
 
   if (type === 'GOALKEEPER_SAVES') {
-    // Aproxima defesas ≈ chutes ao gol - gols esperados
     const saveLambda = Math.max(0.5, sotLambda - homeLambda - awayLambda);
     const pOver = probabilityOverLine(saveLambda, line);
     return { probability: isOver ? pOver : 1 - pOver, modeled: true };
@@ -620,6 +847,8 @@ export function runAnalysis(
       redLambda,
       home.avgCards,
       away.avgCards,
+      home.avgCorners,
+      away.avgCorners,
       playerContext,
     );
 

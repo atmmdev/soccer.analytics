@@ -787,6 +787,13 @@ export class DataEngineService {
       PLAYER_FOULS: 'Jogador - Faltas',
       PLAYER_TACKLES: 'Jogador - Desarmes',
       PLAYER_ASSIST_OR_GOAL: 'Jogador a Marcar ou Assistir',
+      GOAL_BANDS: 'Faixa de Gols',
+      ANY_PLAYER_SCORE: 'Qualquer Jogador a Marcar',
+      ANY_PLAYER_CARD: 'Qualquer Jogador Receber Cartão',
+      HIGHEST_SCORING_HALF: 'Tempo Com Mais Gols',
+      TEAM_MOST: 'Time - Maior Número',
+      TEAM_TO_SCORE: 'Time - Marcador de Gols',
+      TEAM_SPECIAL: 'Time - Especiais',
     };
 
     for (const type of types) {

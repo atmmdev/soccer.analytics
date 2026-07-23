@@ -33,6 +33,37 @@ const MARKETS: Array<{ type: MarketType; name: string; description: string }> = 
     name: 'Jogador a Marcar ou Assistir',
     description: 'Goal or assist',
   },
+  { type: MarketType.GOAL_BANDS, name: 'Faixa de Gols', description: 'Exact/range goals' },
+  {
+    type: MarketType.ANY_PLAYER_SCORE,
+    name: 'Qualquer Jogador a Marcar',
+    description: 'Any player to score',
+  },
+  {
+    type: MarketType.ANY_PLAYER_CARD,
+    name: 'Qualquer Jogador Receber Cartão',
+    description: 'Any player booked',
+  },
+  {
+    type: MarketType.HIGHEST_SCORING_HALF,
+    name: 'Tempo Com Mais Gols',
+    description: 'Highest scoring half',
+  },
+  {
+    type: MarketType.TEAM_MOST,
+    name: 'Time - Maior Número',
+    description: 'Most corners/cards/shots',
+  },
+  {
+    type: MarketType.TEAM_TO_SCORE,
+    name: 'Time - Marcador de Gols',
+    description: 'Team to score',
+  },
+  {
+    type: MarketType.TEAM_SPECIAL,
+    name: 'Time - Especiais',
+    description: 'Team specials',
+  },
 ];
 
 async function main() {

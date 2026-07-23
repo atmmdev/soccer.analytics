@@ -20,7 +20,14 @@ export type MarketType =
   | 'PLAYER_CARDS'
   | 'PLAYER_FOULS'
   | 'PLAYER_TACKLES'
-  | 'PLAYER_ASSIST_OR_GOAL';
+  | 'PLAYER_ASSIST_OR_GOAL'
+  | 'GOAL_BANDS'
+  | 'ANY_PLAYER_SCORE'
+  | 'ANY_PLAYER_CARD'
+  | 'HIGHEST_SCORING_HALF'
+  | 'TEAM_MOST'
+  | 'TEAM_TO_SCORE'
+  | 'TEAM_SPECIAL';
 
 export type TicketStatus = 'DRAFT' | 'PLACED' | 'WON' | 'LOST' | 'VOID' | 'CASHED_OUT';
 

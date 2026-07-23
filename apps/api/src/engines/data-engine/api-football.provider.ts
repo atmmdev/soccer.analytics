@@ -488,6 +488,13 @@ export class ApiFootballProvider implements DataProvider {
     }
 
     if (normalized.includes('corner')) {
+      if (
+        normalized.includes('1x2') ||
+        normalized.includes('most') ||
+        normalized.includes('highest number')
+      ) {
+        return this.mapTeamMostLines(values, bookmaker, 'Escanteios');
+      }
       return this.mapOverUnderLines(values, bookmaker, MarketType.CORNERS);
     }
 
@@ -498,6 +505,14 @@ export class ApiFootballProvider implements DataProvider {
       !normalized.includes('red')
     ) {
       return this.mapOverUnderLines(values, bookmaker, MarketType.CARDS);
+    }
+
+    if (
+      normalized.includes('cards 1x2') ||
+      normalized.includes('most cards') ||
+      normalized.includes('highest number of cards')
+    ) {
+      return this.mapTeamMostLines(values, bookmaker, 'Cartões');
     }
 
     if (normalized.includes('card') && !normalized.includes('corner') && !normalized.includes('player') && !normalized.includes('red')) {
@@ -613,7 +628,286 @@ export class ApiFootballProvider implements DataProvider {
       return this.mapPlayerPropLines(values, bookmaker, MarketType.PLAYER_TACKLES);
     }
 
+    // ── Mercados restantes do print Bet365 ──
+    if (
+      normalized.includes('exact goals number') ||
+      normalized.includes('goals range') ||
+      normalized.includes('goal range') ||
+      normalized === 'exact goals' ||
+      normalized.includes('number of goals')
+    ) {
+      return this.mapGoalBandLines(values, bookmaker);
+    }
+
+    if (
+      normalized.includes('any player to score') ||
+      normalized.includes('a player to score') ||
+      normalized === 'player to score'
+    ) {
+      return this.mapYesNo(values, bookmaker, MarketType.ANY_PLAYER_SCORE);
+    }
+
+    if (
+      normalized.includes('any player to be booked') ||
+      normalized.includes('any player card') ||
+      normalized.includes('a player to be booked')
+    ) {
+      return this.mapYesNo(values, bookmaker, MarketType.ANY_PLAYER_CARD);
+    }
+
+    if (
+      normalized.includes('highest scoring half') ||
+      normalized.includes('which half will have more goals')
+    ) {
+      return this.mapHighestScoringHalfLines(values, bookmaker);
+    }
+
+    if (
+      normalized.includes('corners 1x2') ||
+      normalized.includes('corner 1x2') ||
+      normalized.includes('most corners') ||
+      normalized.includes('highest number of corners')
+    ) {
+      return this.mapTeamMostLines(values, bookmaker, 'Escanteios');
+    }
+
+    if (
+      normalized.includes('cards 1x2') ||
+      normalized.includes('most cards')
+    ) {
+      return this.mapTeamMostLines(values, bookmaker, 'Cartões');
+    }
+
+    if (
+      (normalized.includes('home team to score') ||
+        normalized.includes('away team to score') ||
+        normalized.includes('team to score') ||
+        normalized.includes('teams to score') ||
+        normalized.includes('home exact goals') ||
+        normalized.includes('away exact goals') ||
+        normalized.includes('exact goals home') ||
+        normalized.includes('exact goals away')) &&
+      !normalized.includes('both teams')
+    ) {
+      return this.mapTeamToScoreLines(values, bookmaker, betName);
+    }
+
+    if (
+      normalized.includes('win to nil') ||
+      normalized.includes('clean sheet') ||
+      normalized.includes('to score in both halves') ||
+      normalized.includes('win both halves') ||
+      normalized.includes('team special')
+    ) {
+      return this.mapTeamSpecialLines(values, bookmaker, betName);
+    }
+
     return [];
+  }
+
+  private mapGoalBandLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const raw = v.value.trim();
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+
+        // "0", "1", "2", "3", "4", "5", "6+" / "6 or more"
+        const exact = raw.match(/^(\d+)\+?$/);
+        if (exact) {
+          const n = exact[1];
+          const plus = raw.endsWith('+') || /or more/i.test(raw);
+          return {
+            marketType: MarketType.GOAL_BANDS,
+            selection: plus ? `${n}+` : n,
+            value: odd,
+            bookmaker,
+          };
+        }
+
+        const orMore = raw.match(/^(\d+)\s*or\s*more$/i);
+        if (orMore) {
+          return {
+            marketType: MarketType.GOAL_BANDS,
+            selection: `${orMore[1]}+`,
+            value: odd,
+            bookmaker,
+          };
+        }
+
+        // "0-1", "2-3", "4-5", "4-6"
+        const range = raw.match(/^(\d+)\s*[-–]\s*(\d+)$/);
+        if (range) {
+          return {
+            marketType: MarketType.GOAL_BANDS,
+            selection: `${range[1]}-${range[2]}`,
+            value: odd,
+            bookmaker,
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapHighestScoringHalfLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const lower = v.value.trim().toLowerCase();
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+
+        let selection: string | null = null;
+        if (
+          lower.includes('1st') ||
+          lower.includes('first') ||
+          lower === '1' ||
+          lower.includes('primeiro')
+        ) {
+          selection = '1º Tempo';
+        } else if (
+          lower.includes('2nd') ||
+          lower.includes('second') ||
+          lower === '2' ||
+          lower.includes('segundo')
+        ) {
+          selection = '2º Tempo';
+        } else if (
+          lower.includes('draw') ||
+          lower.includes('equal') ||
+          lower.includes('x') ||
+          lower.includes('empate')
+        ) {
+          selection = 'Empate';
+        }
+
+        if (!selection) return null;
+        return {
+          marketType: MarketType.HIGHEST_SCORING_HALF,
+          selection,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapTeamMostLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    kind: string,
+  ): ImportedOdd[] {
+    return values
+      .map((v) => {
+        const lower = v.value.trim().toLowerCase();
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+
+        let side: string | null = null;
+        if (lower === 'home' || lower.includes('home')) side = 'Casa';
+        else if (lower === 'away' || lower.includes('away')) side = 'Fora';
+        else if (lower === 'draw' || lower.includes('draw')) side = 'Empate';
+
+        if (!side) return null;
+        return {
+          marketType: MarketType.TEAM_MOST,
+          selection: `${side} — ${kind}`,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapTeamToScoreLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    betName: string,
+  ): ImportedOdd[] {
+    const bet = betName.toLowerCase();
+    const homeFocus = bet.includes('home');
+    const awayFocus = bet.includes('away');
+
+    return values
+      .map((v) => {
+        const raw = v.value.trim();
+        const lower = raw.toLowerCase();
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+
+        if (/^\d+\+?$/.test(raw) || /^\d+\s*or\s*more$/i.test(raw)) {
+          const n = raw.match(/(\d+)/)?.[1] ?? raw;
+          const plus = raw.includes('+') || /or more/i.test(raw);
+          const team = homeFocus ? 'Casa' : awayFocus ? 'Fora' : 'Time';
+          return {
+            marketType: MarketType.TEAM_TO_SCORE,
+            selection: `${team} exatamente ${n}${plus ? '+' : ''} gols`,
+            value: odd,
+            bookmaker,
+          };
+        }
+
+        let selection: string | null = null;
+        if (lower === 'yes') {
+          selection = homeFocus
+            ? 'Casa marca'
+            : awayFocus
+              ? 'Fora marca'
+              : 'Time marca';
+        } else if (lower === 'no') {
+          selection = homeFocus
+            ? 'Casa não marca'
+            : awayFocus
+              ? 'Fora não marca'
+              : 'Time não marca';
+        } else if (lower === 'home') {
+          selection = 'Casa marca';
+        } else if (lower === 'away') {
+          selection = 'Fora marca';
+        } else if (lower === 'both') {
+          selection = 'Ambos marcam';
+        } else if (lower === 'neither' || lower === 'no one') {
+          selection = 'Nenhum marca';
+        }
+
+        if (!selection) return null;
+        return {
+          marketType: MarketType.TEAM_TO_SCORE,
+          selection,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
+  }
+
+  private mapTeamSpecialLines(
+    values: Array<{ value: string; odd: string }>,
+    bookmaker: string,
+    betName: string,
+  ): ImportedOdd[] {
+    const prefix = betName.trim();
+    return values
+      .map((v) => {
+        const odd = parseFloat(v.odd);
+        if (!Number.isFinite(odd) || odd <= 1) return null;
+        const outcome = v.value.trim();
+        if (!outcome) return null;
+        return {
+          marketType: MarketType.TEAM_SPECIAL,
+          selection: `${prefix}: ${outcome}`,
+          value: odd,
+          bookmaker,
+        };
+      })
+      .filter(Boolean) as ImportedOdd[];
   }
 
   private mapYesNo(
