@@ -422,7 +422,122 @@ export class AnalysisService {
   }
 
   /**
- * Sugestões por campeonato:
+   * Gera um bilhete aleatório do dia: 3–4 jogos distintos com
+   * probabilidade do mercado >= minProbability (default 70%).
+   */
+  async suggestRandomTicket(
+    minProbability = 0.7,
+    minLegs = 3,
+    maxLegs = 4,
+  ) {
+    const minProb = Math.min(0.99, Math.max(0.5, minProbability));
+    const legsMin = Math.min(10, Math.max(2, minLegs));
+    const legsMax = Math.min(10, Math.max(legsMin, maxLegs));
+
+    const now = new Date();
+    const todayStart = new Date(now);
+    todayStart.setHours(0, 0, 0, 0);
+    const todayEnd = new Date(now);
+    todayEnd.setHours(23, 59, 59, 999);
+
+    const matches = await this.prisma.match.findMany({
+      where: {
+        externalId: { not: null },
+        matchDate: { gte: todayStart, lte: todayEnd },
+        status: { in: ANALYZABLE_STATUSES },
+      },
+      include: { homeTeam: true, awayTeam: true },
+      orderBy: { matchDate: 'asc' },
+      take: 80,
+    });
+
+    type Pick = {
+      matchId: string;
+      matchLabel: string;
+      marketType: string;
+      selection: string;
+      odd: number;
+      probability: number;
+      ev: number;
+      confidence: number;
+    };
+
+    const byMatch = new Map<string, Pick[]>();
+
+    for (const match of matches) {
+      const snap = await this.prisma.snapshot.findFirst({
+        where: { matchId: match.id },
+        orderBy: { analyzedAt: 'desc' },
+      });
+      if (!snap) continue;
+
+      const data = snap.data as {
+        markets?: Array<{
+          selection: string;
+          marketType?: string;
+          probability: number;
+          bookmakerOdd: number;
+          ev: number;
+          confidence: number;
+        }>;
+      };
+      if (!data.markets?.length) continue;
+
+      const matchLabel = `${match.homeTeam.name} vs ${match.awayTeam.name}`;
+      const eligible = data.markets
+        .filter(
+          (m) =>
+            m.probability >= minProb &&
+            Number.isFinite(m.bookmakerOdd) &&
+            m.bookmakerOdd > 1,
+        )
+        .map((m) => ({
+          matchId: match.id,
+          matchLabel,
+          marketType: m.marketType ?? 'MATCH_RESULT',
+          selection: m.selection,
+          odd: m.bookmakerOdd,
+          probability: m.probability,
+          ev: m.ev,
+          confidence: m.confidence,
+        }));
+
+      if (eligible.length > 0) {
+        byMatch.set(match.id, eligible);
+      }
+    }
+
+    if (byMatch.size < legsMin) {
+      throw new BadRequestException(
+        `Precisa de ao menos ${legsMin} jogos de hoje com mercados ≥ ${(minProb * 100).toFixed(0)}%. Encontrados: ${byMatch.size}. Execute análises nos jogos do dia.`,
+      );
+    }
+
+    const available = Math.min(legsMax, byMatch.size);
+    const legCount =
+      legsMin + Math.floor(Math.random() * (available - legsMin + 1));
+
+    const shuffledIds = [...byMatch.keys()].sort(() => Math.random() - 0.5);
+    const selectedMatchIds = shuffledIds.slice(0, legCount);
+
+    const selections = selectedMatchIds.map((matchId) => {
+      const picks = byMatch.get(matchId)!;
+      // Prefere EV alto, com um pouco de aleatoriedade entre o top 3
+      const ranked = [...picks].sort((a, b) => b.ev - a.ev);
+      const pool = ranked.slice(0, Math.min(3, ranked.length));
+      return pool[Math.floor(Math.random() * pool.length)]!;
+    });
+
+    return {
+      day: 'today' as const,
+      minProbability: minProb,
+      legCount,
+      selections,
+    };
+  }
+
+  /**
+   * Sugestões por campeonato:
    * 6 múltiplas 1X2 (B01–B06) + 4 placares H2H + 4 bilhetes pós-análise
    * (temas variáveis entre mercados de docs/betting/markets).
    */

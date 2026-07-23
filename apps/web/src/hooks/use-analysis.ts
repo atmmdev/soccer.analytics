@@ -105,3 +105,41 @@ export function useLeagueTicketSuggestions(
     enabled: options?.enabled ?? true,
   });
 }
+
+export interface RandomTicketSuggestion {
+  day: 'today';
+  minProbability: number;
+  legCount: number;
+  selections: Array<{
+    matchId: string;
+    matchLabel: string;
+    marketType: string;
+    selection: string;
+    odd: number;
+    probability: number;
+    ev: number;
+    confidence: number;
+  }>;
+}
+
+export function useSuggestRandomTicket() {
+  return useMutation({
+    mutationFn: async (params?: {
+      minProbability?: number;
+      minLegs?: number;
+      maxLegs?: number;
+    }) => {
+      const { data } = await apiClient.get<RandomTicketSuggestion>(
+        '/analysis/random-ticket',
+        {
+          params: {
+            minProbability: params?.minProbability ?? 0.7,
+            minLegs: params?.minLegs ?? 3,
+            maxLegs: params?.maxLegs ?? 4,
+          },
+        },
+      );
+      return data;
+    },
+  });
+}

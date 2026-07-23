@@ -63,6 +63,23 @@ export class AnalysisController {
     );
   }
 
+  @Get('random-ticket')
+  @ApiOperation({
+    summary:
+      'Bilhete aleatório do dia: 3–4 jogos distintos com probabilidade ≥ 70%',
+  })
+  randomTicket(
+    @Query('minProbability') minProbability?: string,
+    @Query('minLegs') minLegs?: string,
+    @Query('maxLegs') maxLegs?: string,
+  ) {
+    return this.analysisService.suggestRandomTicket(
+      minProbability ? parseFloat(minProbability) : 0.7,
+      minLegs ? parseInt(minLegs, 10) : 3,
+      maxLegs ? parseInt(maxLegs, 10) : 4,
+    );
+  }
+
   @Get('markets')
   @ApiOperation({ summary: 'List analyzed markets (all, ev-plus, or bet)' })
   markets(
