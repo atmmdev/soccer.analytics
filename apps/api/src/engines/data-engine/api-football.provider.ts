@@ -10,6 +10,7 @@ import {
   ImportedOdd,
   ImportedPlayerPerformance,
 } from './data-provider.interface';
+import { ApiFootballUsageService } from './api-football-usage.service';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
 
@@ -35,7 +36,10 @@ const STATUS_MAP: Record<string, MatchStatus> = {
 export class ApiFootballProvider implements DataProvider {
   readonly name = 'api-football';
 
-  constructor(private config: ConfigService) {}
+  constructor(
+    private config: ConfigService,
+    private usage: ApiFootballUsageService,
+  ) {}
 
   getStatus(): DataProviderStatus {
     const key = this.getApiKey();
@@ -349,6 +353,8 @@ export class ApiFootballProvider implements DataProvider {
         'x-apisports-key': key,
       },
     });
+
+    await this.usage.recordRequest(path, response);
 
     if (response.status === 429) {
       throw new Error(

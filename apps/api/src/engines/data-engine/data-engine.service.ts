@@ -3,6 +3,10 @@ import { MatchStatus } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 import { ApiFootballProvider } from './api-football.provider';
 import {
+  ApiFootballUsageService,
+  type ApiFootballUsage,
+} from './api-football-usage.service';
+import {
   DataProviderStatus,
   ImportedFixture,
   ImportedOdd,
@@ -63,12 +67,17 @@ export class DataEngineService {
   constructor(
     private prisma: PrismaService,
     private apiFootball: ApiFootballProvider,
+    private apiUsage: ApiFootballUsageService,
   ) {}
 
   getStatus(): { providers: DataProviderStatus[] } {
     return {
       providers: [this.apiFootball.getStatus()],
     };
+  }
+
+  getApiFootballUsage(): Promise<ApiFootballUsage> {
+    return this.apiUsage.getUsage();
   }
 
   async importFixtures(date: string): Promise<ImportFixturesResult> {

@@ -140,6 +140,45 @@ export function SyncStatusMenu() {
                   : ''}
               </p>
             )}
+            {sync.apiUsage && (
+              <div className="space-y-1 rounded-md border border-border/50 bg-secondary/20 px-2 py-1.5">
+                <p className="text-foreground">
+                  Requests hoje:{' '}
+                  <span className="font-mono font-medium">
+                    {sync.apiUsage.used.toLocaleString('pt-BR')}
+                  </span>
+                  {' / '}
+                  <span className="font-mono">
+                    {sync.apiUsage.dailyLimit.toLocaleString('pt-BR')}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {' '}
+                    ({sync.apiUsage.percentUsed}%)
+                  </span>
+                </p>
+                <p>
+                  Restante:{' '}
+                  <span className="font-mono text-foreground">
+                    {sync.apiUsage.remaining.toLocaleString('pt-BR')}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {' '}
+                    · plano {sync.apiUsage.minuteLimit} r/min
+                  </span>
+                </p>
+                {sync.apiUsage.remainingFromApi != null && (
+                  <p className="text-[10px]">
+                    API reporta restante:{' '}
+                    <span className="font-mono text-foreground">
+                      {sync.apiUsage.remainingFromApi.toLocaleString('pt-BR')}
+                    </span>
+                    {sync.apiUsage.limitFromApi != null
+                      ? ` / ${sync.apiUsage.limitFromApi.toLocaleString('pt-BR')}`
+                      : ''}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         ) : (
           <p className="px-2 py-1.5 text-xs text-muted-foreground">Carregando status…</p>

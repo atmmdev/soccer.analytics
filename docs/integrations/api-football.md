@@ -32,6 +32,8 @@
 
 - Sem key → provider reporta `configured: false`; sync não importa dados reais.
 - O código **não assume** plano free/pago: consome o que a API permitir e só para se receber `429`.
+- Contador diário interno em `GET /sync/status` → `apiUsage` (defaults Pro: 7500/dia, 300 r/min via env).
+- Headers `x-ratelimit-*` da API, quando presentes, também aparecem no contador.
 - Paginação em `/odds` por data segue `paging.total` da resposta.
 - Definições Opta/API podem divergir levemente da Bet365 — liquidação da aposta segue a casa.
 

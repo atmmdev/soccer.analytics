@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { MatchStatus } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { DataEngineService } from '../engines/data-engine/data-engine.service';
+import type { ApiFootballUsage } from '../engines/data-engine/api-football-usage.service';
 import { AnalysisService } from '../analysis/analysis.service';
 
 const SYNC_STATE_KEY = 'daily_sync';
@@ -24,6 +25,7 @@ export interface SyncStatus {
   message: string | null;
   completedAt: string | null;
   result: Record<string, unknown> | null;
+  apiUsage: ApiFootballUsage | null;
 }
 
 interface StoredSyncState {
@@ -70,6 +72,7 @@ export class SyncService implements OnModuleInit {
         message: 'Configure API_FOOTBALL_KEY em apps/api/.env',
         completedAt: null,
         result: null,
+        apiUsage: await this.safeUsage(),
       };
     }
 
@@ -312,7 +315,7 @@ export class SyncService implements OnModuleInit {
     });
   }
 
-  private toStatus(stored: StoredSyncState | null): SyncStatus {
+  private async toStatus(stored: StoredSyncState | null): Promise<SyncStatus> {
     const status: SyncStatusValue = this.running
       ? 'running'
       : stored?.status ?? 'idle';
@@ -325,7 +328,16 @@ export class SyncService implements OnModuleInit {
       message: stored?.message ?? null,
       completedAt: stored?.completedAt ?? null,
       result: stored?.result ?? null,
+      apiUsage: await this.safeUsage(),
     };
+  }
+
+  private async safeUsage() {
+    try {
+      return await this.dataEngine.getApiFootballUsage();
+    } catch {
+      return null;
+    }
   }
 
   private formatDate(date: Date): string {

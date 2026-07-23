@@ -2,6 +2,19 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { apiClient } from '@/lib/api/client';
 
+export interface ApiFootballUsage {
+  date: string;
+  used: number;
+  dailyLimit: number;
+  minuteLimit: number;
+  remaining: number;
+  percentUsed: number;
+  remainingFromApi: number | null;
+  limitFromApi: number | null;
+  lastRequestAt: string | null;
+  lastPath: string | null;
+}
+
 export interface SyncStatus {
   status: 'idle' | 'running' | 'completed' | 'failed' | 'skipped';
   syncDate: string | null;
@@ -10,6 +23,7 @@ export interface SyncStatus {
   message: string | null;
   completedAt: string | null;
   result: Record<string, unknown> | null;
+  apiUsage: ApiFootballUsage | null;
 }
 
 export interface SyncResultSummary {
@@ -91,8 +105,9 @@ export function useSyncStatus() {
       const { data } = await apiClient.get<SyncStatus>('/sync/status');
       return data;
     },
+    // Atualiza o contador de requests mesmo fora de sync
     refetchInterval: (query) =>
-      query.state.data?.status === 'running' ? 4000 : false,
+      query.state.data?.status === 'running' ? 4000 : 30_000,
   });
 }
 

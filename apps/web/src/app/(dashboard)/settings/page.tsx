@@ -157,8 +157,8 @@ export default function SettingsPage() {
                       </p>
                       {summary.remainingWithoutOdds > 0 && (
                         <p className="text-sm text-amber-400 sm:col-span-2">
-                          Ainda sem odds: {summary.remainingWithoutOdds}{" "}
-                          (próximas syncs completam no plano free)
+                          Ainda sem odds: {summary.remainingWithoutOdds} — a
+                          próxima sync completa o restante
                         </p>
                       )}
                     </div>
@@ -176,13 +176,43 @@ export default function SettingsPage() {
                     )}
                   </>
                 )}
+
+                {sync.apiUsage && (
+                  <div className="space-y-1 border-t pt-3">
+                    <p className="text-sm font-medium">Uso API-Football (hoje)</p>
+                    <p className="font-mono text-sm text-foreground">
+                      {sync.apiUsage.used.toLocaleString("pt-BR")} /{" "}
+                      {sync.apiUsage.dailyLimit.toLocaleString("pt-BR")} requests
+                      ({sync.apiUsage.percentUsed}%)
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Restante:{" "}
+                      <span className="font-mono text-foreground">
+                        {sync.apiUsage.remaining.toLocaleString("pt-BR")}
+                      </span>
+                      {" · "}
+                      plano {sync.apiUsage.minuteLimit} r/min
+                      {sync.apiUsage.remainingFromApi != null && (
+                        <>
+                          {" · "}API reporta{" "}
+                          <span className="font-mono text-foreground">
+                            {sync.apiUsage.remainingFromApi.toLocaleString("pt-BR")}
+                          </span>
+                          {sync.apiUsage.limitFromApi != null
+                            ? ` / ${sync.apiUsage.limitFromApi.toLocaleString("pt-BR")}`
+                            : ""}
+                        </>
+                      )}
+                    </p>
+                  </div>
+                )}
               </div>
             ) : null}
 
             <p className="text-xs text-muted-foreground">
-              A sync roda ao iniciar a API e a cada acesso autenticado (máx. a
-              cada 4h). Estatísticas e odds respeitam o rate limit da
-              API-Football (plano free: 10 req/min).
+              A sync roda ao iniciar a API e periodicamente enquanto o sistema
+              estiver ativo. O uso de requests aparece no menu de sincronização
+              (ícone no header) e respeita o teto do seu plano na API-Football.
             </p>
           </CardContent>
         </Card>
@@ -210,6 +240,14 @@ export default function SettingsPage() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     {provider?.message}
                   </p>
+                  {sync?.apiUsage && (
+                    <p className="mt-2 font-mono text-xs text-foreground">
+                      {sync.apiUsage.used.toLocaleString('pt-BR')} /{' '}
+                      {sync.apiUsage.dailyLimit.toLocaleString('pt-BR')} requests
+                      hoje ({sync.apiUsage.percentUsed}%) ·{' '}
+                      {sync.apiUsage.minuteLimit} r/min
+                    </p>
+                  )}
                 </div>
                 <Badge variant={isConfigured ? "default" : "secondary"}>
                   {isConfigured ? "Ativa" : "Não configurada"}
