@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { MatchStatus, TicketStatus } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { BankrollService } from '../bankroll/bankroll.service';
+import { BankrollEntryType } from '../bankroll/dto/bankroll.dto';
 import { AnalysisService } from '../analysis/analysis.service';
 import { AnalyzerService } from '../analyzer/analyzer.service';
 import {
@@ -31,7 +32,6 @@ export class DashboardService {
       evPlusRaw,
       todayMatchesRaw,
       latestTicket,
-      recentTickets,
       todayEntries,
     ] = await Promise.all([
       this.bankroll.getSummary(),
@@ -43,13 +43,12 @@ export class DashboardService {
         orderBy: { updatedAt: 'desc' },
         include: { selections: true },
       }),
-      this.prisma.ticket.findMany({
-        where: { status: { in: [TicketStatus.WON, TicketStatus.LOST] } },
-        orderBy: { updatedAt: 'desc' },
-        take: 5,
-      }),
       this.getTodayBankrollProfit(),
     ]);
+
+    // Depois do getSummary (que sincroniza o ledger) — inclui bilhetes
+    // do sistema e de estudo vinculados à banca aberta.
+    const recentEntries = await this.getRecentEntries(bankrollSummary.period.id);
 
     const featuredMatch =
       todayMatchesRaw.find((m) => m.day === 'today') ??
@@ -88,22 +87,6 @@ export class DashboardService {
           suggestedStake: 0,
           potentialReturn: 0,
         };
-
-    const recentEntries = recentTickets.map((t) => ({
-      id: t.id,
-      date: new Date(t.updatedAt).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
-      }),
-      market: t.name ?? 'Bilhete',
-      odd: t.combinedOdd ?? 0,
-      stake: t.stake ?? 0,
-      result: t.status === TicketStatus.WON ? ('win' as const) : ('loss' as const),
-      profit:
-        t.status === TicketStatus.WON
-          ? (t.actualReturn ?? 0) - (t.stake ?? 0)
-          : -(t.stake ?? 0),
-    }));
 
     const topEv = evPlusRaw[0];
 
@@ -332,5 +315,88 @@ export class DashboardService {
     });
 
     return Math.round(entries.reduce((sum, e) => sum + e.amount, 0) * 100) / 100;
+  }
+
+  /**
+   * Últimas entradas liquidadas da banca aberta (WIN/LOSS),
+   * enriquecidas com odd/stake dos bilhetes do sistema ou de estudo.
+   */
+  private async getRecentEntries(periodId: string) {
+    const settlements = await this.prisma.bankrollEntry.findMany({
+      where: {
+        periodId,
+        type: { in: [BankrollEntryType.WIN, BankrollEntryType.LOSS] },
+      },
+      orderBy: { createdAt: 'desc' },
+      take: 8,
+    });
+
+    if (!settlements.length) return [];
+
+    const ticketIds = [
+      ...new Set(
+        settlements
+          .map((e) => e.ticketId)
+          .filter((id): id is string => !!id),
+      ),
+    ];
+    const studyTicketIds = [
+      ...new Set(
+        settlements
+          .map((e) => e.studyTicketId)
+          .filter((id): id is string => !!id),
+      ),
+    ];
+
+    const [systemTickets, studyTickets] = await Promise.all([
+      ticketIds.length
+        ? this.prisma.ticket.findMany({ where: { id: { in: ticketIds } } })
+        : Promise.resolve([]),
+      studyTicketIds.length
+        ? this.prisma.studyTicket.findMany({
+            where: { id: { in: studyTicketIds } },
+          })
+        : Promise.resolve([]),
+    ]);
+
+    const systemById = new Map(systemTickets.map((t) => [t.id, t]));
+    const studyById = new Map(studyTickets.map((t) => [t.id, t]));
+
+    return settlements.map((entry) => {
+      const system = entry.ticketId
+        ? systemById.get(entry.ticketId)
+        : undefined;
+      const study = entry.studyTicketId
+        ? studyById.get(entry.studyTicketId)
+        : undefined;
+
+      const stake = system?.stake ?? study?.stake ?? 0;
+      const odd = system?.combinedOdd ?? study?.combinedOdd ?? 0;
+      const market =
+        system?.name ??
+        study?.betLabel ??
+        study?.betType ??
+        study?.bet365Ref ??
+        entry.description?.replace(/^(Green|Red|Cash out):\s*/i, '') ??
+        'Bilhete';
+
+      const isWin = entry.type === BankrollEntryType.WIN;
+      const profit = isWin
+        ? Math.round((entry.amount - stake) * 100) / 100
+        : Math.round(-stake * 100) / 100;
+
+      return {
+        id: entry.id,
+        date: new Date(entry.createdAt).toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: '2-digit',
+        }),
+        market,
+        odd,
+        stake,
+        result: isWin ? ('win' as const) : ('loss' as const),
+        profit,
+      };
+    });
   }
 }

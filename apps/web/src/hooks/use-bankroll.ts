@@ -90,6 +90,7 @@ export function useCreateBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
       queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
@@ -120,6 +121,7 @@ export function useUpdateBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -161,6 +163,7 @@ export function useLinkBankrollTickets() {
         queryKey: ['bankroll', 'correlated', vars.periodId],
       });
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
       queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
@@ -191,6 +194,7 @@ export function useUnlinkBankrollTickets() {
         queryKey: ['bankroll', 'correlated', vars.periodId],
       });
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
       queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
@@ -216,6 +220,7 @@ export function useCloseBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -232,6 +237,7 @@ export function useReopenBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -250,6 +256,7 @@ export function useDeleteBankrollPeriod() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
       queryClient.invalidateQueries({ queryKey: ['study-tickets'] });
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
@@ -274,6 +281,7 @@ export function useCreateBankrollEntry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -298,6 +306,7 @@ export function useUpdateBankrollEntry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -314,6 +323,7 @@ export function useDeleteBankrollEntry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -328,6 +338,7 @@ export function usePlaceTicket() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
   });
@@ -352,6 +363,7 @@ export function useSettleTicket() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankroll'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
     },
   });

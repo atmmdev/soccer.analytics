@@ -28,6 +28,7 @@ export function useUpdateStudyTicket() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['study-tickets'] });
       qc.invalidateQueries({ queryKey: ['bankroll'] });
+      qc.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -41,6 +42,7 @@ export function useDeleteStudyTicket() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['study-tickets'] });
       qc.invalidateQueries({ queryKey: ['bankroll'] });
+      qc.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -80,6 +82,7 @@ export function useImportStudyTicketPdf() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['study-tickets'] });
       qc.invalidateQueries({ queryKey: ['bankroll'] });
+      qc.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
